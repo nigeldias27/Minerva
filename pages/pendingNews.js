@@ -46,9 +46,10 @@ export default function PendingNews() {
         </div>
 
         <div className="grid grid-cols-3">
-          {pendingNews.map((val) => {
+          {pendingNews.map((val, i) => {
             return (
               <NewsCard
+                key={i}
                 imageURL={`${val.imageURL}`}
                 headline={`${val.title}`}
                 genre={`${val.genre}`}

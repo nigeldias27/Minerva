@@ -101,9 +101,10 @@ export default function CreateArticle() {
                 tabindex="-1"
               >
                 <div class="py-1" role="none">
-                  {genreList.map((val) => {
+                  {genreList.map((val, i) => {
                     return (
                       <a
+                        key={i}
                         class="text-gray-700 block px-4 py-2 text-sm"
                         role="menuitem"
                         tabindex="-1"

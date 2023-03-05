@@ -88,6 +88,7 @@ export default function News() {
             {genreList.map((val, i) => {
               return (
                 <MenuItem
+                  key={i}
                   onClick={() => {
                     check[i] == true ? (check[i] = false) : (check[i] = true);
                     setCheck([...check]);
@@ -109,9 +110,10 @@ export default function News() {
         </div>
 
         <div className="grid grid-cols-3">
-          {data.map((val) => {
+          {data.map((val, i) => {
             return (
               <NewsCard
+                key={i}
                 imageURL={`${val.imageURL}`}
                 headline={`${val.title}`}
                 genre={`${val.genre}`}
