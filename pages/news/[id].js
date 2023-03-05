@@ -15,13 +15,7 @@ export default function Article() {
   }, []);
 
   async function initState() {
-    const response = await axios.post(
-      "/api/getParticularArticle",
-      { id: id },
-      {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      }
-    );
+    const response = await axios.post("/api/getParticularArticle", { id: id });
     console.log(response.data);
     setData({ ...response.data });
   }
