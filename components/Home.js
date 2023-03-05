@@ -29,9 +29,10 @@ export default function HomeComponent() {
     <div className="px-48 mt-8">
       <h1 className="text-3xl font-bold mb-8">Recent News</h1>
       <div className="grid grid-cols-3">
-        {data.map((val) => {
+        {data.map((val, i) => {
           return (
             <NewsCard
+              key={i}
               imageURL={`${val.imageURL}`}
               headline={`${val.title}`}
               genre={`${val.genre}`}
