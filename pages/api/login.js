@@ -11,8 +11,9 @@ const validate = async (req, res) => {
         expiresIn: "1d",
       });
       res.json({ token: token });
+    } else {
+      res.json({ token: "" });
     }
-    res.json({ token: "" });
   }
 };
 
