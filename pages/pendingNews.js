@@ -3,18 +3,22 @@ import NewsCard from "@/components/NewsCard";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 export default function PendingNews() {
   const router = useRouter();
   const [pendingNews, setPendingNews] = useState([]);
   const [newArticle, setNewArticle] = useState(false);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     initState();
   }, []);
   async function initState() {
+    setOpen(true);
     const response = await axios.get("/api/pendingArticles", {
       headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
     });
+    setOpen(false);
     setPendingNews([...response.data.article]);
     if (response.data.role == "Content") {
       setNewArticle(true);
@@ -61,6 +65,12 @@ export default function PendingNews() {
           })}
         </div>
       </div>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 }

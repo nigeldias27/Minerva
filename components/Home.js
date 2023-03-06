@@ -7,6 +7,8 @@ import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 import Contact from "./ContactUs";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -14,20 +16,26 @@ import axios from "axios";
 export default function HomeComponent() {
   const router = useRouter();
   const [data, setData] = useState([]);
+  const [open, setOpen] = useState(false);
+
   useEffect(() => {
     initState();
   }, []);
   async function initState() {
+    setOpen(true);
     const response = await axios.post("/api/articles", {
       selectedGenres: [],
       limit: 6,
     });
+    setOpen(false);
     console.log(response.data);
     setData([...response.data]);
   }
   return (
     <div className="px-0 mt-8 sm:px-48">
-      <h1 className="text-3xl font-bold px-8 mb-8 sm:px-0">Recent News</h1>
+      <h1 className="text-3xl font-bold px-8 mt-24 mb-8 sm:px-0">
+        Recent News
+      </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
         {data.map((val, i) => {
           return (
@@ -55,9 +63,9 @@ export default function HomeComponent() {
           <span className="text-xl">View More</span>
         </button>
       </div>
-      <div className="bg-yellowBackground p-8 w-full rounded-md">
+      <div className="bg-yellowBackground p-8 my-24 w-full rounded-md">
         <h1 className="text-3xl font-bold mb-8">Our Timeline</h1>
-        <Timeline position="alternate">
+        <Timeline className="px-1" position="alternate">
           <TimelineItem>
             <TimelineOppositeContent color="text.secondary">
               <h1>8th Mar 2023, 2:30PM</h1>
@@ -110,12 +118,12 @@ export default function HomeComponent() {
           </TimelineItem>
         </Timeline>
       </div>
-      <h1 className="text-3xl font-bold my-8">Featuring PES</h1>
-      <h4 className="font-bold text-lg pb-4">
+      <h1 className="text-3xl font-bold my-8 mx-8">Featuring PES</h1>
+      <h4 className="font-bold text-lg pb-4 mx-8">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate
         libero et velit interdum, ac aliquet odio mattis.
       </h4>
-      <p>
+      <p className="mx-8">
         Forem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis
         molestie, dictum est a, mattis tellus. Sed dignissim, metus nec
         fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus
@@ -146,10 +154,16 @@ export default function HomeComponent() {
       </p>
       <img
         src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
-        className="w-full my-8"
+        className="w-full mt-8 mb-24"
       ></img>
       <Contact />
       <Footer />
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 }

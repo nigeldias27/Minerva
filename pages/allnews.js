@@ -5,11 +5,14 @@ import axios from "axios";
 import MenuItem from "@mui/material/MenuItem";
 import { MdKeyboardDoubleArrowRight, MdCheck } from "react-icons/md";
 import { useEffect, useState } from "react";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 import ListItemIcon from "@mui/material/ListItemIcon";
 export default function News() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [data, setData] = useState([]);
   const [news, setNews] = useState([]);
+  const [openLoad, setOpenLoad] = useState(false);
   const [check, setCheck] = useState([
     false,
     false,
@@ -48,9 +51,11 @@ export default function News() {
       }
     }
     console.log(selectedGenres);
+    setOpenLoad(true);
     const response = await axios.post("/api/articles", {
       selectedGenres: selectedGenres,
     });
+    setOpenLoad(false);
     console.log(response.data);
     setData([...response.data]);
   }
@@ -126,6 +131,12 @@ export default function News() {
           })}
         </div>
       </div>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={openLoad}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 }
