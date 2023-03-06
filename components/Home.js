@@ -10,6 +10,10 @@ import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import Contact from "./ContactUs";
+import logo from "../public/assets/logo.png";
+import Image from "next/image";
+import event1 from "../public/assets/minerva_event_1.jpeg";
+import { Avatar } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -67,15 +71,19 @@ export default function HomeComponent() {
         <h1 className="text-3xl font-bold mb-8">Our Timeline</h1>
         <Timeline className="px-1" position="alternate">
           <TimelineItem>
-            <TimelineOppositeContent color="text.secondary">
+            <TimelineOppositeContent className="py-8" color="text.secondary">
               <h1>8th Mar 2023, 2:30PM</h1>
               <h1>Seminar Hall 1,BE Block</h1>
             </TimelineOppositeContent>
             <TimelineSeparator>
-              <TimelineDot color="secondary" />
+              <TimelineDot sx={{ padding: "0px" }}>
+                <Avatar className="w-14 h-14 sm:w-24 sm:h-24">
+                  <Image src={event1}></Image>
+                </Avatar>
+              </TimelineDot>
               <TimelineConnector />
             </TimelineSeparator>
-            <TimelineContent>
+            <TimelineContent className="py-8">
               <h1 className="text-md font-semibold">Minerva Orientation</h1>
               <p>
                 Come learn more about what our club has in store for all of you
@@ -91,15 +99,19 @@ export default function HomeComponent() {
             </TimelineContent>
           </TimelineItem>
           <TimelineItem>
-            <TimelineOppositeContent color="text.secondary">
+            <TimelineOppositeContent className="py-8" color="text.secondary">
               <h1>8th Feb 2023, 2:45PM</h1>
               <h1>Seminar Hall 3,BE Block</h1>
             </TimelineOppositeContent>
             <TimelineSeparator>
-              <TimelineDot color="success" />
+              <TimelineDot sx={{ padding: "0px" }}>
+                <Avatar className="w-14 h-14 sm:w-24 sm:h-24">
+                  <Image src={event1}></Image>
+                </Avatar>
+              </TimelineDot>
               <TimelineConnector />
             </TimelineSeparator>
-            <TimelineContent>
+            <TimelineContent className="py-8">
               <h1 className="text-md font-semibold">
                 Rethink Retrospect Reflect
               </h1>

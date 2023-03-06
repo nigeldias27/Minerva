@@ -22,15 +22,15 @@ async function submit(req, res) {
       req.body.Name +
       "</h1>" +
       "<h1>" +
-      "Name:" +
+      "Email:" +
       req.body.Email +
       "</h1>" +
       "<h1>" +
-      "Name:" +
+      "Subject:" +
       req.body.Subject +
       "</h1>" +
       "<p>" +
-      "Name:" +
+      "Message:" +
       req.body.Message +
       "</p>";
     var mailOptions = {
