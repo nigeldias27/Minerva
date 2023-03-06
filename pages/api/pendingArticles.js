@@ -4,6 +4,7 @@ import validateToken from "@/lib/validateToken";
 import Article from "../../models/Article.js";
 const getPendingArticles = async (req, res) => {
   if (req.method == "GET") {
+    console.log(req.headers["authorization"].split(" ")[1]);
     const user = await validateToken(
       req.headers["authorization"].split(" ")[1]
     );
