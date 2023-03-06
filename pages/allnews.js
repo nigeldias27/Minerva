@@ -63,8 +63,8 @@ export default function News() {
   return (
     <div className="bg-lightGrey min-h-screen">
       <Headers />
-      <div className="px-48 mt-8">
-        <div className="flex flex-row w-full justify-between items-center mb-8">
+      <div className="px-0 mt-8 sm:px-48">
+        <div className="flex flex-row w-full justify-between items-center px-8 mb-8 sm:px-0">
           <h1 className="text-3xl font-bold">News</h1>
           <a
             id="basic-button"
@@ -109,7 +109,7 @@ export default function News() {
           </Menu>
         </div>
 
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           {data.map((val, i) => {
             return (
               <NewsCard

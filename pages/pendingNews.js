@@ -23,8 +23,8 @@ export default function PendingNews() {
   return (
     <div className="bg-lightGrey min-h-screen">
       <Headers />
-      <div className="px-48 mt-8">
-        <div className="flex flex-row w-full justify-between items-center mb-8">
+      <div className="px-0 sm:px-48 mt-8">
+        <div className="flex flex-row w-full justify-between items-center px-8 mb-8 sm:px-0">
           <h1 className="text-3xl font-bold">
             {newArticle == false
               ? "Articles pending approval"
@@ -44,8 +44,7 @@ export default function PendingNews() {
             <div></div>
           )}
         </div>
-
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           {pendingNews.map((val, i) => {
             return (
               <NewsCard
