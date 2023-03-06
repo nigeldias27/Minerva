@@ -26,9 +26,9 @@ export default function HomeComponent() {
     setData([...response.data]);
   }
   return (
-    <div className="px-48 mt-8">
-      <h1 className="text-3xl font-bold mb-8">Recent News</h1>
-      <div className="grid grid-cols-3">
+    <div className="px-0 mt-8 sm:px-48">
+      <h1 className="text-3xl font-bold px-8 mb-8 sm:px-0">Recent News</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
         {data.map((val, i) => {
           return (
             <NewsCard

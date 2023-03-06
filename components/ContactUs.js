@@ -1,5 +1,5 @@
 import { useState } from "react";
-
+import axios from "axios";
 export default function Contact() {
   const [data, setData] = useState({});
   const changed = (props) => (e) => {
@@ -17,7 +17,7 @@ export default function Contact() {
         <input
           placeholder="Name"
           onChange={changed("Name")}
-          className="w-full mt-3 px-4 py-2 text-base border border-gray-300  outline-none focus:ring-purple-500 focus:border-purple-500 focus:ring-1"
+          className="w-full mt-3 px-4 py-2 text-base border border-gray-300  outline-none focus:ring-beigeText focus:border-beigeText focus:ring-1"
         ></input>
       </div>
 
@@ -25,7 +25,7 @@ export default function Contact() {
         <input
           placeholder="Email"
           onChange={changed("Email")}
-          className="w-full mt-3 px-4 py-2 text-base border border-gray-300  outline-none focus:ring-purple-500 focus:border-purple-500 focus:ring-1"
+          className="w-full mt-3 px-4 py-2 text-base border border-gray-300  outline-none focus:ring-beigeText focus:border-beigeText focus:ring-1"
         ></input>
       </div>
 
@@ -33,18 +33,33 @@ export default function Contact() {
         <input
           placeholder="Subject"
           onChange={changed("Subject")}
-          className="w-full mt-3 px-4 py-2 text-base border border-gray-300  outline-none focus:ring-purple-500 focus:border-purple-500 focus:ring-1"
+          className="w-full mt-3 px-4 py-2 text-base border border-gray-300  outline-none focus:ring-beigeText focus:border-beigeText focus:ring-1"
         ></input>
       </div>
       <div className="px-8">
         <textarea
           placeholder="Message"
           onChange={changed("Message")}
-          className="w-full my-3 px-4 py-2 text-base border border-gray-300 outline-none focus:ring-purple-500 focus:border-purple-500 focus:ring-1"
+          className="w-full my-3 px-4 py-2 text-base border border-gray-300 outline-none focus:ring-beigeText focus:border-beigeText focus:ring-1"
         ></textarea>
       </div>
       <div className="px-8">
-        <button className="bg-yellowBackground px-4">Submit</button>
+        <button
+          className="bg-yellowBackground px-4"
+          onClick={async () => {
+            try {
+              const response = await axios.post("/api/contactUs", data);
+              console.log(response);
+              if ((response.data = "Finished")) {
+                alert("Thank you for your response!");
+              }
+            } catch (e) {
+              alert("Failed to send.");
+            }
+          }}
+        >
+          Submit
+        </button>
       </div>
     </div>
   );

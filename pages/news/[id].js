@@ -27,7 +27,7 @@ export default function Article() {
           {data.article == undefined ? "" : data.article.title}
         </h1>
       </div>
-      <div className="px-48 mt-8">
+      <div className="px-8 sm:px-48 mt-8">
         <h1>
           {data.article == undefined ? "" : data.article.genre} |{" "}
           {data.article == undefined ? "" : data.article.createdAt}

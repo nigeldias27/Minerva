@@ -11,7 +11,7 @@ export default function Login() {
   return (
     <div className="bg-lightGrey min-h-screen">
       <Headers />
-      <div style={{ paddingTop: "15vh" }} className="px-64">
+      <div style={{ paddingTop: "15vh" }} className="px-8 md:px-24 lg:px-64">
         <div className="rounded-xl p-12 bg-white w-full my-12 py-8 drop-shadow-2xl flex flex-col items-center">
           <h1 className="text-3xl font-bold text-center my-8">Login</h1>
           <input

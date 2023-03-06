@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 
 export default function Counter() {
@@ -5,11 +6,15 @@ export default function Counter() {
   const [hours, setHours] = useState(0);
   const [mins, setMins] = useState(0);
   const [sec, setSec] = useState(0);
+  const router = useRouter();
   useEffect(() => {
     const interval = setInterval(() => {
       const finale = new Date("March 08, 2023 14:45:00");
       const current = new Date();
       const diff = finale.getTime() - current.getTime();
+      if (diff < 0) {
+        router.push("/");
+      }
       setSec(Math.floor((diff / 1000) % 60));
       setMins(Math.floor((diff / 1000 / 60) % 60));
       setHours(Math.floor((diff / 1000 / 60 / 60) % 24));

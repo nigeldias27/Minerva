@@ -59,10 +59,10 @@ export default function CreateArticle() {
   return (
     <div className="bg-lightGrey min-h-screen">
       <Headers />
-      <div className="px-24 mt-24">
+      <div className="px-0 sm:px-24 mt-24">
         <h1 className="text-3xl px-24 font-bold">Publish a new Article:</h1>
         <div className="rounded-xl bg-white w-full my-12 py-8 drop-shadow-2xl">
-          <div className="pt-4 grid grid-cols-3">
+          <div className="pt-4 grid grid-cols-1 sm:grid-cols-3 sm:grid-cols-3">
             <div class="text-left flex justify-center items-center">
               <div>
                 <button
@@ -150,7 +150,7 @@ export default function CreateArticle() {
           </div>
           <div className="px-4">
             <textarea
-              placeholder="Article"
+              placeholder="Article in markdown format"
               onChange={changed("data")}
               value={`${data.data == undefined ? "" : data.data}`}
               className="w-full my-4 px-4 py-2 text-base border border-gray-300 rounded outline-none focus:ring-black focus:border-black focus:ring-1"
