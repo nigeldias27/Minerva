@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 const validate = async (req, res) => {
   if (req.method == "POST") {
-    console.log(process.env.JWT_SECRET_KEY);
+    console.log(process.env.NEXT_PUBLIC_API);
     const user = await User.findOne({ email: req.body.email });
     if (user.password == req.body.password) {
       const token = jwt.sign({ _id: user._id }, process.env.NEXT_PUBLIC_API, {
