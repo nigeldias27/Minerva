@@ -9,7 +9,7 @@ export default function Counter() {
   const router = useRouter();
   useEffect(() => {
     const interval = setInterval(() => {
-      const finale = new Date("March 08, 2023 14:45:00");
+      const finale = new Date("March 06, 2023 12:48:00");
       const current = new Date();
       const diff = finale.getTime() - current.getTime();
       if (diff < 0) {

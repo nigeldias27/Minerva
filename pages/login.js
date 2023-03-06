@@ -3,11 +3,15 @@ import { useState } from "react";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { Alert } from "@mui/material";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 export default function Login() {
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
+  const [open, setOpen] = useState(false);
   const [invalid, setInvalid] = useState(false);
+
   return (
     <div className="bg-lightGrey min-h-screen">
       <Headers />
@@ -34,10 +38,12 @@ export default function Login() {
               class="x-6 my-8 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
               type="submit"
               onClick={async () => {
+                setOpen(true);
                 const response = await axios.post("/api/login", {
                   email: email,
                   password: pass,
                 });
+                setOpen(false);
                 console.log(response.data.token);
                 if (response.data.token == "") {
                   setInvalid(true);
@@ -57,6 +63,12 @@ export default function Login() {
           )}
         </div>
       </div>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={open}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 }

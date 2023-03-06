@@ -4,12 +4,15 @@ import Headers from "@/components/Header";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { Alert } from "@mui/material";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 export default function CreateArticle() {
   const router = useRouter();
   const { id } = router.query;
   const [data, setData] = useState({});
   const [open, setOpen] = useState(false);
   const [invalid, setInvalid] = useState("");
+  const [openLoad, setOpenLoad] = useState(false);
   const genreList = [
     "AI/ Machine Learning",
     "Biotechnology",
@@ -27,6 +30,7 @@ export default function CreateArticle() {
   }, []);
   async function initState() {
     if (id != "content") {
+      setOpenLoad(true);
       const response = await axios.post(
         "/api/getParticularPendingArticle",
         { id: id },
@@ -34,6 +38,7 @@ export default function CreateArticle() {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         }
       );
+      setOpenLoad(false);
       console.log(response.data);
       setData({ ...response.data });
     }
@@ -62,7 +67,7 @@ export default function CreateArticle() {
       <div className="px-0 sm:px-24 mt-24">
         <h1 className="text-3xl px-24 font-bold">Publish a new Article:</h1>
         <div className="rounded-xl bg-white w-full my-12 py-8 drop-shadow-2xl">
-          <div className="pt-4 grid grid-cols-1 sm:grid-cols-3 sm:grid-cols-3">
+          <div className="pt-4 grid grid-cols-1 sm:grid-cols-3">
             <div class="text-left flex justify-center items-center">
               <div>
                 <button
@@ -197,6 +202,12 @@ export default function CreateArticle() {
           <div></div>
         )}
       </div>
+      <Backdrop
+        sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+        open={openLoad}
+      >
+        <CircularProgress color="inherit" />
+      </Backdrop>
     </div>
   );
 }

@@ -19,7 +19,7 @@ export default function Home() {
       {
         //TODO: Change this back before deploying
       }
-      {new Date("March 01, 2023 14:45:00").getTime() >= new Date().getTime() ? (
+      {new Date("March 06, 2023 12:48:00").getTime() >= new Date().getTime() ? (
         <Counter />
       ) : (
         <HomeComponent />
