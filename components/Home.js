@@ -71,7 +71,10 @@ export default function HomeComponent() {
         <h1 className="text-3xl font-bold mb-8">Our Timeline</h1>
         <Timeline className="px-1" position="alternate">
           <TimelineItem>
-            <TimelineOppositeContent className="py-8" color="text.secondary">
+            <TimelineOppositeContent
+              className="pt-8 pb-32"
+              color="text.secondary"
+            >
               <h1>8th Mar 2023, 2:30PM</h1>
               <h1>Seminar Hall 1,BE Block</h1>
             </TimelineOppositeContent>
@@ -99,7 +102,10 @@ export default function HomeComponent() {
             </TimelineContent>
           </TimelineItem>
           <TimelineItem>
-            <TimelineOppositeContent className="py-8" color="text.secondary">
+            <TimelineOppositeContent
+              className="pt-8 pb-32"
+              color="text.secondary"
+            >
               <h1>8th Feb 2023, 2:45PM</h1>
               <h1>Seminar Hall 3,BE Block</h1>
             </TimelineOppositeContent>
