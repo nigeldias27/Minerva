@@ -16,7 +16,7 @@ export default function NewsCard(props) {
       <div className="bg-cardBackground rounded-md min-h-full">
         <img
           className=" rounded-t-md"
-          style={{ height: "200px", width: "100%" }}
+          style={{ height: "250px", width: "100%" }}
           src={`${props.imageURL}`}
         ></img>
         <div className="p-8">
