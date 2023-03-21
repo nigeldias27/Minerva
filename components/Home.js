@@ -80,7 +80,7 @@ export default function HomeComponent() {
             </TimelineOppositeContent>
             <TimelineSeparator>
               <TimelineDot sx={{ padding: "0px" }}>
-                <Avatar className="w-14 h-14 sm:w-24 sm:h-24">
+                <Avatar className="w-14 h-14 sm:w-32 sm:h-32">
                   <Image src={event1}></Image>
                 </Avatar>
               </TimelineDot>
@@ -111,7 +111,7 @@ export default function HomeComponent() {
             </TimelineOppositeContent>
             <TimelineSeparator>
               <TimelineDot sx={{ padding: "0px" }}>
-                <Avatar className="w-14 h-14 sm:w-24 sm:h-24">
+                <Avatar className="w-14 h-14 sm:w-32 sm:h-32">
                   <Image src={event1}></Image>
                 </Avatar>
               </TimelineDot>
