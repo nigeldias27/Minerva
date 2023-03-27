@@ -37,7 +37,7 @@ export default function HomeComponent() {
   }
   return (
     <div className="px-0 mt-8 sm:px-48">
-      <h1 className="text-3xl font-bold px-8 mt-24 mb-8 sm:px-0">
+      <h1 className="font-merriweather text-3xl font-bold px-8 mt-24 mb-8 sm:px-0">
         Recent News
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
@@ -64,22 +64,24 @@ export default function HomeComponent() {
             router.push("/allnews");
           }}
         >
-          <span className="text-xl">View More</span>
+          <span className="text-xl font-merriweather">View More</span>
         </button>
       </div>
-      <div className="bg-yellowBackground p-8 my-24 w-full rounded-md">
-        <h1 className="text-3xl font-bold mb-8">Our Timeline</h1>
-        <Timeline className="px-1" position="alternate">
+      <div className="bg-yellowBackground p-8 my-24 w-full rounded-md shadow-orange-900/20 shadow-lg">
+        <h1 className="text-3xl font-bold mb-8 font-merriweather">
+          Our Timeline
+        </h1>
+        <Timeline id="timeline" className="px-1" position="alternate">
           <TimelineItem>
             <TimelineOppositeContent
-              className="pt-8 pb-32"
+              className="pt-8 pb-32 font-typewriter"
               color="text.secondary"
             >
               <h1>8th Mar 2023, 2:30PM</h1>
               <h1>Seminar Hall 1,BE Block</h1>
             </TimelineOppositeContent>
             <TimelineSeparator>
-              <TimelineDot sx={{ padding: "0px" }}>
+              <TimelineDot sx={{ width: "auto", padding: "0px" }}>
                 <Avatar className="w-14 h-14 sm:w-32 sm:h-32">
                   <Image src={event1}></Image>
                 </Avatar>
@@ -87,13 +89,15 @@ export default function HomeComponent() {
               <TimelineConnector />
             </TimelineSeparator>
             <TimelineContent className="py-8">
-              <h1 className="text-md font-semibold">Minerva Orientation</h1>
-              <p>
+              <h1 className="text-md font-semibold font-merriweather">
+                Minerva Orientation
+              </h1>
+              <p className="font-typewriter">
                 Come learn more about what our club has in store for all of you
                 this year
               </p>
               <button
-                class="x-6 my-1 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-2 px-3 text-beigeText"
+                class="x-6 my-1 font-merriweather drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-2 px-3 text-beigeText"
                 type="submit"
                 onClick={() => {}}
               >
@@ -103,14 +107,14 @@ export default function HomeComponent() {
           </TimelineItem>
           <TimelineItem>
             <TimelineOppositeContent
-              className="pt-8 pb-32"
+              className="pt-8 pb-32 font-typewriter"
               color="text.secondary"
             >
               <h1>8th Feb 2023, 2:45PM</h1>
               <h1>Seminar Hall 3,BE Block</h1>
             </TimelineOppositeContent>
             <TimelineSeparator>
-              <TimelineDot sx={{ padding: "0px" }}>
+              <TimelineDot sx={{ width: "auto", padding: "0px" }}>
                 <Avatar className="w-14 h-14 sm:w-32 sm:h-32">
                   <Image src={event1}></Image>
                 </Avatar>
@@ -118,15 +122,15 @@ export default function HomeComponent() {
               <TimelineConnector />
             </TimelineSeparator>
             <TimelineContent className="py-8">
-              <h1 className="text-md font-semibold">
+              <h1 className="text-md font-merriweather font-semibold">
                 Rethink Retrospect Reflect
               </h1>
-              <h6>
+              <h6 className="font-typewriter">
                 Watch the screenplay, write a report on it and stand a chance to
                 win Ant Man tickets!
               </h6>
               <button
-                class="x-6 my-1 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-2 px-3 text-beigeText"
+                class="x-6 my-1 drop-shadow-xl font-merriweather font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-2 px-3 text-beigeText"
                 type="submit"
                 onClick={() => {}}
               >
@@ -136,12 +140,17 @@ export default function HomeComponent() {
           </TimelineItem>
         </Timeline>
       </div>
-      <h1 className="text-3xl font-bold my-8 mx-8">Featuring PES</h1>
-      <h4 className="font-bold text-lg pb-4 mx-8">
+      <h1
+        id="featuringPES"
+        className="text-3xl font-bold my-8 mx-8 font-merriweather"
+      >
+        Featuring PES
+      </h1>
+      <h4 className="font-bold text-lg pb-4 mx-8 font-typewriter">
         Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc vulputate
         libero et velit interdum, ac aliquet odio mattis.
       </h4>
-      <p className="mx-8">
+      <p className="mx-8 font-typewriter">
         Forem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu turpis
         molestie, dictum est a, mattis tellus. Sed dignissim, metus nec
         fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus

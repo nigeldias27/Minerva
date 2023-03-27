@@ -25,9 +25,9 @@ export default function Article() {
     setData({ ...response.data });
   }
   return (
-    <div className="bg-lightGrey min-h-screen">
+    <div className="bg-opacity-10 bg-orange-900 min-h-screen">
       <Headers />
-      <div className="bg-titleColor w-screen py-4 flex justify-center">
+      <div className=" bg-opacity-5 bg-orange-900 w-screen py-4 flex justify-center">
         <h1 className="font-semibold text-3xl">
           {data.article == undefined ? "" : data.article.title}
         </h1>

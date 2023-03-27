@@ -13,18 +13,27 @@ export default function NewsCard(props) {
         }
       }}
     >
-      <div className="bg-cardBackground rounded-md min-h-full">
+      <div
+        className="bg-cardBackground rounded-md min-h-full shadow-orange-900/20 shadow-lg"
+        style={{
+          backgroundImage:
+            "url('https://img.freepik.com/premium-photo/cardboard-sheet-paper-abstract-texture-background_7182-2191.jpg')",
+          backgroundPosition: "center",
+        }}
+      >
         <img
           className=" rounded-t-md"
           style={{ height: "250px", width: "100%" }}
           src={`${props.imageURL}`}
         ></img>
         <div className="p-8">
-          <h1 className="font-bold text-2xl">{props.headline}</h1>
-          <p className="text-greySubtitle my-1">
+          <h1 className="font-bold text-2xl font-merriweather">
+            {props.headline}
+          </h1>
+          <p className="text-greySubtitle my-1 font-typewriter">
             {props.genre} | {props.date}
           </p>
-          <p>{props.desc}</p>
+          <p className="font-typewriter">{props.desc}</p>
         </div>
       </div>
     </div>

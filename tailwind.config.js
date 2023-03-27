@@ -10,6 +10,10 @@ module.exports = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        typewriter: ["Special Elite", "cursive"],
+        merriweather: ["Merriweather", "serif"],
+      },
       colors: {
         greyBlack: "#343031",
         lightGrey: "#EBEBEB",
