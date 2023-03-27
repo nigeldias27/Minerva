@@ -9,15 +9,15 @@ export default function Contact() {
     console.log(data);
   };
   return (
-    <div className="w-full bg-footerBackground">
-      <h1 className="text-beigeText text-xl font-semibold py-4 px-8">
+    <div id="contactus" className="w-full bg-footerBackground">
+      <h1 className="text-beigeText text-xl font-semibold py-4 px-8 font-merriweather">
         Got some Tea or Coffee for us?
       </h1>
       <div className="px-8">
         <input
           placeholder="Name"
           onChange={changed("Name")}
-          className="w-full mt-3 px-4 py-2 text-base border border-gray-300  outline-none focus:ring-beigeText focus:border-beigeText focus:ring-1"
+          className="font-typewriter w-full mt-3 px-4 py-2 text-base border border-gray-300  outline-none focus:ring-beigeText focus:border-beigeText focus:ring-1"
         ></input>
       </div>
 
@@ -25,7 +25,7 @@ export default function Contact() {
         <input
           placeholder="Email"
           onChange={changed("Email")}
-          className="w-full mt-3 px-4 py-2 text-base border border-gray-300  outline-none focus:ring-beigeText focus:border-beigeText focus:ring-1"
+          className="font-typewriter w-full mt-3 px-4 py-2 text-base border border-gray-300  outline-none focus:ring-beigeText focus:border-beigeText focus:ring-1"
         ></input>
       </div>
 
@@ -33,19 +33,19 @@ export default function Contact() {
         <input
           placeholder="Subject"
           onChange={changed("Subject")}
-          className="w-full mt-3 px-4 py-2 text-base border border-gray-300  outline-none focus:ring-beigeText focus:border-beigeText focus:ring-1"
+          className="font-typewriter w-full mt-3 px-4 py-2 text-base border border-gray-300  outline-none focus:ring-beigeText focus:border-beigeText focus:ring-1"
         ></input>
       </div>
       <div className="px-8">
         <textarea
           placeholder="Message"
           onChange={changed("Message")}
-          className="w-full my-3 px-4 py-2 text-base border border-gray-300 outline-none focus:ring-beigeText focus:border-beigeText focus:ring-1"
+          className="font-typewriter w-full my-3 px-4 py-2 text-base border border-gray-300 outline-none focus:ring-beigeText focus:border-beigeText focus:ring-1"
         ></textarea>
       </div>
       <div className="px-8">
         <button
-          className="bg-yellowBackground px-4"
+          className="bg-yellowBackground px-4 font-merriweather"
           onClick={async () => {
             try {
               const response = await axios.post("/api/contactUs", data);

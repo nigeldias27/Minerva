@@ -66,11 +66,11 @@ export default function News() {
     setAnchorEl(null);
   };
   return (
-    <div className="bg-lightGrey min-h-screen">
+    <div className=" bg-opacity-10 bg-orange-900 min-h-screen">
       <Headers />
       <div className="px-0 mt-8 sm:px-48">
         <div className="flex flex-row w-full justify-between items-center px-8 mb-8 sm:px-0">
-          <h1 className="text-3xl font-bold">News</h1>
+          <h1 className="text-3xl font-merriweather font-bold">News</h1>
           <a
             id="basic-button"
             className="flex flex-row items-center"
