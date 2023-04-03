@@ -45,7 +45,7 @@ export default function Contact() {
       </div>
       <div className="px-8">
         <button
-          className="bg-yellowBackground px-4 font-merriweather"
+          className="bg-yellowBackground px-4 font-merriweather hover:bg-hoverbeigeText"
           onClick={async () => {
             try {
               const response = await axios.post("/api/contactUs", data);

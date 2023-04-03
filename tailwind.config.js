@@ -19,6 +19,7 @@ module.exports = {
         lightGrey: "#EBEBEB",
         blackButton: "#3C3635",
         beigeText: "#E7E4D4",
+        hoverbeigeText: "#CFCDBE",
         cardBackground: "#CBC8C5",
         greySubtitle: "#474747",
         titleColor: "#CBC8C5",
