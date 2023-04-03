@@ -62,7 +62,7 @@ export default function CreateArticle() {
   };
 
   return (
-    <div className="bg-lightGrey min-h-screen">
+    <div className="bg-opacity-10 bg-orange-900 min-h-screen">
       <Headers />
       <div className="px-0 sm:px-24 mt-24">
         <h1 className="text-3xl px-24 font-bold">Publish a new Article:</h1>

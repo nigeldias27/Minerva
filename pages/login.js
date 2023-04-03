@@ -13,7 +13,7 @@ export default function Login() {
   const [invalid, setInvalid] = useState(false);
 
   return (
-    <div className="bg-lightGrey min-h-screen">
+    <div className="bg-opacity-10 bg-orange-900 min-h-screen">
       <Headers />
       <div style={{ paddingTop: "15vh" }} className="px-8 md:px-24 lg:px-64">
         <div className="rounded-xl p-12 bg-white w-full my-12 py-8 drop-shadow-2xl flex flex-col items-center">
