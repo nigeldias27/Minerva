@@ -8,16 +8,16 @@ export default function AboutUs() {
       <Headers />
       <AnimatedHeading>About Us</AnimatedHeading>
       <h4 className="font-bold text-lg pb-4 mx-8 font-typewriter">
-        PES University weekly publication. Bangalore's first student-run college
-        newspaper. We are a group of thinkers that challenge people through good
-        journalism. We strive to provide the required tools and knowledge to
-        develop skills and Inspire Change. Click below to know more. ~ Minerva
-        (thy Serva)
+        PES University weekly publication. Bangalore{"'"}s first student-run
+        college newspaper. We are a group of thinkers that challenge people
+        through good journalism. We strive to provide the required tools and
+        knowledge to develop skills and Inspire Change. Click below to know
+        more. ~ Minerva (thy Serva)
       </h4>
       <p className="mx-8 font-typewriter">
         What do we do?<br></br> A<br></br> 1. Weekly Newspaper Highlighting
         major events across the world<br></br> 2. Weekly Podcast series<br></br>{" "}
-        3. The "extra" you deserve<br></br> B<br></br> 1. Workshops on
+        3. The {'"'}extra{'"'} you deserve<br></br> B<br></br> 1. Workshops on
         storytelling, mass communication, and networking<br></br> 2.
         Collaboration with news houses and marketing agencies<br></br> 3.
         Hands-on exposure through fun events<br></br> C<br></br> 1. Online News
