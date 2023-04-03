@@ -14,7 +14,7 @@ export default function NewsCard(props) {
       }}
     >
       <div
-        className="bg-cardBackground rounded-md min-h-full shadow-orange-900/20 shadow-lg"
+        className="bg-cardBackground rounded-md min-h-full shadow-orange-900/20 shadow-lg hover:shadow-orange-900/20 hover:shadow-xl hover:scale-105 transition duration-50 ease-linear"
         style={{
           backgroundImage:
             "url('https://img.freepik.com/premium-photo/cardboard-sheet-paper-abstract-texture-background_7182-2191.jpg')",
