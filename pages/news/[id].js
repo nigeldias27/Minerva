@@ -44,7 +44,7 @@ export default function Article() {
         <article className="prose max-w-full">
           <div
             dangerouslySetInnerHTML={{
-              __html: md().render(
+              __html: md({ html: true }).render(
                 data.article == undefined ? "" : data.article.data
               ),
             }}
