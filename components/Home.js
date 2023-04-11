@@ -13,6 +13,7 @@ import Contact from "./ContactUs";
 import logo from "../public/assets/logo.png";
 import Image from "next/image";
 import event1 from "../public/assets/minerva_event_1.jpeg";
+import event2 from "../public/assets/orientation.jpeg";
 import { Avatar } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -78,12 +79,14 @@ export default function HomeComponent() {
               className="pt-8 pb-32 font-typewriter"
               color="text.secondary"
             >
-              <h1 className=" font-typewriter">8th Mar 2023, 2:30PM</h1>
-              <h1 className=" font-typewriter">Seminar Hall 1,BE Block</h1>
+              <h1 className=" font-typewriter">11th Apr 2023, 2:30PM</h1>
+              <h1 className=" font-typewriter">MRD Auditorium</h1>
             </TimelineOppositeContent>
             <TimelineSeparator>
               <TimelineDot sx={{ width: "auto", padding: "0px" }}>
-                <Image src={event1}></Image>
+                <Avatar className="w-14 h-14 sm:w-32 sm:h-32">
+                  <Image src={event2}></Image>
+                </Avatar>
               </TimelineDot>
               <TimelineConnector />
             </TimelineSeparator>
@@ -100,7 +103,15 @@ export default function HomeComponent() {
                 type="submit"
                 onClick={() => {}}
               >
-                <span className="text-sm">View More</span>
+                <span
+                  onClick={() => {
+                    window.location.href =
+                      "https://www.instagram.com/p/Cq0K-B-JLoC/?utm_source=ig_web_copy_link";
+                  }}
+                  className="text-sm"
+                >
+                  View More
+                </span>
               </button>
             </TimelineContent>
           </TimelineItem>
@@ -131,7 +142,10 @@ export default function HomeComponent() {
               <button
                 class="x-6 my-1 drop-shadow-xl hover:drop-shadow-xl font-merriweather font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-2 px-3 text-beigeText hover:scale-105 transition duration-50 ease-linear"
                 type="submit"
-                onClick={() => {}}
+                onClick={() => {
+                  window.location.href =
+                    "https://www.instagram.com/p/CoSP_WVSf2k/?utm_source=ig_web_copy_link";
+                }}
               >
                 <span className="text-sm">View More</span>
               </button>

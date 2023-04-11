@@ -18,10 +18,9 @@ export default function PersonCard(props) {
           className="my-8"
           sx={{ width: 128, height: 128 }}
         ></Avatar>
-        <h1 className="font-bold text-2xl font-merriweather">{props.Name}</h1>
-        <p className="text-greySubtitle my-1 font-typewriter mb-8">
-          {props.Role}
-        </p>
+        <h1 className="font-bold text-2xl font-merriweather mb-8">
+          {props.Name}
+        </h1>
       </div>
     </div>
   );
