@@ -57,7 +57,7 @@ export default function HomeComponent() {
                 Introducing Minerva
               </h1>
               <h1 className="text-xl font-typewriter mt-8 mb-4 md:text-3xl">
-                Bangalore's first student-run college newspaper
+                Bangalore&apos;s first student-run college newspaper
               </h1>
               <p className="text-md font-typewriter md:text-xl text-gray-500">
                 We are a group of thinkers that challenge people through good
