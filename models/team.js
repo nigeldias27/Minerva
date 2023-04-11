@@ -1,5 +1,34 @@
 export const team = [
   {
+    name: "Rohit Rajesh",
+    link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2Fme%20-%20Rohit%20Rajesh.jpg?alt=media&token=a582c368-698c-4b43-a76d-c9a17096da1b",
+  },
+  {
+    name: "Raunak Kodwani",
+    link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FIMG_20230123_132528%20-%20Raunak%20Kodwani.jpg?alt=media&token=ebcc3b51-4668-41e6-9109-f444c5d32e8a",
+  },
+  {
+    name: "Pramath Haritz",
+    link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FWhatsApp%20Image%202023-04-11%20at%2010.47.32%20PM.jpeg?alt=media&token=7514c64d-1ae3-4ce2-aa30-2ac8b593943d",
+  },
+  {
+    name: "Anna Singh",
+    link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2Fpic%20-%20Anna%20Singh.jpg?alt=media&token=08b37f5c-ece7-4408-97e8-4bbece5ce2e7",
+  },
+
+  {
+    name: "Spoorthi Hebballi",
+    link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FWhatsApp%20Image%202023-02-05%20at%2011.13.11%20PM%20-%20Spoorthi%20Hebballi.jpeg?alt=media&token=2f710320-8841-45e3-9d95-eaed1f779fc4",
+  },
+  {
+    name: "Ashi Pande",
+    link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FIMG-20220529-WA0001%20-%20ASHI%20PANDE%20PESU%20RR%20BD%202021%20BATCH.jpg?alt=media&token=0dc0510b-eea5-43bb-84b5-ad9339a9a30a",
+  },
+  {
+    name: "Anvesha Nayak",
+    link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FAnvesha%20Nayak%20-%20Anvesha%20Nayak.jpg?alt=media&token=729200cc-0308-4b66-937d-2f8d67117dfc",
+  },
+  {
     name: "Neha S",
     link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2F1%20-%20Neha%20S.jpg?alt=media&token=93e6d6db-a6ff-465d-89dd-3ee4c566380e",
   },
@@ -8,20 +37,12 @@ export const team = [
     link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2F3EAF46CE-EAE7-4F43-BF8B-2D2CB7D89663%20-%20Prarthana%20Mathew.jpeg?alt=media&token=7b80c8e0-761a-45e4-8a31-0ca592827039",
   },
   {
-    name: "Diti Bhavesh",
-    link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FF8053F4C-ABC9-4CDB-A2F2-E314DFFD554B%20-%20Diti%20Bhavesh.jpeg?alt=media&token=e07e35a5-838f-4154-96b6-d0799c0aa75d",
-  },
-  {
     name: "Janani Naresh Kumar",
     link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2F81EC30DA-FCA9-4CB1-AEAE-C2385D63D1E2%20-%20Janani%20Naresh%20Kumar.jpeg?alt=media&token=768d490a-c369-4811-9f75-5e492cc1b3c3",
   },
   {
     name: "Samiksha",
     link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2F1677861780387%20-%20Samiksha.jpg?alt=media&token=962054e6-53ab-4820-806f-d5a94c5d4f48",
-  },
-  {
-    name: "Anvesha Nayak",
-    link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FAnvesha%20Nayak%20-%20Anvesha%20Nayak.jpg?alt=media&token=729200cc-0308-4b66-937d-2f8d67117dfc",
   },
   {
     name: "Omisha Singh",
@@ -38,11 +59,6 @@ export const team = [
   {
     name: "Anannya Kulkarni",
     link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FIMG_20230113_145005_049%20-%20Anannya%20Kulkarni.jpg?alt=media&token=4fd123a5-e33f-4bc9-8ced-be879234f83d",
-  },
-
-  {
-    name: "Raunak Kodwani",
-    link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FIMG_20230123_132528%20-%20Raunak%20Kodwani.jpg?alt=media&token=ebcc3b51-4668-41e6-9109-f444c5d32e8a",
   },
 
   {
@@ -69,10 +85,6 @@ export const team = [
     name: "Sahil",
     link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FIMG-20220423-WA0013%20-%20TriPpy.jpg?alt=media&token=080a91bb-4b19-4426-a06d-2464a748016d",
   },
-  {
-    name: "Ashi Pande",
-    link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FIMG-20220529-WA0001%20-%20ASHI%20PANDE%20PESU%20RR%20BD%202021%20BATCH.jpg?alt=media&token=0dc0510b-eea5-43bb-84b5-ad9339a9a30a",
-  },
 
   {
     name: "Aryan",
@@ -88,12 +100,6 @@ export const team = [
     name: "Gautham Krithiwas",
     link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FIMG20230115173948~2%20-%20gautham%20k.jpg?alt=media&token=08b9f738-50f8-418f-8efc-6c704cfdda93",
   },
-
-  {
-    name: "Rohit Rajesh",
-    link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2Fme%20-%20Rohit%20Rajesh.jpg?alt=media&token=a582c368-698c-4b43-a76d-c9a17096da1b",
-  },
-
   {
     name: "Nandan N",
     link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2Fpassport%20pic-radiant%20-%20Nandan%20N.jpg?alt=media&token=b7c08104-6e32-4bea-9c57-29a73071af92",
@@ -102,11 +108,6 @@ export const team = [
   {
     name: "Vivek Madhusudan",
     link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FPhoto%20from%20Vivek%20-%20Vivek%20madhusudan.jpg?alt=media&token=198d772d-8c28-497d-bc23-462f7b64313b",
-  },
-
-  {
-    name: "Anna Singh",
-    link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2Fpic%20-%20Anna%20Singh.jpg?alt=media&token=08b37f5c-ece7-4408-97e8-4bbece5ce2e7",
   },
 
   {
@@ -132,10 +133,5 @@ export const team = [
   {
     name: "Archana Kowshik",
     link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FWhatsApp%20Image%202023-01-15%20at%2010.40.06%20PM%20-%20archana%20kowshik.jpeg?alt=media&token=052beb05-1025-4964-8499-e37fa8dbde91",
-  },
-
-  {
-    name: "Spoorthi Hebballi",
-    link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FWhatsApp%20Image%202023-02-05%20at%2011.13.11%20PM%20-%20Spoorthi%20Hebballi.jpeg?alt=media&token=2f710320-8841-45e3-9d95-eaed1f779fc4",
   },
 ];

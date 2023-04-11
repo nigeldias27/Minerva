@@ -27,7 +27,7 @@ export default function AboutUs() {
         3. Bi-weekly Arts section featuring in-house creativity
       </p>
       <AnimatedHeading>Meet the team</AnimatedHeading>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mb-8">
         {team.map((v, i) => {
           return (
             <PersonCard

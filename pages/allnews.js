@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import ListItemIcon from "@mui/material/ListItemIcon";
+import Footer from "@/components/Footer";
 export default function News() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [data, setData] = useState([]);
@@ -130,6 +131,9 @@ export default function News() {
             );
           })}
         </div>
+      </div>
+      <div className="pt-8">
+        <Footer />
       </div>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
