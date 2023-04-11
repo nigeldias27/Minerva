@@ -7,7 +7,8 @@ export default function AnimatedHeading(props) {
       >
         {props.children}
       </p>
-      <div className="w-full bg-opacity-30 bg-orange-900 peer-hover:h-1 peer-hover:scale-125 transition duration-500 ease-linear"></div>
+
+      <div className="w-30 bg-opacity-30 h-1 bg-orange-900 peer-hover:h-1 peer-hover:scale-125 transition duration-500 ease-linear"></div>
     </div>
   );
 }
