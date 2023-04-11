@@ -29,19 +29,18 @@ export default function Headers() {
             <div className="h-full flex flex-col justify-evenly items-center">
               <Link
                 href={"/allnews"}
+                scroll={false}
                 className="text-beigeText text-xl font-merriweather px-3 hover:text-hoverbeigeText"
               >
                 News
               </Link>
               <Link
-                scroll={false}
                 href={"/#timeline"}
                 className="text-beigeText text-xl font-merriweather px-3 hover:text-hoverbeigeText"
               >
                 Timeline
               </Link>
               <Link
-                scroll={false}
                 href={"/#featuringPES"}
                 className="text-beigeText text-xl font-merriweather px-3 hover:text-hoverbeigeText"
               >
@@ -49,6 +48,7 @@ export default function Headers() {
               </Link>
               <Link
                 href={"/aboutUs"}
+                scroll={false}
                 className="text-beigeText text-xl font-merriweather px-3 hover:text-hoverbeigeText"
               >
                 About Us
