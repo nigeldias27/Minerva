@@ -28,9 +28,10 @@ export default function AboutUs() {
       </p>
       <AnimatedHeading>Meet the team</AnimatedHeading>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-        {team.map((v) => {
+        {team.map((v, i) => {
           return (
             <PersonCard
+              key={i}
               imageURL={v.link}
               Name={v.name}
               Role="Web Developement"
