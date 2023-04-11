@@ -2,6 +2,7 @@ import AnimatedHeading from "@/animatedComponents/Heading";
 import Footer from "@/components/Footer";
 import Headers from "@/components/Header";
 import PersonCard from "@/components/PersonCard";
+import { team } from "@/models/team";
 
 export default function AboutUs() {
   return (
@@ -27,16 +28,15 @@ export default function AboutUs() {
       </p>
       <AnimatedHeading>Meet the team</AnimatedHeading>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-        <PersonCard
-          imageURL="https://thumbs.dreamstime.com/b/nice-to-talk-smart-person-indoor-shot-attractive-interesting-caucasian-guy-smiling-broadly-nice-to-112345489.jpg"
-          Name="Nigel Dias"
-          Role="Web Developement"
-        ></PersonCard>
-        <PersonCard
-          imageURL="https://thumbs.dreamstime.com/b/nice-to-talk-smart-person-indoor-shot-attractive-interesting-caucasian-guy-smiling-broadly-nice-to-112345489.jpg"
-          Name="Nigel Dias"
-          Role="Web Developement"
-        ></PersonCard>
+        {team.map((v) => {
+          return (
+            <PersonCard
+              imageURL={v.link}
+              Name={v.name}
+              Role="Web Developement"
+            ></PersonCard>
+          );
+        })}
       </div>
 
       <Footer />
