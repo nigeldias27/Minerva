@@ -98,7 +98,7 @@ export default function HomeComponent() {
             class="x-6 my-8 drop-shadow-xl hover:drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText  hover:scale-105 transition duration-50 ease-linear"
             type="submit"
             onClick={() => {
-              router.push("/allnews");
+              router.push("/allnews", undefined, { scroll: false });
             }}
           >
             <span className="text-xl font-merriweather">View More</span>
@@ -188,8 +188,9 @@ export default function HomeComponent() {
             </TimelineItem>
           </Timeline>
         </div>
-        <AnimatedHeading>Featuring PES</AnimatedHeading>
-
+        <div id="featuringPES">
+          <AnimatedHeading>Featuring PES</AnimatedHeading>
+        </div>
         <h4 className="font-bold text-lg pb-4 mx-8 font-typewriter">
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
           vulputate libero et velit interdum, ac aliquet odio mattis.

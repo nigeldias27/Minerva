@@ -6,7 +6,7 @@ import { team } from "@/models/team";
 
 export default function AboutUs() {
   return (
-    <div className=" bg-opacity-10 bg-orange-900">
+    <div>
       <Headers />
       <AnimatedHeading>About Us</AnimatedHeading>
       <h4 className="font-bold text-lg pb-4 mx-8 font-typewriter">

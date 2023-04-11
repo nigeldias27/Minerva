@@ -7,9 +7,9 @@ export default function NewsCard(props) {
       className="p-8 "
       onClick={() => {
         if (props.newArticle) {
-          router.push("/news/" + props.id);
+          router.push("/news/" + props.id, undefined, { scroll: false });
         } else {
-          router.push("/create/" + props.id);
+          router.push("/create/" + props.id, undefined, { scroll: false });
         }
       }}
     >
