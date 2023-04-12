@@ -9,7 +9,7 @@ export default function Counter() {
   const router = useRouter();
   useEffect(() => {
     const interval = setInterval(() => {
-      const finale = new Date("March 06, 2023 12:48:00");
+      const finale = new Date("April 12, 2023 16:00:00");
       const current = new Date();
       const diff = finale.getTime() - current.getTime();
       if (diff < 0) {
@@ -30,10 +30,10 @@ export default function Counter() {
       style={{ height: "92vh" }}
       className="flex flex-col justify-center items-center"
     >
-      <h1 className="text-3xl font-bold">
+      <h1 className="text-3xl font-bold font-merriweather">
         The Minerva Website will be live in
       </h1>
-      <p className="text-3xl font-bold">
+      <p className="text-3xl font-bold font-merriweather">
         {days}:{hours}:{mins}:{sec}
       </p>
     </div>
