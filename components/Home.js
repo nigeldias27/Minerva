@@ -192,40 +192,29 @@ export default function HomeComponent() {
           <AnimatedHeading>Featuring PES</AnimatedHeading>
         </div>
         <h4 className="font-bold text-lg pb-4 mx-8 font-typewriter">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-          vulputate libero et velit interdum, ac aliquet odio mattis.
+          PESU shines under CORI
         </h4>
         <p className="mx-8 font-typewriter">
-          Forem ipsum dolor sit amet, consectetur adipiscing elit. Etiam eu
-          turpis molestie, dictum est a, mattis tellus. Sed dignissim, metus nec
-          fringilla accumsan, risus sem sollicitudin lacus, ut interdum tellus
-          elit sed risus. Maecenas eget condimentum velit, sit amet feugiat
-          lectus. Class aptent taciti sociosqu ad litora torquent per conubia
-          nostra, per inceptos himenaeos. Praesent auctor purus luctus enim
-          egestas, ac scelerisque ante pulvinar. Donec ut rhoncus ex.
-          Suspendisse ac rhoncus nisl, eu tempor urna. Curabitur vel bibendum
-          lorem. Morbi convallis convallis diam sit amet lacinia. Aliquam in
-          elementum tellus. Curabitur tempor quis eros tempus lacinia. Nam
-          bibendum pellentesque quam a convallis. Sed ut vulputate nisi. Integer
-          in felis sed leo vestibulum venenatis. Suspendisse quis arcu sem.
-          Aenean feugiat ex eu vestibulum vestibulum. Morbi a eleifend magna.
-          Nam metus lacus, porttitor eu mauris a, blandit ultrices nibh. Mauris
-          sit amet magna non ligula vestibulum eleifend. Nulla varius volutpat
-          turpis sed lacinia. Nam eget mi in purus lobortis eleifend. Sed nec
-          ante dictum sem condimentum ullamcorper quis venenatis nisi. Proin
-          vitae facilisis nisi, ac posuere leo. Nam pulvinar blandit velit, id
-          condimentum diam faucibus at. Aliquam lacus nisi, sollicitudin at nisi
-          nec, fermentum congue felis. Quisque mauris dolor, fringilla sed
-          tincidunt ac, finibus non odio. Sed vitae mauris nec ante pretium
-          finibus. Donec nisl neque, pharetra ac elit eu, faucibus aliquam
-          ligula. Nullam dictum, tellus tincidunt tempor laoreet, nibh elit
-          sollicitudin felis, eget feugiat sapien diam nec nisl. Aenean gravida
-          turpis nisi, consequat dictum risus dapibus a. Duis felis ante, varius
-          in neque eu, tempor suscipit sem. Maecenas ullamcorper gravida sem sit
-          amet cursus. Etiam pulvinar purus vitae justo pharetra consequat.{" "}
+          Crucible of Research and Innovation
+          <a
+            className="underline"
+            onClick={() => {
+              window.location.href = "https://research.pes.edu/cori/";
+            }}
+          >
+            (CORI)
+          </a>
+          , headed by Dr. V. Sambasiva Rao is the research centre of PESU where
+          multidisciplinary research is carried out. A lot of these projects are
+          done under the guidance of professors like Dr Manikandan J, for
+          various other organizations like TCS and ISRO. They work on multiple
+          interesting projects involving satellites, robots, sensors for
+          detection, lifespan of hardware used among other ideas. This provides
+          an interesting opportunity for students to explore the fields of
+          research.
         </p>
         <img
-          src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
+          src="https://lh3.googleusercontent.com/p/AF1QipP0ziHgkSGCOHH99LOGHUUie5kJDdmecp6zIosO=s1360-w1360-h1020"
           className="w-full mt-8 mb-24"
         ></img>
         <Contact />

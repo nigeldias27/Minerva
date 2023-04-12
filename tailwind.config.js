@@ -11,6 +11,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
+        // typewriter: ["Raleway", "sans-serif"],
         typewriter: ["Special Elite", "cursive"],
         merriweather: ["Merriweather", "serif"],
       },
