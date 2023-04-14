@@ -5,6 +5,7 @@ import axios from "axios";
 import MenuItem from "@mui/material/MenuItem";
 import { MdKeyboardDoubleArrowRight, MdCheck } from "react-icons/md";
 import { useEffect, useState } from "react";
+import { motion } from "framer-motion";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import ListItemIcon from "@mui/material/ListItemIcon";
@@ -118,16 +119,24 @@ export default function News() {
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           {data.map((val, i) => {
             return (
-              <NewsCard
+              <motion.div
                 key={i}
-                imageURL={`${val.imageURL}`}
-                headline={`${val.title}`}
-                genre={`${val.genre}`}
-                date={`${val.createdAt}`}
-                desc={`${val.description}`}
-                id={`${val._id}`}
-                newArticle={true}
-              />
+                initial={{ opacity: 0, y: -60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
+                <NewsCard
+                  key={i}
+                  imageURL={`${val.imageURL}`}
+                  headline={`${val.title}`}
+                  genre={`${val.genre}`}
+                  date={`${val.createdAt}`}
+                  desc={`${val.description}`}
+                  id={`${val._id}`}
+                  newArticle={true}
+                />
+              </motion.div>
             );
           })}
         </div>

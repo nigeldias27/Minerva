@@ -10,7 +10,7 @@ import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import Contact from "./ContactUs";
-import logo from "../public/assets/logo.png";
+import { motion } from "framer-motion";
 import Image from "next/image";
 import event1 from "../public/assets/minerva_event_1.jpeg";
 import event2 from "../public/assets/orientation.jpeg";
@@ -51,7 +51,13 @@ export default function HomeComponent() {
         }}
       >
         <div className="grid grid-cols-2 h-full w-full">
-          <div className="h-full w-screen md:w-full flex flex-col items-center justify-center">
+          <motion.div
+            className="h-full w-screen md:w-full flex flex-col items-center justify-center"
+            initial={{ opacity: 0, x: -120 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.5 }}
+          >
             <div className="pl-12">
               <h1 className="text-4xl font-merriweather md:text-7xl">
                 Introducing Minerva
@@ -64,7 +70,7 @@ export default function HomeComponent() {
                 journalism.
               </p>
             </div>
-          </div>
+          </motion.div>
 
           <div className="hidden items-end justify-end h-screen md:flex">
             <div className="pb-8 pr-8 z-10">
@@ -80,16 +86,24 @@ export default function HomeComponent() {
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           {data.map((val, i) => {
             return (
-              <NewsCard
+              <motion.div
                 key={i}
-                imageURL={`${val.imageURL}`}
-                headline={`${val.title}`}
-                genre={`${val.genre}`}
-                date={`${val.createdAt}`}
-                desc={`${val.description}`}
-                id={`${val._id}`}
-                newArticle={true}
-              />
+                initial={{ opacity: 0, y: -60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 0.5 }}
+              >
+                <NewsCard
+                  key={i}
+                  imageURL={`${val.imageURL}`}
+                  headline={`${val.title}`}
+                  genre={`${val.genre}`}
+                  date={`${val.createdAt}`}
+                  desc={`${val.description}`}
+                  id={`${val._id}`}
+                  newArticle={true}
+                />
+              </motion.div>
             );
           })}
         </div>
@@ -104,7 +118,13 @@ export default function HomeComponent() {
             <span className="text-xl font-merriweather">View More</span>
           </button>
         </div>
-        <div className="bg-yellowBackground p-8 my-24 w-full rounded-md shadow-orange-900/20 shadow-lg">
+        <motion.div
+          className="bg-yellowBackground p-8 my-24 w-full rounded-md shadow-orange-900/20 shadow-lg"
+          initial={{ opacity: 0, y: -60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        >
           <h1 className="text-3xl font-bold mb-8 font-merriweather">
             Our Timeline
           </h1>
@@ -187,7 +207,7 @@ export default function HomeComponent() {
               </TimelineContent>
             </TimelineItem>
           </Timeline>
-        </div>
+        </motion.div>
         <div id="featuringPES">
           <AnimatedHeading>Featuring PES</AnimatedHeading>
         </div>
