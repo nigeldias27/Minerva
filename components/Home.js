@@ -40,9 +40,9 @@ export default function HomeComponent() {
     setData([...response.data]);
   }
   return (
-    <div>
+    <div className="flex flex-col">
       <div
-        className="w-screen h-screen"
+        className="w-screen h-screen -z-20"
         style={{
           backgroundImage: `url(${background.src})`,
           backgroundAttachment: "fixed",
@@ -53,7 +53,7 @@ export default function HomeComponent() {
         <div className="grid grid-cols-2 h-full w-full">
           <div className="h-full w-screen md:w-full flex flex-col items-center justify-center">
             <div className="pl-12">
-              <h1 className="text-5xl font-merriweather md:text-7xl">
+              <h1 className="text-4xl font-merriweather md:text-7xl">
                 Introducing Minerva
               </h1>
               <h1 className="text-xl font-typewriter mt-8 mb-4 md:text-3xl">
@@ -67,8 +67,8 @@ export default function HomeComponent() {
           </div>
 
           <div className="hidden items-end justify-end h-screen md:flex">
-            <div className="pb-8 pr-8">
-              <Image className="w-full h-auto" src={foreground}></Image>
+            <div className="pb-8 pr-8 z-10">
+              <Image className="w-auto h-auto" src={foreground}></Image>
             </div>
           </div>
         </div>

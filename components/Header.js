@@ -1,4 +1,5 @@
 import logo from "../public/assets/logo.png";
+import peslogo from "../public/assets/pesulogo.png";
 import Image from "next/image";
 import Link from "next/link";
 import { RxHamburgerMenu, RxCross1 } from "react-icons/rx";
@@ -9,8 +10,9 @@ export default function Headers() {
     setOpen(open ? false : true);
   };
   return (
-    <div className="w-screen bg-greyBlack flex flex-row justify-around p-4">
+    <div className="w-screen bg-greyBlack flex flex-row justify-around p-4 z-10">
       <div className="flex flex-row items-center">
+        <Image className="w-16 sm:w-21 h-xl mr-4" src={peslogo} />
         <Image className="h-xl" src={logo} />
         <h1 className="text-beigeText text-xl font-merriweather pl-3 hover:text-hoverbeigeText">
           MINERVA
