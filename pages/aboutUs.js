@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import Headers from "@/components/Header";
 import PersonCard from "@/components/PersonCard";
 import { team } from "@/models/team";
+import { motion } from "framer-motion";
 
 export default function AboutUs() {
   return (
@@ -30,12 +31,20 @@ export default function AboutUs() {
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mb-8">
         {team.map((v, i) => {
           return (
-            <PersonCard
+            <motion.div
               key={i}
-              imageURL={v.link}
-              Name={v.name}
-              Role="Web Developement"
-            ></PersonCard>
+              initial={{ opacity: 0, y: -60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 1 }}
+            >
+              <PersonCard
+                key={i}
+                imageURL={v.link}
+                Name={v.name}
+                Role="Web Developement"
+              ></PersonCard>
+            </motion.div>
           );
         })}
       </div>
