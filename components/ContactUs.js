@@ -1,7 +1,12 @@
 import { useState } from "react";
 import axios from "axios";
 export default function Contact() {
-  const [data, setData] = useState({});
+  const [data, setData] = useState({
+    Name: "",
+    Email: "",
+    Subject: "",
+    Message: "",
+  });
   const changed = (props) => (e) => {
     var d = {};
     d[props] = e.target.value;
@@ -16,6 +21,7 @@ export default function Contact() {
       <div className="px-8">
         <input
           placeholder="Name"
+          value={data["Name"]}
           onChange={changed("Name")}
           className="font-typewriter w-full mt-3 px-4 py-2 text-base border border-gray-300  outline-none focus:ring-beigeText focus:border-beigeText focus:ring-1"
         ></input>
@@ -24,6 +30,7 @@ export default function Contact() {
       <div className="px-8">
         <input
           placeholder="Email"
+          value={data["Email"]}
           onChange={changed("Email")}
           className="font-typewriter w-full mt-3 px-4 py-2 text-base border border-gray-300  outline-none focus:ring-beigeText focus:border-beigeText focus:ring-1"
         ></input>
@@ -32,6 +39,7 @@ export default function Contact() {
       <div className="px-8">
         <input
           placeholder="Subject"
+          value={data["Subject"]}
           onChange={changed("Subject")}
           className="font-typewriter w-full mt-3 px-4 py-2 text-base border border-gray-300  outline-none focus:ring-beigeText focus:border-beigeText focus:ring-1"
         ></input>
@@ -39,6 +47,7 @@ export default function Contact() {
       <div className="px-8">
         <textarea
           placeholder="Message"
+          value={data["Message"]}
           onChange={changed("Message")}
           className="font-typewriter w-full my-3 px-4 py-2 text-base border border-gray-300 outline-none focus:ring-beigeText focus:border-beigeText focus:ring-1"
         ></textarea>
@@ -56,6 +65,7 @@ export default function Contact() {
             } catch (e) {
               alert("Failed to send.");
             }
+            setData({ Name: "", Email: "", Subject: "", Message: "" });
           }}
         >
           Submit
