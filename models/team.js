@@ -72,7 +72,7 @@ export const team = [
   },
 
   {
-    name: "Sreeramachandran K V",
+    name: "Jahnavi",
     link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FIMG_20230304_092815%20-%20Sreeramachandran%20K%20V.jpg?alt=media&token=f96dcb35-89cd-4305-be23-9b86b7a70d19",
   },
 
