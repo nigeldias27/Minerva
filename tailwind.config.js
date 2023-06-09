@@ -20,6 +20,8 @@ module.exports = {
         lightGrey: "#EBEBEB",
         blackButton: "#3C3635",
         beigeText: "#E7E4D4",
+        minervaAboutr: "#A17F7D",
+        minervaAboutl: "#A98B89",
         hoverbeigeText: "#CFCDBE",
         cardBackground: "#CBC8C5",
         greySubtitle: "#474747",
