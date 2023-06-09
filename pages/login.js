@@ -6,6 +6,8 @@ import { Alert } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 export default function Login() {
+  //Login page which sends the email and pass values to api/login which returns a JWT token, saved in local storage as "token"
+  //Then routes to pendingNews
   const router = useRouter();
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");

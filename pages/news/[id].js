@@ -1,3 +1,5 @@
+// A id of a particular article is obtained from the query part of the url and is used to get the article which is saved in "data"
+//The Article's data is rendered using markdown-it library
 import Footer from "@/components/Footer";
 import Headers from "@/components/Header";
 import { Avatar } from "@mui/material";

@@ -3,6 +3,7 @@ import User from "../../models/User.js";
 import jwt from "jsonwebtoken";
 
 const validate = async (req, res) => {
+  // Validation for the login page
   if (req.method == "POST") {
     console.log(process.env.NEXT_PUBLIC_API);
     const user = await User.findOne({ email: req.body.email });

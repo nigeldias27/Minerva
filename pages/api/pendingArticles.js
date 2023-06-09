@@ -3,6 +3,8 @@ import pendingArticle from "../../models/pendingArticle.js";
 import validateToken from "@/lib/validateToken";
 import Article from "../../models/Article.js";
 const getPendingArticles = async (req, res) => {
+  // Used to get the data of all pending articles awaiting approval by Editors to send to pendingNews.js
+  // OR used to get data of all articles published by the particular writer to send to pendingNews.js.
   if (req.method == "GET") {
     console.log(req.headers["authorization"].split(" ")[1]);
     const user = await validateToken(

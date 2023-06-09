@@ -1,3 +1,5 @@
+/* This page is under development for PIXELS Photography club and is pending approval */
+
 const itemData = [
   {
     img: "https://images.unsplash.com/photo-1551963831-b3b1ca40c98e",
