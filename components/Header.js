@@ -1,3 +1,4 @@
+// This component refers to the navbar of the website
 import logo from "../public/assets/logo.png";
 import peslogo from "../public/assets/pesulogo.png";
 import Image from "next/image";

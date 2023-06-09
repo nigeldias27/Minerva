@@ -6,17 +6,20 @@ import { useEffect, useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 export default function PendingNews() {
+  // If the user is an Editor, then articles created by different writers pending approval are shown
+  // If the user is a Content Creator, then articles that have been approved by an Editor and published are show
   const router = useRouter();
   const [pendingNews, setPendingNews] = useState([]);
-  const [newArticle, setNewArticle] = useState(false);
-  const [open, setOpen] = useState(false);
+  const [newArticle, setNewArticle] = useState(false); // If false, then the role of the user is Editor otherwise the role is Content Creator
+  const [open, setOpen] = useState(false); // For the Backdrop
   useEffect(() => {
     initState();
   }, []);
   async function initState() {
     setOpen(true);
     const response = await axios.get("/api/pendingArticles", {
-      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      // GET request to get articles
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }, // JWT token is sent as a security measure
     });
     setOpen(false);
     setPendingNews([...response.data.article]);

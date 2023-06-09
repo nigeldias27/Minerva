@@ -1,3 +1,4 @@
+// This was used for countdown clock for the launch of the website.
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 

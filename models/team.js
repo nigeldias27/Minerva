@@ -1,3 +1,4 @@
+// Data consisting of all member of the club for the About Us page
 export const team = [
   {
     name: "Rohit Rajesh",

@@ -1,3 +1,5 @@
+// This page is used to create a new article by a writer and used to edit and publish an article by an editor
+// Article's data is in the Markdown format. markdown-it library is used to interpret and render the markdown in the website.
 import { useEffect, useState } from "react";
 import md from "markdown-it";
 import Headers from "@/components/Header";
@@ -10,9 +12,9 @@ export default function CreateArticle() {
   const router = useRouter();
   const date = new Date();
   const { id } = router.query;
-  const [data, setData] = useState({});
-  const [open, setOpen] = useState(false);
-  const [invalid, setInvalid] = useState("");
+  const [data, setData] = useState({}); //Object consisting of data of the article(Title,Genre)
+  const [open, setOpen] = useState(false); //Backdrop
+  const [invalid, setInvalid] = useState(""); //Error handling
   const [openLoad, setOpenLoad] = useState(false);
   const genreList = [
     "AI/ Machine Learning",
@@ -31,6 +33,7 @@ export default function CreateArticle() {
   }, []);
   async function initState() {
     if (id != "content") {
+      // If the user is an Editor, then get the id from router.query and get the particular pending article from pendingArticle collection
       setOpenLoad(true);
       const response = await axios.post(
         "/api/getParticularPendingArticle",
@@ -45,6 +48,7 @@ export default function CreateArticle() {
     }
   }
   const changed = (props) => (e) => {
+    // Function to change the "data" object
     var d = {};
     d[props] = e.target.value;
     setData({ ...data, ...d });
@@ -52,6 +56,7 @@ export default function CreateArticle() {
   };
 
   const publish = async () => {
+    // Used to publish the article
     try {
       const response = await axios.post("/api/createArticle", data, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },

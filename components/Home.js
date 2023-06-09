@@ -23,8 +23,8 @@ import axios from "axios";
 import AnimatedHeading from "@/animatedComponents/Heading";
 export default function HomeComponent() {
   const router = useRouter();
-  const [data, setData] = useState([]);
-  const [open, setOpen] = useState(false);
+  const [data, setData] = useState([]); //This refers to the 6 news articles featured in the home page
+  const [open, setOpen] = useState(false); // Loading circular progress bar(Backdrop)
 
   useEffect(() => {
     initState();

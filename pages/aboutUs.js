@@ -17,15 +17,25 @@ export default function AboutUs() {
         knowledge to develop skills and Inspire Change. Click below to know
         more. ~ Minerva (thy Serva)
       </h4>
+      <AnimatedHeading>What we do?</AnimatedHeading>
       <p className="mx-8 font-typewriter">
-        What do we do?<br></br> A<br></br> 1. Weekly Newspaper Highlighting
-        major events across the world<br></br> 2. Weekly Podcast series<br></br>{" "}
-        3. The {'"'}extra{'"'} you deserve<br></br> B<br></br> 1. Workshops on
-        storytelling, mass communication, and networking<br></br> 2.
-        Collaboration with news houses and marketing agencies<br></br> 3.
-        Hands-on exposure through fun events<br></br> C<br></br> 1. Online News
-        Cards<br></br> 2. Special Investigative Piece every fourth week<br></br>{" "}
-        3. Bi-weekly Arts section featuring in-house creativity
+        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+          <div>
+            1. Weekly Newspaper Highlighting major events across the world
+            <br></br> 2. Weekly Podcast series<br></br> 3. The {'"'}extra{'"'}{" "}
+            you deserve<br></br>
+          </div>
+          <div>
+            1. Workshops on storytelling, mass communication, and networking
+            <br></br> 2. Collaboration with news houses and marketing agencies
+            <br></br> 3. Hands-on exposure through fun events<br></br>
+          </div>
+          <div>
+            1. Online News Cards<br></br> 2. Special Investigative Piece every
+            fourth week<br></br> 3. Bi-weekly Arts section featuring in-house
+            creativity
+          </div>
+        </div>
       </p>
       <AnimatedHeading>Meet the team</AnimatedHeading>
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mb-8">

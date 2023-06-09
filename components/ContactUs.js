@@ -1,3 +1,5 @@
+// Rendered at the bottom of the Home page
+// When the form is submitted an email is sent through api/ContactUs route to nigeldias@gmail.com
 import { useState } from "react";
 import axios from "axios";
 export default function Contact() {

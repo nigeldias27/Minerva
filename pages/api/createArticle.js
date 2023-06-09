@@ -7,9 +7,10 @@ const createArticle = async (req, res) => {
   if (req.method == "POST") {
     const user = await validateToken(
       req.headers["authorization"].split(" ")[1]
-    );
+    ); // Validate JWT Token and get the User of the token
     console.log(user.role);
     if (user.role == "Editor") {
+      //Add the article in the body to the Article collection and remove it from the pendingArticle collection
       console.log(req.body);
       const finalArticle = new Article({
         ...req.body,
@@ -21,6 +22,7 @@ const createArticle = async (req, res) => {
       );
       res.send(finalData);
     } else {
+      // Else it is a Content creator, so add the article to the pendingArticle collection
       const article = new pendingArticle({
         ...req.body,
         Role: user.role,

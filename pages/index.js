@@ -17,7 +17,8 @@ export default function Home() {
       </Head>
       <Headers />
       {
-        //TODO: Change this back before deploying
+        //For the launch of the website, a countdown counter was created which is rendered if the date is before April 12, 2023 16:00:00
+        // Otherwise the Home page (HomeComponent) is rendered
       }
       {new Date("April 12, 2023 16:00:00").getTime() >= new Date().getTime() ? (
         <Counter />

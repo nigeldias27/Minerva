@@ -1,3 +1,4 @@
+// This component is for the AboutUs page where it displayes the members of the club using these cards.
 import { Avatar } from "@mui/material";
 import { useRouter } from "next/router";
 
