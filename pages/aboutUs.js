@@ -45,7 +45,7 @@ export default function AboutUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 1 }}
-              className="bg-gradient-to-r from-minervaAboutl to-minervaAboutr rounded-lg drop-shadow-xl m-8 p-6 text-white text-opacity-60"
+              className="bg-gradient-to-r from-minervaAboutl to-minervaAboutr text-lg rounded-lg drop-shadow-xl m-8 p-6 text-white text-opacity-70"
             >
               1. Weekly Newspaper Highlighting major events across the world
               <br></br> 2. Weekly Podcast series<br></br> 3. The {'"'}extra{'"'}{" "}
@@ -56,7 +56,7 @@ export default function AboutUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 1 }}
-              className="bg-gradient-to-r from-minervaAboutl to-minervaAboutr rounded-lg drop-shadow-xl m-8 p-6 text-white text-opacity-60"
+              className="bg-gradient-to-r from-minervaAboutl to-minervaAboutr text-lg rounded-lg drop-shadow-xl m-8 p-6 text-white text-opacity-70"
             >
               1. Workshops on storytelling, mass communication, and networking
               <br></br> 2. Collaboration with news houses and marketing agencies
@@ -67,7 +67,7 @@ export default function AboutUs() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 1 }}
-              className="bg-gradient-to-r from-minervaAboutl to-minervaAboutr rounded-lg drop-shadow-xl m-8 p-6 text-white text-opacity-60"
+              className="bg-gradient-to-r from-minervaAboutl to-minervaAboutr text-lg rounded-lg drop-shadow-xl m-8 p-6 text-white text-opacity-70"
             >
               1. Online News Cards<br></br> 2. Special Investigative Piece every
               fourth week<br></br> 3. Bi-weekly Arts section featuring in-house
