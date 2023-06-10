@@ -17,7 +17,10 @@ export default function PersonCard(props) {
         <Avatar
           src={`${props.imageURL}`}
           className="my-8"
-          sx={{ width: 128, height: 128 }}
+          sx={{
+            width: { xs: 172, sm: 172, lg: 256, xl: 256 },
+            height: { xs: 172, sm: 172, lg: 256, xl: 256 },
+          }}
         ></Avatar>
         <h1 className="font-bold text-2xl font-merriweather mb-8">
           {props.Name}

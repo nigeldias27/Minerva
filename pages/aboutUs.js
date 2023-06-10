@@ -35,12 +35,7 @@ export default function AboutUs() {
           more. ~ Minerva (thy Serva)
         </h4>
       </motion.div>
-      <div
-        style={{
-          backgroundImage:
-            "url('https://news.pes.edu/Uploads/20230220%20050323_5.png')",
-        }}
-      ></div>
+
       <div className="py-12">
         <AnimatedHeading>What We Do?</AnimatedHeading>
         <p className=" font-typewriter">
