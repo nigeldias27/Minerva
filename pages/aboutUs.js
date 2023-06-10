@@ -18,6 +18,7 @@ export default function AboutUs() {
           backgroundRepeat: "no-repeat",
           backgroundSize: "cover",
           backgroundClip: "border-box",
+          backgroundPositionY: "center",
           backgroundColor: "rgba(0,0,0,0.5)",
           backgroundImage:
             "url('https://news.pes.edu/Uploads/20230220%20050323_5.png')",
@@ -44,21 +45,39 @@ export default function AboutUs() {
         <AnimatedHeading>What We Do?</AnimatedHeading>
         <p className=" font-typewriter">
           <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-            <div className="bg-gradient-to-r from-minervaAboutl to-minervaAboutr rounded-lg drop-shadow-xl m-8 p-6 text-white text-opacity-60">
+            <motion.div
+              initial={{ opacity: 0, y: -60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 1 }}
+              className="bg-gradient-to-r from-minervaAboutl to-minervaAboutr rounded-lg drop-shadow-xl m-8 p-6 text-white text-opacity-60"
+            >
               1. Weekly Newspaper Highlighting major events across the world
               <br></br> 2. Weekly Podcast series<br></br> 3. The {'"'}extra{'"'}{" "}
               you deserve<br></br>
-            </div>
-            <div className="bg-gradient-to-r from-minervaAboutl to-minervaAboutr rounded-lg drop-shadow-xl m-8 p-6 text-white text-opacity-60">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 1 }}
+              className="bg-gradient-to-r from-minervaAboutl to-minervaAboutr rounded-lg drop-shadow-xl m-8 p-6 text-white text-opacity-60"
+            >
               1. Workshops on storytelling, mass communication, and networking
               <br></br> 2. Collaboration with news houses and marketing agencies
               <br></br> 3. Hands-on exposure through fun events<br></br>
-            </div>
-            <div className="bg-gradient-to-r from-minervaAboutl to-minervaAboutr rounded-lg drop-shadow-xl m-8 p-6 text-white text-opacity-60">
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: -60 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 1 }}
+              className="bg-gradient-to-r from-minervaAboutl to-minervaAboutr rounded-lg drop-shadow-xl m-8 p-6 text-white text-opacity-60"
+            >
               1. Online News Cards<br></br> 2. Special Investigative Piece every
               fourth week<br></br> 3. Bi-weekly Arts section featuring in-house
               creativity
-            </div>
+            </motion.div>
           </div>
         </p>
       </div>
