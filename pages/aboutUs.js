@@ -12,7 +12,7 @@ export default function AboutUs() {
       <motion.div
         initial={{ boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.4)" }}
         whileHover={{ boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.6)" }}
-        className="flex justify-center flex-col py-24 md:py-18 lg:py-16 xl:py-14"
+        className="flex justify-center flex-col py-24 md:py-18 "
         style={{
           width: "100%",
           backgroundRepeat: "no-repeat",
