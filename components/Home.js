@@ -209,7 +209,7 @@ export default function HomeComponent() {
           </Timeline>
         </motion.div>
         <div id="featuringPES">
-          <AnimatedHeading>Featuring PES</AnimatedHeading>
+          <AnimatedHeading>Featuring PESU</AnimatedHeading>
         </div>
         <h4 className="font-bold text-lg pb-4 mx-8 font-typewriter">
           PESU shines under CORI

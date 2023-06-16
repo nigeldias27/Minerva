@@ -47,7 +47,7 @@ export default function Headers() {
                 href={"/#featuringPES"}
                 className="text-beigeText text-xl font-merriweather px-3 hover:text-hoverbeigeText"
               >
-                Featuring PES
+                Featuring PESU
               </Link>
               <Link
                 href={"/aboutUs"}
