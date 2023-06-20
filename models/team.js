@@ -54,10 +54,6 @@ export const team = [
     link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FIMG_20210905_202359__01%20-%20Somesh%20chirag.jpg?alt=media&token=4dd8256d-5ec7-4845-b038-c1e4c2c8bf06",
   },
   {
-    name: "Mandaraa R Bhargava",
-    link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FIMG_20221231_232855_013%20-%20Mandaraa%20R%20Bhargava.jpg?alt=media&token=01052acc-93af-4294-a944-503074c054dc",
-  },
-  {
     name: "Anannya Kulkarni",
     link: "https://firebasestorage.googleapis.com/v0/b/justcoffee-ed767.appspot.com/o/team%2FIMG_20230113_145005_049%20-%20Anannya%20Kulkarni.jpg?alt=media&token=4fd123a5-e33f-4bc9-8ced-be879234f83d",
   },
