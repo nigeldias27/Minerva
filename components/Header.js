@@ -13,7 +13,7 @@ export default function Headers() {
   return (
     <div className="w-screen bg-greyBlack flex flex-row justify-around p-4 z-10">
       <Link href={"/"} className="flex flex-row items-center">
-        <Image className="w-16 sm:w-21 h-xl mr-4" src={peslogo} />
+        <Image className="w-21 sm:w-32 h-xl mr-4" src={peslogo} />
         <Image className="h-xl" src={logo} />
         <h1 className="text-beigeText text-xl font-merriweather pl-3 hover:text-hoverbeigeText">
           MINERVA
