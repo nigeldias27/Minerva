@@ -1,5 +1,12 @@
 import { useRouter } from "next/router";
 
+
+function parseISOString(s) {
+  var b = s.split(/\D+/);
+  return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
+}
+
+
 export default function NewsCard(props) {
   const router = useRouter();
   return (
@@ -31,7 +38,7 @@ export default function NewsCard(props) {
             {props.headline}
           </h1>
           <p className="text-greySubtitle my-1 font-typewriter">
-            {props.genre} | {props.date}
+            {props.genre} | {parseISOString(props.date).toLocaleDateString()} | {parseISOString(props.date).toLocaleTimeString()}
           </p>
           <p className="font-typewriter">{props.desc}</p>
         </div>

@@ -19,6 +19,12 @@ export default function Article() {
     initState();
   }, []);
 
+
+  function parseISOString(s) {
+    var b = s.split(/\D+/);
+    return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
+  }
+
   async function initState() {
     setOpen(true);
     const response = await axios.post("/api/getParticularArticle", { id: id });
@@ -37,7 +43,8 @@ export default function Article() {
       <div className="px-8 sm:px-48 mt-8">
         <h1>
           {data.article == undefined ? "" : data.article.genre} |{" "}
-          {data.article == undefined ? "" : data.article.createdAt}
+          {data.article == undefined ? "" : parseISOString(data.article.createdAt).toLocaleDateString()} |{" "}
+          {data.article == undefined ? "" : parseISOString(data.article.createdAt).toLocaleTimeString()}
         </h1>
         <div className="flex flex-row mt-2 mb-8 items-center">
           <Avatar src={`${data.profileURL}`}></Avatar>
