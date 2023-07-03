@@ -74,26 +74,26 @@ export default function Headers() {
       </div>
       <div className="hidden sm:flex sm:flex-row sm:items-center">
         <Link
+          scroll={false}
           href={"/allnews"}
           className="text-beigeText text-xl font-merriweather px-3 hover:text-hoverbeigeText"
         >
           News
         </Link>
         <Link
-          scroll={false}
           href={"/#timeline"}
           className="text-beigeText text-xl font-merriweather px-3 hover:text-hoverbeigeText"
         >
           Timeline
         </Link>
         <Link
-          scroll={false}
           href={"/#featuringPES"}
           className="text-beigeText text-xl font-merriweather px-3 hover:text-hoverbeigeText"
         >
           Featuring PESU
         </Link>
         <Link
+          scroll={false}
           href={"/aboutUs"}
           className="text-beigeText text-xl font-merriweather px-3 hover:text-hoverbeigeText"
         >
