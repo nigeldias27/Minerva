@@ -9,11 +9,7 @@
     src: url("../public/fonts/Gilroy-Black.ttf") format("truetype");
     font-weight: bold;
   }
-  @font-face {
-    font-family: "Gilroy";
-    src: url("../public/fonts/Gilroy-Regular.ttf") format("truetype");
-    font-weight: bold;
-  }
+
   @font-face {
     font-family: "Gilroy";
     src: url("../public/fonts/Gilroy-Medium.ttf") format("truetype");
