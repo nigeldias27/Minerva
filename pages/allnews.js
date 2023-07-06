@@ -10,6 +10,8 @@ import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Footer from "@/components/Footer";
+import UpdatedNewsCard from "@/components/UpdatedNewsCard";
+import UpdatedHeading from "@/animatedComponents/UpdatedHeading";
 export default function News() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [data, setData] = useState([]);
@@ -70,12 +72,12 @@ export default function News() {
   return (
     <div className=" min-h-screen">
       <Headers />
-      <div className="px-0 mt-8 sm:px-48">
+      <div className="px-0 pt-8 bg-greyBlack sm:px-12">
         <div className="flex flex-row w-full justify-between items-center px-8 mb-8 sm:px-0">
-          <h1 className="text-3xl font-merriweather font-bold">News</h1>
+          <UpdatedHeading>News</UpdatedHeading>
           <a
             id="basic-button"
-            className="flex flex-row items-center"
+            className="flex flex-row items-center text-white"
             aria-controls={open ? "basic-menu" : undefined}
             aria-haspopup="true"
             aria-expanded={open ? "true" : undefined}
@@ -126,11 +128,12 @@ export default function News() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
-                <NewsCard
+                <UpdatedNewsCard
                   key={i}
                   imageURL={`${val.imageURL}`}
                   headline={`${val.title}`}
                   genre={`${val.genre}`}
+                  i={i}
                   date={`${val.createdAt}`}
                   desc={`${val.description}`}
                   id={`${val._id}`}
@@ -141,9 +144,8 @@ export default function News() {
           })}
         </div>
       </div>
-      <div className="pt-8">
-        <Footer />
-      </div>
+      <Footer />
+
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
         open={openLoad}
