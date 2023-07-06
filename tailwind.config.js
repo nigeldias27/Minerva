@@ -10,14 +10,20 @@ module.exports = {
   ],
   theme: {
     extend: {
+      dropShadow: {
+        "4xl": ["4px 4px 0 rgba(239,255,0,1)", "8px 8px 0 rgba(159,225,240,1)"],
+      },
       fontFamily: {
         // typewriter: ["Raleway", "sans-serif"],
         typewriter: ["Special Elite", "cursive"],
-        merriweather: ["Merriweather", "serif"],
+        han: ["Black Han Sans", "sans-serif"],
+        gilroy: ["Gilroy", "sans-serif"],
+        georgia: ["Georgia Pro", "serif"],
       },
       colors: {
-        greyBlack: "#343031",
+        greyBlack: "#1D1D1D",
         lightGrey: "#EBEBEB",
+        yellow: "#EFFF00",
         blackButton: "#3C3635",
         beigeText: "#E7E4D4",
         minervaAboutr: "#A17F7D",
@@ -27,7 +33,11 @@ module.exports = {
         greySubtitle: "#474747",
         titleColor: "#CBC8C5",
         footerBackground: "#3C3635",
-        yellowBackground: "#E7E4D4",
+        yellowBackground: "#292929",
+        white: "#FFFFFF",
+        blue: "#9FE1F0",
+        blackish: "#171717",
+        pink: "#DE99FF",
       },
     },
   },

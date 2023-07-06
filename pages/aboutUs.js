@@ -1,104 +1,109 @@
 import AnimatedHeading from "@/animatedComponents/Heading";
+import UpdatedHeading from "@/animatedComponents/UpdatedHeading";
 import Footer from "@/components/Footer";
 import Headers from "@/components/Header";
 import PersonCard from "@/components/PersonCard";
 import { team } from "@/models/team";
 import { motion } from "framer-motion";
+import { BsArrowDown } from "react-icons/bs";
 
 export default function AboutUs() {
   return (
-    <div>
+    <div className="bg-greyBlack">
       <Headers />
-      <motion.div
-        initial={{ boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.4)" }}
-        whileHover={{ boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.6)" }}
-        className="flex justify-center flex-col py-24 md:py-18 "
-        style={{
-          width: "100%",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundClip: "border-box",
-          backgroundPositionY: "center",
-          backgroundColor: "rgba(0,0,0,0.5)",
-          backgroundImage:
-            "url('https://news.pes.edu/Uploads/20230220%20050323_5.png')",
-        }}
-      >
-        <h1 className="pb-12 text-3xl font-merriweather pl-8 sm:pl-8 text-white text-opacity-90">
-          About Us
-        </h1>
-        <h4 className="font-bold text-lg pb-8 mx-8 font-typewriter text-white text-opacity-40">
-          PES University weekly publication. Bangalore{"'"}s first student-run
-          college newspaper. We are a group of thinkers that challenge people
-          through good journalism. We strive to provide the required tools and
-          knowledge to develop skills and Inspire Change. Click below to know
-          more. ~ Minerva (thy Serva)
-        </h4>
-      </motion.div>
+      <div className="flex justify-center flex-col mx-8 pb-24 pt-16 md:py-18">
+        <UpdatedHeading>About Us</UpdatedHeading>
 
-      <div className="py-12">
-        <AnimatedHeading>What We Do?</AnimatedHeading>
-        <p className=" font-typewriter">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-            <motion.div
-              initial={{ opacity: 0, y: -60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 1 }}
-              className="bg-gradient-to-r from-minervaAboutl to-minervaAboutr text-lg rounded-lg drop-shadow-xl m-8 p-6 text-white text-opacity-70"
-            >
-              1. Weekly Newspaper Highlighting major events across the world
-              <br></br> 2. Weekly Podcast series<br></br> 3. The {'"'}extra{'"'}{" "}
-              you deserve<br></br>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: -60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 1 }}
-              className="bg-gradient-to-r from-minervaAboutl to-minervaAboutr text-lg rounded-lg drop-shadow-xl m-8 p-6 text-white text-opacity-70"
-            >
-              1. Workshops on storytelling, mass communication, and networking
-              <br></br> 2. Collaboration with news houses and marketing agencies
-              <br></br> 3. Hands-on exposure through fun events<br></br>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: -60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 1 }}
-              className="bg-gradient-to-r from-minervaAboutl to-minervaAboutr text-lg rounded-lg drop-shadow-xl m-8 p-6 text-white text-opacity-70"
-            >
-              1. Online News Cards<br></br> 2. Special Investigative Piece every
-              fourth week<br></br> 3. Bi-weekly Arts section featuring in-house
-              creativity
-            </motion.div>
+        <div className="grid grid-cols-2 mx-8 pt-8 font-georgia text-4xl">
+          <div>
+            <h3 className="text-white mr-8 font-bold">
+              {"PES University weekly publication. Bangalore's first ".toUpperCase()}
+              <span className="text-yellow">STUDENT-RUN</span>{" "}
+              {"college newspaper.".toUpperCase()}
+            </h3>
           </div>
-        </p>
+          <div className=" flex flex-col justify-end">
+            <p className=" text-gray-400 text-xl">
+              We are a group of thinkers that challenge people through good
+              journalism. We strive to provide the required tools and knowledge
+              to develop skills and Inspire change.
+            </p>
+          </div>
+        </div>
       </div>
-
-      <AnimatedHeading>Meet The Team</AnimatedHeading>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mb-8">
-        {team.map((v, i) => {
-          return (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: -60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 1 }}
+      <div className="flex flex-row relative z-100 justify-center">
+        <button className="z-50 absolute bottom-0 border p-4 rounded-full border-black bg-pink">
+          <BsArrowDown size={16} />
+        </button>
+        <button className="z-90 absolute bottom-2 border p-4 rounded-full border-black bg-yellow">
+          <BsArrowDown size={16} />
+        </button>
+        <button className="z-90 absolute bottom-1 border p-4 rounded-full border-black bg-blue">
+          <BsArrowDown size={16} />
+        </button>
+      </div>
+      <div className="py-12 mx-8">
+        <div className="relative">
+          <div className="text-black grid grid-cols-2">
+            <div className=" bg-white font-georgia text-lg p-20 m-4">
+              {" "}
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              vulputate libero et velit interdum, ac aliquet odio mattis.
+            </div>
+            <div className=" bg-white font-georgia text-lg p-20 m-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              vulputate libero et velit interdum, ac aliquet odio mattis.
+            </div>
+          </div>
+          <div className="text-black grid grid-cols-2">
+            <div className=" bg-white font-georgia text-lg p-20 m-4">
+              {" "}
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              vulputate libero et velit interdum, ac aliquet odio mattis.
+            </div>
+            <div className=" bg-white font-georgia text-lg p-20 m-4">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
+              vulputate libero et velit interdum, ac aliquet odio mattis.
+            </div>
+            <div
+              style={{ transform: "translate(-50%,-50%)" }}
+              className="absolute z-20 left-1/2 top-1/2 border border-black bg-blue py-8 px-12"
             >
-              <PersonCard
-                key={i}
-                imageURL={v.link}
-                Name={v.name}
-                Role="Web Developement"
-              ></PersonCard>
-            </motion.div>
-          );
-        })}
+              <p className="font-georgia font-bold text-2xl">What Do We Do?</p>
+            </div>
+            <div
+              style={{ transform: "translate(-45%,-45%)" }}
+              className="absolute z-10 left-1/2 top-1/2 border border-black bg-pink py-8 px-12"
+            >
+              <p className="font-georgia font-bold text-2xl">What Do We Do?</p>
+            </div>
+          </div>
+        </div>
       </div>
+      <div className="mx-8 mt-24">
+        <UpdatedHeading>Our Team</UpdatedHeading>
 
+        <div className="grid grid-cols-1 mt-8 md:grid-cols-2 xl:grid-cols-3 mb-8">
+          {team.map((v, i) => {
+            return (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: -60 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: 1 }}
+              >
+                <PersonCard
+                  key={i}
+                  imageURL={v.link}
+                  Name={v.name}
+                  Role="Web Developement"
+                ></PersonCard>
+              </motion.div>
+            );
+          })}
+        </div>
+      </div>
       <Footer />
     </div>
   );
