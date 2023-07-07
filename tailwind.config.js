@@ -17,8 +17,8 @@ module.exports = {
         // typewriter: ["Raleway", "sans-serif"],
         typewriter: ["Special Elite", "cursive"],
         han: ["Black Han Sans", "sans-serif"],
-        gilroy: ["Gilroy", "sans-serif"],
-        georgia: ["Georgia Pro", "serif"],
+        gilroy: ["var(--font-gilroy)"],
+        georgia: ["var(--font-georgia)"],
       },
       colors: {
         greyBlack: "#1D1D1D",

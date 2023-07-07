@@ -1,5 +1,26 @@
 import "@/styles/globals.css";
 import { motion, AnimatePresence } from "framer-motion";
+import localFont from "@next/font/local";
+const gilroy = localFont({
+  src: [
+    { path: "../public/fonts/Gilroy-Medium.ttf", weight: "500" },
+    { path: "../public/fonts/Gilroy-SemiBold.ttf", weight: "600" },
+    { path: "../public/fonts/Gilroy-Black.ttf", weight: "700" },
+  ],
+  variable: "--font-gilroy",
+});
+
+const georgia = localFont({
+  src: [
+    {
+      path: "../public/fonts/GeorgiaPro-CondRegular.ttf",
+      weight: "500",
+    },
+    { path: "../public/fonts/GeorgiaPro-SemiBold.ttf", weight: "600" },
+    { path: "../public/fonts/GeorgiaPro-CondBold.ttf", weight: "700" },
+  ],
+  variable: "--font-georgia",
+});
 export default function App({ Component, pageProps, router }) {
   return (
     <AnimatePresence mode="wait">
@@ -14,7 +35,7 @@ export default function App({ Component, pageProps, router }) {
         animate="enter" // Animated state to variants.enter
         exit="exit" // Exit state (used later) to variants.exit
         transition={{ type: "linear", duration: 0.75 }} // Set the transition to linear
-        className=""
+        className={`${gilroy.variable} ${georgia.variable}`}
       >
         <Component {...pageProps} />
       </motion.div>
