@@ -31,15 +31,26 @@ export default function HomeComponent() {
     initState();
   }, []);
   async function initState() {
-    //setOpen(true);
-    const response = await axios.post("/api/articles", {
-      selectedGenres: [],
-      limit: 6,
-    });
-    //setOpen(false);
-    console.log(response.data);
-    setData([...response.data]);
+    const storedData = sessionStorage.getItem("data");
+    if (storedData) {
+      
+      setData(JSON.parse(storedData));
+    } else {
+      setOpen(true);
+      const response = await axios.post("/api/articles", {
+        selectedGenres: [],
+        limit: 6,
+      });
+      setOpen(false);
+      console.log(response.data);
+      setData([...response.data]);
+      
+      sessionStorage.setItem("data", JSON.stringify(response.data));
+    }
   }
+  const clearSessionStorage = () => {
+    sessionStorage.removeItem("data");
+  };
   return (
     <div className="flex flex-col">
       <div
