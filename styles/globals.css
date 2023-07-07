@@ -3,46 +3,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-  @font-face {
-    font-family: "Gilroy";
-    src: url("../public/fonts/Gilroy-Black.ttf") format("truetype");
-    font-weight: 700;
-  }
-
-  @font-face {
-    font-family: "Gilroy";
-    src: url("../public/fonts/Gilroy-Medium.ttf") format("truetype");
-    font-weight: 500;
-  }
-  @font-face {
-    font-family: "Gilroy";
-    src: url("../public/fonts/Gilroy-SemiBold.ttf") format("truetype");
-    font-weight: 600;
-  }
-  @font-face {
-    font-family: "Georgia Pro";
-    src: url("../public/fonts/GeorgiaPro-CondRegular.ttf") format("truetype");
-  }
-  @font-face {
-    font-family: "Georgia Pro";
-    src: url("../public/fonts/GeorgiaPro-SemiBold.ttf") format("truetype");
-    font-weight: bolder;
-  }
-
-  @font-face {
-    font-family: "Georgia Pro";
-    src: url("../public/fonts/GeorgiaPro-CondBold.ttf") format("truetype");
-    font-weight: bold;
-  }
-
-  @font-face {
-    font-family: "Georgia Pro";
-    src: url("../public/fonts/GeorgiaPro-CondLight.ttf") format("truetype");
-    font-weight: light;
-  }
-}
-
 * {
   box-sizing: border-box;
   padding: 0;
