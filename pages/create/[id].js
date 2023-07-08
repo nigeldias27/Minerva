@@ -15,6 +15,7 @@ export default function CreateArticle() {
   const [data, setData] = useState({}); //Object consisting of data of the article(Title,Genre)
   const [open, setOpen] = useState(false); //Backdrop
   const [invalid, setInvalid] = useState(""); //Error handling
+  const [removeInvalid, setRemoveInvalid] = useState(""); //Error handling
   const [openLoad, setOpenLoad] = useState(false);
   const genreList = [
     "AI/ Machine Learning",
@@ -61,9 +62,9 @@ export default function CreateArticle() {
       const response = await axios.post("/api/removePendingArticle", {id: id}, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
-      setInvalid("false");
+      setRemoveInvalid("false");
     } catch (e) {
-      setInvalid("true");
+      setRemoveInvalid("true");
     }
 
     router.push("/pendingNews")
@@ -187,15 +188,17 @@ export default function CreateArticle() {
             </div>
             <div className="flex w-full pr-8 justify-end">
               <div>
-                <button
+                {id!="content"?(
+                  <button
                   class="x-6 my-8 mx-5 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
                   type="submit"
                   onClick={() => {
                     undo();
                   }}
                 >
-                  <span className="text-xl">Undo</span>
+                  <span className="text-xl">Remove</span>
                 </button>
+                ):(<div></div>)}
 
                 <button
                   class="x-6 my-8 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
@@ -214,6 +217,17 @@ export default function CreateArticle() {
                   <Alert severity="error">Error Publishing. Try Again</Alert>
                 ) : (
                   <Alert severity="success">Published successfully</Alert>
+                )}
+              </div>
+            ) : (
+              <div></div>
+            )}
+            {removeInvalid != "" ? (
+              <div className="flex justify-center">
+                {removeInvalid == "true" ? (
+                  <Alert severity="error">Error Removing. Try Again</Alert>
+                ) : (
+                  <Alert severity="success">Removed successfully</Alert>
                 )}
               </div>
             ) : (

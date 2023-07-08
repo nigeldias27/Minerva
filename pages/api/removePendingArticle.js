@@ -2,7 +2,7 @@ import connectDB from "@/lib/connect";
 import pendingArticle from "../../models/pendingArticle.js";
 import validateToken from "@/lib/validateToken";
 
-const getParticularPendingArticle = async (req, res) => {
+const removePendingArticle = async (req, res) => {
   // Used to get the specific pending article awaiting approval by Editors to send to create/[id].js
   if (req.method == "POST") {
     const user = await validateToken(
@@ -15,4 +15,4 @@ const getParticularPendingArticle = async (req, res) => {
   }
 };
 
-export default connectDB(getParticularPendingArticle);
+export default connectDB(removePendingArticle);
