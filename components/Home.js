@@ -21,6 +21,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import AnimatedHeading from "@/animatedComponents/Heading";
+import { Skeleton } from "@mui/material";
 export default function HomeComponent() {
   const router = useRouter();
   const [data, setData] = useState([]); //This refers to the 6 news articles featured in the home page
@@ -30,15 +31,26 @@ export default function HomeComponent() {
     initState();
   }, []);
   async function initState() {
-    setOpen(true);
-    const response = await axios.post("/api/articles", {
-      selectedGenres: [],
-      limit: 6,
-    });
-    setOpen(false);
-    console.log(response.data);
-    setData([...response.data]);
+    const storedData = sessionStorage.getItem("data");
+    if (storedData) {
+      
+      setData(JSON.parse(storedData));
+    } else {
+      setOpen(true);
+      const response = await axios.post("/api/articles", {
+        selectedGenres: [],
+        limit: 6,
+      });
+      setOpen(false);
+      console.log(response.data);
+      setData([...response.data]);
+      
+      sessionStorage.setItem("data", JSON.stringify(response.data));
+    }
   }
+  const clearSessionStorage = () => {
+    sessionStorage.removeItem("data");
+  };
   return (
     <div className="flex flex-col">
       <div
@@ -83,9 +95,11 @@ export default function HomeComponent() {
         <div className="mt-16">
           <AnimatedHeading>Recent News</AnimatedHeading>
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-          {data.map((val, i) => {
-            return (
+        <div >
+        {data.length<=5 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+            
+            {[...Array(6)].map((_, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, y: -60 }}
@@ -93,20 +107,45 @@ export default function HomeComponent() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.5 }}
               >
-                <NewsCard
-                  key={i}
-                  imageURL={`${val.imageURL}`}
-                  headline={`${val.title}`}
-                  genre={`${val.genre}`}
-                  date={`${val.createdAt}`}
-                  desc={`${val.description}`}
-                  id={`${val._id}`}
-                  newArticle={true}
+                <div className="p-10">
+                <Skeleton
+                  variant="rectangular"
+                  width="350px"
+                  height={400}
+                  animation="wave"
                 />
+                </div>
+               
               </motion.div>
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+            {data.map((val, i) => {
+              return (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: -60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                >
+                  <NewsCard
+                    key={i}
+                    imageURL={`${val.imageURL}`}
+                    headline={`${val.title}`}
+                    genre={`${val.genre}`}
+                    date={`${val.createdAt}`}
+                    desc={`${val.description}`}
+                    id={`${val._id}`}
+                    newArticle={true}
+                  />
+                </motion.div>
+              );
+            })}
+          </div>
+        )}
+      </div>
         <div className="flex w-full justify-center">
           <button
             class="x-6 my-8 drop-shadow-xl hover:drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText  hover:scale-105 transition duration-50 ease-linear"
