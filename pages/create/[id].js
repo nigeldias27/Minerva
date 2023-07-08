@@ -55,6 +55,20 @@ export default function CreateArticle() {
     console.log(data);
   };
 
+  const undo = async () => {
+    // Used to undo the pending article
+    try {
+      const response = await axios.post("/api/removePendingArticle", {id: id}, {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+      setInvalid("false");
+    } catch (e) {
+      setInvalid("true");
+    }
+
+    router.push("/pendingNews")
+  }
+
   const publish = async () => {
     // Used to publish the article
     try {
@@ -172,15 +186,27 @@ export default function CreateArticle() {
               ></textarea>
             </div>
             <div className="flex w-full pr-8 justify-end">
-              <button
-                class="x-6 my-8 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
-                type="submit"
-                onClick={() => {
-                  publish();
-                }}
-              >
-                <span className="text-xl">Publish</span>
-              </button>
+              <div>
+                <button
+                  class="x-6 my-8 mx-5 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
+                  type="submit"
+                  onClick={() => {
+                    undo();
+                  }}
+                >
+                  <span className="text-xl">Undo</span>
+                </button>
+
+                <button
+                  class="x-6 my-8 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
+                  type="submit"
+                  onClick={() => {
+                    publish();
+                  }}
+                >
+                  <span className="text-xl">Publish</span>
+                </button>
+              </div>
             </div>
             {invalid != "" ? (
               <div className="flex justify-center">
