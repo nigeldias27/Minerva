@@ -63,8 +63,8 @@ export default function Article() {
             />
           </article>
         </div>
-        <div className="basis-1/4 flex flex-row justify-center mt-12">
-          <div className="flex flex-row h-min items-center">
+        <div className=" box basis-1/4 flex flex-row justify-center mt-12">
+          <div className=" flex flex-row h-min items-center">
             <h1 className="mr-2 font-gilroy">
               {data.writerName} |{" "}
               {data.article == undefined ? "" : data.article.genre}

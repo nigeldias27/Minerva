@@ -1,7 +1,7 @@
 import { BsInstagram, BsYoutube, BsLinkedin, BsTwitter } from "react-icons/bs";
 export default function Footer() {
   return (
-    <div className="w-full bg-yellowBackground flex flex-col items-center py-8">
+    <div className="w-full   bg-[#428897] dark:bg-yellowBackground flex flex-col  items-center py-8 mt-10">
       <div className="flex flex-row pt-8 pb-4">
         <div
           onClick={() => {
@@ -32,10 +32,22 @@ export default function Footer() {
       </div>
       <div className="flex flex-row pt-4 pb-4">
         <p className="text-white font-gilroy font-500 px-3">About Minerva</p>
-        <p className="text-white font-gilroy px-3">About PES University</p>
+        <div class="flex items-center">
+          <div class="h-4 w-0.5 bg-white mr-2"></div>  
+          <p className="text-white font-gilroy px-3">About PES University</p>
+        </div>
+      <div class="flex items-center">
+        <div class="h-4 w-0.5 bg-white mr-2"></div>
         <p className="text-white font-gilroy px-3">Newsletter</p>
+      </div>
+      <div class="flex items-center">
+        <div class="h-4 w-0.5 bg-white mr-2"></div>
         <p className="text-white font-gilroy px-3">Privacy Policy</p>
+      </div>
+      <div class="flex items-center">
+        <div class="h-4 w-0.5 bg-white mr-2"></div>
         <p className="text-white font-gilroy px-3">Terms & Conditions</p>
+      </div>
       </div>
       <h1 className="text-white font-gilroy">
         MINERVA 2023 - All rights reserved

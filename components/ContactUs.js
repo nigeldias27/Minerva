@@ -17,8 +17,8 @@ export default function Contact() {
     console.log(data);
   };
   return (
-    <div id="contactus" className="w-full bg-yellowBackground">
-      <div className="pt-8 px-8">
+    <div id="contactus" className="w-full  bg-[#428797] dark:bg-yellowBackground">
+      <div className="pt-8 px-8 ">
         <UpdatedHeading notcap={false}>
           Got some Tea or Coffee for us?
         </UpdatedHeading>
