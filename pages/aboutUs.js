@@ -9,16 +9,16 @@ import { BsArrowDown } from "react-icons/bs";
 
 export default function AboutUs() {
   return (
-    <div className="bg-greyBlack">
+    <div className="bg-white dark:bg-greyBlack">
       <Headers />
       <div className="flex justify-center flex-col mx-8 pb-24 pt-16 md:py-18">
         <UpdatedHeading>About Us</UpdatedHeading>
 
         <div className="grid grid-cols-2 mx-8 pt-8 font-georgia text-4xl">
           <div>
-            <h3 className="text-white mr-8 font-bold">
+            <h3 className="text-#1D1D1D dark:text-white mr-8 font-bold">
               {"PES University weekly publication. Bangalore's first ".toUpperCase()}
-              <span className="text-yellow">STUDENT-RUN</span>{" "}
+              <span className="text-londonYellow dark:text-yellow">STUDENT-RUN</span>{" "}
               {"college newspaper.".toUpperCase()}
             </h3>
           </div>
@@ -44,24 +44,24 @@ export default function AboutUs() {
       </div>
       <div className="py-12 mx-8">
         <div className="relative">
-          <div className="text-black grid grid-cols-2">
-            <div className=" bg-white font-georgia text-lg p-20 m-4">
+          <div className="text-white dark:text-black grid grid-cols-2">
+            <div className=" bg-black dark:bg-white font-georgia text-lg p-20 m-4">
               {" "}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
               vulputate libero et velit interdum, ac aliquet odio mattis.
             </div>
-            <div className=" bg-white font-georgia text-lg p-20 m-4">
+            <div className=" bg-black dark:bg-white font-georgia text-lg p-20 m-4">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
               vulputate libero et velit interdum, ac aliquet odio mattis.
             </div>
           </div>
-          <div className="text-black grid grid-cols-2">
-            <div className=" bg-white font-georgia text-lg p-20 m-4">
+          <div className="text-white dark:text-black grid grid-cols-2">
+            <div className=" bg-black dark:bg-white font-georgia text-lg p-20 m-4">
               {" "}
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
               vulputate libero et velit interdum, ac aliquet odio mattis.
             </div>
-            <div className=" bg-white font-georgia text-lg p-20 m-4">
+            <div className=" bg-black dark:bg-white font-georgia text-lg p-20 m-4">
               Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
               vulputate libero et velit interdum, ac aliquet odio mattis.
             </div>
@@ -69,7 +69,7 @@ export default function AboutUs() {
               style={{ transform: "translate(-50%,-50%)" }}
               className="absolute z-20 left-1/2 top-1/2 border border-black bg-blue py-8 px-12"
             >
-              <p className="font-georgia font-bold text-2xl">What Do We Do?</p>
+              <p className="font-georgia text-black font-bold text-2xl">What Do We Do?</p>
             </div>
             <div
               style={{ transform: "translate(-45%,-45%)" }}

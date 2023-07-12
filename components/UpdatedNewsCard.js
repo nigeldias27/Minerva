@@ -1,17 +1,20 @@
 import { useRouter } from "next/router";
 
 export default function UpdatedNewsCard(props) {
+  
   const router = useRouter();
   function parseISOString(s) {
     var b = s.split(/\D+/);
     return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
   }
-  const colorArr = ["pink", "yellow", "blue"];
+  const colorArr1 = ["softViolet","londonYellow","[#428897]"];
+  const colorArr = ["pink", "yellow", "blue"] ;
   const colorArrRGBA = [
-    "rgba(222,153,255,1)",
-    "rgba(239,255,0,1)",
-    "rgba(159,225,240,1)",
+    " rgba(222,153,255,1)",
+    " rgba(239,255,0,1)",
+    "rgba(159,225,240,1)",  
   ];
+  const textColor = props.darkMode ?   colorArr[props.i % colorArr.length]: colorArr1[props.i % colorArr1.length];
   return (
     <div
       className={` px-8 ${props.horizontal == true ? "" : "py-4"}`}
@@ -76,14 +79,14 @@ export default function UpdatedNewsCard(props) {
           <h1
             className={` ${
               props.horizontal == true ? "text-xl" : "text-2xl"
-            } font-georgia text-white`}
+            } font-georgia text-#1D1D1D dark:text-white`}
           >
             {props.headline}
           </h1>
           <p
             className={`my-1 font-georgia ${
               props.bigger == true ? "text-xl" : ""
-            } text-${colorArr[props.i % colorArr.length]} `}
+            } text-${textColor} `}
           >
             {"Nigel Dias"} | {props.genre}
           </p>

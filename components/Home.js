@@ -28,6 +28,7 @@ export default function HomeComponent() {
   const router = useRouter();
   const [data, setData] = useState([]); //This refers to the 6 news articles featured in the home page
   const [open, setOpen] = useState(false); // Loading circular progress bar(Backdrop)
+  const [darkMode, setDarkMode]=useState(false);
 
   useEffect(() => {
     initState();
@@ -42,7 +43,9 @@ export default function HomeComponent() {
     console.log(response.data);
     setData([...response.data]);
   }
+  
   return (
+    <div className={darkMode ? "dark" : ""}>
     <div className="flex flex-col">
       <div
         className="w-screen -z-20"
@@ -54,7 +57,7 @@ export default function HomeComponent() {
           backgroundSize: "cover",
         }}
       >
-        <div className="w-screen h-screen z-0 bg-[rgba(0,0,0,0.7)] absolute"></div>
+        <div className="w-screen h-screen z-0  bg-#000000 dark:bg-[rgba(0,0,0,0.7)] absolute"></div>
 
         <div className="grid grid-cols-2 h-full relative z-10 w-full">
           <motion.div
@@ -96,7 +99,7 @@ export default function HomeComponent() {
           <BsArrowDown size={16} />
         </button>
       </div>
-      <div className="px-0 bg-greyBlack pt-8 sm:px-12">
+      <div className="px-0 bg-white dark:bg-greyBlack pt-8 sm:px-12">
         <div className="flex flex-row mt-16 ">
           <div className="basis-3/6">
             <UpdatedHeading># Trending</UpdatedHeading>
@@ -114,6 +117,7 @@ export default function HomeComponent() {
                   id={`${data[0]._id}`}
                   newArticle={true}
                   bigger={true}
+                  
                 />
                 <UpdatedNewsCard
                   i={2}
@@ -125,13 +129,14 @@ export default function HomeComponent() {
                   id={`${data[1]._id}`}
                   newArticle={true}
                   bigger={true}
+                  
                 />
               </div>
             )}
           </div>
           <div className="basis-2/4 pl-16 pt-16">
             <div>
-              <h1 className="text-3xl text-white font-gilroy font-bold ml-8">
+              <h1 className="text-3xl text-#1D1D1D dark:text-white font-gilroy font-bold ml-8">
                 Recent News
               </h1>
             </div>
@@ -156,6 +161,7 @@ export default function HomeComponent() {
                       id={`${val._id}`}
                       newArticle={true}
                       horizontal={true}
+                      darkMode={darkMode}
                     />
                   </motion.div>
                 );
@@ -184,7 +190,7 @@ export default function HomeComponent() {
           </div>
         </div>
         <motion.div
-          className="bg-yellowBackground p-8 my-24 w-full rounded-md"
+          className="bg-[#428797] dark:bg-yellowBackground p-8 my-24 w-full rounded-md"
           initial={{ opacity: 0, y: -60 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -193,17 +199,12 @@ export default function HomeComponent() {
           <UpdatedHeading>Our Timeline</UpdatedHeading>
           <Timeline id="timeline" className="px-1 " position="alternate">
             <TimelineItem>
-              <TimelineOppositeContent
-                className="pt-8 pb-32 font-typewriter"
-                color="text.secondary"
-              >
-                <h1 className="text-white font-georgia">
-                  12th Apr 2023, 2:45PM
-                </h1>
-                <h1 className="text-white font-georgia">MRD Auditorium</h1>
+              <TimelineOppositeContent className="pt-8 pb-32 font-typewritter" color="text.secondary">
+                <h1 className="text-white">14th Apr 2023, 12:00pm</h1>
+                    <h1 className="text-white">10th Floor, BE Block</h1>
               </TimelineOppositeContent>
               <TimelineSeparator>
-                <TimelineDot sx={{ width: "auto", padding: "0px" }}>
+                <TimelineDot sx={{width: "auto", padding: "0px" }}>
                   <Avatar className="w-14 h-14 sm:w-32 sm:h-32">
                     <Image src={event2}></Image>
                   </Avatar>
@@ -211,13 +212,14 @@ export default function HomeComponent() {
                 <TimelineConnector />
               </TimelineSeparator>
               <TimelineContent className="py-8">
-                <h1 className="text-md font-semibold font-gilroy text-white">
-                  Minerva Orientation
+              <h1 className="text-white font-georgia">
+                  Runway Runway
                 </h1>
                 <p className="font-georgia text-white">
-                  Come learn more about what our club has in store for all of
-                  you this year
+                  Runway from buying expensive material in the name of fashion run-towards
+                  sustainable and recyclable eco-chic designs 
                 </p>
+                
                 <div>
                   <div className="relative">
                     <button
@@ -290,6 +292,54 @@ export default function HomeComponent() {
                 </div>
               </TimelineContent>
             </TimelineItem>
+            <TimelineItem>
+              <TimelineOppositeContent
+                className="pt-8 pb-32 font-typewriter"
+                color="text.secondary"
+              >
+                <h1 className="text-white font-georgia">
+                  12th Apr 2023, 2:45PM
+                </h1>
+                <h1 className="text-white font-georgia">MRD Auditorium</h1>
+              </TimelineOppositeContent>
+              <TimelineSeparator>
+                <TimelineDot sx={{ width: "auto", padding: "0px" }}>
+                  <Avatar className="w-14 h-14 sm:w-32 sm:h-32">
+                    <Image src={event2}></Image>
+                  </Avatar>
+                </TimelineDot>
+                <TimelineConnector />
+              </TimelineSeparator>
+              <TimelineContent className="py-8">
+                <h1 className="text-md font-semibold font-gilroy text-white">
+                  Minerva Orientation
+                </h1>
+                <p className="font-georgia text-white">
+                  Come learn more about what our club has in store for all of
+                  you this year
+                </p>
+                <div>
+                  <div className="relative">
+                    <button
+                      class="bg-pink border border-black font-gilroy font-bolder relative z-40 x-6 my-1 drop-shadow-xl hover:drop-shadow-xl font-merriweather rounded-md py-2 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
+                      type="submit"
+                      onClick={() => {
+                        window.location.href =
+                          "https://www.instagram.com/p/Cq0K-B-JLoC/?utm_source=ig_web_copy_link";
+                      }}
+                    >
+                      View More
+                    </button>
+                    <button className="bg-yellow border border-black absolute top-1 left-1 z-30 x-6 my-1 drop-shadow-xl hover:drop-shadow-xl font-gilroy font-bold rounded-md py-2 px-3 text-black hover:scale-105 transition duration-50 ease-linear">
+                      View More
+                    </button>
+                    <button className="bg-blue border border-black absolute top-2 left-2 z-20 x-6 my-1 drop-shadow-xl hover:drop-shadow-xl font-gilroy font-bold rounded-md py-2 px-3 text-black hover:scale-105 transition duration-50 ease-linear">
+                      View More
+                    </button>
+                  </div>
+                </div>
+              </TimelineContent>
+            </TimelineItem>
           </Timeline>
         </motion.div>
         <div id="featuringPES">
@@ -299,11 +349,11 @@ export default function HomeComponent() {
           <div className="basis-2/5">
             <h4
               style={{ width: "50%" }}
-              className="absolute text-4xl pt-3 pb-4 mx-8 text-blue font-han font-bold"
+              className="absolute text-4xl pt-3 pb-4 mx-8 text-[#428897] dark:text-blue font-han font-bold"
             >
               PESU SHINES UNDER CORI
             </h4>
-            <p className="mx-8 mt-24 font-georgia text-white">
+            <p className="mx-8 mt-24 font-georgia text-#1D1D1D dark:text-white">
               Crucible of Research and Innovation
               <a
                 className="underline"
@@ -332,6 +382,7 @@ export default function HomeComponent() {
         </div>
 
         <Contact />
+       
         <Footer />
         <Backdrop
           sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
@@ -340,6 +391,7 @@ export default function HomeComponent() {
           <CircularProgress color="inherit" />
         </Backdrop>
       </div>
+    </div>
     </div>
   );
 }

@@ -18,8 +18,8 @@ export default function PersonCard(props) {
           backgroundPosition: "center",
         }}
       >
-        <div className="bg-greyBlack w-1/2 mb-8">
-          <h1 className=" text-2xl flex flex-col items-center text-center px-4 py-4 text-white font-georgia ">
+        <div className="bg-white dark:bg-greyBlack w-1/2 mb-8">
+          <h1 className=" text-2xl  flex flex-col items-center text-center px-4 py-4 text-black dark:text-white font-georgia ">
             {props.Name}
           </h1>
         </div>

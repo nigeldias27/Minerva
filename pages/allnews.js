@@ -12,6 +12,7 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import Footer from "@/components/Footer";
 import UpdatedNewsCard from "@/components/UpdatedNewsCard";
 import UpdatedHeading from "@/animatedComponents/UpdatedHeading";
+import Slider from 'react-slick';
 export default function News() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [data, setData] = useState([]);
@@ -69,22 +70,21 @@ export default function News() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 7,
+    slidesToScroll: 1,
+    vertical: false,
+    centerMode: true,
+  };
   return (
     <div className=" min-h-screen">
       <Headers />
-      <div className="px-0 pt-8 bg-greyBlack sm:px-12">
+      <div className="px-0 pt-8 bg-#FCF7FF dark:bg-greyBlack sm:px-12">
         <div className="flex flex-row w-full justify-between items-center px-8 mb-8 sm:px-0">
           <UpdatedHeading>News</UpdatedHeading>
-          <a
-            id="basic-button"
-            className="flex flex-row items-center text-white"
-            aria-controls={open ? "basic-menu" : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? "true" : undefined}
-            onClick={handleClick}
-          >
-            Filter <MdKeyboardDoubleArrowRight />
-          </a>
           <Menu
             id="basic-menu"
             anchorEl={anchorEl}
@@ -117,7 +117,36 @@ export default function News() {
             })}
           </Menu>
         </div>
+       <Slider {...settings}>
+        <div>
+            
+       
+            <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">View All</button>
+           
+            <button class="px-2 h-8 whitespace-nowrap bg-white text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">Club Heads</button>
+        
+         
+            <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">UI/UX</button>
+        
+        
+            <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">Web Dev</button>
+           
+            <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">AV</button>
+           
+            <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">journalism</button>
+          
+            <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">Ops Content</button>
+          
+            <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">Social Media Content</button>
+            
+            <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">Animations</button>
+           
+            <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">Communication Design</button>
+        
+        </div>
+       </Slider>
 
+          
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           {data.map((val, i) => {
             return (
