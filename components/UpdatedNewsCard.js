@@ -1,20 +1,21 @@
 import { useRouter } from "next/router";
 
 export default function UpdatedNewsCard(props) {
-  
   const router = useRouter();
   function parseISOString(s) {
     var b = s.split(/\D+/);
     return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
   }
-  const colorArr1 = ["softViolet","londonYellow","[#428897]"];
-  const colorArr = ["pink", "yellow", "blue"] ;
+  const colorArr1 = ["#428897", "#B94FEB", "#B18516"];
+  const colorArr = ["pink", "yellow", "blue"];
   const colorArrRGBA = [
-    " rgba(222,153,255,1)",
-    " rgba(239,255,0,1)",
-    "rgba(159,225,240,1)",  
+    "rgba(222,153,255,1)",
+    "rgba(239,255,0,1)",
+    "rgba(159,225,240,1)",
   ];
-  const textColor = props.darkMode ?   colorArr[props.i % colorArr.length]: colorArr1[props.i % colorArr1.length];
+  const textColor = props.darkMode
+    ? colorArrRGBA[props.i % colorArrRGBA.length]
+    : colorArr1[props.i % colorArr1.length];
   return (
     <div
       className={` px-8 ${props.horizontal == true ? "" : "py-4"}`}
@@ -48,7 +49,7 @@ export default function UpdatedNewsCard(props) {
             src={`${props.imageURL}`}
           ></img>
           {props.bigger == true ? (
-            <div className="absolute rounded-b-2xl px-4 py-1 border border-gray-700 bg-yellow top-0 left-8 font-gilroy font-500">
+            <div className="absolute rounded-b-2xl px-4 py-1 border border-gray-700 bg-white dark:bg-yellow top-0 left-8 font-gilroy font-500">
               {parseISOString(props.date)
                 .toUTCString()
                 .split(",")[1]
@@ -57,7 +58,7 @@ export default function UpdatedNewsCard(props) {
             </div>
           ) : (
             <div
-              className={`absolute rounded-r-2xl px-4 py-1 border border-gray-700 bg-yellow ${
+              className={`absolute rounded-r-2xl px-4 py-1 border border-gray-700 bg-white dark:bg-yellow ${
                 props.horizontal == null && props.bigger == null ? "hidden" : ""
               } ${
                 props.horizontal == true ? "top-3 text-xs" : "top-8"
@@ -84,9 +85,10 @@ export default function UpdatedNewsCard(props) {
             {props.headline}
           </h1>
           <p
+            style={{ color: textColor }}
             className={`my-1 font-georgia ${
               props.bigger == true ? "text-xl" : ""
-            } text-${textColor} `}
+            } `}
           >
             {"Nigel Dias"} | {props.genre}
           </p>

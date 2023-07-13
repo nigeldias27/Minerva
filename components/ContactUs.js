@@ -17,7 +17,10 @@ export default function Contact() {
     console.log(data);
   };
   return (
-    <div id="contactus" className="w-full  bg-[#428797] dark:bg-yellowBackground">
+    <div
+      id="contactus"
+      className="w-full  bg-[#428797] dark:bg-yellowBackground"
+    >
       <div className="pt-8 px-8 ">
         <UpdatedHeading notcap={false}>
           Got some Tea or Coffee for us?
@@ -65,7 +68,7 @@ export default function Contact() {
             Submit
           </button>
           <button
-            className="bg-pink px-6 z-40 rounded-lg  py-2 border border-black font-gilroy font-bolder hover:bg-hoverbeigeText absolute"
+            className="bg-pink px-6 z-40 rounded-lg relative  py-2 border border-black font-gilroy font-bolder hover:bg-hoverbeigeText"
             onClick={async () => {
               try {
                 const response = await axios.post("/api/contactUs", data);
