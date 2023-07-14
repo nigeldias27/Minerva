@@ -15,6 +15,7 @@ import { motion, transform } from "framer-motion";
 import Image from "next/image";
 import event1 from "../public/assets/minerva_event_1.jpeg";
 import event2 from "../public/assets/orientation.jpeg";
+import event3 from "../public/assets/runway.jpeg";
 import background from "../public/assets/background.png";
 import foreground from "../public/assets/foreground.png";
 import { Avatar } from "@mui/material";
@@ -217,7 +218,7 @@ export default function HomeComponent() {
                 <TimelineSeparator>
                   <TimelineDot sx={{ width: "auto", padding: "0px" }}>
                     <Avatar className="w-14 h-14 sm:w-32 sm:h-32">
-                      <Image src={event2}></Image>
+                      <Image src={event3}></Image>
                     </Avatar>
                   </TimelineDot>
                   <TimelineConnector />
@@ -360,11 +361,11 @@ export default function HomeComponent() {
             <div className="basis-2/5">
               <h4
                 style={{ width: "50%" }}
-                className="absolute text-4xl pt-3 pb-4 mx-8 text-[#428897] dark:text-blue font-han font-bold"
+                className="absolute z-20 text-4xl pt-3 pb-4 mx-8 text-[#428897] dark:text-blue font-han font-bold"
               >
                 PESU SHINES UNDER CORI
               </h4>
-              <p className="mx-8 mt-24 font-georgia text-#1D1D1D dark:text-white">
+              <p className="mx-8 mt-24 font-georgia text-#1D1D1D  dark:text-white">
                 Crucible of Research and Innovation
                 <a
                   className="underline"
@@ -384,11 +385,13 @@ export default function HomeComponent() {
                 students to explore the fields of research.
               </p>
             </div>
-            <div className="basis-3/5">
+            <div className="basis-3/5 relative">
               <img
                 src="https://lh3.googleusercontent.com/p/AF1QipP0ziHgkSGCOHH99LOGHUUie5kJDdmecp6zIosO=s1360-w1360-h1020"
-                className="w-full mt-8 mb-24 aspect-video"
+                className="w-full mt-8 mb-24 relative z-10 aspect-video"
               ></img>
+              <div className="absolute w-full  mt-8 mb-24 z-0 bg-blue top-4 left-4 aspect-video"></div>
+              <div className="absolute w-full mt-8 mb-24 z-0 bg-white dark:bg-black top-3 left-3 aspect-video"></div>
             </div>
           </div>
 
