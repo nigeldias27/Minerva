@@ -7,6 +7,7 @@ import TimelineConnector from "@mui/lab/TimelineConnector";
 import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 import { BsArrowDown } from "react-icons/bs";
+import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -22,9 +23,60 @@ import { Avatar } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import AnimatedHeading from "@/animatedComponents/Heading";
 import UpdatedNewsCard from "./UpdatedNewsCard";
 import UpdatedHeading from "@/animatedComponents/UpdatedHeading";
+
+const CustomLeftArrow = ({ onClick }) => (
+  <div
+    onClick={() => onClick()}
+    className="w-10 h-10 relative z-50 bg-pink react-multiple-carousel__arrow "
+  >
+    <button
+      style={{ transform: "translate(,-50%)" }}
+      className=" w-full absolute h-full -z-10 -right-1 border p-4 rounded-full border-black bg-blue"
+    >
+      <BsArrowRight style={{ transform: "translate(-20%,-20%)" }} size={16} />
+    </button>
+    <button
+      style={{ transform: "translate(,-50%)" }}
+      className=" w-full absolute h-full -z-20 -right-2 border p-4 rounded-full border-black bg-yellow"
+    >
+      <BsArrowRight style={{ transform: "translate(-20%,-20%)" }} size={16} />
+    </button>
+    <button className=" w-full h-full bottom-10 border p-4 rounded-full border-black bg-pink">
+      <BsArrowLeft style={{ transform: "translate(-20%,-20%)" }} size={16} />
+    </button>
+  </div>
+);
+const CustomRightArrow = ({ onClick }) => (
+  <div
+    onClick={() => onClick()}
+    className="w-1 h-1 relative z-50 bg-pink react-multiple-carousel__arrow right-0 "
+  >
+    <button
+      style={{ transform: "translate(,-50%)" }}
+      className=" w-full absolute h-full -z-10 -left-1 border p-4 rounded-full border-black bg-blue"
+    >
+      <BsArrowRight style={{ transform: "translate(-20%,-20%)" }} size={16} />
+    </button>
+    <button
+      style={{ transform: "translate(,-50%)" }}
+      className=" w-full absolute h-full -z-20 -left-2 border p-4 rounded-full border-black bg-yellow"
+    >
+      <BsArrowRight style={{ transform: "translate(-20%,-20%)" }} size={16} />
+    </button>
+    <button
+      style={{ transform: "translate(,-50%)" }}
+      className=" w-full h-full bottom-10 border p-4 rounded-full border-black bg-pink"
+    >
+      <BsArrowRight style={{ transform: "translate(-20%,-20%)" }} size={16} />
+    </button>
+  </div>
+);
+
 export default function HomeComponent() {
   const router = useRouter();
   const [data, setData] = useState([]); //This refers to the 6 news articles featured in the home page
@@ -44,6 +96,26 @@ export default function HomeComponent() {
     console.log(response.data);
     setData([...response.data]);
   }
+
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 1,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 1,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 1,
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+    },
+  };
 
   return (
     <div
@@ -357,7 +429,13 @@ export default function HomeComponent() {
           <div id="featuringPES">
             <UpdatedHeading>Featuring PESU</UpdatedHeading>
           </div>
-          <div className="flex flex-row">
+          <Carousel
+          customLeftArrow={<CustomLeftArrow />}
+          customRightArrow={<CustomRightArrow />}
+          responsive={responsive}
+          className="py-4"
+        >
+          <div className="flex flex-row mx-20">
             <div className="basis-2/5">
               <h4
                 style={{ width: "50%" }}
@@ -395,6 +473,45 @@ export default function HomeComponent() {
             </div>
           </div>
 
+          <div className="flex flex-row mx-20">
+            <div className="basis-2/5">
+              <h4
+                style={{ width: "50%" }}
+                className="absolute z-20 text-4xl pt-3 pb-4 mx-8 text-[#428897] dark:text-blue font-han font-bold"
+              >
+                PESU SHINES UNDER CORI
+              </h4>
+              <p className="mx-8 mt-24 font-georgia text-#1D1D1D  dark:text-white">
+                Crucible of Research and Innovation
+                <a
+                  className="underline"
+                  onClick={() => {
+                    window.location.href = "https://research.pes.edu/cori/";
+                  }}
+                >
+                  (CORI)
+                </a>
+                , headed by Dr. V. Sambasiva Rao is the research centre of PESU
+                where multidisciplinary research is carried out. A lot of these
+                projects are done under the guidance of professors like Dr
+                Manikandan J, for various other organizations like TCS and ISRO.
+                They work on multiple interesting projects involving satellites,
+                robots, sensors for detection, lifespan of hardware used among
+                other ideas. This provides an interesting opportunity for
+                students to explore the fields of research.
+              </p>
+            </div>
+            <div className="basis-3/5 relative">
+              <img
+                src="https://lh3.googleusercontent.com/p/AF1QipP0ziHgkSGCOHH99LOGHUUie5kJDdmecp6zIosO=s1360-w1360-h1020"
+                className="w-full mt-8 mb-24 relative z-10 aspect-video"
+              ></img>
+              <div className="absolute w-full  mt-8 mb-24 z-0 bg-blue top-4 left-4 aspect-video"></div>
+              <div className="absolute w-full mt-8 mb-24 z-0 bg-white dark:bg-black top-3 left-3 aspect-video"></div>
+            </div>
+          </div>
+
+          </Carousel>
           <Contact />
 
           <Footer />
