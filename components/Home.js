@@ -10,6 +10,10 @@ import { BsArrowDown } from "react-icons/bs";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 import Backdrop from "@mui/material/Backdrop";
+import Dialog from "@mui/material/Dialog";
+import event6 from "../public/assets/newsletter.png";
+import event7 from "../public/assets/newsletter_dark.png";
+import { GrClose } from "react-icons/gr";
 import CircularProgress from "@mui/material/CircularProgress";
 import Contact from "./ContactUs";
 import { motion, transform } from "framer-motion";
@@ -19,7 +23,7 @@ import event2 from "../public/assets/orientation.jpeg";
 import event3 from "../public/assets/runway.jpeg";
 import background from "../public/assets/background.png";
 import foreground from "../public/assets/foreground.png";
-import { Avatar } from "@mui/material";
+import { Avatar, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -28,6 +32,8 @@ import "react-multi-carousel/lib/styles.css";
 import AnimatedHeading from "@/animatedComponents/Heading";
 import UpdatedNewsCard from "./UpdatedNewsCard";
 import UpdatedHeading from "@/animatedComponents/UpdatedHeading";
+import { IoMdClose } from "react-icons/io";
+
 
 const CustomLeftArrow = ({ onClick }) => (
   <div
@@ -81,9 +87,17 @@ export default function HomeComponent() {
   const router = useRouter();
   const [data, setData] = useState([]); //This refers to the 6 news articles featured in the home page
   const [open, setOpen] = useState(false); // Loading circular progress bar(Backdrop)
-  var dark = "";
+  const [dark, setDark] = useState();
+  const [openDialogue, setOpenDialogue] = useState(false);
+  const handleClickOpen = () => {
+    setOpenDialogue(true);
+  };
 
+  const handleClose = (value) => {
+    setOpenDialogue(false);
+  };
   useEffect(() => {
+    setOpenDialogue(true);
     initState();
   }, []);
   async function initState() {
@@ -521,6 +535,174 @@ export default function HomeComponent() {
           >
             <CircularProgress color="inherit" />
           </Backdrop>
+          <Dialog
+            fullWidth={true}
+            maxWidth={"lg"}
+            onClose={handleClose}
+            open={openDialogue}
+          >
+            <div
+              className={`grid grid-cols-2 p-10  ${
+                typeof window !== "undefined"
+                  ? localStorage.getItem("mode") == "dark"
+                    ? "bg-greyBlack"
+                    : ""
+                  : ""
+              }`}
+            >
+              <div>
+                <UpdatedHeading>Join Our Newsletter</UpdatedHeading>
+                <div className="ml-8">
+                  <Image
+                    src={
+                      typeof window !== "undefined"
+                        ? localStorage.getItem("mode") == "dark"
+                          ? event7
+                          : event6
+                        : event6
+                    }
+                  ></Image>
+                </div>
+              </div>
+              <div className="flex flex-col">
+                <div className="flex flex-col pt-4 items-end relative">
+                  <div
+                    style={{ color: "white" }}
+                    onClick={handleClose}
+                    className={`absolute z-10 top-5 -right-1 border bg-white border-otherblue p-1   ${
+                      typeof window !== "undefined"
+                        ? localStorage.getItem("mode") == "dark"
+                          ? "bg-greyBlack"
+                          : ""
+                        : ""
+                    }`}
+                  >
+                    <GrClose
+                      style={{
+                        background: "white",
+                        fill: "white",
+                      }}
+                      className={`  ${
+                        typeof window !== "undefined"
+                          ? localStorage.getItem("mode") == "dark"
+                            ? "text-white"
+                            : "text-greyBlack"
+                          : "text-greyBlack"
+                      }`}
+                    />
+                  </div>
+                  <div
+                    style={{ color: "white" }}
+                    onClick={handleClose}
+                    className={`border z-20 relative border-softViolet bg-white p-1   ${
+                      typeof window !== "undefined"
+                        ? localStorage.getItem("mode") == "dark"
+                          ? "bg-greyBlack"
+                          : ""
+                        : ""
+                    }`}
+                  >
+                    <IoMdClose
+                      className={`${
+                        typeof window !== "undefined"
+                          ? localStorage.getItem("mode") == "dark"
+                            ? "text-white"
+                            : "text-black"
+                          : "text-black"
+                      }`}
+                    />
+                  </div>
+
+                  <h1
+                    className={`text-black mt-8 font-han text-md font-light ${
+                      typeof window !== "undefined"
+                        ? localStorage.getItem("mode") == "dark"
+                          ? "text-white"
+                          : "text-black"
+                        : "text-black"
+                    }`}
+                  >
+                    <span className="text-londonYellow dark:text-yellow">
+                      Subscribe
+                    </span>{" "}
+                    to our newsletter
+                  </h1>
+                  <Typography
+                    className={`text-black font-han font-light dark:text-white  ${
+                      typeof window !== "undefined"
+                        ? localStorage.getItem("mode") == "dark"
+                          ? "text-white"
+                          : "text-black"
+                        : "text-black"
+                    }`}
+                  >
+                    for the latest articles and{" "}
+                    <span className="text-otherblue dark:text-blue">
+                      exclusive content
+                    </span>
+                  </Typography>
+                  <TextField
+                    InputProps={{
+                      style: {
+                        borderRadius: "0",
+                        color: "black",
+                        background: "white",
+                        border: "black",
+                      },
+                    }}
+                    color="secondary"
+                    placeholder="Name"
+                    className="font-georgia text-md w-full mt-6 py-3 text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[8px_8px_0px_rgba(222,153,255,1)]"
+                  ></TextField>
+                  <TextField
+                    InputProps={{
+                      style: {
+                        borderRadius: "0",
+                        color: "black",
+                        background: "white",
+                      },
+                    }}
+                    placeholder="Email"
+                    className="font-georgia w-full text-md mt-6 py-3 text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[8px_8px_0px_rgba(159,225,240,1)]"
+                  ></TextField>
+                </div>
+                <div className="mt-6 relative">
+                  <button className="bg-yellow text-md z-10 px-6 top-2 left-2 rounded-lg  py-2 border border-black font-han hover:bg-hoverbeigeText absolute">
+                    Subscribe
+                  </button>
+                  <button className="bg-blue z-30 text-md px-6 top-1 left-1 rounded-lg  py-2 border border-black font-han hover:bg-hoverbeigeText absolute">
+                    Subscribe
+                  </button>
+                  <button
+                    className="bg-pink px-6 text-md z-40 rounded-lg relative font-light  py-2 border border-black font-han hover:bg-hoverbeigeText"
+                    onClick={async () => {
+                      try {
+                        const response = await axios.post(
+                          "/api/contactUs",
+                          data
+                        );
+                        console.log(response);
+                        if ((response.data = "Finished")) {
+                          alert("Thank you for your response!");
+                        }
+                      } catch (e) {
+                        alert("Failed to send.");
+                      }
+                      setData({
+                        Name: "",
+                        Email: "",
+                        Subject: "",
+                        Message: "",
+                      });
+                    }}
+                  >
+                    Subscribe
+                  </button>
+                  <button></button>
+                </div>
+              </div>
+            </div>
+          </Dialog>
         </div>
       </div>
     </div>

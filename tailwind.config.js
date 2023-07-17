@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
 module.exports = {
-  darkMode:'class',
+  darkMode: "class",
   content: [
     "./app/**/*.{js,ts,jsx,tsx}",
     "./pages/**/*.{js,ts,jsx,tsx}",
@@ -10,7 +10,7 @@ module.exports = {
     // Or if using `src` directory:
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
- 
+
   theme: {
     extend: {
       dropShadow: {
@@ -43,9 +43,9 @@ module.exports = {
         pink: "#DE99FF",
         londonYellow: "#B18516",
         softViolet: "#B94FEB",
+        otherblue: "#428897",
       },
     },
-    
   },
   plugins: [require("@tailwindcss/typography")],
 };

@@ -1,3 +1,4 @@
+import { Avatar } from "@mui/material";
 import { useRouter } from "next/router";
 
 export default function UpdatedNewsCard(props) {
@@ -84,14 +85,17 @@ export default function UpdatedNewsCard(props) {
           >
             {props.headline}
           </h1>
-          <p
-            style={{ color: textColor }}
-            className={`my-1 font-georgia ${
-              props.bigger == true ? "text-xl" : ""
-            } `}
-          >
-            {"Nigel Dias"} | {props.genre}
-          </p>
+          <div className="flex flex-row items-center pt-2">
+            <Avatar size={2} />
+            <p
+              style={{ color: textColor }}
+              className={`ml-2 font-georgia ${
+                props.bigger == true ? "text-xl" : ""
+              } `}
+            >
+              {"Nigel Dias"} | {props.genre}
+            </p>
+          </div>
         </div>
       </div>
     </div>
