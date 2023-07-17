@@ -1,7 +1,10 @@
 // This component refers to the navbar of the website
 import logo from "../public/assets/logo.png";
 import peslogo from "../public/assets/pesulogo.png";
+import event4 from "../public/assets/minerva.png";
+import event5 from "../public/assets/pesu.png";
 import Image from "next/image";
+import { CgMenuLeft } from "react-icons/cg";
 import Link from "next/link";
 import React, { useState } from "react";
 import {
@@ -42,7 +45,7 @@ export default function Headers() {
               edge="start"
               onClick={handleDrawerOpen}
             >
-              <MenuIcon className="text-greyBlack dark:text-white" />
+              <CgMenuLeft className="text-greyBlack dark:text-white" />
             </IconButton>
 
             <Drawer
@@ -57,10 +60,20 @@ export default function Headers() {
               }}
             >
               <List>
-                <ListItem sx={{ justifyContent: "center" }}>
+                <ListItem
+                  sx={{
+                    justifyContent: "center",
+                    fontFamily: "var(--font-georgia)",
+                  }}
+                >
                   <Link href={"/aboutUs"}>
-                    <ListItemButton sx={{ color: "white" }}>
-                      <ListItemText primary="About Us" />
+                    <ListItemButton
+                      sx={{ color: "white", fontFamily: "var(--font-georgia)" }}
+                    >
+                      <ListItemText
+                        primary="About Us"
+                        className="font-georgia"
+                      />
                     </ListItemButton>
                   </Link>
                 </ListItem>
@@ -128,12 +141,26 @@ export default function Headers() {
           <Image
             className="w-24 sm:w-32 h-xl mr-1 sm:mr-4"
             src={peslogo}
-            style={{ filter: "brightness(0%)" }}
+            style={{
+              filter:
+                typeof window !== "undefined"
+                  ? localStorage.getItem("mode") == "dark"
+                    ? "brightness(100%)"
+                    : "brightness(0%)"
+                  : "brightness(0%)",
+            }}
           />
           <Image
             className="h-xl logo-black"
             src={logo}
-            style={{ filter: "brightness(0%)" }}
+            style={{
+              filter:
+                typeof window !== "undefined"
+                  ? localStorage.getItem("mode") == "dark"
+                    ? "brightness(100%)"
+                    : "brightness(0%)"
+                  : "brightness(0%)",
+            }}
           />
         </Link>
       </div>
