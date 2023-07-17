@@ -510,7 +510,7 @@ export default function HomeComponent() {
                     to our newsletter
                   </h1>
                   <Typography
-                    className={`text-black font-han font-light dark:text-white  ${
+                    className={`text-black font-han text-md font-light dark:text-white  ${
                       typeof window !== "undefined"
                         ? localStorage.getItem("mode") == "dark"
                           ? "text-white"
