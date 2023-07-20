@@ -23,6 +23,7 @@ const createArticle = async (req, res) => {
       res.send(finalData);
     } else {
       // Else it is a Content creator, so add the article to the pendingArticle collection
+      // If called from drafts, which can done only by content creator, remove from drafts and move to pending
       const article = new pendingArticle({
         ...req.body,
         Role: user.role,
