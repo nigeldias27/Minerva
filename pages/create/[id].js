@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { Alert } from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
+import getJwtToken from "@/lib/getToken";
 export default function CreateArticle() {
   const router = useRouter();
   const date = new Date();
@@ -16,6 +17,7 @@ export default function CreateArticle() {
   const [open, setOpen] = useState(false); //Backdrop
   const [invalid, setInvalid] = useState(""); //Error handling
   const [openLoad, setOpenLoad] = useState(false);
+  const [userRole, setUserRole] = useState({ role: "", id: "" });
   const genreList = [
     "AI/ Machine Learning",
     "Biotechnology",
@@ -28,23 +30,52 @@ export default function CreateArticle() {
     "Science",
     "Sorts",
   ];
+
+  useEffect(() => {
+    async function initRole() {
+      const userRoleResponse = await axios.get("/api/getUserRole", {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+      setUserRole(userRoleResponse.data);
+    }
+    initRole();
+  }, []);
+
   useEffect(() => {
     initState();
-  }, []);
+  }, [userRole]);
   async function initState() {
     if (id != "content") {
-      // If the user is an Editor, then get the id from router.query and get the particular pending article from pendingArticle collection
+      // If the user is an Editor or a Content creator, then get the id from router.query and get the particular pending article from pendingArticle collection
       setOpenLoad(true);
-      const response = await axios.post(
-        "/api/getParticularPendingArticle",
-        { id: id },
-        {
-          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-        }
-      );
-      setOpenLoad(false);
-      console.log(response.data);
-      setData({ ...response.data });
+      if (userRole.role == "Editor") {
+        const response = await axios.post(
+          "/api/getParticularPendingArticle",
+          { id: id },
+          {
+            headers: {
+              Authorization: getJwtToken(),
+            },
+          }
+        );
+        setOpenLoad(false);
+        console.log(response.data);
+        setData({ ...response.data });
+      } else {
+        // Content creator editing an article
+        const response = await axios.post(
+          "/api/getParticularArticle",
+          { id: id },
+          {
+            headers: {
+              Authorization: `Bearer ${localStorage.getItem("token")}`,
+            },
+          }
+        );
+        setOpenLoad(false);
+        console.log(response.data.article);
+        setData({ ...response.data.article });
+      }
     }
   }
   const changed = (props) => (e) => {
@@ -58,9 +89,15 @@ export default function CreateArticle() {
   const publish = async () => {
     // Used to publish the article
     try {
-      const response = await axios.post("/api/createArticle", data, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      });
+      if (userRole.role == "Editor") {
+        const response = await axios.post("/api/createArticle", data, {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        });
+      } else {
+        const response = await axios.post("/api/updateArticle", data, {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        });
+      }
       setInvalid("false");
     } catch (e) {
       setInvalid("true");

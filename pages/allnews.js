@@ -16,6 +16,7 @@ import UpdatedHeading from "@/animatedComponents/UpdatedHeading";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import Head from "next/head";
+import getJwtToken from "@/lib/getToken";
 const CustomLeftArrow = ({ onClick }) => (
   <div
     onClick={() => onClick()}
@@ -140,6 +141,7 @@ export default function News() {
   const [data, setData] = useState([]);
   const [news, setNews] = useState([]);
   const [openLoad, setOpenLoad] = useState(false);
+  const [userRole, setUserRole] = useState({ role: "", id: "" });
   const [check, setCheck] = useState([
     false,
     false,
@@ -167,6 +169,16 @@ export default function News() {
   ];
 
   useEffect(() => {
+    async function initRole() {
+      const userRoleResponse = await axios.get("/api/getUserRole", {
+        headers: { Authorization: getJwtToken() },
+      });
+      setUserRole(userRoleResponse.data);
+    }
+    initRole();
+  }, []);
+
+  useEffect(() => {
     initState();
   }, [check]);
   async function initState() {
@@ -183,7 +195,6 @@ export default function News() {
       selectedGenres: selectedGenres,
     });
     setOpenLoad(false);
-    console.log(response.data);
     setData([...response.data]);
   }
   const handleClick = (event) => {
@@ -276,7 +287,9 @@ export default function News() {
                   date={`${val.createdAt}`}
                   desc={`${val.description}`}
                   id={`${val._id}`}
-                  newArticle={true}
+                  newArticle={
+                    !(userRole.role == "Content" && userRole.id == val?.writer)
+                  }
                   darkMode={
                     localStorage.getItem("mode") == "dark" ? true : false
                   }
@@ -314,7 +327,9 @@ export default function News() {
                   date={`${val.createdAt}`}
                   desc={`${val.description}`}
                   id={`${val._id}`}
-                  newArticle={true}
+                  newArticle={
+                    !(userRole.role == "Content" && userRole.id == val?.writer)
+                  }
                   darkMode={
                     localStorage.getItem("mode") == "dark" ? true : false
                   }
