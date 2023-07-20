@@ -1,5 +1,6 @@
 import Headers from "@/components/Header";
 import NewsCard from "@/components/NewsCard";
+import DraftNewsCard from "@/components/DraftNewsCard";
 import axios from "axios";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
@@ -12,8 +13,13 @@ export default function PendingNews() {
   const [pendingNews, setPendingNews] = useState([]);
   const [newArticle, setNewArticle] = useState(false); // If false, then the role of the user is Editor otherwise the role is Content Creator
   const [open, setOpen] = useState(false); // For the Backdrop
+  const [isDraft, setIsDraft] = useState(false);
+  const [draftArticles, setDraftArticles] = useState([]);
+  const [userRole, setUserRole] = useState("")
+
   useEffect(() => {
     initState();
+    getDrafts();
   }, []);
   async function initState() {
     setOpen(true);
@@ -27,6 +33,21 @@ export default function PendingNews() {
       setNewArticle(true);
     }
   }
+
+  async function getDrafts() {
+    setOpen(true);
+    const response = await axios.get("/api/draftArticles", {
+      // GET request to get articles
+      headers: { Authorization: `Bearer ${localStorage.getItem("token")}` }, // JWT token is sent as a security measure
+    });
+    setOpen(false);
+    setDraftArticles([...response.data.article]);
+    if (response.data.role == "Content") {
+      setNewArticle(true);
+      setUserRole("content");
+    }
+  }
+  
   return (
     <div className="bg-opacity-10 bg-orange-900 min-h-screen">
       <Headers />
@@ -35,7 +56,7 @@ export default function PendingNews() {
           <h1 className="text-3xl font-bold">
             {newArticle == false
               ? "Articles pending approval"
-              : "Your Articles"}
+              : isDraft?"Saved drafts":"Published articles"}
           </h1>
           {newArticle ? (
             <button
@@ -51,7 +72,37 @@ export default function PendingNews() {
             <div></div>
           )}
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+
+        <div>
+          {userRole=="content"?
+          <button
+              class="x-6 my-8 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
+              type="submit"
+              onClick={async () => {
+                setIsDraft(!isDraft)
+              }}
+            >
+              <span className="text-xl">Toggle Published/Drafts</span>
+          </button>:<div></div>}
+        </div>
+
+        {isDraft&&(userRole=="content")?
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
+            {draftArticles.map((val, i) => {
+              return (
+                <DraftNewsCard
+                  key={i}
+                  imageURL={`${val.imageURL}`}
+                  headline={`${val.title}`}
+                  genre={`${val.genre}`}
+                  date={`${val.createdAt}`}
+                  desc={`${val.description}`}
+                  id={`${val._id}`}
+                />
+              );
+            })}
+          </div>:
+          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           {pendingNews.map((val, i) => {
             return (
               <NewsCard
@@ -67,6 +118,8 @@ export default function PendingNews() {
             );
           })}
         </div>
+        }
+
       </div>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
