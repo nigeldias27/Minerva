@@ -45,7 +45,7 @@ export default function CreateArticle() {
     initState();
   }, [userRole]);
   async function initState() {
-    if (id != "content") {
+    if (id && id != "content") {
       // If the user is an Editor or a Content creator, then get the id from router.query and get the particular pending article from pendingArticle collection
       setOpenLoad(true);
       if (userRole.role == "Editor") {
@@ -89,7 +89,10 @@ export default function CreateArticle() {
   const publish = async () => {
     // Used to publish the article
     try {
-      if (userRole.role == "Editor") {
+      if (
+        (id == "content" && userRole.role == "Content") ||
+        userRole.role == "Editor"
+      ) {
         const response = await axios.post("/api/createArticle", data, {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
         });

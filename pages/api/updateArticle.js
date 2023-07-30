@@ -1,6 +1,7 @@
 import connectDB from "@/lib/connect";
 import validateToken from "@/lib/validateToken";
 import Article from "../../models/Article.js";
+import pendingArticle from "../../models/pendingArticle.js";
 
 const updateArticle = async (req, res) => {
   if (req.method == "POST") {
@@ -10,13 +11,15 @@ const updateArticle = async (req, res) => {
 
     // Update existing published article
     if (user.role == "Content") {
-      const updatedArticle = new Article({
-        ...req.body,
-      });
+      const articleData = { ...req.body, Role: user.role };
+      delete articleData.editor;
+      delete articleData._id;
 
-      await Article.findByIdAndUpdate(req.body._id, { $set: updatedArticle });
+      const updatedArticle = new pendingArticle(articleData);
+      const finalData = await updatedArticle.save();
+      await Article.findByIdAndRemove(req.body._id);
 
-      res.send(updatedArticle);
+      res.send(finalData);
     }
   }
 };
