@@ -34,22 +34,33 @@ export default function UpdatedNewsCard(props) {
         } hover:scale-105 transition duration-50 ease-linear`}
       >
         <div className="relative">
-          <img
+          <div
             style={{
-              width: "100%",
-              boxShadow:
-                props.bigger == true
+              outlineColor: props.horizontal ? "transparent" : textColor,
+            }}
+            className={`outline min-w-0 outline-1 sm:outline-0 sm:w-full ${
+              props.horizontal ? "" : "w-5/6 translate-x-4 translate-y-4"
+            }`}
+          >
+            <img
+              style={{
+                boxShadow: props.hideShadow
+                  ? ""
+                  : props.bigger == true
                   ? "12px 12px 0px rgba(222,153,255,1)"
                   : props.horizontal == true
                   ? "12px 12px 0px rgba(159,225,240,1)"
                   : "",
-            }}
-            className={`aspect-video drop-shadow-[12px_12px_0px_${
-              props.bigger == true ? "rgba(222,153,255,1)" : ""
-            }${props.horizontal == true ? "rgba(159,225,240,1)" : ""}]`}
-            src={`${props.imageURL}`}
-          ></img>
-          {props.bigger == true ? (
+              }}
+              className={`w-full h-full object-cover aspect-video drop-shadow-[12px_12px_0px_${
+                props.bigger == true ? "rgba(222,153,255,1)" : ""
+              }${props.horizontal == true ? "rgba(159,225,240,1)" : ""}] ${
+                props.horizontal ? "" : "-translate-x-4 -translate-y-4"
+              }`}
+              src={`${props.imageURL}`}
+            ></img>
+          </div>
+          {props.bigger == true && !props.hideDate ? (
             <div className="absolute rounded-b-2xl px-4 py-1 border border-gray-700 bg-white dark:bg-yellow top-0 left-8 font-gilroy font-500">
               {parseISOString(props.date)
                 .toUTCString()
@@ -60,7 +71,9 @@ export default function UpdatedNewsCard(props) {
           ) : (
             <div
               className={`absolute rounded-r-2xl px-4 py-1 border border-gray-700 bg-white dark:bg-yellow ${
-                props.horizontal == null && props.bigger == null ? "hidden" : ""
+                props.hideDate || (!props.horizontal && !props.bigger)
+                  ? "hidden"
+                  : ""
               } ${
                 props.horizontal == true ? "top-3 text-xs" : "top-8"
               }  font-gilroy font-500`}
