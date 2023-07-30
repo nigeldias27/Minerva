@@ -1,5 +1,6 @@
 import Footer from "./Footer";
 import NewsCard from "./NewsCard";
+import Link from "next/link";
 import Timeline from "@mui/lab/Timeline";
 import TimelineItem from "@mui/lab/TimelineItem";
 import TimelineSeparator from "@mui/lab/TimelineSeparator";
@@ -76,6 +77,7 @@ const CustomRightArrow = ({ onClick }) => (
     </button>
   </div>
 );
+
 
 export default function HomeComponent() {
   const router = useRouter();
@@ -181,7 +183,7 @@ export default function HomeComponent() {
           </button>
         </div>
         <div className="px-0 bg-white dark:bg-greyBlack pt-8 sm:px-12">
-          <div className="flex flex-row mt-16 ">
+          <div className="md:flex md:flex-row sm:flex sm:flex-col mt-16 ">
             <div className="basis-3/6">
               <UpdatedHeading># Trending</UpdatedHeading>
               {data[0] == undefined ? (
@@ -213,13 +215,49 @@ export default function HomeComponent() {
                 </div>
               )}
             </div>
-            <div className="basis-2/4 pl-16 pt-16">
-              <div>
-                <h1 className="text-3xl text-#1D1D1D dark:text-white font-gilroy font-bold ml-8">
+            <div className="basis-2/4 pl-3 pt-16 sm:flex sm:flex-col">
+              <div className="flex">
+                <h1 className="text-3xl text-#1D1D1D dark:text-white font-gilroy font-bold ml-8 ">
                   Recent News
                 </h1>
+                <Link
+            href={"/allnews"}
+            className="text-otherblue dark:text-blue underline text-xl font-georgia px-10 pt-2 hover:text-hoverbeigeText"
+          >
+           ViewMore
+          </Link>
               </div>
-              <div style={{ maxHeight: "110vh" }} className="overflow-auto">
+              <div className="sm:hidden"> {/* Render carousel for small screens */}
+                <Carousel
+                  
+                  draggable={true}
+                  responsive={responsive}
+                  showDots={true}
+                  customLeftArrow={<></>} // Hide the left arrow button
+                  customRightArrow={<></>} // Hide the right arrow button
+                  removeArrowOnDeviceType={["sm", "md"]} 
+                  className="py-4"
+                >
+                  {/* Render news cards as carousel items */}
+                  {data.map((val, i) => (
+                    <UpdatedNewsCard
+                      key={i}
+                      i={i}
+                      imageURL={`${val.imageURL}`}
+                      headline={`${val.title}`}
+                      genre={`${val.genre}`}
+                      date={`${val.createdAt}`}
+                      desc={`${val.description}`}
+                      id={`${val._id}`}
+                      newArticle={true}
+                      darkMode={
+                        localStorage.getItem("mode") == "dark" ? true : false
+                      }
+                    />
+                  ))}
+                </Carousel>
+              </div>
+              <div style={{ maxHeight: "110vh" }} className=" hidden sm:block overflow-auto">
                 {data.slice(2, -1).map((val, i) => {
                   return (
                     <motion.div
@@ -426,24 +464,37 @@ export default function HomeComponent() {
               </TimelineItem>
             </Timeline>
           </motion.div>
-          <div id="featuringPES">
+          <div id="featuringPES" className="flex">
             <UpdatedHeading>Featuring PESU</UpdatedHeading>
           </div>
           <Carousel
-          customLeftArrow={<CustomLeftArrow />}
-          customRightArrow={<CustomRightArrow />}
-          responsive={responsive}
-          className="py-4"
+           draggable={true}
+           responsive={responsive}
+           showDots={true}
+           customLeftArrow={<></>} // Hide the left arrow button
+           customRightArrow={<></>} // Hide the right arrow button
+           removeArrowOnDeviceType={["sm", "md"]} 
+           className="py-3"
         >
-          <div className="flex flex-row mx-20">
+          <div className="md:flex md:flex-row  sm:flex-col mx-10">
+          <div className="basis-3/5 relative sm:hidden">
+              <img
+                src="https://lh3.googleusercontent.com/p/AF1QipP0ziHgkSGCOHH99LOGHUUie5kJDdmecp6zIosO=s1360-w1360-h1020"
+                className="w-full mt-8 mb-20 relative z-10 aspect-video"
+              ></img>
+              <div className="absolute w-full  md:mt-8 sm:mt-7  md:mb-24 sm:mb-14 z-0 bg-blue top-4 left-4 aspect-video"></div>
+              <div className="absolute w-full md:mt-8 sm:mt-7 md:mb-24 sm:mb-14 z-0 bg-white dark:bg-black top-3 left-3 aspect-video"></div>
+            </div>
             <div className="basis-2/5">
+              <div className="pb-1">
               <h4
-                style={{ width: "50%" }}
-                className="absolute z-20 text-4xl pt-3 pb-4 mx-8 text-[#428897] dark:text-blue font-han font-bold"
+               /* style={{ width:"50%" }}*/
+                className="absolute z-20 md:w-50% sm:w-100% md:text-4xl sm:text-16px md:pt-3  md:pb-4 md:mx-8 sm:ml-10 text-[#428897] dark:text-blue font-han font-bold"
               >
                 PESU SHINES UNDER CORI
               </h4>
-              <p className="mx-8 mt-24 font-georgia text-#1D1D1D  dark:text-white">
+              </div>
+              <p className="mx-3 mt-20 sm:text-14px font-georgia text-#1D1D1D  dark:text-white">
                 Crucible of Research and Innovation
                 <a
                   className="underline"
@@ -463,7 +514,7 @@ export default function HomeComponent() {
                 students to explore the fields of research.
               </p>
             </div>
-            <div className="basis-3/5 relative">
+            <div className="basis-3/5 relative hidden sm:block">
               <img
                 src="https://lh3.googleusercontent.com/p/AF1QipP0ziHgkSGCOHH99LOGHUUie5kJDdmecp6zIosO=s1360-w1360-h1020"
                 className="w-full mt-8 mb-24 relative z-10 aspect-video"
@@ -473,15 +524,25 @@ export default function HomeComponent() {
             </div>
           </div>
 
-          <div className="flex flex-row mx-20">
+          <div className="md:flex md:flex-row  sm:flex-col mx-10">
+          <div className="basis-3/5 relative sm:hidden">
+              <img
+                src="https://lh3.googleusercontent.com/p/AF1QipP0ziHgkSGCOHH99LOGHUUie5kJDdmecp6zIosO=s1360-w1360-h1020"
+                className="w-full mt-8 mb-20 relative z-10 aspect-video"
+              ></img>
+              <div className="absolute w-full  md:mt-8 sm:mt-7  md:mb-24 sm:mb-14 z-0 bg-blue top-4 left-4 aspect-video"></div>
+              <div className="absolute w-full md:mt-8 sm:mt-7 md:mb-24 sm:mb-14 z-0 bg-white dark:bg-black top-3 left-3 aspect-video"></div>
+            </div>
             <div className="basis-2/5">
+              <div className="pb-1">
               <h4
-                style={{ width: "50%" }}
-                className="absolute z-20 text-4xl pt-3 pb-4 mx-8 text-[#428897] dark:text-blue font-han font-bold"
+               /* style={{ width:"50%" }}*/
+                className="absolute z-20 md:w-50% sm:w-100% md:text-4xl sm:text-16px md:pt-3  md:pb-4 md:mx-8 sm:ml-10 text-[#428897] dark:text-blue font-han font-bold"
               >
                 PESU SHINES UNDER CORI
               </h4>
-              <p className="mx-8 mt-24 font-georgia text-#1D1D1D  dark:text-white">
+              </div>
+              <p className="mx-3 mt-20 sm:text-14px font-georgia text-#1D1D1D  dark:text-white">
                 Crucible of Research and Innovation
                 <a
                   className="underline"
@@ -501,7 +562,7 @@ export default function HomeComponent() {
                 students to explore the fields of research.
               </p>
             </div>
-            <div className="basis-3/5 relative">
+            <div className="basis-3/5 relative hidden sm:block">
               <img
                 src="https://lh3.googleusercontent.com/p/AF1QipP0ziHgkSGCOHH99LOGHUUie5kJDdmecp6zIosO=s1360-w1360-h1020"
                 className="w-full mt-8 mb-24 relative z-10 aspect-video"
@@ -510,8 +571,10 @@ export default function HomeComponent() {
               <div className="absolute w-full mt-8 mb-24 z-0 bg-white dark:bg-black top-3 left-3 aspect-video"></div>
             </div>
           </div>
+
 
           </Carousel>
+
           <Contact />
 
           <Footer />
