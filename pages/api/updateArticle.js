@@ -17,7 +17,7 @@ const updateArticle = async (req, res) => {
 
       const updatedArticle = new pendingArticle(articleData);
       const finalData = await updatedArticle.save();
-      await Article.findByIdAndRemove(req.body._id);
+      await Article.findByIdAndDelete(req.body._id);
 
       res.send(finalData);
     }

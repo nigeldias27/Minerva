@@ -5,10 +5,19 @@ import md from "markdown-it";
 import Headers from "@/components/Header";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { Alert } from "@mui/material";
+import {
+  Alert,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Button,
+} from "@mui/material";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import getJwtToken from "@/lib/getToken";
+
 export default function CreateArticle() {
   const router = useRouter();
   const date = new Date();
@@ -18,6 +27,7 @@ export default function CreateArticle() {
   const [invalid, setInvalid] = useState(""); //Error handling
   const [openLoad, setOpenLoad] = useState(false);
   const [userRole, setUserRole] = useState({ role: "", id: "" });
+  const [openDeleteModal, setOpenDeleteModal] = useState(false);
   const genreList = [
     "AI/ Machine Learning",
     "Biotechnology",
@@ -105,6 +115,36 @@ export default function CreateArticle() {
     } catch (e) {
       setInvalid("true");
     }
+  };
+
+  const handleDelete = async () => {
+    setOpenDeleteModal(false);
+
+    if (id == "content") {
+      // this article hasnt been pushed to the server yet, simply navigate away to discard
+    } else if (userRole.role == "Editor") {
+      // A pending article is being deleted
+
+      const response = await axios.post(
+        "/api/deletePendingArticle",
+        { id },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+    } else if (userRole.role == "Content") {
+      const response = await axios.post(
+        "/api/deleteArticle",
+        {
+          id,
+        },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
+    }
+
+    router.push("/pendingNews");
   };
 
   return (
@@ -211,9 +251,18 @@ export default function CreateArticle() {
                 className="w-full my-4 px-4 py-2 text-base border border-gray-300 rounded outline-none focus:ring-black focus:border-black focus:ring-1"
               ></textarea>
             </div>
-            <div className="flex w-full pr-8 justify-end">
+            <div className="flex w-full pr-8 justify-end gap-2">
               <button
-                class="x-6 my-8 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
+                class="mx-3 my-8 drop-shadow-xl font-small rounded-md bg-red-600 py-3 px-8 text-red-50 "
+                type="submit"
+                onClick={() => {
+                  setOpenDeleteModal(true);
+                }}
+              >
+                <span className="text-xl">Delete</span>
+              </button>
+              <button
+                class="mx-3 my-8 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
                 type="submit"
                 onClick={() => {
                   publish();
@@ -271,6 +320,30 @@ export default function CreateArticle() {
       >
         <CircularProgress color="inherit" />
       </Backdrop>
+      <Dialog open={openDeleteModal} onClose={() => setOpenDeleteModal(false)}>
+        <DialogTitle className="font-sans">Delete article?</DialogTitle>
+        <DialogContent>
+          <DialogContentText>
+            Are you sure you want to delete this article? This is an
+            irreversible action.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <button
+            onClick={() => setOpenDeleteModal(false)}
+            className="mx-3 my-8 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
+            autoFocus
+          >
+            Cancel
+          </button>
+          <button
+            onClick={handleDelete}
+            className="mx-3 my-8 drop-shadow-xl font-small rounded-md bg-red-600 py-3 px-8 text-beigeText"
+          >
+            Delete
+          </button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 }
