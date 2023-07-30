@@ -1,4 +1,5 @@
 import { useRouter } from "next/router";
+import { Avatar } from "@mui/material";
 
 export default function UpdatedNewsCard(props) {
   const router = useRouter();
@@ -61,7 +62,7 @@ export default function UpdatedNewsCard(props) {
               className={`absolute rounded-r-2xl px-4 py-1 border border-gray-700 bg-white dark:bg-yellow ${
                 props.horizontal == null && props.bigger == null ? "hidden" : ""
               } ${
-                props.horizontal == true ? "top-3 text-xs" : "top-8"
+                props.horizontal == true ? "top-3 md:text-xs sm:text-6px" : "top-8"
               }  font-gilroy font-500`}
             >
               {parseISOString(props.date)
@@ -79,19 +80,22 @@ export default function UpdatedNewsCard(props) {
         >
           <h1
             className={` ${
-              props.horizontal == true ? "text-xl" : "text-2xl"
+              props.horizontal == true ? "text-xl" : "md:text-2xl sm:text-14px"
             } font-georgia text-#1D1D1D dark:text-white`}
           >
             {props.headline}
           </h1>
-          <p
-            style={{ color: textColor }}
-            className={`my-1 font-georgia ${
-              props.bigger == true ? "text-xl" : ""
-            } `}
-          >
-            {"Nigel Dias"} | {props.genre}
-          </p>
+          <div className="flex flex-row items-center pt-2">
+            <Avatar size={2} />
+            <p
+              style={{ color: textColor }}
+              className={`ml-2 font-georgia ${
+                props.bigger == true ? "md:text-xl sm:text-12px" : ""
+              } `}
+            >
+              {"Nigel Dias"} | {props.genre}
+            </p>
+          </div>
         </div>
       </div>
     </div>
