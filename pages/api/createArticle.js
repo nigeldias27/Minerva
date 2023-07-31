@@ -17,7 +17,7 @@ const createArticle = async (req, res) => {
         editor: user._id,
       });
       const finalData = await finalArticle.save();
-      const finalPendingArticle = await pendingArticle.findByIdAndRemove(
+      const finalPendingArticle = await pendingArticle.findByIdAndDelete(
         req.body._id
       );
       res.send(finalData);
