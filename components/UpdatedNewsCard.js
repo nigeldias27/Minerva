@@ -31,6 +31,10 @@ export default function UpdatedNewsCard(props) {
       <div
         className={`min-h-full ${
           props.horizontal == true ? "grid grid-cols-2 py-6" : ""
+        } ${
+          props.hideDate == true
+            ? "grid grid-cols-2 sm:grid sm:grid-cols-1 py-6"
+            : ""
         } hover:scale-105 transition duration-50 ease-linear`}
       >
         <div className="relative">
@@ -38,9 +42,13 @@ export default function UpdatedNewsCard(props) {
             style={{
               outlineColor: props.horizontal ? "transparent" : textColor,
             }}
-            className={`outline min-w-0 outline-1 sm:outline-0 sm:w-full ${
-              props.horizontal ? "" : "w-5/6 translate-x-4 translate-y-4"
-            }`}
+            className={
+              props.thisweek == true
+                ? `outline min-w-0 outline-1 sm:outline-0 sm:w-full ${
+                    props.horizontal ? "" : "w-5/6 translate-x-4 translate-y-4"
+                  }`
+                : "w-full h-full"
+            }
           >
             <img
               style={{
@@ -55,7 +63,7 @@ export default function UpdatedNewsCard(props) {
               className={`w-full h-full object-cover aspect-video drop-shadow-[12px_12px_0px_${
                 props.bigger == true ? "rgba(222,153,255,1)" : ""
               }${props.horizontal == true ? "rgba(159,225,240,1)" : ""}] ${
-                props.horizontal ? "" : "-translate-x-4 -translate-y-4"
+                props.thisweek ? "-translate-x-2 -translate-y-2" : ""
               }`}
               src={`${props.imageURL}`}
             ></img>
@@ -87,8 +95,12 @@ export default function UpdatedNewsCard(props) {
           )}
         </div>
         <div
-          className={` ${props.horizontal != true ? "pl-3" : ""} ${
-            props.horizontal == true ? "pl-8 pt-2" : "pt-8"
+          className={` ${
+            props.hideDate == true
+              ? "pl-8 pt-2 sm:pt-8 sm:pl-3"
+              : props.horizontal == true
+              ? "pl-8 pt-2"
+              : "pt-8 pl-3"
           }`}
         >
           <h1
