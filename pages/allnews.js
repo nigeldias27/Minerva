@@ -254,7 +254,7 @@ export default function News() {
             Communication Design
           </button>
         </Carousel>
-        <h2 className="font-han mt-8 text-xl px-10 py-4 dark:text-white text-greyBlack">
+        <h2 className="font-han mt-8 text-3xl px-10 py-4 dark:text-white text-greyBlack">
           This week
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
@@ -292,7 +292,7 @@ export default function News() {
           ></div>
         </div>
 
-        <h2 className="font-han mt-8 text-xl px-10 py-4 dark:text-white text-greyBlack">
+        <h2 className="font-han mt-8 text-3xl px-10 py-4 dark:text-white text-greyBlack">
           Previously
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
@@ -315,6 +315,9 @@ export default function News() {
                   desc={`${val.description}`}
                   id={`${val._id}`}
                   newArticle={true}
+                  hideDate={true}
+                  thisweek={true}
+                  hideShadow={true}
                   darkMode={
                     localStorage.getItem("mode") == "dark" ? true : false
                   }
