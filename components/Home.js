@@ -1,6 +1,6 @@
 import Footer from "./Footer";
 import NewsCard from "./NewsCard";
-import { useMediaQuery } from 'react-responsive';
+import { useMediaQuery } from "react-responsive";
 import Link from "next/link";
 import Timeline from "@mui/lab/Timeline";
 import TimelineItem from "@mui/lab/TimelineItem";
@@ -92,7 +92,7 @@ export default function HomeComponent() {
   const router = useRouter();
   const [data, setData] = useState([]); //This refers to the 6 news articles featured in the home page
   const [open, setOpen] = useState(false); // Loading circular progress bar(Backdrop)
-  const isSmallScreen = useMediaQuery({maxWidth: 480 });
+  const isSmallScreen = useMediaQuery({ maxWidth: 480 });
   var dark = "";
 
   useEffect(() => {
@@ -175,7 +175,7 @@ export default function HomeComponent() {
               </div>
             </motion.div>
 
-            <div className=" items-end justify-end h-screen md:flex">
+            <div className=" items-end justify-end h-screen hidden md:flex">
               <div className="pb-8 pr-8 z-10">
                 <Image className="w-auto h-auto " src={foreground}></Image>
               </div>
@@ -227,24 +227,24 @@ export default function HomeComponent() {
               )}
             </div>
             <div className="basis-2/4 pl-3 pt-16 sm:flex sm:flex-col">
-              <div className="flex">
+              <div className="flex justify-between items-center">
                 <h1 className="text-3xl text-#1D1D1D dark:text-white font-gilroy font-bold ml-8 ">
                   Recent News
                 </h1>
                 <Link
                   href={"/allnews"}
-                  className=" text-#428897 dark:text-blue underline text-xl font-georgia px-10 pt-2 hover:text-hoverbeigeText sm:hidden "
+                  className=" text-otherblue dark:text-blue underline text-lg font-georgia pr-4 hover:text-hoverbeigeText sm:hidden "
                 >
-                  ViewMore
+                  View More
                 </Link>
               </div>
               <div className="sm:hidden">
                 {" "}
                 {/* Render carousel for small screens */}
                 <Carousel
-                  draggable={ isSmallScreen? true : false}
+                  draggable={isSmallScreen ? true : false}
                   responsive={responsive}
-                  showDots={ isSmallScreen ? true : false}
+                  showDots={isSmallScreen ? true : false}
                   customLeftArrow={<></>} // Hide the left arrow button
                   customRightArrow={<></>} // Hide the right arrow button
                   removeArrowOnDeviceType={["sm", "md"]}
@@ -304,7 +304,7 @@ export default function HomeComponent() {
             </div>
           </div>
 
-          <div className="flex w-full mt-8 justify-center">
+          <div className="hidden sm:flex w-full mt-8 justify-center">
             <div className="relative">
               <button
                 class="bg-pink border border-black relative z-40 x-6 my-1  font-gilroy font-bolder rounded-md py-2 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
@@ -523,11 +523,11 @@ export default function HomeComponent() {
             <UpdatedHeading>Featuring PESU</UpdatedHeading>
           </div>
           <Carousel
-            draggable={ isSmallScreen ? true : false }
+            draggable={isSmallScreen ? true : false}
             responsive={responsive}
-            showDots={ isSmallScreen ? true : false }
-            customLeftArrow={ isSmallScreen ? <></> : <CustomLeftArrow/>}  // Hide the left arrow button
-            customRightArrow={ isSmallScreen ? <></> : <CustomRightArrow/>} // Hide the right arrow button
+            showDots={isSmallScreen ? true : false}
+            customLeftArrow={isSmallScreen ? <></> : <CustomLeftArrow />} // Hide the left arrow button
+            customRightArrow={isSmallScreen ? <></> : <CustomRightArrow />} // Hide the right arrow button
             className="py-3"
           >
             <div className="md:flex md:flex-row  sm:flex-col mx-10">
