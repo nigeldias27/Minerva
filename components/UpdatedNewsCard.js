@@ -1,6 +1,5 @@
 import { Avatar } from "@mui/material";
 import { useRouter } from "next/router";
-import { Avatar } from "@mui/material";
 
 export default function UpdatedNewsCard(props) {
   const router = useRouter();
@@ -84,7 +83,9 @@ export default function UpdatedNewsCard(props) {
                   ? "hidden"
                   : ""
               } ${
-                props.horizontal == true ? "top-3 md:text-xs sm:text-6px" : "top-8"
+                props.horizontal == true
+                  ? "top-3 md:text-xs sm:text-6px"
+                  : "top-8"
               }  font-gilroy font-500`}
             >
               {parseISOString(props.date)

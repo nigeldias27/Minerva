@@ -640,45 +640,6 @@ export default function HomeComponent() {
             </div>
           </Carousel>
 
-          <div className="flex flex-row mx-20">
-            <div className="basis-2/5">
-              <h4
-                style={{ width: "50%" }}
-                className="absolute z-20 text-4xl pt-3 pb-4 mx-8 text-[#428897] dark:text-blue font-han font-bold"
-              >
-                PESU SHINES UNDER CORI
-              </h4>
-              <p className="mx-8 mt-24 font-georgia text-#1D1D1D  dark:text-white">
-                Crucible of Research and Innovation
-                <a
-                  className="underline"
-                  onClick={() => {
-                    window.location.href = "https://research.pes.edu/cori/";
-                  }}
-                >
-                  (CORI)
-                </a>
-                , headed by Dr. V. Sambasiva Rao is the research centre of PESU
-                where multidisciplinary research is carried out. A lot of these
-                projects are done under the guidance of professors like Dr
-                Manikandan J, for various other organizations like TCS and ISRO.
-                They work on multiple interesting projects involving satellites,
-                robots, sensors for detection, lifespan of hardware used among
-                other ideas. This provides an interesting opportunity for
-                students to explore the fields of research.
-              </p>
-            </div>
-            <div className="basis-3/5 relative">
-              <img
-                src="https://lh3.googleusercontent.com/p/AF1QipP0ziHgkSGCOHH99LOGHUUie5kJDdmecp6zIosO=s1360-w1360-h1020"
-                className="w-full mt-8 mb-24 relative z-10 aspect-video"
-              ></img>
-              <div className="absolute w-full  mt-8 mb-24 z-0 bg-blue top-4 left-4 aspect-video"></div>
-              <div className="absolute w-full mt-8 mb-24 z-0 bg-white dark:bg-black top-3 left-3 aspect-video"></div>
-            </div>
-          </div>
-
-          </Carousel>
           <Contact />
 
           <Footer />
@@ -695,7 +656,7 @@ export default function HomeComponent() {
             open={openDialogue}
           >
             <div
-              className={`grid grid-cols-2 p-10  ${
+              className={`p-10  ${
                 typeof window !== "undefined"
                   ? localStorage.getItem("mode") == "dark"
                     ? "bg-greyBlack"
@@ -703,21 +664,8 @@ export default function HomeComponent() {
                   : ""
               }`}
             >
-              <div>
+              <div className="grid grid-cols-2">
                 <UpdatedHeading>Join Our Newsletter</UpdatedHeading>
-                <div className="ml-8">
-                  <Image
-                    src={
-                      typeof window !== "undefined"
-                        ? localStorage.getItem("mode") == "dark"
-                          ? event7
-                          : event6
-                        : event6
-                    }
-                  ></Image>
-                </div>
-              </div>
-              <div className="flex flex-col">
                 <div className="flex flex-col pt-4 items-end relative">
                   <div
                     style={{ color: "white" }}
@@ -765,93 +713,109 @@ export default function HomeComponent() {
                       }`}
                     />
                   </div>
-
-                  <h1
-                    className={`text-black mt-8 font-han text-md font-light ${
-                      typeof window !== "undefined"
-                        ? localStorage.getItem("mode") == "dark"
-                          ? "text-white"
-                          : "text-black"
-                        : "text-black"
-                    }`}
-                  >
-                    <span className="text-londonYellow dark:text-yellow">
-                      Subscribe
-                    </span>{" "}
-                    to our newsletter
-                  </h1>
-                  <Typography
-                    className={`text-black font-han text-md font-light dark:text-white  ${
-                      typeof window !== "undefined"
-                        ? localStorage.getItem("mode") == "dark"
-                          ? "text-white"
-                          : "text-black"
-                        : "text-black"
-                    }`}
-                  >
-                    for the latest articles and{" "}
-                    <span className="text-otherblue dark:text-blue">
-                      exclusive content
-                    </span>
-                  </Typography>
-                  <TextField
-                    InputProps={{
-                      style: {
-                        borderRadius: "0",
-                        color: "black",
-                        background: "white",
-                        border: "black",
-                      },
-                    }}
-                    color="secondary"
-                    placeholder="Name"
-                    className="font-georgia text-md w-full mt-6 py-3 text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[8px_8px_0px_rgba(222,153,255,1)]"
-                  ></TextField>
-                  <TextField
-                    InputProps={{
-                      style: {
-                        borderRadius: "0",
-                        color: "black",
-                        background: "white",
-                      },
-                    }}
-                    placeholder="Email"
-                    className="font-georgia w-full text-md mt-6 py-3 text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[8px_8px_0px_rgba(159,225,240,1)]"
-                  ></TextField>
                 </div>
-                <div className="mt-6 relative">
-                  <button className="bg-yellow text-md z-10 px-6 top-2 left-2 rounded-lg  py-2 border border-black font-han hover:bg-hoverbeigeText absolute">
-                    Subscribe
-                  </button>
-                  <button className="bg-blue z-30 text-md px-6 top-1 left-1 rounded-lg  py-2 border border-black font-han hover:bg-hoverbeigeText absolute">
-                    Subscribe
-                  </button>
-                  <button
-                    className="bg-pink px-6 text-md z-40 rounded-lg relative font-light  py-2 border border-black font-han hover:bg-hoverbeigeText"
-                    onClick={async () => {
-                      try {
-                        const response = await axios.post(
-                          "/api/contactUs",
-                          data
-                        );
-                        console.log(response);
-                        if ((response.data = "Finished")) {
-                          alert("Thank you for your response!");
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2">
+                <div className="ml-8">
+                  <Image
+                    src={
+                      typeof window !== "undefined"
+                        ? localStorage.getItem("mode") == "dark"
+                          ? event7
+                          : event6
+                        : event6
+                    }
+                  ></Image>
+                </div>
+                <div className="flex flex-col">
+                  <div className="flex flex-col pt-4 items-start sm:items-end relative">
+                    <h1
+                      className={`text-black mt-8 font-han text-md font-light ${
+                        typeof window !== "undefined"
+                          ? localStorage.getItem("mode") == "dark"
+                            ? "text-white"
+                            : "text-black"
+                          : "text-black"
+                      }`}
+                    >
+                      <span className="text-londonYellow dark:text-yellow">
+                        Subscribe
+                      </span>{" "}
+                      to our newsletter
+                    </h1>
+                    <Typography
+                      className={`text-black font-han text-md font-light dark:text-white  ${
+                        typeof window !== "undefined"
+                          ? localStorage.getItem("mode") == "dark"
+                            ? "text-white"
+                            : "text-black"
+                          : "text-black"
+                      }`}
+                    >
+                      for the latest articles and{" "}
+                      <span className="text-otherblue dark:text-blue">
+                        exclusive content
+                      </span>
+                    </Typography>
+                    <TextField
+                      InputProps={{
+                        style: {
+                          borderRadius: "0",
+                          color: "black",
+                          background: "white",
+                          border: "black",
+                        },
+                      }}
+                      color="secondary"
+                      placeholder="Name"
+                      className="font-georgia text-md w-full mt-6 py-3 text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[8px_8px_0px_rgba(222,153,255,1)]"
+                    ></TextField>
+                    <TextField
+                      InputProps={{
+                        style: {
+                          borderRadius: "0",
+                          color: "black",
+                          background: "white",
+                        },
+                      }}
+                      placeholder="Email"
+                      className="font-georgia w-full text-md mt-6 py-3 text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[8px_8px_0px_rgba(159,225,240,1)]"
+                    ></TextField>
+                  </div>
+                  <div className="mt-6 relative">
+                    <button className="bg-yellow text-md z-10 px-6 top-2 left-2 rounded-lg  py-2 border border-black font-han hover:bg-hoverbeigeText absolute">
+                      Subscribe
+                    </button>
+                    <button className="bg-blue z-30 text-md px-6 top-1 left-1 rounded-lg  py-2 border border-black font-han hover:bg-hoverbeigeText absolute">
+                      Subscribe
+                    </button>
+                    <button
+                      className="bg-pink px-6 text-md z-40 rounded-lg relative font-light  py-2 border border-black font-han hover:bg-hoverbeigeText"
+                      onClick={async () => {
+                        try {
+                          const response = await axios.post(
+                            "/api/contactUs",
+                            data
+                          );
+                          console.log(response);
+                          if ((response.data = "Finished")) {
+                            alert("Thank you for your response!");
+                          }
+                        } catch (e) {
+                          alert("Failed to send.");
                         }
-                      } catch (e) {
-                        alert("Failed to send.");
-                      }
-                      setData({
-                        Name: "",
-                        Email: "",
-                        Subject: "",
-                        Message: "",
-                      });
-                    }}
-                  >
-                    Subscribe
-                  </button>
-                  <button></button>
+                        setData({
+                          Name: "",
+                          Email: "",
+                          Subject: "",
+                          Message: "",
+                        });
+                      }}
+                    >
+                      Subscribe
+                    </button>
+                    <button></button>
+                  </div>
                 </div>
               </div>
             </div>
