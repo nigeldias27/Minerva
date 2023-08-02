@@ -1,5 +1,7 @@
 import "@/styles/globals.css";
 import { motion, AnimatePresence } from "framer-motion";
+import { Experimental_CssVarsProvider as CssVarsProvider } from "@mui/material/styles";
+import { experimental_extendTheme as extendTheme } from "@mui/material/styles";
 import localFont from "@next/font/local";
 const gilroy = localFont({
   src: [
@@ -37,7 +39,13 @@ export default function App({ Component, pageProps, router }) {
         transition={{ type: "linear", duration: 0.75 }} // Set the transition to linear
         className={`${gilroy.variable} ${georgia.variable}`}
       >
-        <Component {...pageProps} />
+        <CssVarsProvider
+          theme={extendTheme({
+            typography: { fontFamily: `${georgia.variable}` },
+          })}
+        >
+          <Component {...pageProps} />
+        </CssVarsProvider>
       </motion.div>
     </AnimatePresence>
   );

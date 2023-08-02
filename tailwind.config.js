@@ -13,6 +13,9 @@ module.exports = {
 
   theme: {
     extend: {
+      screens: {
+        'mob': '360px',
+      },
       dropShadow: {
         "4xl": ["4px 4px 0 rgba(239,255,0,1)", "8px 8px 0 rgba(159,225,240,1)"],
       },
