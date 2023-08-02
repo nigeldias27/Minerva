@@ -37,7 +37,6 @@ export default function Headers() {
       }
     >
       <div className="w-screen bg-#FCF7FF dark:bg-greyBlack flex flex-row justify-between py-2 px-8 z-10">
-        <div className="hidden sm:flex sm:flex-row sm:items-center">
           <div>
             <IconButton
               color="inherit"
@@ -109,6 +108,7 @@ export default function Headers() {
               </List>
             </Drawer>
           </div>
+          <div className="hidden  md:flex md:flex-row md:items-center">
           <Link
             href={"/allnews"}
             className="text-#1D1D1D dark:text-white text-xl font-georgia px-8 hover:text-hoverbeigeText"
@@ -164,6 +164,7 @@ export default function Headers() {
           />
         </Link>
       </div>
-    </div>
+      </div>
+    
   );
 }

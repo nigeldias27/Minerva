@@ -6,7 +6,7 @@ export default function UpdatedHeading(props) {
           textShadow:
             "1px 0 0 black,0 1px 0 black,-1px 0 0 black,0 -1px 0 black",
         }}
-        className="relative text-4xl font-han  z-30 outline-2 text-white"
+        className="relative md:text-4xl sm:text-2xl font-han  z-30 outline-2 text-white"
       >
         {props.notcap == false ? props.children : props.children.toUpperCase()}
       </h1>
@@ -20,7 +20,7 @@ export default function UpdatedHeading(props) {
           textShadow:
             "1px 0 0 black,0 1px 0 black,-1px 0 0 black,0 -1px 0 black",
         }}
-        className="text-4xl font-han z-20 "
+        className="md:text-4xl sm:text-2xl font-han z-20 "
       >
         {props.notcap == false ? props.children : props.children.toUpperCase()}
       </h1>
@@ -35,7 +35,7 @@ export default function UpdatedHeading(props) {
           textShadow:
             "1px 0 0 black,0 1px 0 black,-1px 0 0 black,0 -1px 0 black",
         }}
-        className="text-4xl font-han z-10"
+        className="md:text-4xl sm:text-2xl font-han z-10"
       >
         {props.notcap == false ? props.children : props.children.toUpperCase()}
       </h1>
