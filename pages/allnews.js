@@ -316,7 +316,7 @@ export default function News() {
                   id={`${val._id}`}
                   newArticle={true}
                   hideDate={true}
-                  thisweek={true}
+                  thisweek={false}
                   hideShadow={true}
                   darkMode={
                     localStorage.getItem("mode") == "dark" ? true : false
