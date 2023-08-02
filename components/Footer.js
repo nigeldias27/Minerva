@@ -30,7 +30,7 @@ export default function Footer() {
           <BsTwitter color="#3C3635" />
         </div>
       </div>
-      <div className="flex flex-row pt-4 pb-4">
+      <div className="flex flex-row flex-wrap justify-center pt-4 pb-4">
         <p className="text-white font-gilroy font-500 px-3">About Minerva</p>
         <div class="flex items-center">
           <div class="h-4 w-0.5 bg-white mr-2"></div>

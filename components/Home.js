@@ -1,5 +1,7 @@
 import Footer from "./Footer";
 import NewsCard from "./NewsCard";
+import { useMediaQuery } from "react-responsive";
+import Link from "next/link";
 import Timeline from "@mui/lab/Timeline";
 import TimelineItem from "@mui/lab/TimelineItem";
 import TimelineSeparator from "@mui/lab/TimelineSeparator";
@@ -8,7 +10,6 @@ import TimelineContent from "@mui/lab/TimelineContent";
 import TimelineDot from "@mui/lab/TimelineDot";
 import { BsArrowDown } from "react-icons/bs";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
-import TimelineOppositeContent from "@mui/lab/TimelineOppositeContent";
 import Backdrop from "@mui/material/Backdrop";
 import Dialog from "@mui/material/Dialog";
 import event6 from "../public/assets/newsletter.png";
@@ -16,7 +17,12 @@ import event7 from "../public/assets/newsletter_dark.png";
 import { GrClose } from "react-icons/gr";
 import CircularProgress from "@mui/material/CircularProgress";
 import Contact from "./ContactUs";
-import { motion, transform } from "framer-motion";
+import {
+  motion,
+  transform,
+  useScroll,
+  useMotionValueEvent,
+} from "framer-motion";
 import Image from "next/image";
 import event1 from "../public/assets/minerva_event_1.jpeg";
 import event2 from "../public/assets/orientation.jpeg";
@@ -25,15 +31,19 @@ import background from "../public/assets/background.png";
 import foreground from "../public/assets/foreground.png";
 import { Avatar, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import AnimatedHeading from "@/animatedComponents/Heading";
 import UpdatedNewsCard from "./UpdatedNewsCard";
+import TimelineOppositeContent, {
+  timelineOppositeContentClasses,
+} from "@mui/lab/TimelineOppositeContent";
 import UpdatedHeading from "@/animatedComponents/UpdatedHeading";
+import AnimatedTimelineItem from "./AnimatedTimelineItem";
+import { isMdAsciiPunct } from "markdown-it/lib/common/utils";
 import { IoMdClose } from "react-icons/io";
-
 
 const CustomLeftArrow = ({ onClick }) => (
   <div
@@ -87,6 +97,7 @@ export default function HomeComponent() {
   const router = useRouter();
   const [data, setData] = useState([]); //This refers to the 6 news articles featured in the home page
   const [open, setOpen] = useState(false); // Loading circular progress bar(Backdrop)
+  const isSmallScreen = useMediaQuery({ maxWidth: 480 });
   const [dark, setDark] = useState();
   const [openDialogue, setOpenDialogue] = useState(false);
   const handleClickOpen = () => {
@@ -100,6 +111,7 @@ export default function HomeComponent() {
     setOpenDialogue(true);
     initState();
   }, []);
+
   async function initState() {
     setOpen(true);
     const response = await axios.post("/api/articles", {
@@ -122,11 +134,11 @@ export default function HomeComponent() {
       items: 1,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 1024, min: 481 },
       items: 1,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 481, min: 0 },
       items: 1,
     },
   };
@@ -176,7 +188,7 @@ export default function HomeComponent() {
               </div>
             </motion.div>
 
-            <div className=" items-end justify-end h-screen md:flex">
+            <div className=" items-end justify-end h-screen hidden md:flex">
               <div className="pb-8 pr-8 z-10">
                 <Image className="w-auto h-auto " src={foreground}></Image>
               </div>
@@ -195,7 +207,7 @@ export default function HomeComponent() {
           </button>
         </div>
         <div className="px-0 bg-white dark:bg-greyBlack pt-8 sm:px-12">
-          <div className="flex flex-row mt-16 ">
+          <div className="md:flex md:flex-row sm:flex sm:flex-col mt-16 ">
             <div className="basis-3/6">
               <UpdatedHeading># Trending</UpdatedHeading>
               {data[0] == undefined ? (
@@ -227,13 +239,53 @@ export default function HomeComponent() {
                 </div>
               )}
             </div>
-            <div className="basis-2/4 pl-16 pt-16">
-              <div>
-                <h1 className="text-3xl text-#1D1D1D dark:text-white font-gilroy font-bold ml-8">
+            <div className="basis-2/4 pl-3 pt-16 sm:flex sm:flex-col">
+              <div className="flex justify-between items-center">
+                <h1 className="text-3xl text-#1D1D1D dark:text-white font-gilroy font-bold ml-8 ">
                   Recent News
                 </h1>
+                <Link
+                  href={"/allnews"}
+                  className=" text-otherblue dark:text-blue underline text-lg font-georgia pr-4 hover:text-hoverbeigeText sm:hidden "
+                >
+                  View More
+                </Link>
               </div>
-              <div style={{ maxHeight: "110vh" }} className="overflow-auto">
+              <div className="sm:hidden">
+                {" "}
+                {/* Render carousel for small screens */}
+                <Carousel
+                  draggable={isSmallScreen ? true : false}
+                  responsive={responsive}
+                  showDots={isSmallScreen ? true : false}
+                  customLeftArrow={<></>} // Hide the left arrow button
+                  customRightArrow={<></>} // Hide the right arrow button
+                  removeArrowOnDeviceType={["sm", "md"]}
+                  className="py-4"
+                >
+                  {/* Render news cards as carousel items */}
+                  {data.map((val, i) => (
+                    <UpdatedNewsCard
+                      key={i}
+                      i={i}
+                      imageURL={`${val.imageURL}`}
+                      headline={`${val.title}`}
+                      genre={`${val.genre}`}
+                      date={`${val.createdAt}`}
+                      desc={`${val.description}`}
+                      id={`${val._id}`}
+                      newArticle={true}
+                      darkMode={
+                        localStorage.getItem("mode") == "dark" ? true : false
+                      }
+                    />
+                  ))}
+                </Carousel>
+              </div>
+              <div
+                style={{ maxHeight: "110vh" }}
+                className=" hidden sm:block overflow-auto"
+              >
                 {data.slice(2, -1).map((val, i) => {
                   return (
                     <motion.div
@@ -265,7 +317,7 @@ export default function HomeComponent() {
             </div>
           </div>
 
-          <div className="flex w-full mt-8 justify-center">
+          <div className="hidden sm:flex w-full mt-8 justify-center">
             <div className="relative">
               <button
                 class="bg-pink border border-black relative z-40 x-6 my-1  font-gilroy font-bolder rounded-md py-2 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
@@ -292,200 +344,301 @@ export default function HomeComponent() {
             transition={{ duration: 0.5, delay: 0.5 }}
           >
             <UpdatedHeading>Our Timeline</UpdatedHeading>
-            <Timeline id="timeline" className="px-1 " position="alternate">
-              <TimelineItem>
-                <TimelineOppositeContent
-                  className="pt-8 pb-32 font-typewritter"
-                  color="text.secondary"
-                >
-                  <h1 className="text-white">14th Apr 2023, 12:00pm</h1>
-                  <h1 className="text-white">10th Floor, BE Block</h1>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                  <TimelineDot sx={{ width: "auto", padding: "0px" }}>
-                    <Avatar className="w-14 h-14 sm:w-32 sm:h-32">
-                      <Image src={event3}></Image>
-                    </Avatar>
-                  </TimelineDot>
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent className="py-8">
-                  <h1 className="text-white font-semibold font-gilroy">
-                    Runaway Runway
-                  </h1>
-                  <p className="font-georgia text-white">
-                    Runway from buying expensive material in the name of fashion
-                    run-towards sustainable and recyclable eco-chic designs
-                  </p>
+            <div className="hidden sm:flex">
+              <Timeline id="timeline" className="px-1 " position="alternate">
+                <TimelineItem>
+                  <TimelineOppositeContent
+                    className="pt-8 pb-32 font-typewritter"
+                    color="text.secondary"
+                  >
+                    <h1 className="text-white">14th Apr 2023, 12:00pm</h1>
+                    <h1 className="text-white">10th Floor, BE Block</h1>
+                  </TimelineOppositeContent>
+                  <TimelineSeparator>
+                    <TimelineDot sx={{ width: "auto", padding: "0px" }}>
+                      <Avatar className="w-14 h-14 sm:w-32 sm:h-32">
+                        <Image src={event3}></Image>
+                      </Avatar>
+                    </TimelineDot>
+                    <TimelineConnector />
+                  </TimelineSeparator>
+                  <TimelineContent className="py-8">
+                    <h1 className="text-white font-semibold font-gilroy">
+                      Runaway Runway
+                    </h1>
+                    <p className="font-georgia text-white">
+                      Runway from buying expensive material in the name of
+                      fashion run-towards sustainable and recyclable eco-chic
+                      designs
+                    </p>
 
-                  <div>
-                    <div className="relative">
-                      <button
-                        class="bg-pink border border-black font-gilroy font-bolder relative z-40 x-6 my-1 font-merriweather rounded-md py-2 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
-                        type="submit"
-                        onClick={() => {
-                          window.location.href =
-                            "https://www.instagram.com/p/Cq0K-B-JLoC/?utm_source=ig_web_copy_link";
-                        }}
-                      >
-                        View More
-                      </button>
-                      <button className="bg-yellow border border-black absolute top-1 left-1 z-30 x-6 my-1 font-gilroy font-bold rounded-md py-2 px-3 text-black hover:scale-105 transition duration-50 ease-linear">
-                        View More
-                      </button>
-                      <button className="bg-blue border border-black absolute top-2 left-2 z-20 x-6 my-1 font-gilroy font-bold rounded-md py-2 px-3 text-black hover:scale-105 transition duration-50 ease-linear">
-                        View More
-                      </button>
+                    <div>
+                      <div className="relative">
+                        <button
+                          class="bg-pink border border-black font-gilroy font-bolder relative z-40 x-6 my-1 font-merriweather rounded-md py-2 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
+                          type="submit"
+                          onClick={() => {
+                            window.location.href =
+                              "https://www.instagram.com/p/Cq0K-B-JLoC/?utm_source=ig_web_copy_link";
+                          }}
+                        >
+                          View More
+                        </button>
+                        <button className="bg-yellow border border-black absolute top-1 left-1 z-30 x-6 my-1 font-gilroy font-bold rounded-md py-2 px-3 text-black hover:scale-105 transition duration-50 ease-linear">
+                          View More
+                        </button>
+                        <button className="bg-blue border border-black absolute top-2 left-2 z-20 x-6 my-1 font-gilroy font-bold rounded-md py-2 px-3 text-black hover:scale-105 transition duration-50 ease-linear">
+                          View More
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </TimelineContent>
-              </TimelineItem>
-              <TimelineItem>
-                <TimelineOppositeContent
-                  className="pt-8 pb-32 font-typewriter"
-                  color="text.secondary"
-                >
-                  <h1 className="text-white font-georgia">
-                    8th Feb 2023, 2:45PM
-                  </h1>
-                  <h1 className="text-white font-georgia">
-                    Seminar Hall 3,BE Block
-                  </h1>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                  <TimelineDot sx={{ width: "auto", padding: "0px" }}>
-                    <Avatar className="w-14 h-14 sm:w-32 sm:h-32">
-                      <Image src={event1}></Image>
-                    </Avatar>
-                  </TimelineDot>
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent className="py-8">
-                  <h1 className="text-md font-gilroy text-white font-semibold">
-                    Rethink Retrospect Reflect
-                  </h1>
-                  <h6 className="font-georgia text-white">
-                    Watch the screenplay, write a report on it and stand a
-                    chance to win Ant Man tickets!
-                  </h6>
-                  <div>
-                    <div className="relative">
-                      <button
-                        class="bg-pink border border-black relative z-40 x-6 my-1 font-gilroy font-bolder rounded-md py-2 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
-                        type="submit"
-                        onClick={() => {
-                          window.location.href =
-                            "https://www.instagram.com/p/CoSP_WVSf2k/?utm_source=ig_web_copy_link";
-                        }}
-                      >
-                        View More
-                      </button>
-                      <button className="bg-yellow border border-black absolute top-1 -right-1 z-30 x-6 my-1 font-gilroy font-bold rounded-md py-2 px-3 text-black hover:scale-105 transition duration-50 ease-linear">
-                        View More
-                      </button>
-                      <button className="bg-blue border border-black absolute top-2 -right-2 z-20 x-6 my-1 font-gilroy font-bold rounded-md py-2 px-3 text-black hover:scale-105 transition duration-50 ease-linear">
-                        View More
-                      </button>
+                  </TimelineContent>
+                </TimelineItem>
+                <TimelineItem>
+                  <TimelineOppositeContent
+                    className="pt-8 pb-32 font-typewriter"
+                    color="text.secondary"
+                  >
+                    <h1 className="text-white font-georgia">
+                      8th Feb 2023, 2:45PM
+                    </h1>
+                    <h1 className="text-white font-georgia">
+                      Seminar Hall 3,BE Block
+                    </h1>
+                  </TimelineOppositeContent>
+                  <TimelineSeparator>
+                    <TimelineDot sx={{ width: "auto", padding: "0px" }}>
+                      <Avatar className="w-14 h-14 sm:w-32 sm:h-32">
+                        <Image src={event1}></Image>
+                      </Avatar>
+                    </TimelineDot>
+                    <TimelineConnector />
+                  </TimelineSeparator>
+                  <TimelineContent className="py-8">
+                    <h1 className="text-md font-gilroy text-white font-semibold">
+                      Rethink Retrospect Reflect
+                    </h1>
+                    <h6 className="font-georgia text-white">
+                      Watch the screenplay, write a report on it and stand a
+                      chance to win Ant Man tickets!
+                    </h6>
+                    <div>
+                      <div className="relative">
+                        <button
+                          class="bg-pink border border-black relative z-40 x-6 my-1 font-gilroy font-bolder rounded-md py-2 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
+                          type="submit"
+                          onClick={() => {
+                            window.location.href =
+                              "https://www.instagram.com/p/CoSP_WVSf2k/?utm_source=ig_web_copy_link";
+                          }}
+                        >
+                          View More
+                        </button>
+                        <button className="bg-yellow border border-black absolute top-1 -right-1 z-30 x-6 my-1 font-gilroy font-bold rounded-md py-2 px-3 text-black hover:scale-105 transition duration-50 ease-linear">
+                          View More
+                        </button>
+                        <button className="bg-blue border border-black absolute top-2 -right-2 z-20 x-6 my-1 font-gilroy font-bold rounded-md py-2 px-3 text-black hover:scale-105 transition duration-50 ease-linear">
+                          View More
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </TimelineContent>
-              </TimelineItem>
-              <TimelineItem>
-                <TimelineOppositeContent
-                  className="pt-8 pb-32 font-typewriter"
-                  color="text.secondary"
-                >
-                  <h1 className="text-white font-georgia">
-                    12th Apr 2023, 2:45PM
-                  </h1>
-                  <h1 className="text-white font-georgia">MRD Auditorium</h1>
-                </TimelineOppositeContent>
-                <TimelineSeparator>
-                  <TimelineDot sx={{ width: "auto", padding: "0px" }}>
-                    <Avatar className="w-14 h-14 sm:w-32 sm:h-32">
-                      <Image src={event2}></Image>
-                    </Avatar>
-                  </TimelineDot>
-                  <TimelineConnector />
-                </TimelineSeparator>
-                <TimelineContent className="py-8">
-                  <h1 className="text-md font-semibold font-gilroy text-white">
-                    Minerva Orientation
-                  </h1>
-                  <p className="font-georgia text-white">
-                    Come learn more about what our club has in store for all of
-                    you this year
-                  </p>
-                  <div>
-                    <div className="relative">
-                      <button
-                        class="bg-pink border border-black font-gilroy font-bolder relative z-40 x-6 my-1 font-merriweather rounded-md py-2 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
-                        type="submit"
-                        onClick={() => {
-                          window.location.href =
-                            "https://www.instagram.com/p/Cq0K-B-JLoC/?utm_source=ig_web_copy_link";
-                        }}
-                      >
-                        View More
-                      </button>
-                      <button className="bg-yellow border border-black absolute top-1 left-1 z-30 x-6 my-1 font-gilroy font-bold rounded-md py-2 px-3 text-black hover:scale-105 transition duration-50 ease-linear">
-                        View More
-                      </button>
-                      <button className="bg-blue border border-black absolute top-2 left-2 z-20 x-6 my-1 font-gilroy font-bold rounded-md py-2 px-3 text-black hover:scale-105 transition duration-50 ease-linear">
-                        View More
-                      </button>
+                  </TimelineContent>
+                </TimelineItem>
+                <TimelineItem>
+                  <TimelineOppositeContent
+                    className="pt-8 pb-32 font-typewriter"
+                    color="text.secondary"
+                  >
+                    <h1 className="text-white font-georgia">
+                      12th Apr 2023, 2:45PM
+                    </h1>
+                    <h1 className="text-white font-georgia">MRD Auditorium</h1>
+                  </TimelineOppositeContent>
+                  <TimelineSeparator>
+                    <TimelineDot sx={{ width: "auto", padding: "0px" }}>
+                      <Avatar className="w-14 h-14 sm:w-32 sm:h-32">
+                        <Image src={event2}></Image>
+                      </Avatar>
+                    </TimelineDot>
+                    <TimelineConnector />
+                  </TimelineSeparator>
+                  <TimelineContent className="py-8">
+                    <h1 className="text-md font-semibold font-gilroy text-white">
+                      Minerva Orientation
+                    </h1>
+                    <p className="font-georgia text-white">
+                      Come learn more about what our club has in store for all
+                      of you this year
+                    </p>
+                    <div>
+                      <div className="relative">
+                        <button
+                          class="bg-pink border border-black font-gilroy font-bolder relative z-40 x-6 my-1 font-merriweather rounded-md py-2 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
+                          type="submit"
+                          onClick={() => {
+                            window.location.href =
+                              "https://www.instagram.com/p/Cq0K-B-JLoC/?utm_source=ig_web_copy_link";
+                          }}
+                        >
+                          View More
+                        </button>
+                        <button className="bg-yellow border border-black absolute top-1 left-1 z-30 x-6 my-1 font-gilroy font-bold rounded-md py-2 px-3 text-black hover:scale-105 transition duration-50 ease-linear">
+                          View More
+                        </button>
+                        <button className="bg-blue border border-black absolute top-2 left-2 z-20 x-6 my-1 font-gilroy font-bold rounded-md py-2 px-3 text-black hover:scale-105 transition duration-50 ease-linear">
+                          View More
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                </TimelineContent>
-              </TimelineItem>
-            </Timeline>
+                  </TimelineContent>
+                </TimelineItem>
+              </Timeline>
+            </div>
+            <div className="flex sm:hidden">
+              <Timeline
+                id="timeline"
+                className="px-1 "
+                sx={{
+                  [`& .${timelineOppositeContentClasses.root}`]: {
+                    flex: 0,
+                  },
+                }}
+              >
+                <AnimatedTimelineItem
+                  title={"Runaway Runway"}
+                  time={"14th Apr 2023, 12:00pm"}
+                  venue={"10th Floor, BE Block"}
+                  desc={`Runway from buying expensive material in the name of
+                        fashion run-towards sustainable and recyclable eco-chic
+                        designs`}
+                  img={event3}
+                ></AnimatedTimelineItem>
+                <AnimatedTimelineItem
+                  title={"Rethink Retrospect Reflect"}
+                  time={"8th Feb 2023, 2:45PM"}
+                  venue={"Seminar Hall 3,BE Block"}
+                  desc={`Watch the screenplay, write a report on it and stand a
+                        chance to win Ant Man tickets!`}
+                  img={event1}
+                ></AnimatedTimelineItem>
+                <AnimatedTimelineItem
+                  title={"Minerva Orientation"}
+                  time={"12th Apr 2023, 2:45PM"}
+                  venue={"MRD Auditorium"}
+                  desc={`Come learn more about what our club has in store for all
+                        of you this year`}
+                  img={event2}
+                ></AnimatedTimelineItem>
+              </Timeline>
+            </div>
           </motion.div>
-          <div id="featuringPES">
+          <div id="featuringPES" className="flex">
             <UpdatedHeading>Featuring PESU</UpdatedHeading>
           </div>
           <Carousel
-          customLeftArrow={<CustomLeftArrow />}
-          customRightArrow={<CustomRightArrow />}
-          responsive={responsive}
-          className="py-4"
-        >
-          <div className="flex flex-row mx-20">
-            <div className="basis-2/5">
-              <h4
-                style={{ width: "50%" }}
-                className="absolute z-20 text-4xl pt-3 pb-4 mx-8 text-[#428897] dark:text-blue font-han font-bold"
-              >
-                PESU SHINES UNDER CORI
-              </h4>
-              <p className="mx-8 mt-24 font-georgia text-#1D1D1D  dark:text-white">
-                Crucible of Research and Innovation
-                <a
-                  className="underline"
-                  onClick={() => {
-                    window.location.href = "https://research.pes.edu/cori/";
-                  }}
-                >
-                  (CORI)
-                </a>
-                , headed by Dr. V. Sambasiva Rao is the research centre of PESU
-                where multidisciplinary research is carried out. A lot of these
-                projects are done under the guidance of professors like Dr
-                Manikandan J, for various other organizations like TCS and ISRO.
-                They work on multiple interesting projects involving satellites,
-                robots, sensors for detection, lifespan of hardware used among
-                other ideas. This provides an interesting opportunity for
-                students to explore the fields of research.
-              </p>
+            draggable={isSmallScreen ? true : false}
+            responsive={responsive}
+            showDots={isSmallScreen ? true : false}
+            customLeftArrow={isSmallScreen ? <></> : <CustomLeftArrow />} // Hide the left arrow button
+            customRightArrow={isSmallScreen ? <></> : <CustomRightArrow />} // Hide the right arrow button
+            className="py-3"
+          >
+            <div className="md:flex md:flex-row  sm:flex-col mx-10">
+              <div className="basis-3/5 relative sm:hidden">
+                <img
+                  src="https://lh3.googleusercontent.com/p/AF1QipP0ziHgkSGCOHH99LOGHUUie5kJDdmecp6zIosO=s1360-w1360-h1020"
+                  className="w-full mt-8 mb-20 relative z-10 aspect-video"
+                ></img>
+                <div className="absolute w-full  md:mt-8 sm:mt-7  md:mb-24 sm:mb-14 z-0 bg-blue top-4 left-4 aspect-video"></div>
+                <div className="absolute w-full md:mt-8 sm:mt-7 md:mb-24 sm:mb-14 z-0 bg-white dark:bg-black top-3 left-3 aspect-video"></div>
+              </div>
+              <div className="basis-2/5">
+                <div className="pb-1">
+                  <h4
+                    /* style={{ width:"50%" }}*/
+                    className="absolute z-20 md:w-50% sm:w-100% md:text-4xl sm:text-16px md:pt-3  md:pb-4 md:mx-8 sm:ml-10 text-[#428897] dark:text-blue font-han font-bold"
+                  >
+                    PESU SHINES UNDER CORI
+                  </h4>
+                </div>
+                <p className="mx-3 mt-20 mb-5 sm:text-14px font-georgia text-#1D1D1D  dark:text-white">
+                  Crucible of Research and Innovation
+                  <a
+                    className="underline"
+                    onClick={() => {
+                      window.location.href = "https://research.pes.edu/cori/";
+                    }}
+                  >
+                    (CORI)
+                  </a>
+                  , headed by Dr. V. Sambasiva Rao is the research centre of
+                  PESU where multidisciplinary research is carried out. A lot of
+                  these projects are done under the guidance of professors like
+                  Dr Manikandan J, for various other organizations like TCS and
+                  ISRO. They work on multiple interesting projects involving
+                  satellites, robots, sensors for detection, lifespan of
+                  hardware used among other ideas. This provides an interesting
+                  opportunity for students to explore the fields of research.
+                </p>
+              </div>
+              <div className="basis-3/5 relative hidden sm:block">
+                <img
+                  src="https://lh3.googleusercontent.com/p/AF1QipP0ziHgkSGCOHH99LOGHUUie5kJDdmecp6zIosO=s1360-w1360-h1020"
+                  className="w-full mt-8 mb-24 relative z-10 aspect-video"
+                ></img>
+                <div className="absolute w-full  mt-8 mb-24 z-0 bg-blue top-4 left-4 aspect-video"></div>
+                <div className="absolute w-full mt-8 mb-24 z-0 bg-white dark:bg-black top-3 left-3 aspect-video"></div>
+              </div>
             </div>
-            <div className="basis-3/5 relative">
-              <img
-                src="https://lh3.googleusercontent.com/p/AF1QipP0ziHgkSGCOHH99LOGHUUie5kJDdmecp6zIosO=s1360-w1360-h1020"
-                className="w-full mt-8 mb-24 relative z-10 aspect-video"
-              ></img>
-              <div className="absolute w-full  mt-8 mb-24 z-0 bg-blue top-4 left-4 aspect-video"></div>
-              <div className="absolute w-full mt-8 mb-24 z-0 bg-white dark:bg-black top-3 left-3 aspect-video"></div>
+
+            <div className="md:flex md:flex-row  sm:flex-col mx-10">
+              <div className="basis-3/5 relative sm:hidden">
+                <img
+                  src="https://lh3.googleusercontent.com/p/AF1QipP0ziHgkSGCOHH99LOGHUUie5kJDdmecp6zIosO=s1360-w1360-h1020"
+                  className="w-full mt-8 mb-20 relative z-10 aspect-video"
+                ></img>
+                <div className="absolute w-full  md:mt-8 sm:mt-7  md:mb-24 sm:mb-14 z-0 bg-blue top-4 left-4 aspect-video"></div>
+                <div className="absolute w-full md:mt-8 sm:mt-7 md:mb-24 sm:mb-14 z-0 bg-white dark:bg-black top-3 left-3 aspect-video"></div>
+              </div>
+              <div className="basis-2/5">
+                <div className="pb-1">
+                  <h4
+                    /* style={{ width:"50%" }}*/
+                    className="absolute z-20 md:w-50% sm:w-100% md:text-4xl sm:text-16px md:pt-3  md:pb-4 md:mx-8 sm:ml-10 text-[#428897] dark:text-blue font-han font-bold"
+                  >
+                    PESU SHINES UNDER CORI
+                  </h4>
+                </div>
+                <p className="mx-3 mt-20 sm:text-14px font-georgia text-#1D1D1D  dark:text-white">
+                  Crucible of Research and Innovation
+                  <a
+                    className="underline"
+                    onClick={() => {
+                      window.location.href = "https://research.pes.edu/cori/";
+                    }}
+                  >
+                    (CORI)
+                  </a>
+                  , headed by Dr. V. Sambasiva Rao is the research centre of
+                  PESU where multidisciplinary research is carried out. A lot of
+                  these projects are done under the guidance of professors like
+                  Dr Manikandan J, for various other organizations like TCS and
+                  ISRO. They work on multiple interesting projects involving
+                  satellites, robots, sensors for detection, lifespan of
+                  hardware used among other ideas. This provides an interesting
+                  opportunity for students to explore the fields of research.
+                </p>
+              </div>
+              <div className="basis-3/5 relative hidden sm:block">
+                <img
+                  src="https://lh3.googleusercontent.com/p/AF1QipP0ziHgkSGCOHH99LOGHUUie5kJDdmecp6zIosO=s1360-w1360-h1020"
+                  className="w-full mt-8 mb-24 relative z-10 aspect-video"
+                ></img>
+                <div className="absolute w-full  mt-8 mb-24 z-0 bg-blue top-4 left-4 aspect-video"></div>
+                <div className="absolute w-full mt-8 mb-24 z-0 bg-white dark:bg-black top-3 left-3 aspect-video"></div>
+              </div>
             </div>
-          </div>
+          </Carousel>
 
           <div className="flex flex-row mx-20">
             <div className="basis-2/5">
