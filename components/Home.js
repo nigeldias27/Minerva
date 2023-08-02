@@ -1,5 +1,6 @@
 import Footer from "./Footer";
 import NewsCard from "./NewsCard";
+import { useMediaQuery } from 'react-responsive';
 import Link from "next/link";
 import Timeline from "@mui/lab/Timeline";
 import TimelineItem from "@mui/lab/TimelineItem";
@@ -37,6 +38,7 @@ import TimelineOppositeContent, {
 } from "@mui/lab/TimelineOppositeContent";
 import UpdatedHeading from "@/animatedComponents/UpdatedHeading";
 import AnimatedTimelineItem from "./AnimatedTimelineItem";
+import { isMdAsciiPunct } from "markdown-it/lib/common/utils";
 
 const CustomLeftArrow = ({ onClick }) => (
   <div
@@ -90,6 +92,7 @@ export default function HomeComponent() {
   const router = useRouter();
   const [data, setData] = useState([]); //This refers to the 6 news articles featured in the home page
   const [open, setOpen] = useState(false); // Loading circular progress bar(Backdrop)
+  const isSmallScreen = useMediaQuery({maxWidth: 480 });
   var dark = "";
 
   useEffect(() => {
@@ -118,11 +121,11 @@ export default function HomeComponent() {
       items: 1,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
+      breakpoint: { max: 1024, min: 481 },
       items: 1,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 481, min: 0 },
       items: 1,
     },
   };
@@ -230,7 +233,7 @@ export default function HomeComponent() {
                 </h1>
                 <Link
                   href={"/allnews"}
-                  className="text-otherblue dark:text-blue underline text-xl font-georgia px-10 pt-2 hover:text-hoverbeigeText"
+                  className=" text-#428897 dark:text-blue underline text-xl font-georgia px-10 pt-2 hover:text-hoverbeigeText sm:hidden "
                 >
                   ViewMore
                 </Link>
@@ -239,9 +242,9 @@ export default function HomeComponent() {
                 {" "}
                 {/* Render carousel for small screens */}
                 <Carousel
-                  draggable={true}
+                  draggable={ isSmallScreen? true : false}
                   responsive={responsive}
-                  showDots={true}
+                  showDots={ isSmallScreen ? true : false}
                   customLeftArrow={<></>} // Hide the left arrow button
                   customRightArrow={<></>} // Hide the right arrow button
                   removeArrowOnDeviceType={["sm", "md"]}
@@ -520,12 +523,11 @@ export default function HomeComponent() {
             <UpdatedHeading>Featuring PESU</UpdatedHeading>
           </div>
           <Carousel
-            draggable={true}
+            draggable={ isSmallScreen ? true : false }
             responsive={responsive}
-            showDots={true}
-            customLeftArrow={<></>} // Hide the left arrow button
-            customRightArrow={<></>} // Hide the right arrow button
-            removeArrowOnDeviceType={["sm", "md"]}
+            showDots={ isSmallScreen ? true : false }
+            customLeftArrow={ isSmallScreen ? <></> : <CustomLeftArrow/>}  // Hide the left arrow button
+            customRightArrow={ isSmallScreen ? <></> : <CustomRightArrow/>} // Hide the right arrow button
             className="py-3"
           >
             <div className="md:flex md:flex-row  sm:flex-col mx-10">
@@ -546,7 +548,7 @@ export default function HomeComponent() {
                     PESU SHINES UNDER CORI
                   </h4>
                 </div>
-                <p className="mx-3 mt-20 sm:text-14px font-georgia text-#1D1D1D  dark:text-white">
+                <p className="mx-3 mt-20 mb-5 sm:text-14px font-georgia text-#1D1D1D  dark:text-white">
                   Crucible of Research and Innovation
                   <a
                     className="underline"
