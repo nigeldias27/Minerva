@@ -9,10 +9,8 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
-import { FaAngleDown } from "react-icons/fa6";
-import { motion, transform } from "framer-motion";
-import UpdatedNewsCard from "../../components/UpdatedNewsCard";
-import NewsCard from "@/components/NewsCard";
+import { BsArrowDown } from "react-icons/bs";
+import { motion, useScroll } from "framer-motion";
 
 export default function Article() {
   const router = useRouter();
@@ -22,8 +20,7 @@ export default function Article() {
   const [slicedData, setSlicedData] = useState("");
   const [isSliced, setIsSliced] = useState(true);
   const [open, setOpen] = useState(false);
-  const [scroll, setScroll] = useState("")
-
+  const { scrollYProgress } = useScroll();
   useEffect(() => {
     initState();
     getRecentNews();
@@ -39,15 +36,15 @@ export default function Article() {
     console.log(response.data);
     setData({ ...response.data });
 
-    let sliced = response.data.article.data
-    sliced = sliced.slice(0, 1000)  + " ..."
-    console.log(sliced)
-    setSlicedData(sliced)
+    let sliced = response.data.article.data;
+    sliced = sliced.slice(0, 1000) + " ...";
+    console.log(sliced);
+    setSlicedData(sliced);
 
-    console.log(isSliced)
+    console.log(isSliced);
   }
 
-  async function getRecentNews(){
+  async function getRecentNews() {
     setOpen(true);
     const response = await axios.post("/api/articles", {
       selectedGenres: [],
@@ -59,32 +56,28 @@ export default function Article() {
   }
 
   const continueReading = () => {
-    setIsSliced(false)
-    console.log(isSliced)
-    console.log("==========")
-    console.log(data)
-  }
-
-  window.onscroll = function(){
-    var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-    var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    var scrolled = (winScroll / height) * document.documentElement.clientWidth;
-    setScroll(scrolled)
-    console.log(scrolled)
-  }
-
-  var scrollStyle = {
-    'width': scroll,
-    'background': 'yellow',
-    'height': '15px',
-    'position': 'fixed',
-    'top': '0'
-  }
+    setIsSliced(false);
+    console.log(isSliced);
+    console.log("==========");
+    console.log(data);
+  };
 
   return (
     <div className="sm:min-h-screen">
       <Headers />
-      <div style={scrollStyle}></div>
+      <motion.div
+        style={{
+          background: "yellow",
+          zIndex: "10",
+          height: "15px",
+          position: "fixed",
+          top: "0",
+          left: "0",
+          right: "0",
+          transformOrigin: "0%",
+          scaleX: scrollYProgress,
+        }}
+      ></motion.div>
 
       <div className="sm:mt-12 sm:ml-36 ml-6 mt-6">
         <div className="flex flex-row items-center">
@@ -126,38 +119,43 @@ export default function Article() {
               className="font-georgia"
               dangerouslySetInnerHTML={{
                 __html: md({ html: true, typographer: true }).render(
-                  data.article == undefined ? "" : isSliced ? slicedData : data.article.data
+                  data.article == undefined
+                    ? ""
+                    : isSliced
+                    ? slicedData
+                    : data.article.data
                 ),
               }}
             />
           </article>
         </div>
       </div>
-      {
-        isSliced ? <div className="-translate-y-24">
-        <div className="h-24 bg-white blur-2xl"></div>
-        <div className="h-24">
-          <div className="flex w-full mt-8 underline underline-offset-8 justify-center">Continue Reading</div>
-          <div className="flex w-full mt-8 justify-center">
-              <div className="relative">
-                <button
-                  class="bg-pink border border-black relative z-40 x-6 my-1  font-gilroy font-bolder rounded-full py-3 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
-                  type="submit"
-                  onClick={continueReading}
-                >
-                  <FaAngleDown/>
-                </button>
-                <button className="bg-yellow border min-w-max border-black absolute top-1 left-1 z-30 x-6 my-1 font-merriweather font-small rounded-full py-3 px-3 text-black hover:scale-105 transition duration-50 ease-linear"> 
-                  <FaAngleDown/>
-                </button>
-                <button className="bg-blue border min-w-max border-black absolute top-2 left-2 z-20 x-6 my-1 font-merriweather font-small rounded-full py-3 px-3 text-black hover:scale-105 transition duration-50 ease-linear">
-                  <FaAngleDown/>
-                </button>
-              </div>
+      {isSliced ? (
+        <div className="-translate-y-24">
+          <div className="h-24 bg-white blur-2xl"></div>
+          <div className="h-24">
+            <div className="flex w-full mt-8 underline underline-offset-8 justify-center">
+              Continue Reading
             </div>
+            <div className="flex flex-row relative mt-32 z-100 justify-center">
+              <button
+                onClick={continueReading}
+                className="z-50 absolute bottom-10 border p-4 rounded-full border-black bg-pink"
+              >
+                <BsArrowDown size={16} />
+              </button>
+              <button className="z-90 absolute bottom-12 border p-4 rounded-full border-black bg-yellow">
+                <BsArrowDown size={16} />
+              </button>
+              <button className="z-90 absolute bottom-11 border p-4 rounded-full border-black bg-blue">
+                <BsArrowDown size={16} />
+              </button>
+            </div>
+          </div>
         </div>
-      </div>   : <div></div>
-      }
+      ) : (
+        <div></div>
+      )}
 
       <div>
         <Footer />
