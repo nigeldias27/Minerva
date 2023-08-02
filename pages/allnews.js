@@ -212,7 +212,7 @@ export default function News() {
           customLeftArrow={<CustomLeftArrow />}
           customRightArrow={<CustomRightArrow />}
           responsive={responsive}
-          className="py-4"
+          className="py-4 mx-8"
         >
           <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">
             View All
@@ -254,7 +254,7 @@ export default function News() {
             Communication Design
           </button>
         </Carousel>
-        <h2 className="font-han font-bold text-xl px-8 py-4 text-greyBlack">
+        <h2 className="font-han mt-8 text-3xl px-10 py-4 dark:text-white text-greyBlack">
           This week
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
@@ -285,7 +285,14 @@ export default function News() {
             );
           })}
         </div>
-        <h2 className="font-han font-bold text-xl px-8 py-4 text-greyBlack">
+        <div className="flex mt-8 justify-center">
+          <div
+            style={{ height: "2px", width: "80vw" }}
+            className=" bg-gray-500"
+          ></div>
+        </div>
+
+        <h2 className="font-han mt-8 text-3xl px-10 py-4 dark:text-white text-greyBlack">
           Previously
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
@@ -308,6 +315,9 @@ export default function News() {
                   desc={`${val.description}`}
                   id={`${val._id}`}
                   newArticle={true}
+                  hideDate={true}
+                  thisweek={true}
+                  hideShadow={true}
                   darkMode={
                     localStorage.getItem("mode") == "dark" ? true : false
                   }
