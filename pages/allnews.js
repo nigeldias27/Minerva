@@ -65,6 +65,10 @@ const CustomRightArrow = ({ onClick }) => (
 );
 export default function News() {
   const [previousChecker, setPrevious] = useState(false);
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    localStorage.getItem("mode") == "dark" ? setDark(true) : setDark(false);
+  }, []);
   function parseISOString(s) {
     var b = s.split(/\D+/);
     return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
@@ -194,16 +198,8 @@ export default function News() {
   };
 
   return (
-    <div
-      className={` min-h-screen ${
-        typeof window !== "undefined"
-          ? localStorage.getItem("mode") == "dark"
-            ? "dark"
-            : ""
-          : ""
-      }`}
-    >
-      <Headers />
+    <div className={` min-h-screen ${dark ? "dark" : ""}`}>
+      <Headers dark={dark} setDark={setDark} />
       <div className="px-0 relative pt-8 bg-#FCF7FF dark:bg-greyBlack sm:px-12">
         <div className="flex flex-row w-full justify-between items-center px-8 mb-8 sm:px-0">
           <UpdatedHeading>News</UpdatedHeading>
