@@ -623,8 +623,8 @@ export default function HomeComponent() {
                   , a venture studio launched under the partnership of PESU and CoCreate ventures, 
                   is a fund equipped with execution and acceleration capabilities. It aims to find
                   solutions to questions like - &lsquo;Can entrepreneurship fund research and scholarships?&rsquo;
-                  and 'Can we create a funnel of fundable deep tech companies that are category creators
-                  for the existing VC ecosystem?'<sup>[1](https://pesuventurelabs.com/about)</sup>. PVL 
+                  and &lsquo;Can we create a funnel of fundable deep tech companies that are category creators
+                  for the existing VC ecosystem?&rsquo;<sup>[1](https://pesuventurelabs.com/about)</sup>. PVL 
                   provides resources, mentoring, and, funding and support to individuals looking for 
                   guidance. Its process flow goes in the following manner - come up with your own project 
                   idea or participate in their corporate backed bootcamps,turning the idea into a product,
