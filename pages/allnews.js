@@ -213,7 +213,7 @@ export default function News() {
           {genreList.map((v) => {
             return (
               <div className="p-2">
-                <button class="px-2 m-2 h-8 flex w-full text-center whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl font-georgia font-semibold">
+                <button class="px-2 m-2 h-8 flex w-full text-center whitespace-nowrap bg-white dark:bg-greyBlack  text-black dark:text-white rounded-md border border-black dark:border-white hover:dark:border-yellow hover:border-2 hover:border-londonYellow hover:shadow-xl font-georgia font-semibold">
                   <p className="flex justify-center items-center w-full">{v}</p>
                 </button>
               </div>
