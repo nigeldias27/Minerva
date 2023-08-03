@@ -210,9 +210,9 @@ export default function News() {
           responsive={responsive}
           className="py-4 mx-8"
         >
-          {genreList.map((v) => {
+          {genreList.map((v, i) => {
             return (
-              <div className="p-2">
+              <div key={i} className="p-2">
                 <button class="px-2 m-2 h-8 flex w-full text-center whitespace-nowrap bg-white dark:bg-greyBlack  text-black dark:text-white rounded-md border border-black dark:border-white hover:dark:border-yellow hover:border-2 hover:border-londonYellow hover:shadow-xl font-georgia font-semibold">
                   <p className="flex justify-center items-center w-full">{v}</p>
                 </button>
