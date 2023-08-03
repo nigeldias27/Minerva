@@ -15,7 +15,7 @@ export default function Home() {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Headers />
+
       {
         //For the launch of the website, a countdown counter was created which is rendered if the date is before April 12, 2023 16:00:00
         // Otherwise the Home page (HomeComponent) is rendered

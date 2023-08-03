@@ -14,7 +14,7 @@ module.exports = {
   theme: {
     extend: {
       screens: {
-        'mob': '360px',
+        mob: "360px",
       },
       dropShadow: {
         "4xl": ["4px 4px 0 rgba(239,255,0,1)", "8px 8px 0 rgba(159,225,240,1)"],
@@ -23,6 +23,7 @@ module.exports = {
         // typewriter: ["Raleway", "sans-serif"],
         typewriter: ["Special Elite", "cursive"],
         han: ["Black Han Sans", "sans-serif"],
+        questrial: ["Questrial", "sans-serif"],
         gilroy: ["var(--font-gilroy)"],
         georgia: ["var(--font-georgia)"],
       },
@@ -47,6 +48,7 @@ module.exports = {
         londonYellow: "#B18516",
         softViolet: "#B94FEB",
         otherblue: "#428897",
+        backgroundModal: "#FCF7FF",
       },
     },
   },
