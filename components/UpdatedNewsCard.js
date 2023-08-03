@@ -84,7 +84,7 @@ export default function UpdatedNewsCard(props) {
                   : ""
               } ${
                 props.horizontal == true
-                  ? "top-3 sm:text-xs text-8px"
+                  ? "top-3 sm:text-xs text-[8px]"
                   : "top-8"
               }  font-gilroy font-500`}
             >
@@ -113,11 +113,13 @@ export default function UpdatedNewsCard(props) {
             {props.headline}
           </h1>
           <div className="flex flex-row items-center pt-2">
-            <Avatar size={2} />
+            
+            <Avatar size={2}  />
+            
             <p
               style={{ color: textColor }}
               className={`ml-2 font-georgia ${
-                props.bigger == true ? "sm:text-xl text-10px" : ""
+                props.bigger == true ? "sm:text-xl text-[10px]" : " sm:text-lg text-[10px]"
               } `}
             >
               {"Nigel Dias"} | {props.genre}
