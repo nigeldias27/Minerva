@@ -5,21 +5,18 @@ import Headers from "@/components/Header";
 import PersonCard from "@/components/PersonCard";
 import { team } from "@/models/team";
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 import { BsArrowDown } from "react-icons/bs";
 
 export default function AboutUs() {
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    localStorage.getItem("mode") == "dark" ? setDark(true) : setDark(false);
+  }, []);
   return (
-    <div
-      className={
-        typeof window !== "undefined"
-          ? localStorage.getItem("mode") == "dark"
-            ? "dark"
-            : ""
-          : ""
-      }
-    >
+    <div className={dark ? "dark" : ""}>
       <div className="bg-white dark:bg-greyBlack">
-        <Headers />
+        <Headers dark={dark} setDark={setDark} />
         <div className="flex justify-center flex-col mx-8 pb-24 pt-16 md:py-18">
           <UpdatedHeading>About Us</UpdatedHeading>
 
@@ -58,23 +55,23 @@ export default function AboutUs() {
             <div className="text-white dark:text-black grid grid-cols-2">
               <div className=" bg-black dark:bg-white font-georgia text-lg p-20 m-4">
                 {" "}
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Minerva focuses on educating students in the field of media and
+                mass communications via our various channels.
               </div>
               <div className=" bg-black dark:bg-white font-georgia text-lg p-20 m-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                vulputate libero et velit interdum, ac aliquet odio mattis.
+                We have weekly blog issues where our team covers all major
+                events around our nation and the world.
               </div>
             </div>
             <div className="text-white dark:text-black grid grid-cols-2">
               <div className=" bg-black dark:bg-white font-georgia text-lg p-20 m-4">
                 {" "}
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Minerva also provides secondary coverage of important events
+                happening in PESU as well as highlighting achievements.
               </div>
               <div className=" bg-black dark:bg-white font-georgia text-lg p-20 m-4">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc
-                vulputate libero et velit interdum, ac aliquet odio mattis.
+                Workshops and talks are held to bring in renowned personalities
+                in the field so students get real time exposure to the field.
               </div>
               <div
                 style={{ transform: "translate(-50%,-50%)" }}

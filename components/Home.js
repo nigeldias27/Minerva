@@ -1,5 +1,5 @@
 import Footer from "./Footer";
-import NewsCard from "./NewsCard";
+import Headers from "@/components/Header";
 import { useMediaQuery } from "react-responsive";
 import Link from "next/link";
 import Timeline from "@mui/lab/Timeline";
@@ -11,7 +11,7 @@ import TimelineDot from "@mui/lab/TimelineDot";
 import { BsArrowDown } from "react-icons/bs";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import Backdrop from "@mui/material/Backdrop";
-import Dialog from "@mui/material/Dialog";
+import { Dialog, Transition } from "@headlessui/react";
 import event6 from "../public/assets/newsletter.png";
 import event7 from "../public/assets/newsletter_dark.png";
 import { GrClose } from "react-icons/gr";
@@ -31,7 +31,7 @@ import background from "../public/assets/background.png";
 import foreground from "../public/assets/foreground.png";
 import { Avatar, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/router";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, Fragment } from "react";
 import axios from "axios";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
@@ -98,7 +98,7 @@ export default function HomeComponent() {
   const [data, setData] = useState([]); //This refers to the 6 news articles featured in the home page
   const [open, setOpen] = useState(false); // Loading circular progress bar(Backdrop)
   const isSmallScreen = useMediaQuery({ maxWidth: 480 });
-  const [dark, setDark] = useState();
+  const [dark, setDark] = useState(false);
   const [openDialogue, setOpenDialogue] = useState(false);
   const handleClickOpen = () => {
     setOpenDialogue(true);
@@ -108,10 +108,14 @@ export default function HomeComponent() {
     setOpenDialogue(false);
   };
   useEffect(() => {
+    localStorage.getItem("mode") == "dark" ? setDark(true) : setDark(false);
+
     setOpenDialogue(true);
     initState();
   }, []);
-
+  function closeModal() {
+    setOpenDialogue(false);
+  }
   async function initState() {
     setOpen(true);
     const response = await axios.post("/api/articles", {
@@ -144,15 +148,8 @@ export default function HomeComponent() {
   };
 
   return (
-    <div
-      className={
-        typeof window !== "undefined"
-          ? localStorage.getItem("mode") == "dark"
-            ? "dark"
-            : ""
-          : ""
-      }
-    >
+    <div className={dark ? "dark" : ""}>
+      <Headers dark={dark} setDark={setDark} />
       <div className="flex flex-col">
         <div
           className="w-screen -z-20"
@@ -196,13 +193,13 @@ export default function HomeComponent() {
           </div>
         </div>
         <div className="flex flex-row relative z-100 justify-center">
-          <button className="z-50 absolute bottom-10 border p-4 rounded-full border-black bg-pink">
-            <BsArrowDown size={16} />
-          </button>
           <button className="z-90 absolute bottom-12 border p-4 rounded-full border-black bg-yellow">
             <BsArrowDown size={16} />
           </button>
-          <button className="z-90 absolute bottom-11 border p-4 rounded-full border-black bg-blue">
+          <button className="z-80 absolute bottom-11 border p-4 rounded-full border-black bg-blue">
+            <BsArrowDown size={16} />
+          </button>
+          <button className="z-90 absolute bottom-10 border p-4 rounded-full border-black bg-pink">
             <BsArrowDown size={16} />
           </button>
         </div>
@@ -660,177 +657,167 @@ export default function HomeComponent() {
           >
             <CircularProgress color="inherit" />
           </Backdrop>
-          <Dialog
-            fullWidth={true}
-            maxWidth={"lg"}
-            onClose={handleClose}
-            open={openDialogue}
-          >
-            <div
-              className={`p-10  ${
-                typeof window !== "undefined"
-                  ? localStorage.getItem("mode") == "dark"
-                    ? "bg-greyBlack"
-                    : ""
-                  : ""
-              }`}
-            >
-              <div className="grid grid-cols-2">
-                <UpdatedHeading>Join Our Newsletter</UpdatedHeading>
-                <div className="flex flex-col pt-4 items-end relative">
-                  <div
-                    style={{ color: "white" }}
-                    onClick={handleClose}
-                    className={`absolute z-10 top-5 -right-1 border bg-white border-otherblue p-1   ${
-                      typeof window !== "undefined"
-                        ? localStorage.getItem("mode") == "dark"
-                          ? "bg-greyBlack"
-                          : ""
-                        : ""
-                    }`}
+          <Transition appear show={openDialogue} as={Fragment}>
+            <Dialog as="div" className="relative z-10" onClose={closeModal}>
+              <Transition.Child
+                as={Fragment}
+                enter="ease-out duration-300"
+                enterFrom="opacity-0"
+                enterTo="opacity-100"
+                leave="ease-in duration-200"
+                leaveFrom="opacity-100"
+                leaveTo="opacity-0"
+              >
+                <div className="fixed inset-0 bg-black bg-opacity-25" />
+              </Transition.Child>
+
+              <div className="fixed inset-0 overflow-y-auto">
+                <div className="flex min-h-full items-center justify-center p-4 text-center">
+                  <Transition.Child
+                    as={Fragment}
+                    enter="ease-out duration-300"
+                    enterFrom="opacity-0 scale-95"
+                    enterTo="opacity-100 scale-100"
+                    leave="ease-in duration-200"
+                    leaveFrom="opacity-100 scale-100"
+                    leaveTo="opacity-0 scale-95"
                   >
-                    <GrClose
-                      style={{
-                        background: "white",
-                        fill: "white",
-                      }}
-                      className={`  ${
-                        typeof window !== "undefined"
-                          ? localStorage.getItem("mode") == "dark"
-                            ? "text-white"
-                            : "text-greyBlack"
-                          : "text-greyBlack"
-                      }`}
-                    />
-                  </div>
-                  <div
-                    style={{ color: "white" }}
-                    onClick={handleClose}
-                    className={`border z-20 relative border-softViolet bg-white p-1   ${
-                      typeof window !== "undefined"
-                        ? localStorage.getItem("mode") == "dark"
-                          ? "bg-greyBlack"
-                          : ""
-                        : ""
-                    }`}
-                  >
-                    <IoMdClose
-                      className={`${
-                        typeof window !== "undefined"
-                          ? localStorage.getItem("mode") == "dark"
-                            ? "text-white"
-                            : "text-black"
-                          : "text-black"
-                      }`}
-                    />
-                  </div>
+                    <Dialog.Panel
+                      className={`w-full max-w-4xl rounded-none ${
+                        dark ? "bg-greyBlack" : "bg-backgroundModal"
+                      } transform overflow-hidden p-10 text-left align-middle shadow-xl transition-all`}
+                    >
+                      <div className="grid grid-cols-2">
+                        <UpdatedHeading>Join Our Newsletter</UpdatedHeading>
+                        <div className="flex flex-col pt-4 items-end relative">
+                          <div
+                            style={{ color: dark ? "black" : "white" }}
+                            onClick={handleClose}
+                            className={`absolute z-10 top-5 -right-1 border   border-otherblue p-1   ${
+                              dark ? "bg-greyBlack" : "bg-backgroundModal"
+                            }`}
+                          >
+                            <GrClose
+                              style={{
+                                background: dark ? "black" : "white",
+                                fill: dark ? "black" : "white",
+                              }}
+                              className={`  ${
+                                dark ? "text-white" : "text-greyBlack"
+                              }`}
+                            />
+                          </div>
+                          <div
+                            style={{ color: dark ? "black" : "white" }}
+                            onClick={handleClose}
+                            className={`border z-20 relative border-softViolet p-1   ${
+                              dark ? "bg-greyBlack" : "bg-backgroundModal"
+                            }`}
+                          >
+                            <IoMdClose
+                              className={`${
+                                dark ? "text-white" : "text-black"
+                              }`}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                      <div className="grid grid-cols-1 sm:grid-cols-2">
+                        <div className=" flex items-center h-64 sm:h-full justify-center sm:justify-start">
+                          <Image
+                            className="scale-75"
+                            src={dark ? event7 : event6}
+                          ></Image>
+                        </div>
+                        <div className="flex flex-col">
+                          <div className="flex flex-col sm:pt-4 items-start sm:items-end relative">
+                            <h1
+                              className={`text-black sm:mt-8 font-questrial font-semibold text-md ${
+                                dark ? "text-white" : "text-black"
+                              }`}
+                            >
+                              <span className="text-londonYellow dark:text-yellow">
+                                Subscribe
+                              </span>{" "}
+                              to our newsletter
+                            </h1>
+                            <h1
+                              className={`text-black font-questrial font-semibold text-md dark:text-white  ${
+                                dark ? "text-white" : "text-black"
+                              }`}
+                            >
+                              for the latest articles and{" "}
+                              <span className="text-otherblue dark:text-blue">
+                                exclusive content
+                              </span>
+                            </h1>
+                            <TextField
+                              InputProps={{
+                                style: {
+                                  borderRadius: "0",
+                                  color: "black",
+                                  background: "white",
+                                  border: "black",
+                                },
+                              }}
+                              color="secondary"
+                              placeholder="Name"
+                              className="font-georgia text-md w-full mt-6 py-3 text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[8px_8px_0px_rgba(222,153,255,1)]"
+                            ></TextField>
+                            <TextField
+                              InputProps={{
+                                style: {
+                                  borderRadius: "0",
+                                  color: "black",
+                                  background: "white",
+                                },
+                              }}
+                              placeholder="Email"
+                              className="font-georgia w-full text-md mt-6 py-3 text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[8px_8px_0px_rgba(159,225,240,1)]"
+                            ></TextField>
+                          </div>
+                          <div className="mt-6 relative">
+                            <button className="bg-yellow text-md z-10 px-6 top-2 left-2 rounded-lg  py-2 border border-black font-questrial  font-semibold hover:bg-hoverbeigeText absolute">
+                              Subscribe
+                            </button>
+                            <button className="bg-blue z-30 text-md px-6 top-1 left-1 rounded-lg  py-2 border border-black font-questrial  font-semibold hover:bg-hoverbeigeText absolute">
+                              Subscribe
+                            </button>
+                            <button
+                              className="bg-pink px-6 text-md z-40 rounded-lg relative  py-2 border border-black font-questrial  font-semibold hover:bg-hoverbeigeText"
+                              onClick={async () => {
+                                try {
+                                  const response = await axios.post(
+                                    "/api/contactUs",
+                                    data
+                                  );
+                                  console.log(response);
+                                  if ((response.data = "Finished")) {
+                                    alert("Thank you for your response!");
+                                  }
+                                } catch (e) {
+                                  alert("Failed to send.");
+                                }
+                                setData({
+                                  Name: "",
+                                  Email: "",
+                                  Subject: "",
+                                  Message: "",
+                                });
+                              }}
+                            >
+                              Subscribe
+                            </button>
+                            <button></button>
+                          </div>
+                        </div>
+                      </div>
+                    </Dialog.Panel>
+                  </Transition.Child>
                 </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2">
-                <div className="ml-8">
-                  <Image
-                    src={
-                      typeof window !== "undefined"
-                        ? localStorage.getItem("mode") == "dark"
-                          ? event7
-                          : event6
-                        : event6
-                    }
-                  ></Image>
-                </div>
-                <div className="flex flex-col">
-                  <div className="flex flex-col pt-4 items-start sm:items-end relative">
-                    <h1
-                      className={`text-black mt-8 font-han text-md font-light ${
-                        typeof window !== "undefined"
-                          ? localStorage.getItem("mode") == "dark"
-                            ? "text-white"
-                            : "text-black"
-                          : "text-black"
-                      }`}
-                    >
-                      <span className="text-londonYellow dark:text-yellow">
-                        Subscribe
-                      </span>{" "}
-                      to our newsletter
-                    </h1>
-                    <Typography
-                      className={`text-black font-han text-md font-light dark:text-white  ${
-                        typeof window !== "undefined"
-                          ? localStorage.getItem("mode") == "dark"
-                            ? "text-white"
-                            : "text-black"
-                          : "text-black"
-                      }`}
-                    >
-                      for the latest articles and{" "}
-                      <span className="text-otherblue dark:text-blue">
-                        exclusive content
-                      </span>
-                    </Typography>
-                    <TextField
-                      InputProps={{
-                        style: {
-                          borderRadius: "0",
-                          color: "black",
-                          background: "white",
-                          border: "black",
-                        },
-                      }}
-                      color="secondary"
-                      placeholder="Name"
-                      className="font-georgia text-md w-full mt-6 py-3 text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[8px_8px_0px_rgba(222,153,255,1)]"
-                    ></TextField>
-                    <TextField
-                      InputProps={{
-                        style: {
-                          borderRadius: "0",
-                          color: "black",
-                          background: "white",
-                        },
-                      }}
-                      placeholder="Email"
-                      className="font-georgia w-full text-md mt-6 py-3 text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[8px_8px_0px_rgba(159,225,240,1)]"
-                    ></TextField>
-                  </div>
-                  <div className="mt-6 relative">
-                    <button className="bg-yellow text-md z-10 px-6 top-2 left-2 rounded-lg  py-2 border border-black font-han hover:bg-hoverbeigeText absolute">
-                      Subscribe
-                    </button>
-                    <button className="bg-blue z-30 text-md px-6 top-1 left-1 rounded-lg  py-2 border border-black font-han hover:bg-hoverbeigeText absolute">
-                      Subscribe
-                    </button>
-                    <button
-                      className="bg-pink px-6 text-md z-40 rounded-lg relative font-light  py-2 border border-black font-han hover:bg-hoverbeigeText"
-                      onClick={async () => {
-                        try {
-                          const response = await axios.post(
-                            "/api/contactUs",
-                            data
-                          );
-                          console.log(response);
-                          if ((response.data = "Finished")) {
-                            alert("Thank you for your response!");
-                          }
-                        } catch (e) {
-                          alert("Failed to send.");
-                        }
-                        setData({
-                          Name: "",
-                          Email: "",
-                          Subject: "",
-                          Message: "",
-                        });
-                      }}
-                    >
-                      Subscribe
-                    </button>
-                    <button></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </Dialog>
+            </Dialog>
+          </Transition>
         </div>
       </div>
     </div>

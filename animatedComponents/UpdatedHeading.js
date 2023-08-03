@@ -7,6 +7,7 @@ export default function UpdatedHeading(props) {
             "1px 0 0 black,0 1px 0 black,-1px 0 0 black,0 -1px 0 black",
         }}
         className="relative sm:text-4xl text-2xl font-han  z-30 outline-2 text-white"
+
       >
         {props.notcap == false ? props.children : props.children.toUpperCase()}
       </h1>
@@ -21,6 +22,7 @@ export default function UpdatedHeading(props) {
             "1px 0 0 black,0 1px 0 black,-1px 0 0 black,0 -1px 0 black",
         }}
         className="sm:text-4xl text-2xl  font-han z-20 "
+
       >
         {props.notcap == false ? props.children : props.children.toUpperCase()}
       </h1>
