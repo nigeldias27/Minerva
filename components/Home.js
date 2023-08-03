@@ -178,7 +178,7 @@ export default function HomeComponent() {
                 <h1 className="text-xl font-georgia font-light mt-8 mb-4 text-white md:text-3xl">
                   Bangalore&apos;s first student-run college newspaper
                 </h1>
-                <p className="text-md font-georgia font-light md:text-xl pr-3 text-white">
+                <p className="text-md font-georgia hidden sm:flex font-light md:text-xl pr-3 text-white">
                   We are a group of thinkers that challenge people through good
                   journalism.
                 </p>
@@ -204,7 +204,7 @@ export default function HomeComponent() {
           </button>
         </div>
         <div className="px-0 bg-white dark:bg-greyBlack pt-8 sm:px-12">
-          <div className="sm:flex sm:flex-row flex flex-col mt-16 ">
+          <div className="sm:flex sm:flex-row flex flex-col sm:mt-16 ">
             <div className="basis-3/6">
               <UpdatedHeading># Trending</UpdatedHeading>
               {data[0] == undefined ? (
@@ -559,7 +559,7 @@ export default function HomeComponent() {
                   </h4>
                 </div>
                 <p className="  mx-3 mt-20  text-14px sm:mt-5  sm:text-20px font-georgia text-#1D1D1D  dark:text-white">
-                Centre for Innovation and Entrepreneurship
+                  Centre for Innovation and Entrepreneurship
                   <a
                     className="underline"
                     onClick={() => {
@@ -568,18 +568,23 @@ export default function HomeComponent() {
                   >
                     (CIE)
                   </a>
-                  is founded on the vision to impart innovation and entrepreneurial skills 
-                  to students and aims to enablestudents and startups to transform ideas 
-                  into market-ready products, while keeping sustainability in mind.
-                  <sup className="text-sm sm:text-sm">[1](https://cie.pes.edu/about-us/)</sup>It combines technology, 
-                  innovation and entrepreneurship, leading to innovation in STEM with an 
-                  entrepreneurial focus. CIE is directed by Prof. Sathya Prasad and managed
-                  by the program manager of CIE, Mr. Madhukar Narasimha. Nearly 1784 Students 
-                  have completed courses offered by CIE and it has received approximately six 
-                  million rupees as industry grants and awards. CIE is also a part of nine industry
-                  programs. The Centre for Innovation and Entrepreneurship provides an eye-opening 
-                  opportunity for students to learn about the world of entrepreneurship and see their
-                   ideas fruition to life.
+                  is founded on the vision to impart innovation and
+                  entrepreneurial skills to students and aims to enablestudents
+                  and startups to transform ideas into market-ready products,
+                  while keeping sustainability in mind.
+                  <sup className="text-sm sm:text-sm">
+                    [1](https://cie.pes.edu/about-us/)
+                  </sup>
+                  It combines technology, innovation and entrepreneurship,
+                  leading to innovation in STEM with an entrepreneurial focus.
+                  CIE is directed by Prof. Sathya Prasad and managed by the
+                  program manager of CIE, Mr. Madhukar Narasimha. Nearly 1784
+                  Students have completed courses offered by CIE and it has
+                  received approximately six million rupees as industry grants
+                  and awards. CIE is also a part of nine industry programs. The
+                  Centre for Innovation and Entrepreneurship provides an
+                  eye-opening opportunity for students to learn about the world
+                  of entrepreneurship and see their ideas fruition to life.
                 </p>
               </div>
               <div className="basis-3/5 relative -translate-x-3 hidden sm:block">
@@ -600,7 +605,6 @@ export default function HomeComponent() {
                 ></img>
                 <div className="absolute w-full  sm:mt-8 mt-1  sm:mb-24 mb-1 z-0 bg-blue top-2 sm:top-4 left-1 sm:left-4 aspect-video"></div>
                 <div className="absolute w-full sm:mt-8 mt-1 sm:mb-24 mb-1 z-0 bg-white dark:bg-black top-1 sm:top-3 left-0.5 sm:left-3 aspect-video"></div>
-
               </div>
               <div className="basis-2/5 pt-7 pb-3 -translate-x-3 sm:translate-x-1">
                 <div className="pb-12 pt-0.5">
@@ -612,7 +616,7 @@ export default function HomeComponent() {
                   </h4>
                 </div>
                 <p className="  mx-3 mt-18  text-14px sm:-mt-5  sm:text-20px font-georgia text-#1D1D1D  dark:text-white">
-                PESU Venture Labs
+                  PESU Venture Labs
                   <a
                     className="underline"
                     onClick={() => {
@@ -621,21 +625,30 @@ export default function HomeComponent() {
                   >
                     (PVL)
                   </a>
-                  , a venture studio launched under the partnership of PESU and CoCreate ventures, 
-                  is a fund equipped with execution and acceleration capabilities. It aims to find
-                  solutions to questions like - &lsquo;Can entrepreneurship fund research and scholarships?&rsquo;
-                  and &lsquo;Can we create a funnel of fundable deep tech companies that are category creators
-                  for the existing VC ecosystem?&rsquo;<sup>[1](https://pesuventurelabs.com/about)</sup>. PVL 
-                  provides resources, mentoring, and, funding and support to individuals looking for 
-                  guidance. Its process flow goes in the following manner - come up with your own project 
-                  idea or participate in their corporate backed bootcamps,turning the idea into a product,
-                  and finally selling the project, converting to start-up or just cashing in the prize money 
-                  to suit your requirements.PVL also offers employment opportunities in various domains such 
-                  as UI/UX Designer, Frontend and Backend Web Dev, Content Writer, PR, and many more.
-                  <sup>[2](https://www.pesuventurelabs.com/opportunities)</sup> PESU Venture Labs provides 
-                  students with an riveting opportunity to innovate freely and feel pride in having built 
+                  , a venture studio launched under the partnership of PESU and
+                  CoCreate ventures, is a fund equipped with execution and
+                  acceleration capabilities. It aims to find solutions to
+                  questions like - &lsquo;Can entrepreneurship fund research and
+                  scholarships?&rsquo; and &lsquo;Can we create a funnel of
+                  fundable deep tech companies that are category creators for
+                  the existing VC ecosystem?&rsquo;
+                  <sup>[1](https://pesuventurelabs.com/about)</sup>. PVL
+                  provides resources, mentoring, and, funding and support to
+                  individuals looking for guidance. Its process flow goes in the
+                  following manner - come up with your own project idea or
+                  participate in their corporate backed bootcamps,turning the
+                  idea into a product, and finally selling the project,
+                  converting to start-up or just cashing in the prize money to
+                  suit your requirements.PVL also offers employment
+                  opportunities in various domains such as UI/UX Designer,
+                  Frontend and Backend Web Dev, Content Writer, PR, and many
+                  more.
+                  <sup>
+                    [2](https://www.pesuventurelabs.com/opportunities)
+                  </sup>{" "}
+                  PESU Venture Labs provides students with an riveting
+                  opportunity to innovate freely and feel pride in having built
                   their ideas from ground up.
-
                 </p>
               </div>
               <div className="basis-3/5 relative translate-x-1 hidden sm:block">
