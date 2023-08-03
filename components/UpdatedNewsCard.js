@@ -84,7 +84,7 @@ export default function UpdatedNewsCard(props) {
                   : ""
               } ${
                 props.horizontal == true
-                  ? "top-3 md:text-xs sm:text-6px"
+                  ? "top-3 sm:text-xs text-8px"
                   : "top-8"
               }  font-gilroy font-500`}
             >
@@ -107,7 +107,7 @@ export default function UpdatedNewsCard(props) {
         >
           <h1
             className={` ${
-              props.horizontal == true ? "text-xl" : "md:text-2xl sm:text-14px"
+              props.horizontal == true ? "text-xl" : "sm:text-2xl :text-14px"
             } font-georgia text-#1D1D1D dark:text-white`}
           >
             {props.headline}
@@ -117,7 +117,7 @@ export default function UpdatedNewsCard(props) {
             <p
               style={{ color: textColor }}
               className={`ml-2 font-georgia ${
-                props.bigger == true ? "md:text-xl sm:text-12px" : ""
+                props.bigger == true ? "sm:text-xl text-10px" : ""
               } `}
             >
               {"Nigel Dias"} | {props.genre}

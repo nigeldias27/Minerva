@@ -178,7 +178,7 @@ export default function HomeComponent() {
                 <h1 className="text-xl font-georgia font-light mt-8 mb-4 text-white md:text-3xl">
                   Bangalore&apos;s first student-run college newspaper
                 </h1>
-                <p className="text-md font-georgia font-light md:text-xl text-white">
+                <p className="text-md font-georgia font-light md:text-xl pr-3 text-white">
                   We are a group of thinkers that challenge people through good
                   journalism.
                 </p>
@@ -204,7 +204,7 @@ export default function HomeComponent() {
           </button>
         </div>
         <div className="px-0 bg-white dark:bg-greyBlack pt-8 sm:px-12">
-          <div className="md:flex md:flex-row sm:flex sm:flex-col mt-16 ">
+          <div className="sm:flex sm:flex-row flex flex-col mt-16 ">
             <div className="basis-3/6">
               <UpdatedHeading># Trending</UpdatedHeading>
               {data[0] == undefined ? (
@@ -236,14 +236,14 @@ export default function HomeComponent() {
                 </div>
               )}
             </div>
-            <div className="basis-2/4 pl-3 pt-16 sm:flex sm:flex-col">
+            <div className="basis-2/4 pl-3 pt-16 flex flex-col">
               <div className="flex justify-between items-center">
                 <h1 className="text-3xl text-#1D1D1D dark:text-white font-gilroy font-bold ml-8 ">
                   Recent News
                 </h1>
                 <Link
                   href={"/allnews"}
-                  className=" text-otherblue dark:text-blue underline text-lg font-georgia pr-4 hover:text-hoverbeigeText sm:hidden "
+                  className=" text-otherblue dark:text-blue underline text-sm font-georgia pr-4 pt-2 hover:text-hoverbeigeText justify-center sm:hidden "
                 >
                   View More
                 </Link>
@@ -258,7 +258,7 @@ export default function HomeComponent() {
                   customLeftArrow={<></>} // Hide the left arrow button
                   customRightArrow={<></>} // Hide the right arrow button
                   removeArrowOnDeviceType={["sm", "md"]}
-                  className="py-4"
+                  className="py-4 justify-center mr-3"
                 >
                   {/* Render news cards as carousel items */}
                   {data.map((val, i) => (
@@ -540,47 +540,51 @@ export default function HomeComponent() {
             customRightArrow={isSmallScreen ? <></> : <CustomRightArrow />} // Hide the right arrow button
             className="py-3"
           >
-            <div className="md:flex md:flex-row  sm:flex-col mx-10">
+            <div className="sm:flex sm:flex-row  flex-col mx-10 ">
               <div className="basis-3/5 relative sm:hidden">
                 <img
-                  src="https://lh3.googleusercontent.com/p/AF1QipP0ziHgkSGCOHH99LOGHUUie5kJDdmecp6zIosO=s1360-w1360-h1020"
-                  className="w-full mt-8 mb-20 relative z-10 aspect-video"
+                  src="https://cie.pes.edu/wp-content/uploads/2023/04/CIE-Timeline-1-1.jpg"
+                  className="w-full mt-3 mb-19 relative z-10 -translate-x-7 aspect-video"
                 ></img>
-                <div className="absolute w-full  md:mt-8 sm:mt-7  md:mb-24 sm:mb-14 z-0 bg-blue top-4 left-4 aspect-video"></div>
-                <div className="absolute w-full md:mt-8 sm:mt-7 md:mb-24 sm:mb-14 z-0 bg-white dark:bg-black top-3 left-3 aspect-video"></div>
+                <div className="absolute w-full  sm:mt-8 mt-1  sm:mb-24 mb-1 z-1  bg-blue top-4 left-2 aspect-video"></div>
+                <div className="absolute w-full sm:mt-8 mt-1 sm:mb-24 mb-1 z-0 bg-white dark:bg-black top-3 left-1 aspect-video"></div>
               </div>
-              <div className="basis-2/5">
-                <div className="pb-1">
+              <div className="basis-2/5 pt-7 pb-3 -translate-x-3">
+                <div className="pb-0.1 pt-0.5">
                   <h4
                     /* style={{ width:"50%" }}*/
-                    className="absolute z-20 md:w-50% sm:w-100% md:text-4xl sm:text-16px md:pt-3  md:pb-4 md:mx-8 sm:ml-10 text-[#428897] dark:text-blue font-han font-bold"
+                    className="absolute sm:relative z-20 sm:w-50% w-100% sm:text-4xl text-16px sm:pt-3  sm:pb-1  sm:mr-5 ml-3   text-[#428897] dark:text-blue font-han font-bold"
                   >
-                    PESU SHINES UNDER CORI
+                    The stepping stone to entrepreneurship
                   </h4>
                 </div>
-                <p className="mx-3 mt-20 mb-5 sm:text-14px font-georgia text-#1D1D1D  dark:text-white">
-                  Crucible of Research and Innovation
+                <p className="  mx-3 mt-20  text-14px sm:mt-5  sm:text-20px font-georgia text-#1D1D1D  dark:text-white">
+                Centre for Innovation and Entrepreneurship
                   <a
                     className="underline"
                     onClick={() => {
-                      window.location.href = "https://research.pes.edu/cori/";
+                      window.location.href = "https://cie.pes.edu";
                     }}
                   >
-                    (CORI)
+                    (CIE)
                   </a>
-                  , headed by Dr. V. Sambasiva Rao is the research centre of
-                  PESU where multidisciplinary research is carried out. A lot of
-                  these projects are done under the guidance of professors like
-                  Dr Manikandan J, for various other organizations like TCS and
-                  ISRO. They work on multiple interesting projects involving
-                  satellites, robots, sensors for detection, lifespan of
-                  hardware used among other ideas. This provides an interesting
-                  opportunity for students to explore the fields of research.
+                  is founded on the vision to impart innovation and entrepreneurial skills 
+                  to students and aims to enablestudents and startups to transform ideas 
+                  into market-ready products, while keeping sustainability in mind.
+                  <sup className="text-sm sm:text-sm">[1](https://cie.pes.edu/about-us/)</sup>It combines technology, 
+                  innovation and entrepreneurship, leading to innovation in STEM with an 
+                  entrepreneurial focus. CIE is directed by Prof. Sathya Prasad and managed
+                  by the program manager of CIE, Mr. Madhukar Narasimha. Nearly 1784 Students 
+                  have completed courses offered by CIE and it has received approximately six 
+                  million rupees as industry grants and awards. CIE is also a part of nine industry
+                  programs. The Centre for Innovation and Entrepreneurship provides an eye-opening 
+                  opportunity for students to learn about the world of entrepreneurship and see their
+                   ideas fruition to life.
                 </p>
               </div>
-              <div className="basis-3/5 relative hidden sm:block">
+              <div className="basis-3/5 relative -translate-x-3 hidden sm:block">
                 <img
-                  src="https://lh3.googleusercontent.com/p/AF1QipP0ziHgkSGCOHH99LOGHUUie5kJDdmecp6zIosO=s1360-w1360-h1020"
+                  src="https://cie.pes.edu/wp-content/uploads/2023/04/CIE-Timeline-1-1.jpg"
                   className="w-full mt-8 mb-24 relative z-10 aspect-video"
                 ></img>
                 <div className="absolute w-full  mt-8 mb-24 z-0 bg-blue top-4 left-4 aspect-video"></div>
@@ -588,47 +592,54 @@ export default function HomeComponent() {
               </div>
             </div>
 
-            <div className="md:flex md:flex-row  sm:flex-col mx-10">
+            <div className="sm:flex sm:flex-row  flex-col mx-10">
               <div className="basis-3/5 relative sm:hidden">
                 <img
-                  src="https://lh3.googleusercontent.com/p/AF1QipP0ziHgkSGCOHH99LOGHUUie5kJDdmecp6zIosO=s1360-w1360-h1020"
-                  className="w-full mt-8 mb-20 relative z-10 aspect-video"
+                  src="data:image/png;base64,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"
+                  className="w-full mt-3  mb-19 relative z-10 -translate-x-5 aspect-video"
                 ></img>
-                <div className="absolute w-full  md:mt-8 sm:mt-7  md:mb-24 sm:mb-14 z-0 bg-blue top-4 left-4 aspect-video"></div>
-                <div className="absolute w-full md:mt-8 sm:mt-7 md:mb-24 sm:mb-14 z-0 bg-white dark:bg-black top-3 left-3 aspect-video"></div>
+                <div className="absolute w-full  sm:mt-8 mt-1  sm:mb-24 mb-1 z-0 bg-blue top-4 left-4 aspect-video"></div>
+                <div className="absolute w-full sm:mt-8 mt-1 sm:mb-24 mb-1 z-0 bg-white dark:bg-black top-3 left-3 aspect-video"></div>
               </div>
-              <div className="basis-2/5">
-                <div className="pb-1">
+              <div className="basis-2/5 pt-7 pb-3 -translate-x-3 sm:translate-x-1">
+                <div className="pb-12 pt-0.5">
                   <h4
                     /* style={{ width:"50%" }}*/
-                    className="absolute z-20 md:w-50% sm:w-100% md:text-4xl sm:text-16px md:pt-3  md:pb-4 md:mx-8 sm:ml-10 text-[#428897] dark:text-blue font-han font-bold"
+                    className="absolute sm:relative z-20 sm:w-50% w-100% sm:text-4xl text-16px sm:pt-3  sm:pb-1  sm:mr-5 ml-3  text-[#428897] dark:text-blue font-han font-bold"
                   >
-                    PESU SHINES UNDER CORI
+                    Rising Innovators of PESU
                   </h4>
                 </div>
-                <p className="mx-3 mt-20 sm:text-14px font-georgia text-#1D1D1D  dark:text-white">
-                  Crucible of Research and Innovation
+                <p className="  mx-3 mt-18  text-14px sm:-mt-5  sm:text-20px font-georgia text-#1D1D1D  dark:text-white">
+                PESU Venture Labs
                   <a
                     className="underline"
                     onClick={() => {
-                      window.location.href = "https://research.pes.edu/cori/";
+                      window.location.href = "https://pesuventurelabs.com/";
                     }}
                   >
-                    (CORI)
+                    (PVL)
                   </a>
-                  , headed by Dr. V. Sambasiva Rao is the research centre of
-                  PESU where multidisciplinary research is carried out. A lot of
-                  these projects are done under the guidance of professors like
-                  Dr Manikandan J, for various other organizations like TCS and
-                  ISRO. They work on multiple interesting projects involving
-                  satellites, robots, sensors for detection, lifespan of
-                  hardware used among other ideas. This provides an interesting
-                  opportunity for students to explore the fields of research.
+                  , a venture studio launched under the partnership of PESU and CoCreate ventures, 
+                  is a fund equipped with execution and acceleration capabilities. It aims to find
+                  solutions to questions like - 'Can entrepreneurship fund research and scholarships?'
+                  and 'Can we create a funnel of fundable deep tech companies that are category creators
+                  for the existing VC ecosystem?'<sup>[1](https://pesuventurelabs.com/about)</sup>. PVL 
+                  provides resources, mentoring, and, funding and support to individuals looking for 
+                  guidance. Its process flow goes in the following manner - come up with your own project 
+                  idea or participate in their corporate backed bootcamps,turning the idea into a product,
+                  and finally selling the project, converting to start-up or just cashing in the prize money 
+                  to suit your requirements.PVL also offers employment opportunities in various domains such 
+                  as UI/UX Designer, Frontend and Backend Web Dev, Content Writer, PR, and many more.
+                  <sup>[2](https://www.pesuventurelabs.com/opportunities)</sup> PESU Venture Labs provides 
+                  students with an riveting opportunity to innovate freely and feel pride in having built 
+                  their ideas from ground up.
+
                 </p>
               </div>
-              <div className="basis-3/5 relative hidden sm:block">
+              <div className="basis-3/5 relative translate-x-1 hidden sm:block">
                 <img
-                  src="https://lh3.googleusercontent.com/p/AF1QipP0ziHgkSGCOHH99LOGHUUie5kJDdmecp6zIosO=s1360-w1360-h1020"
+                  src="data:image/png;base64,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"
                   className="w-full mt-8 mb-24 relative z-10 aspect-video"
                 ></img>
                 <div className="absolute w-full  mt-8 mb-24 z-0 bg-blue top-4 left-4 aspect-video"></div>
