@@ -175,8 +175,8 @@ export default function News() {
   }, [check]);
 
   function getReadTime(contents) {
-    // assuming 250 words per minute
-    return Math.round(contents.split(/\w/g).length / 250) || 1;
+    // assuming 30 words per minute
+    return Math.round(contents.split(/\w/g).length / 30) || 1;
   }
 
   async function initState() {
