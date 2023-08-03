@@ -158,16 +158,16 @@ export default function News() {
   ]);
   const open = Boolean(anchorEl);
   const genreList = [
-    "AI/ Machine Learning",
-    "Biotechnology",
+    "World",
+    "India",
+    "Local",
     "Business",
-    "Design",
-    "Fasion",
-    "History",
-    "Life Skills",
-    "Psych",
+    "Finance",
+    "Sports",
+    "Entertainment",
+    "Lifestyle",
     "Science",
-    "Sorts",
+    "Technology",
   ];
 
   useEffect(() => {
