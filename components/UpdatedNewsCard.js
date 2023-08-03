@@ -83,9 +83,7 @@ export default function UpdatedNewsCard(props) {
                   ? "hidden"
                   : ""
               } ${
-                props.horizontal == true
-                  ? "top-3 sm:text-xs text-8px"
-                  : "top-8"
+                props.horizontal == true ? "top-3 sm:text-xs text-8px" : "top-8"
               }  font-gilroy font-500`}
             >
               {parseISOString(props.date)
@@ -117,7 +115,7 @@ export default function UpdatedNewsCard(props) {
             <p
               style={{ color: textColor }}
               className={`ml-2 font-georgia ${
-                props.bigger == true ? "sm:text-xl text-10px" : ""
+                props.bigger == true ? "sm:text-xl text-[10px]" : ""
               } `}
             >
               {"Nigel Dias"} | {props.genre}

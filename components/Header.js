@@ -25,7 +25,10 @@ export default function Headers(props) {
   const handleDrawerClose = () => {
     setDrawerOpen(false);
   };
-
+  /*                    props.dark
+                      ? localStorage.setItem("mode", "")
+                      : localStorage.setItem("mode", "dark");
+                    props.dark ? props.setDark(false) : props.setDark(true); */
   return (
     <div className={props.dark == true ? "dark" : ""}>
       <div className="w-screen bg-#FCF7FF dark:bg-greyBlack flex flex-row justify-between py-2 px-8 z-10">
@@ -72,6 +75,34 @@ export default function Headers(props) {
                   </ListItemButton>
                 </Link>
               </ListItem>
+              <ListItem sx={{ justifyContent: "center" }} className="sm:hidden">
+                <Link href={"/allnews"}>
+                  <ListItemButton sx={{ color: "white" }}>
+                    <ListItemText primary="News" />
+                  </ListItemButton>
+                </Link>
+              </ListItem>
+              <ListItem sx={{ justifyContent: "center" }} className="sm:hidden">
+                <Link href={"/#timeline"}>
+                  <ListItemButton sx={{ color: "white" }}>
+                    <ListItemText primary="Timeline" />
+                  </ListItemButton>
+                </Link>
+              </ListItem>
+              <ListItem sx={{ justifyContent: "center" }} className="sm:hidden">
+                <Link href={"/#featuringPES"}>
+                  <ListItemButton sx={{ color: "white" }}>
+                    <ListItemText primary="Featuring PES" />
+                  </ListItemButton>
+                </Link>
+              </ListItem>
+              <ListItem sx={{ justifyContent: "center" }} className="sm:hidden">
+                <Link href={"/#contactus"}>
+                  <ListItemButton sx={{ color: "white" }}>
+                    <ListItemText primary="Contact Us" />
+                  </ListItemButton>
+                </Link>
+              </ListItem>
               <ListItem sx={{ justifyContent: "center" }}>
                 <Link
                   href={""}
@@ -82,78 +113,17 @@ export default function Headers(props) {
                     props.dark ? props.setDark(false) : props.setDark(true);
                   }}
                 >
-                  <Link href={"/aboutUs"}>
-                    <ListItemButton
-                      sx={{ color: "white", fontFamily: "var(--font-georgia)" }}
-                    >
-                      <ListItemText
-                        primary="About Us"
-                        className="font-georgia"
-                      />
-                    </ListItemButton>
-                  </Link>
-                </ListItem>
-                <ListItem sx={{ justifyContent: "center" }}>
-                  <Link href={"/aboutUs"}>
-                    <ListItemButton sx={{ color: "white" }}>
-                      <ListItemText primary="Our Team" />
-                    </ListItemButton>
-                  </Link>
-                </ListItem>
-                <ListItem sx={{ justifyContent: "center" }} className="sm:hidden">
-                  <Link href={"/allnews"}>
-                    <ListItemButton sx={{color: "white" }}>
-                      <ListItemText primary="News" />
-                    </ListItemButton>
-                  </Link>
-                 </ListItem>
-                 <ListItem sx={{ justifyContent: "center" }} className="sm:hidden">
-                  <Link href={"/#timeline"}>
-                    <ListItemButton sx={{color: "white" }}>
-                      <ListItemText primary="Timeline" />
-                    </ListItemButton>
-                  </Link>
-                 </ListItem>
-                 <ListItem sx={{ justifyContent: "center" }} className="sm:hidden">
-                  <Link href={"/#featuringPES"}>
-                    <ListItemButton sx={{color: "white" }}>
-                      <ListItemText primary="Featuring PES" />
-                    </ListItemButton>
-                  </Link>
-                 </ListItem> 
-                 <ListItem sx={{ justifyContent: "center" }} className="sm:hidden">
-                  <Link href={"/#contactus"}>
-                    <ListItemButton sx={{color: "white" }}>
-                      <ListItemText primary="Contact Us" />
-                    </ListItemButton>
-                  </Link>
-                 </ListItem>
-                <ListItem sx={{ justifyContent: "center" }}>
-                  <Link
-                    href={""}
-                    onClick={() => {
-                      localStorage.getItem("mode") == "dark"
-                        ? localStorage.setItem("mode", "")
-                        : localStorage.setItem("mode", "dark");
-                    }}
-                  >
-                    <ListItemButton sx={{ color: "white" }}>
-                      <ListItemText
-                        primary={
-                          typeof window !== "undefined"
-                            ? localStorage.getItem("mode") == "dark"
-                              ? "Light mode"
-                              : "Dark mode"
-                            : ""
-                        }
-                      />
-                    </ListItemButton>
-                  </Link>
-                </ListItem>
-              </List>
-            </Drawer>
-          </div>
-          <div className="hidden  sm:flex sm:flex-row sm:items-center">
+                  <ListItemButton sx={{ color: "white" }}>
+                    <ListItemText
+                      primary={props.dark ? "Light mode" : "Dark mode"}
+                    />
+                  </ListItemButton>
+                </Link>
+              </ListItem>
+            </List>
+          </Drawer>
+        </div>
+        <div className="hidden  sm:flex sm:flex-row sm:items-center">
           <Link
             href={"/allnews"}
             className="text-#1D1D1D dark:text-white text-xl font-georgia px-8 hover:text-hoverbeigeText"
