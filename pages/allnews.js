@@ -243,6 +243,7 @@ export default function News() {
                   desc={`${val.description}`}
                   id={`${val._id}`}
                   newArticle={true}
+                  thisweek={true}
                   darkMode={
                     localStorage.getItem("mode") == "dark" ? true : false
                   }
