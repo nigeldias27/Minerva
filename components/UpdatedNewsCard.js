@@ -30,14 +30,14 @@ export default function UpdatedNewsCard(props) {
     >
       <div
         className={`min-h-full ${
-          props.horizontal == true ? "grid grid-cols-2 py-6" : ""
+          props.horizontal == true ? "grid grid-cols-5 sm:grid-cols-2 py-6" : ""
         } ${
           props.hideDate == true
             ? "grid grid-cols-2 sm:grid sm:grid-cols-1 py-6"
             : ""
         } hover:scale-105 transition duration-50 ease-linear`}
       >
-        <div className="relative">
+        <div className="relative col-span-2 sm:col-auto">
           <div
             style={{
               outlineColor: props.horizontal ? "transparent" : textColor,
@@ -103,7 +103,7 @@ export default function UpdatedNewsCard(props) {
               : props.horizontal == true
               ? "pl-8 pt-2"
               : "pt-8 pl-3"
-          }`}
+          } ${props.horizontal == true ? "col-span-3 sm:col-auto" : ""}`}
         >
           <h1
             className={` ${
