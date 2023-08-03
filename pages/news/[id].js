@@ -64,7 +64,7 @@ export default function Article() {
 
   return (
     <div className="sm:min-h-screen">
-      <Headers />
+      <Headers dark={false} />
       <motion.div
         style={{
           background: "yellow",

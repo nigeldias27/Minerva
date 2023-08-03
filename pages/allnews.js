@@ -19,7 +19,7 @@ import Head from "next/head";
 const CustomLeftArrow = ({ onClick }) => (
   <div
     onClick={() => onClick()}
-    className="w-10 h-10 relative z-50 bg-pink react-multiple-carousel__arrow "
+    className="w-10 h-10 relative z-50 bg-pink react-multiple-carousel__arrow hidden sm:flex"
   >
     <button
       style={{ transform: "translate(,-50%)" }}
@@ -41,7 +41,7 @@ const CustomLeftArrow = ({ onClick }) => (
 const CustomRightArrow = ({ onClick }) => (
   <div
     onClick={() => onClick()}
-    className="w-1 h-1 relative z-50 bg-pink react-multiple-carousel__arrow right-0 "
+    className="w-1 h-1 relative z-50 bg-pink react-multiple-carousel__arrow right-0 hidden sm:flex"
   >
     <button
       style={{ transform: "translate(,-50%)" }}
@@ -65,6 +65,10 @@ const CustomRightArrow = ({ onClick }) => (
 );
 export default function News() {
   const [previousChecker, setPrevious] = useState(false);
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    localStorage.getItem("mode") == "dark" ? setDark(true) : setDark(false);
+  }, []);
   function parseISOString(s) {
     var b = s.split(/\D+/);
     return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
@@ -121,11 +125,11 @@ export default function News() {
     superLargeDesktop: {
       // the naming can be any, depends on you.
       breakpoint: { max: 4000, min: 3000 },
-      items: 5,
+      items: 8,
     },
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 5,
+      items: 8,
     },
     tablet: {
       breakpoint: { max: 1024, min: 464 },
@@ -133,7 +137,7 @@ export default function News() {
     },
     mobile: {
       breakpoint: { max: 464, min: 0 },
-      items: 5,
+      items: 3,
     },
   };
   const [anchorEl, setAnchorEl] = useState(null);
@@ -154,16 +158,16 @@ export default function News() {
   ]);
   const open = Boolean(anchorEl);
   const genreList = [
-    "AI/ Machine Learning",
-    "Biotechnology",
+    "World",
+    "India",
+    "Local",
     "Business",
-    "Design",
-    "Fasion",
-    "History",
-    "Life Skills",
-    "Psych",
+    "Finance",
+    "Sports",
+    "Technology",
+    "Lifestyle",
     "Science",
-    "Sorts",
+    "Entertainment",
   ];
 
   useEffect(() => {
@@ -194,16 +198,8 @@ export default function News() {
   };
 
   return (
-    <div
-      className={` min-h-screen ${
-        typeof window !== "undefined"
-          ? localStorage.getItem("mode") == "dark"
-            ? "dark"
-            : ""
-          : ""
-      }`}
-    >
-      <Headers />
+    <div className={` min-h-screen ${dark ? "dark" : ""}`}>
+      <Headers dark={dark} setDark={setDark} />
       <div className="px-0 relative pt-8 bg-#FCF7FF dark:bg-greyBlack sm:px-12">
         <div className="flex flex-row w-full justify-between items-center px-8 mb-8 sm:px-0">
           <UpdatedHeading>News</UpdatedHeading>
@@ -214,45 +210,15 @@ export default function News() {
           responsive={responsive}
           className="py-4 mx-8"
         >
-          <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">
-            View All
-          </button>
-
-          <button class="px-2 h-8 whitespace-nowrap bg-white text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">
-            Club Heads
-          </button>
-
-          <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">
-            UI/UX
-          </button>
-
-          <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">
-            Web Dev
-          </button>
-
-          <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">
-            AV
-          </button>
-
-          <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">
-            journalism
-          </button>
-
-          <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">
-            Ops Content
-          </button>
-
-          <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">
-            Social Media Content
-          </button>
-
-          <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">
-            Animations
-          </button>
-
-          <button class="px-2 h-8 whitespace-nowrap bg-white  text-black rounded-md border border-black hover:border-2 hover:border-londonYellow hover:shadow-xl mr-10 font-georgia font-semibold">
-            Communication Design
-          </button>
+          {genreList.map((v, i) => {
+            return (
+              <div key={i} className="p-2">
+                <button class="px-2 m-2 h-8 flex w-full text-center whitespace-nowrap bg-white dark:bg-greyBlack  text-black dark:text-white rounded-md border border-black dark:border-white hover:dark:border-yellow hover:border-2 hover:border-londonYellow hover:shadow-xl font-georgia font-semibold">
+                  <p className="flex justify-center items-center w-full">{v}</p>
+                </button>
+              </div>
+            );
+          })}
         </Carousel>
         <h2 className="font-han mt-8 text-3xl px-10 py-4 dark:text-white text-greyBlack">
           This week

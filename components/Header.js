@@ -17,7 +17,7 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import IconButton from "@mui/material/IconButton";
 
-export default function Headers() {
+export default function Headers(props) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   const handleDrawerOpen = () => {
     setDrawerOpen(true);
@@ -27,42 +27,59 @@ export default function Headers() {
   };
 
   return (
-    <div
-      className={
-        typeof window !== "undefined"
-          ? localStorage.getItem("mode") == "dark"
-            ? "dark"
-            : ""
-          : ""
-      }
-    >
+    <div className={props.dark == true ? "dark" : ""}>
       <div className="w-screen bg-#FCF7FF dark:bg-greyBlack flex flex-row justify-between py-2 px-8 z-10">
-          <div>
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerOpen}
-            >
-              <CgMenuLeft className="text-greyBlack dark:text-white" />
-            </IconButton>
+        <div className="flex flex-row">
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerOpen}
+          >
+            <CgMenuLeft className="text-greyBlack dark:text-white" />
+          </IconButton>
 
-            <Drawer
-              anchor="left"
-              open={drawerOpen}
-              onClose={handleDrawerClose}
-              PaperProps={{
-                style: {
-                  backgroundColor: "black",
-                  width: "300px",
-                },
-              }}
-            >
-              <List>
-                <ListItem
-                  sx={{
-                    justifyContent: "center",
-                    fontFamily: "var(--font-georgia)",
+          <Drawer
+            anchor="left"
+            open={drawerOpen}
+            onClose={handleDrawerClose}
+            PaperProps={{
+              style: {
+                backgroundColor: "black",
+                width: "300px",
+              },
+            }}
+          >
+            <List>
+              <ListItem
+                sx={{
+                  justifyContent: "center",
+                  fontFamily: "var(--font-georgia)",
+                }}
+              >
+                <Link href={"/aboutUs"}>
+                  <ListItemButton
+                    sx={{ color: "white", fontFamily: "var(--font-georgia)" }}
+                  >
+                    <ListItemText primary="About Us" className="font-georgia" />
+                  </ListItemButton>
+                </Link>
+              </ListItem>
+              <ListItem sx={{ justifyContent: "center" }}>
+                <Link href={"/aboutUs"}>
+                  <ListItemButton sx={{ color: "white" }}>
+                    <ListItemText primary="Our Team" />
+                  </ListItemButton>
+                </Link>
+              </ListItem>
+              <ListItem sx={{ justifyContent: "center" }}>
+                <Link
+                  href={""}
+                  onClick={() => {
+                    props.dark
+                      ? localStorage.setItem("mode", "")
+                      : localStorage.setItem("mode", "dark");
+                    props.dark ? props.setDark(false) : props.setDark(true);
                   }}
                 >
                   <Link href={"/aboutUs"}>
@@ -164,18 +181,13 @@ export default function Headers() {
             Contact Us
           </Link>
         </div>
-
         <Link href={"/"} className="flex flex-row items-center">
           <Image
             className="w-24 sm:w-32 h-xl mr-1 sm:mr-4"
             src={peslogo}
             style={{
               filter:
-                typeof window !== "undefined"
-                  ? localStorage.getItem("mode") == "dark"
-                    ? "brightness(100%)"
-                    : "brightness(0%)"
-                  : "brightness(0%)",
+                props.dark == true ? "brightness(100%)" : "brightness(0%)",
             }}
           />
           <Image
@@ -183,16 +195,11 @@ export default function Headers() {
             src={logo}
             style={{
               filter:
-                typeof window !== "undefined"
-                  ? localStorage.getItem("mode") == "dark"
-                    ? "brightness(100%)"
-                    : "brightness(0%)"
-                  : "brightness(0%)",
+                props.dark == true ? "brightness(100%)" : "brightness(0%)",
             }}
           />
         </Link>
       </div>
-      </div>
-    
+    </div>
   );
 }
