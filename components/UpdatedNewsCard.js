@@ -30,14 +30,14 @@ export default function UpdatedNewsCard(props) {
     >
       <div
         className={`min-h-full ${
-          props.horizontal == true ? "grid grid-cols-5 sm:grid-cols-2 py-6" : ""
+          props.horizontal == true ? "grid grid-cols-2 py-6" : ""
         } ${
           props.hideDate == true
             ? "grid grid-cols-2 sm:grid sm:grid-cols-1 py-6"
             : ""
         } hover:scale-105 transition duration-50 ease-linear`}
       >
-        <div className="relative col-span-2 sm:col-auto">
+        <div className="relative">
           <div
             style={{
               outlineColor: props.horizontal ? "transparent" : textColor,
@@ -45,9 +45,7 @@ export default function UpdatedNewsCard(props) {
             className={
               props.thisweek == true
                 ? `outline min-w-0 outline-1 sm:outline-0 sm:w-full ${
-                    props.horizontal
-                      ? ""
-                      : "w-11/12 translate-x-4 translate-y-4"
+                    props.horizontal ? "" : "w-5/6 translate-x-4 translate-y-4"
                   }`
                 : "w-full h-full"
             }
@@ -65,22 +63,23 @@ export default function UpdatedNewsCard(props) {
               className={`w-full h-full object-cover aspect-video drop-shadow-[12px_12px_0px_${
                 props.bigger == true ? "rgba(222,153,255,1)" : ""
               }${props.horizontal == true ? "rgba(159,225,240,1)" : ""}] ${
-                props.thisweek ? "-translate-x-4 -translate-y-4" : ""
+                props.thisweek ? "-translate-x-2 -translate-y-2" : ""
               }`}
               src={`${props.imageURL}`}
             ></img>
           </div>
           {props.bigger == true && !props.hideDate ? (
-            <div className="absolute rounded-b-2xl px-4 py-1 border border-gray-700 bg-white dark:bg-yellow top-0 left-8 font-gilroy font-500">
+            <div className="absolute rounded-b-lg sm:rounded-b-2xl px-2 sm:px-4 sm:text-xs text-[8px] py-1 border border-gray-700 bg-white dark:bg-yellow top-0 left-4 sm:left-8 font-gilroy font-500">
               {parseISOString(props.date)
                 .toUTCString()
                 .split(",")[1]
                 .split(":")[0]
-                .slice(0, -3)}
+                .slice(0, -3)
+                .toUpperCase()}
             </div>
           ) : (
             <div
-              className={`absolute rounded-r-2xl px-4 py-1 border border-gray-700 bg-white dark:bg-yellow ${
+              className={`absolute rounded-r-2xl px-4 sm:py-1 py-[3px] border border-gray-700 bg-white dark:bg-yellow ${
                 props.hideDate || (!props.horizontal && !props.bigger)
                   ? "hidden"
                   : ""
@@ -94,7 +93,8 @@ export default function UpdatedNewsCard(props) {
                 .toUTCString()
                 .split(",")[1]
                 .split(":")[0]
-                .slice(0, -3)}
+                .slice(0, -3)
+                .toUpperCase()}
             </div>
           )}
         </div>
@@ -105,37 +105,25 @@ export default function UpdatedNewsCard(props) {
               : props.horizontal == true
               ? "pl-8 pt-2"
               : "pt-8 pl-3"
-          } ${props.horizontal == true ? "col-span-3 sm:col-auto" : ""}`}
+          }`}
         >
           <h1
             className={` ${
-              props.horizontal == true ? "text-xl" : "sm:text-2xl :text-[14px]"
-
+              props.horizontal == true ? "text-xl" : "sm:text-2xl :text-14px"
             } font-georgia text-#1D1D1D dark:text-white`}
           >
             {props.headline}
           </h1>
           <div className="flex flex-row items-center pt-2">
-            
-            <Avatar size={2}  />
-            
+            <Avatar className="w-4 h-4 sm:w-8 sm:h-8" />
             <p
               style={{ color: textColor }}
               className={`ml-2 font-georgia ${
-                props.bigger == true ? "sm:text-xl text-[10px]" : " sm:text-lg text-[10px]"
-
+                props.bigger == true ? "sm:text-xl text-[12px]" : ""
               } `}
             >
               {"Nigel Dias"} | {props.genre}
             </p>
-            {props.thisweek && props.readTime && (
-              <p
-                style={{ color: textColor }}
-                className="font-georgia ml-auto text-xs sm:text-base"
-              >
-                {props.readTime} min read
-              </p>
-            )}
           </div>
         </div>
       </div>
