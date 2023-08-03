@@ -85,7 +85,9 @@ export default function UpdatedNewsCard(props) {
                   ? "hidden"
                   : ""
               } ${
-                props.horizontal == true ? "top-3 sm:text-xs text-8px" : "top-8"
+                props.horizontal == true
+                  ? "top-3 sm:text-xs text-[8px]"
+                  : "top-8"
               }  font-gilroy font-500`}
             >
               {parseISOString(props.date)
@@ -107,17 +109,21 @@ export default function UpdatedNewsCard(props) {
         >
           <h1
             className={` ${
-              props.horizontal == true ? "text-xl" : "sm:text-2xl text-[18px]"
+              props.horizontal == true ? "text-xl" : "sm:text-2xl :text-[14px]"
+
             } font-georgia text-#1D1D1D dark:text-white`}
           >
             {props.headline}
           </h1>
           <div className="flex flex-row items-center pt-2">
-            <Avatar size={2} />
+            
+            <Avatar size={2}  />
+            
             <p
               style={{ color: textColor }}
-              className={`ml-2 font-georgia text-xs sm:text-base ${
-                props.bigger == true ? "sm:text-xl text-[10px]" : ""
+              className={`ml-2 font-georgia ${
+                props.bigger == true ? "sm:text-xl text-[10px]" : " sm:text-lg text-[10px]"
+
               } `}
             >
               {"Nigel Dias"} | {props.genre}
