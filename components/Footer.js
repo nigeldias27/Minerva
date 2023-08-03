@@ -33,19 +33,19 @@ export default function Footer() {
       <div className="flex flex-row flex-wrap justify-center pt-4 pb-4">
         <p className="text-white font-gilroy font-500 px-3">About Minerva</p>
         <div class="flex items-center">
-          <div class="h-4 w-0.5 bg-white mr-2"></div>
+          {/* <div class="h-4 w-0.5 bg-white mr-2"></div> */}
           <p className="text-white font-gilroy px-3">About PES University</p>
         </div>
         <div class="flex items-center">
-          <div class="h-4 w-0.5 bg-white mr-2"></div>
+          {/* <div class="h-4 w-0.5 bg-white mr-2"></div> */}
           <p className="text-white font-gilroy px-3">Newsletter</p>
         </div>
         <div class="flex items-center">
-          <div class="h-4 w-0.5 bg-white mr-2"></div>
+          {/* <div class="h-4 w-0.5 bg-white mr-2"></div> */}
           <p className="text-white font-gilroy px-3">Privacy Policy</p>
         </div>
         <div class="flex items-center">
-          <div class="h-4 w-0.5 bg-white mr-2"></div>
+          {/* <div class="h-4 w-0.5 bg-white mr-2"></div> */}
           <p className="text-white font-gilroy px-3">Terms & Conditions</p>
         </div>
       </div>
