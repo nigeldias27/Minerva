@@ -18,3 +18,23 @@ html {
   --scroll-behavior: smooth !important;
   scroll-behavior: smooth !important;
 }
+
+.react-multi-carousel-dot {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  transition: scale 250ms ease;
+
+  scale: 1;
+}
+
+.react-multi-carousel-list .react-multi-carousel-dot > button {
+  border-color: #000000;
+}
+
+.react-multi-carousel-dot--active {
+  scale: 1.33;
+}
