@@ -600,6 +600,7 @@ export default function HomeComponent() {
                 ></img>
                 <div className="absolute w-full  sm:mt-8 mt-1  sm:mb-24 mb-1 z-0 bg-blue top-2 sm:top-4 left-1 sm:left-4 aspect-video"></div>
                 <div className="absolute w-full sm:mt-8 mt-1 sm:mb-24 mb-1 z-0 bg-white dark:bg-black top-1 sm:top-3 left-0.5 sm:left-3 aspect-video"></div>
+
               </div>
               <div className="basis-2/5 pt-7 pb-3 -translate-x-3 sm:translate-x-1">
                 <div className="pb-12 pt-0.5">

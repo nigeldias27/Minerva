@@ -173,6 +173,12 @@ export default function News() {
   useEffect(() => {
     initState();
   }, [check]);
+
+  function getReadTime(contents) {
+    // assuming 250 words per minute
+    return Math.round(contents.split(/\w/g).length / 250) || 1;
+  }
+
   async function initState() {
     var selectedGenres = [];
     for (let i = 0; i < check.length; i++) {
@@ -243,6 +249,8 @@ export default function News() {
                   desc={`${val.description}`}
                   id={`${val._id}`}
                   newArticle={true}
+                  thisweek={true}
+                  readTime={getReadTime(val.data)}
                   darkMode={
                     localStorage.getItem("mode") == "dark" ? true : false
                   }
@@ -283,6 +291,7 @@ export default function News() {
                   newArticle={true}
                   hideDate={true}
                   thisweek={false}
+                  horizontal={true}
                   hideShadow={true}
                   darkMode={
                     localStorage.getItem("mode") == "dark" ? true : false
