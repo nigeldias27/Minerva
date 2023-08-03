@@ -83,6 +83,34 @@ export default function Headers() {
                     </ListItemButton>
                   </Link>
                 </ListItem>
+                <ListItem sx={{ justifyContent: "center" }} className="sm:hidden">
+                  <Link href={"/allnews"}>
+                    <ListItemButton sx={{color: "white" }}>
+                      <ListItemText primary="News" />
+                    </ListItemButton>
+                  </Link>
+                 </ListItem>
+                 <ListItem sx={{ justifyContent: "center" }} className="sm:hidden">
+                  <Link href={"/#timeline"}>
+                    <ListItemButton sx={{color: "white" }}>
+                      <ListItemText primary="Timeline" />
+                    </ListItemButton>
+                  </Link>
+                 </ListItem>
+                 <ListItem sx={{ justifyContent: "center" }} className="sm:hidden">
+                  <Link href={"/#featuringPES"}>
+                    <ListItemButton sx={{color: "white" }}>
+                      <ListItemText primary="Featuring PES" />
+                    </ListItemButton>
+                  </Link>
+                 </ListItem> 
+                 <ListItem sx={{ justifyContent: "center" }} className="sm:hidden">
+                  <Link href={"/#contactus"}>
+                    <ListItemButton sx={{color: "white" }}>
+                      <ListItemText primary="Contact Us" />
+                    </ListItemButton>
+                  </Link>
+                 </ListItem>
                 <ListItem sx={{ justifyContent: "center" }}>
                   <Link
                     href={""}
@@ -108,7 +136,7 @@ export default function Headers() {
               </List>
             </Drawer>
           </div>
-          <div className="hidden  md:flex md:flex-row md:items-center">
+          <div className="hidden  sm:flex sm:flex-row sm:items-center">
           <Link
             href={"/allnews"}
             className="text-#1D1D1D dark:text-white text-xl font-georgia px-8 hover:text-hoverbeigeText"
