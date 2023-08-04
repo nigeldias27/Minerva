@@ -97,7 +97,7 @@ export default function HomeComponent() {
   const router = useRouter();
   const [data, setData] = useState([]); //This refers to the 6 news articles featured in the home page
   const [open, setOpen] = useState(false); // Loading circular progress bar(Backdrop)
-  const isSmallScreen = useMediaQuery({ maxWidth: 480 });
+  const isSmallScreen = useMediaQuery({ maxWidth: 429 });
   const [dark, setDark] = useState(false);
   const [openDialogue, setOpenDialogue] = useState(false);
   const handleClickOpen = () => {
@@ -204,8 +204,8 @@ export default function HomeComponent() {
           </button>
         </div>
         <div className="px-0 bg-white dark:bg-greyBlack pt-8 sm:px-12">
-          <div className="md:flex md:flex-row flex flex-col sm:flex sm:flex-col md:mt-16 sm:-mx-2 mx-5">
-            <div className="basis-3/6 ">
+          <div className="md:flex md:flex-row flex flex-col sm:flex sm:flex-col md:mt-16 sm:-mx-2 mx-5 ">
+            <div className="basis-3/6 pr-2 ">
               <UpdatedHeading># Trending</UpdatedHeading>
               {data[0] == undefined ? (
                 <div></div>
@@ -236,7 +236,7 @@ export default function HomeComponent() {
                 </div>
               )}
             </div>
-            <div className="basis-2/4 pl-3 pt-16 flex flex-col sm:flex sm:flex-col">
+            <div className="basis-2/4 pl-3 pt-15 flex flex-col sm:flex sm:flex-col">
               <div className="flex justify-between items-center">
                 <h1 className="text-xl sm:text-2xl text-#1D1D1D dark:text-white font-gilroy font-bold -ml-5 md:ml-8 lg:pb-2">
                   Recent News

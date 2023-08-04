@@ -7,7 +7,7 @@ export default function Footer() {
           onClick={() => {
             window.location.href = "https://www.instagram.com/minerva.pesu/";
           }}
-          className="bg-white md:pb-4  w-7 pt-1.5 px-1.5 mx-2 h-7 md:mb-2 lg-mx-2 rounded-full hover:bg-hoverbeigeText"
+          className="bg-white md:pb-4 md:w-15 md:h-15 w-7 pt-1.5 px-1.5 mx-2 h-7 md:mb-2 lg-mx-2 rounded-full hover:bg-hoverbeigeText"
         >
           <BsInstagram color="#3C3635" />
         </div>
