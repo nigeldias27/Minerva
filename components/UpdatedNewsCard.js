@@ -119,7 +119,7 @@ export default function UpdatedNewsCard(props) {
             <p
               style={{ color: textColor }}
               className={`ml-2 font-georgia ${
-                props.bigger == true ? "md:text-xl text-xs" : " text-xs"
+                props.bigger == true ? "md:text-xl text-xs" : " md:text-lg text-xs"
               } `}
             >
               {"Nigel Dias"} | {props.genre}
