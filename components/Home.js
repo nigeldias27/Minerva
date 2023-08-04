@@ -171,7 +171,7 @@ export default function HomeComponent() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
-              <div style={{ transform: "translate(0,-30%)" }} className="pl-9 lg:pl-12">
+              <div style={{ transform: "translate(0,-30%)" }} className="pl-9 pt-7 lg:pl-12">
                 <h1 className="lg:text-8xl font-georgia font-bold text-white sm:text-3xl md:text-6xl text-3xl">
                   Introducing Minerva
                 </h1>
@@ -204,7 +204,7 @@ export default function HomeComponent() {
           </button>
         </div>
         <div className="px-0 bg-white dark:bg-greyBlack pt-8 sm:px-12">
-          <div className="md:flex md:flex-row flex flex-col sm:flex sm:flex-col md:mt-16 ">
+          <div className="md:flex md:flex-row flex flex-col sm:flex sm:flex-col md:mt-16 sm:mx-0 mx-5">
             <div className="basis-3/6 ">
               <UpdatedHeading># Trending</UpdatedHeading>
               {data[0] == undefined ? (
@@ -529,7 +529,7 @@ export default function HomeComponent() {
               </Timeline>
             </div>
           </motion.div>
-          <div id="featuringPES" className="flex">
+          <div id="featuringPES" className="flex mx-5">
             <UpdatedHeading>Featuring PESU</UpdatedHeading>
           </div>
           <Carousel
@@ -538,7 +538,7 @@ export default function HomeComponent() {
             showDots={isSmallScreen ? true : false}
             customLeftArrow={isSmallScreen ? <></> : <CustomLeftArrow />} // Hide the left arrow button
             customRightArrow={isSmallScreen ? <></> : <CustomRightArrow />} // Hide the right arrow button
-            className="pb-4 pt-3"
+            className="pb-4 pt-3 "
           >
             <div className="md:flex md:flex-row  flex-col mx-10 ">
               <div className="basis-3/5 relative md:hidden">
@@ -602,8 +602,8 @@ export default function HomeComponent() {
                 <div className="absolute w-full  md:mt-8 mt-1  md:mb-24 mb-1 z-0 bg-blue top-2 md:top-4 left-1 md:left-4 aspect-video"></div>
                 <div className="absolute w-full md:mt-8 mt-1 md:mb-24 mb-1 z-0 bg-white dark:bg-black top-1 md:top-3 left-0.5 md:left-3 aspect-video"></div>
               </div>
-              <div className="basis-2/5 pt-7 pb-3 -translate-x-3 md:translate-x-1">
-                <div className="sm:pb-10 pt-0.5">
+              <div className="basis-2/5 pt-7 pb-5 -translate-x-3 md:translate-x-1">
+                <div className="sm:pb-10 pt-0.5 pb-10">
                   <h4
                     /* style={{ width:"50%" }}*/
                     className="absolute md:relative z-20 md:w-50% w-100% md:text-4xl text-16px md:pt-3  md:pb-1  md:mr-5 ml-3   text-[#428897] dark:text-blue font-han font-bold"
