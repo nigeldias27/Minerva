@@ -171,7 +171,10 @@ export default function HomeComponent() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
-              <div style={{ transform: "translate(0,-30%)" }} className="pl-9 pt-7 lg:pl-12">
+              <div
+                style={{ transform: "translate(0,-30%)" }}
+                className="pl-9 pt-7 lg:pl-12"
+              >
                 <h1 className="lg:text-8xl font-georgia font-bold text-white sm:text-3xl md:text-6xl text-3xl">
                   Introducing Minerva
                 </h1>
@@ -577,10 +580,11 @@ export default function HomeComponent() {
                   </sup>
                   It combines technology, innovation and entrepreneurship,
                   leading to innovation in STEM with an entrepreneurial focus.
-                  CIE is directed by Prof.CIE is also a part of nine industry programs. The
-                  Centre for Innovation and Entrepreneurship provides an
-                  eye-opening opportunity for students to learn about the world
-                  of entrepreneurship and see their ideas fruition to life.
+                  CIE is directed by Prof.CIE is also a part of nine industry
+                  programs. The Centre for Innovation and Entrepreneurship
+                  provides an eye-opening opportunity for students to learn
+                  about the world of entrepreneurship and see their ideas
+                  fruition to life.
                 </p>
               </div>
               <div className="basis-3/5 relative -translate-x-3 hidden md:block">
@@ -687,15 +691,50 @@ export default function HomeComponent() {
                     <Dialog.Panel
                       className={`w-full max-w-4xl rounded-none ${
                         dark ? "bg-greyBlack" : "bg-backgroundModal"
-                      } transform overflow-hidden p-10 text-left align-middle shadow-xl transition-all`}
+                      } transform overflow-hidden px-5 py-6 md:px-10 md:py-10 text-left align-middle shadow-xl transition-all`}
                     >
-                      <div className="grid grid-cols-2">
-                        <UpdatedHeading>Join Our Newsletter</UpdatedHeading>
-                        <div className="flex flex-col pt-4 items-end relative">
+                      <div className="grid grid-cols-2 items-start">
+                        <div className="relative">
+                          <h1
+                            style={{
+                              textShadow:
+                                "1px 0 0 black,0 1px 0 black,-1px 0 0 black,0 -1px 0 black",
+                            }}
+                            className="relative sm:text-xl md:text-4xl text-sm font-han  z-30 outline-2 text-white"
+                          >
+                            {"Join our Newsletter".toUpperCase()}
+                          </h1>
+                          <h1
+                            style={{
+                              position: "absolute",
+                              zIndex: "5",
+                              color: "#EFFF00",
+                              textShadow:
+                                "1px 0 0 black,0 1px 0 black,-1px 0 0 black,0 -1px 0 black",
+                            }}
+                            className="sm:text-xl md:text-4xl text-sm font-han z-20 -top-[4px] -left-[4px] sm:-top-[6px] sm:-left-[6px]"
+                          >
+                            {"Join our Newsletter".toUpperCase()}
+                          </h1>
+                          <h1
+                            style={{
+                              color: "#DE99FF",
+                              position: "absolute",
+                              zIndex: "10",
+                              textStroke: "1px black",
+                              textShadow:
+                                "1px 0 0 black,0 1px 0 black,-1px 0 0 black,0 -1px 0 black",
+                            }}
+                            className="sm:text-xl md:text-4xl text-sm font-han z-10 -top-[2px] -left-[2px]  sm:-top-[3px] sm:-left-[3px]"
+                          >
+                            {"Join our Newsletter".toUpperCase()}
+                          </h1>
+                        </div>
+                        <div className="flex flex-col md:pt-4 items-end relative">
                           <div
                             style={{ color: dark ? "black" : "white" }}
                             onClick={handleClose}
-                            className={`absolute z-10 top-5 -right-1 border   border-otherblue p-1   ${
+                            className={`absolute z-10 top-1 md:top-5 -right-1 border   border-otherblue p-1   ${
                               dark ? "bg-greyBlack" : "bg-backgroundModal"
                             }`}
                           >
@@ -704,7 +743,7 @@ export default function HomeComponent() {
                                 background: dark ? "black" : "white",
                                 fill: dark ? "black" : "white",
                               }}
-                              className={`  ${
+                              className={`md:text-xl text-sm  ${
                                 dark ? "text-white" : "text-greyBlack"
                               }`}
                             />
@@ -717,24 +756,24 @@ export default function HomeComponent() {
                             }`}
                           >
                             <IoMdClose
-                              className={`${
+                              className={`md:text-xl text-sm ${
                                 dark ? "text-white" : "text-black"
                               }`}
                             />
                           </div>
                         </div>
                       </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2">
-                        <div className=" flex items-center h-64 sm:h-full justify-center sm:justify-start">
+                      <div className="grid grid-cols-1 md:grid-cols-2">
+                        <div className=" flex items-center h-40  md:h-auto justify-center ">
                           <Image
-                            className="scale-75"
+                            className="w-32 h-32 md:w-64 md:h-64"
                             src={dark ? event7 : event6}
                           ></Image>
                         </div>
                         <div className="flex flex-col">
-                          <div className="flex flex-col sm:pt-4 items-start sm:items-end relative">
+                          <div className="flex flex-col items-start md:items-end relative">
                             <h1
-                              className={`text-black sm:mt-8 font-questrial font-semibold text-md ${
+                              className={`text-black md:mt-8 font-questrial font-semibold text-[10px] md:text-lg ${
                                 dark ? "text-white" : "text-black"
                               }`}
                             >
@@ -744,7 +783,7 @@ export default function HomeComponent() {
                               to our newsletter
                             </h1>
                             <h1
-                              className={`text-black font-questrial font-semibold text-md dark:text-white  ${
+                              className={`text-black pb-4 font-questrial font-semibold text-[10px] md:text-lg dark:text-white  ${
                                 dark ? "text-white" : "text-black"
                               }`}
                             >
@@ -753,6 +792,7 @@ export default function HomeComponent() {
                                 exclusive content
                               </span>
                             </h1>
+
                             <TextField
                               InputProps={{
                                 style: {
@@ -760,57 +800,64 @@ export default function HomeComponent() {
                                   color: "black",
                                   background: "white",
                                   border: "black",
+                                  height: isSmallScreen ? "32px" : "auto",
+                                  fontSize: isSmallScreen ? "10px" : "auto",
                                 },
                               }}
                               color="secondary"
                               placeholder="Name"
-                              className="font-georgia text-md w-full mt-6 py-3 text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[8px_8px_0px_rgba(222,153,255,1)]"
+                              className="font-georgia w-full  text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[4px_4px_0px_rgba(222,153,255,1)] md:drop-shadow-[8px_8px_0px_rgba(222,153,255,1)]"
                             ></TextField>
+
                             <TextField
                               InputProps={{
                                 style: {
                                   borderRadius: "0",
                                   color: "black",
                                   background: "white",
+                                  height: isSmallScreen ? "32px" : "auto",
+                                  fontSize: isSmallScreen ? "10px" : "auto",
                                 },
                               }}
                               placeholder="Email"
-                              className="font-georgia w-full text-md mt-6 py-3 text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[8px_8px_0px_rgba(159,225,240,1)]"
+                              className="font-georgia w-full text-md md:text-md mt-6 py-3 text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[4px_4px_0px_rgba(159,225,240,1)] md:drop-shadow-[8px_8px_0px_rgba(159,225,240,1)]"
                             ></TextField>
                           </div>
-                          <div className="mt-6 relative">
-                            <button className="bg-yellow text-md z-10 px-6 top-2 left-2 rounded-lg  py-2 border border-black font-questrial  font-semibold hover:bg-hoverbeigeText absolute">
-                              Subscribe
-                            </button>
-                            <button className="bg-blue z-30 text-md px-6 top-1 left-1 rounded-lg  py-2 border border-black font-questrial  font-semibold hover:bg-hoverbeigeText absolute">
-                              Subscribe
-                            </button>
-                            <button
-                              className="bg-pink px-6 text-md z-40 rounded-lg relative  py-2 border border-black font-questrial  font-semibold hover:bg-hoverbeigeText"
-                              onClick={async () => {
-                                try {
-                                  const response = await axios.post(
-                                    "/api/contactUs",
-                                    data
-                                  );
-                                  console.log(response);
-                                  if ((response.data = "Finished")) {
-                                    alert("Thank you for your response!");
+                          <div className="flex justify-center md:justify-start">
+                            <div className="mt-6 relative">
+                              <button className="bg-yellow text-xs md:text-lg z-10 px-3 md:px-6 top-2 left-2 rounded-lg  py-2 border border-black font-questrial  font-semibold hover:bg-hoverbeigeText absolute">
+                                Subscribe
+                              </button>
+                              <button className="bg-blue z-30 text-xs md:text-lg px-3 md:px-6 top-1 left-1 rounded-lg  py-2 border border-black font-questrial  font-semibold hover:bg-hoverbeigeText absolute">
+                                Subscribe
+                              </button>
+                              <button
+                                className="bg-pink px-3 md:px-6 text-xs md:text-lg z-40 rounded-lg relative  py-2 border border-black font-questrial  font-semibold hover:bg-hoverbeigeText"
+                                onClick={async () => {
+                                  try {
+                                    const response = await axios.post(
+                                      "/api/contactUs",
+                                      data
+                                    );
+                                    console.log(response);
+                                    if ((response.data = "Finished")) {
+                                      alert("Thank you for your response!");
+                                    }
+                                  } catch (e) {
+                                    alert("Failed to send.");
                                   }
-                                } catch (e) {
-                                  alert("Failed to send.");
-                                }
-                                setData({
-                                  Name: "",
-                                  Email: "",
-                                  Subject: "",
-                                  Message: "",
-                                });
-                              }}
-                            >
-                              Subscribe
-                            </button>
-                            <button></button>
+                                  setData({
+                                    Name: "",
+                                    Email: "",
+                                    Subject: "",
+                                    Message: "",
+                                  });
+                                }}
+                              >
+                                Subscribe
+                              </button>
+                              <button></button>
+                            </div>
                           </div>
                         </div>
                       </div>
