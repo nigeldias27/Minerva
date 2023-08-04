@@ -1,7 +1,7 @@
 export default function AnimatedHeading(props) {
   return (
     <div className="max-w-fit mx-8 my-8">
-      <p className="peer max-w-fit transform hover:-translate-y-4 transition duration-500 ease-linear text-3xl font-bold font-merriweather">
+      <p className="peer max-w-fit transform hover:-translate-y-4 transition duration-500 ease-linear text-3xl font-bold font-georgia">
         {props.children}
       </p>
 
