@@ -204,7 +204,7 @@ export default function HomeComponent() {
           </button>
         </div>
         <div className="px-0 bg-white dark:bg-greyBlack pt-8 sm:px-12">
-          <div className="md:flex md:flex-row flex flex-col sm:flex sm:flex-col md:mt-16 sm:mx-0 mx-5">
+          <div className="md:flex md:flex-row flex flex-col sm:flex sm:flex-col md:mt-16 sm:-mx-2 mx-5">
             <div className="basis-3/6 ">
               <UpdatedHeading># Trending</UpdatedHeading>
               {data[0] == undefined ? (
