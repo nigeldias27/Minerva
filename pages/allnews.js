@@ -19,7 +19,7 @@ import Head from "next/head";
 const CustomLeftArrow = ({ onClick }) => (
   <div
     onClick={() => onClick()}
-    className="w-10 h-10 relative z-50 bg-pink react-multiple-carousel__arrow hidden sm:flex"
+    className="w-10 h-10 relative z-50 bg-pink react-multiple-carousel__arrow hidden md:flex"
   >
     <button
       style={{ transform: "translate(,-50%)" }}
@@ -41,7 +41,7 @@ const CustomLeftArrow = ({ onClick }) => (
 const CustomRightArrow = ({ onClick }) => (
   <div
     onClick={() => onClick()}
-    className="w-1 h-1 relative z-50 bg-pink react-multiple-carousel__arrow right-0 hidden sm:flex"
+    className="w-1 h-1 relative z-50 bg-pink react-multiple-carousel__arrow right-0 hidden md:flex"
   >
     <button
       style={{ transform: "translate(,-50%)" }}
@@ -133,7 +133,7 @@ export default function News() {
     },
     mobile: {
       breakpoint: { max: 430, min: 320 },
-      items: 5,
+      items: 3,
     },
     smallMobile: {
       breakpoint: { max: 320, min: 0 },
@@ -206,8 +206,8 @@ export default function News() {
   return (
     <div className={` min-h-screen ${dark ? "dark" : ""}`}>
       <Headers dark={dark} setDark={setDark} />
-      <div className="px-0 relative pt-8 bg-#FCF7FF dark:bg-greyBlack sm:px-12">
-        <div className="flex flex-row w-full justify-between items-center sm:px-0">
+      <div className="px-0 relative pt-8 bg-#FCF7FF dark:bg-greyBlack md:px-12">
+        <div className="flex flex-row w-full justify-between items-start px-0">
           <UpdatedHeading>News</UpdatedHeading>
         </div>
         <Carousel
@@ -219,9 +219,9 @@ export default function News() {
             return (
               <div
                 key={i}
-                className="py-2 px-5 flex justify-center items-center"
+                className="py-2 px-5 sm:p-0 flex justify-center items-center"
               >
-                <button class="py-0.5 mx-1 flex w-full text-center whitespace-nowrap bg-white dark:bg-greyBlack  text-black dark:text-white rounded-[4px] border border-black dark:border-white hover:dark:border-yellow hover:border-londonYellow hover:shadow-xl font-georgia font-semibold">
+                <button class="py-0.5 mx-1 sm:px-1 flex w-full text-center whitespace-nowrap bg-white dark:bg-greyBlack  text-black dark:text-white rounded-[4px] border border-black dark:border-white hover:dark:border-yellow hover:border-londonYellow hover:shadow-xl font-georgia font-semibold">
                   <p className="flex justify-center items-center w-full text-[10px]">
                     {v}
                   </p>
