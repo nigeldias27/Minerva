@@ -11,6 +11,7 @@ import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import { BsArrowDown } from "react-icons/bs";
 import { motion, useScroll } from "framer-motion";
+import { blue } from "@mui/material/colors";
 
 export default function Article() {
   const router = useRouter();
@@ -21,14 +22,19 @@ export default function Article() {
   const [isSliced, setIsSliced] = useState(true);
   const [open, setOpen] = useState(false);
   const { scrollYProgress } = useScroll();
+  // const [scrollY, setScrollY] = useState();
+
+  var offsetScrollY;
   useEffect(() => {
     initState();
     getRecentNews();
+    // window.addEventListener('scroll', handleScroll);
   }, [isSliced]);
   function parseISOString(s) {
     var b = s.split(/\D+/);
     return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
   }
+
   async function initState() {
     setOpen(true);
     const response = await axios.post("/api/getParticularArticle", { id: id });
@@ -62,26 +68,45 @@ export default function Article() {
     console.log(data);
   };
 
+  // const handleScroll = () => {
+  //   setScrollY(scrollYProgress.current*window.innerWidth);
+  // }
+
   return (
-    <div className="sm:min-h-screen">
+    <div className="lg:min-h-screen">
       <Headers dark={false} />
-      <motion.div
-        style={{
-          background: "yellow",
-          zIndex: "10",
-          height: "15px",
+      <div>
+        <motion.div
+          style={{
+            background: "#B18516",
+            zIndex: "10",
+            height: "0.75rem",
+            position: "fixed",
+            top: "0",
+            left: "0",
+            right: "0",
+            transformOrigin: "0%",
+            scaleX: scrollYProgress,
+            borderTopRightRadius: "1rem",
+            borderBottomRightRadius: "1rem"
+          }}
+        ></motion.div>
+        {/* <div style={{
+          background: "#B18516",
+          zIndex: "11",
+          width: "0.75rem",
+          height: "0.75rem",
           position: "fixed",
           top: "0",
-          left: "0",
-          right: "0",
-          transformOrigin: "0%",
-          scaleX: scrollYProgress,
+          borderRadius: "50%",
+          left: scrollY
         }}
-      ></motion.div>
+        ></div> */}
+      </div>
 
-      <div className="sm:mt-12 sm:ml-36 ml-6 mt-6">
-        <div className="flex flex-row items-center">
-          <h2 className="font-bold font-gilroy">
+      <div className="ml-10 sm:ml-5 sm:mt-6 md:ml-5 md:mt-6 lg:ml-24">
+        <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row items-center">
+          <h2 className="w-screen justify-start text-xs sm:text-sm md:text-sm lg:text-base font-bold font-gilroy sm:w-36 md:w-36 lg:w-screen">
             {data.article == undefined
               ? ""
               : parseISOString(data.article.createdAt)
@@ -90,26 +115,26 @@ export default function Article() {
                   .split(":")[0]
                   .slice(0, -3)}
           </h2>
-          <div className="sm:ml-[70%]"></div>
-          <div className="flex flex-row justify-center translate-x-12 ml-6">
-            <div className=" flex flex-row h-min items-center">
-              <h1 className="mr-2 font-gilroy">
+          {/* <div className="ml-10 sm:ml-0 md:ml-0 lg:ml-0"></div> */}
+          <div className="flex flex-row w-screen justify-end mr-20 sm:w-screen text-londonYellow text-xs sm:justify-end sm:mr-5 sm:text-xs md:text-base lg:text-lg md:w-screen md:justify-end md:mr-5 lg:mr-32">
+            <div className="flex flex-row h-min items-center">
+              <h1 className="mr-1 sm:mr-2 md:mr-2 lg:mr-2 font-gilroy">
                 {data.writerName} |{" "}
                 {data.article == undefined ? "" : data.article.genre}
               </h1>
-              <Avatar src={`${data.profileURL}`}></Avatar>
+              <Avatar className="w-7 h-7 sm:w-10 sm:h-10 md:w-10 md:h-10 lg:w-10 lg:h-10" src={`${data.profileURL}`}></Avatar>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="flex flex-col pr-5 pl-5 sm:mt-4 sm:flex-row">
-        <div className="sm:basis-1/4 sm:translate-x-1/4">
-          <h1 className="translate-y-1/3 text-xl sm:text-3xl text-pink font-gilroy font-bold">
+      <div className="flex flex-col pr-5 pl-5 lg:mt-4 lg:flex-row">
+        <div className="lg:basis-1/4 lg:translate-x-1/4">
+          <h1 className="translate-y-1/3 sm:text-2xl md:text-2xl lg:text-4xl text-white font-gilroy font-bold" style={{fontWeight: "700", WebkitTextStrokeWidth: "1px", WebkitTextStrokeColor: "black"}}>
             {data.article == undefined ? "" : data.article.title.toUpperCase()}
           </h1>
         </div>
-        <div className="sm:basis-1/2 sm:mt-16">
+        <div className="lg:basis-1/2 lg:mt-16">
           <img
             width={"100%"}
             src={`${data.article == undefined ? "" : data.article.imageURL}`}
