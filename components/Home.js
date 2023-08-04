@@ -238,7 +238,7 @@ export default function HomeComponent() {
             </div>
             <div className="basis-2/4 pl-3 pt-16 flex flex-col sm:flex sm:flex-col">
               <div className="flex justify-between items-center">
-                <h1 className="text-xl sm:text-2xl text-#1D1D1D dark:text-white font-gilroy font-bold -ml-5 md:ml-8 ">
+                <h1 className="text-xl sm:text-2xl text-#1D1D1D dark:text-white font-gilroy font-bold -ml-5 md:ml-8 lg:pb-2">
                   Recent News
                 </h1>
                 <Link
