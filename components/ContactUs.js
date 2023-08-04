@@ -21,12 +21,12 @@ export default function Contact() {
       id="contactus"
       className="w-full  bg-[#428797] dark:bg-yellowBackground"
     >
-      <div className="pt-8 px-8 ">
+      <div className="pt-8 px-4 md:px-8 ">
         <UpdatedHeading notcap={false}>
           Got some Tea or Coffee for us?
         </UpdatedHeading>
 
-        <div className="px-8 mt-8">
+        <div className="md:px-8 mt-8">
           <input
             placeholder="Name"
             value={data["Name"]}
@@ -35,7 +35,7 @@ export default function Contact() {
           ></input>
         </div>
 
-        <div className="px-8">
+        <div className="md:px-8">
           <input
             placeholder="Email"
             value={data["Email"]}
@@ -44,7 +44,7 @@ export default function Contact() {
           ></input>
         </div>
 
-        <div className="px-8">
+        <div className="md:px-8">
           <input
             placeholder="Subject"
             value={data["Subject"]}
@@ -52,7 +52,7 @@ export default function Contact() {
             className="font-georgia w-full mt-6 px-8 py-3 text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[8px_8px_0px_rgba(159,225,240,1)]"
           ></input>
         </div>
-        <div className="px-8">
+        <div className="md:px-8">
           <textarea
             placeholder="Message"
             value={data["Message"]}

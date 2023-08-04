@@ -19,7 +19,7 @@ export default function UpdatedNewsCard(props) {
     : colorArr1[props.i % colorArr1.length];
   return (
     <div
-      className={` px-8 ${props.horizontal == true ? "" : "py-4"}`}
+      className={` md:px-8 ${props.horizontal == true ? "" : "py-4"}`}
       onClick={() => {
         if (props.newArticle) {
           router.push("/news/" + props.id, undefined, { scroll: false });
@@ -60,9 +60,9 @@ export default function UpdatedNewsCard(props) {
                   ? "12px 12px 0px rgba(159,225,240,1)"
                   : "",
               }}
-              className={`w-full h-full object-cover aspect-video drop-shadow-[12px_12px_0px_${
+              className={`w-full h-full  object-cover aspect-video drop-shadow-[12px_12px_0px_${
                 props.bigger == true ? "rgba(222,153,255,1)" : ""
-              }${props.horizontal == true ? "rgba(159,225,240,1)" : ""}] ${
+              }${props.horizontal == true ? "rgba(159,225,240,1) " : ""}] ${
                 props.thisweek ? "-translate-x-2 -translate-y-2" : ""
               }`}
               src={`${props.imageURL}`}
@@ -109,17 +109,17 @@ export default function UpdatedNewsCard(props) {
         >
           <h1
             className={` ${
-              props.horizontal == true ? "text-xl" : "sm:text-2xl :text-14px"
+              props.horizontal == true ? "text-xl" : "sm:text-[16px] text-[14px] md:text-2xl"
             } font-georgia text-#1D1D1D dark:text-white`}
           >
             {props.headline}
           </h1>
           <div className="flex flex-row items-center pt-2">
-            <Avatar className="w-4 h-4 sm:w-8 sm:h-8" />
+            <Avatar className="w-3 h-3 md:w-8 md:h-8" />
             <p
               style={{ color: textColor }}
               className={`ml-2 font-georgia ${
-                props.bigger == true ? "sm:text-xl text-[12px]" : ""
+                props.bigger == true ? "md:text-xl text-xs" : " text-xs"
               } `}
             >
               {"Nigel Dias"} | {props.genre}
