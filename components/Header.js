@@ -81,7 +81,7 @@ export default function Headers(props) {
                 </ListItem>
                 <ListItem
                   sx={{ justifyContent: "center" }}
-                  className="sm:hidden"
+                  className="md:hidden"
                 >
                   <Link href={"/allnews"}>
                     <ListItemButton sx={{ color: "white" }}>
@@ -91,7 +91,7 @@ export default function Headers(props) {
                 </ListItem>
                 <ListItem
                   sx={{ justifyContent: "center" }}
-                  className="sm:hidden"
+                  className="md:hidden"
                 >
                   <Link href={"/#timeline"}>
                     <ListItemButton sx={{ color: "white" }}>
@@ -101,7 +101,7 @@ export default function Headers(props) {
                 </ListItem>
                 <ListItem
                   sx={{ justifyContent: "center" }}
-                  className="sm:hidden"
+                  className="md:hidden"
                 >
                   <Link href={"/#featuringPES"}>
                     <ListItemButton sx={{ color: "white" }}>
@@ -111,7 +111,7 @@ export default function Headers(props) {
                 </ListItem>
                 <ListItem
                   sx={{ justifyContent: "center" }}
-                  className="sm:hidden"
+                  className="md:hidden"
                 >
                   <Link href={"/#contactus"}>
                     <ListItemButton sx={{ color: "white" }}>
@@ -139,7 +139,7 @@ export default function Headers(props) {
               </List>
             </Drawer>
           </div>
-          <div className="hidden  sm:flex sm:flex-row sm:items-center">
+          <div className="hidden  md:flex md:flex-row md:items-center">
             <Link
               href={"/allnews"}
               className="text-#1D1D1D dark:text-white text-xl font-georgia px-8 hover:text-hoverbeigeText"

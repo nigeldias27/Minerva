@@ -34,9 +34,7 @@ export default function UpdatedNewsCard(props) {
             ? "grid grid-cols-5 md:grid-cols-2 md:py-6"
             : ""
         } ${
-          props.hideDate == true
-            ? "grid grid-cols-2 sm:grid sm:grid-cols-1 py-2"
-            : ""
+          props.hideDate == true ? "grid grid-cols-2 md:grid-cols-1 py-2" : ""
         } hover:scale-105 transition duration-50 ease-linear`}
       >
         <div className="relative col-span-2 md:col-auto">
@@ -48,7 +46,7 @@ export default function UpdatedNewsCard(props) {
               props.horizontal ? "flex flex-col justify-center md:block" : ""
             } ${
               props.thisweek == true
-                ? `outline min-w-0 outline-1 sm:outline-0 sm:w-full ${
+                ? `outline min-w-0 outline-1 md:outline-0 sm:w-full ${
                     props.horizontal
                       ? ""
                       : "w-11/12 translate-x-2 translate-y-2"
@@ -111,7 +109,7 @@ export default function UpdatedNewsCard(props) {
         <div
           className={`col-span-3 md:col-auto ${
             props.hideDate == true
-              ? "pl-4 md:pl-8 pt-2 sm:pt-8 sm:pl-3"
+              ? "pl-4 pt-2 sm:py-1  md:pt-8 md:pl-3 lg:pl-8 "
               : props.horizontal == true
               ? "pl-8 pt-2"
               : "pt-8 pl-3"
@@ -130,7 +128,7 @@ export default function UpdatedNewsCard(props) {
             <Avatar className="w-4 h-4 sm:w-8 sm:h-8" />
             <p
               style={{ color: textColor }}
-              className={`ml-2 font-georgia text-[10px] ${
+              className={`ml-2 font-georgia text-[10px] sm:text-xs ${
                 props.bigger == true ? "sm:text-xl text-[12px]" : ""
               } `}
             >
