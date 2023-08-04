@@ -27,7 +27,7 @@ export default function AboutUs() {
 
           <div className="grid grid-cols-2 mx-8 pt-8 font-georgia text-4xl">
             <div>
-              <h3 className="text-#1D1D1D dark:text-white mr-8 font-bold">
+              <h3 className="text-#1D1D1D dark:text-white  mr-8 font-bold">
                 {"PES University weekly publication. Bangalore's first ".toUpperCase()}
                 <span className="text-londonYellow dark:text-yellow">
                   STUDENT-RUN
@@ -38,6 +38,7 @@ export default function AboutUs() {
             <Image
         src={  dark? quotesdark:quotes}
         alt="Quotes image"
+        style={{maxWidth : "20%"}}
         className="absolute   left-1/2 transform -translate-y-1/2  scale-50 "
       />
             <div className=" flex flex-col justify-end">
