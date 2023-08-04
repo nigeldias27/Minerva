@@ -234,10 +234,7 @@
     background-clip: padding-box;
     backdrop-filter: blur(24px);
   }
-
-  .specialGrid {
-    grid-cols-2
-  }
+  
 
   .description div {
     align-items: flex-end;
