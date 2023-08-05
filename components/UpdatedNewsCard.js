@@ -19,7 +19,7 @@ export default function UpdatedNewsCard(props) {
     : colorArr1[props.i % colorArr1.length];
   return (
     <div
-      className={` px-8 ${props.horizontal == true ? "" : "py-4"}`}
+      className={` md:px-8 ${props.horizontal == true ? "" : "py-4"}`}
       onClick={() => {
         if (props.newArticle) {
           router.push("/news/" + props.id, undefined, { scroll: false });
@@ -64,9 +64,9 @@ export default function UpdatedNewsCard(props) {
                   ? "12px 12px 0px rgba(159,225,240,1)"
                   : "",
               }}
-              className={`w-full h-full object-cover aspect-video drop-shadow-[12px_12px_0px_${
+              className={`w-full h-full  object-cover aspect-video drop-shadow-[12px_12px_0px_${
                 props.bigger == true ? "rgba(222,153,255,1)" : ""
-              }${props.horizontal == true ? "rgba(159,225,240,1)" : ""}] ${
+              }${props.horizontal == true ? "rgba(159,225,240,1) " : ""}] ${
                 props.thisweek ? "-translate-x-2 -translate-y-2" : ""
               } ${
                 props.horizontal == true
@@ -77,7 +77,7 @@ export default function UpdatedNewsCard(props) {
             ></img>
           </div>
           {props.bigger == true && !props.hideDate ? (
-            <div className="absolute rounded-b-lg sm:rounded-b-2xl px-2 sm:px-4 sm:text-xs text-[8px] py-1 border border-gray-700 bg-white dark:bg-yellow top-0 left-4 sm:left-8 font-gilroy font-500">
+            <div className="absolute rounded-b-lg md:rounded-b-2xl px-2 md:px-4 md:text-xs text-[8px] py-[3px] border border-gray-700 bg-white dark:bg-yellow top-0 left-4 md:left-8 font-gilroy font-500">
               {parseISOString(props.date)
                 .toUTCString()
                 .split(",")[1]
@@ -87,14 +87,14 @@ export default function UpdatedNewsCard(props) {
             </div>
           ) : (
             <div
-              className={`absolute rounded-r-2xl px-4 sm:py-1 py-[3px] border border-gray-700 bg-white dark:bg-yellow ${
+              className={`absolute rounded-r-2xl px-4 md:py-1 py-[3px] border border-gray-700 bg-white dark:bg-yellow ${
                 props.hideDate || (!props.horizontal && !props.bigger)
                   ? "hidden"
                   : ""
               } ${
                 props.horizontal == true
-                  ? "top-3 sm:text-xs text-[8px]"
-                  : "top-8"
+                  ? "top-3 md:text-xs text-[8px]"
+                  : "top-8 md:text-xs text-[8px]"
               }  font-gilroy font-500`}
             >
               {parseISOString(props.date)
@@ -118,18 +118,21 @@ export default function UpdatedNewsCard(props) {
           <h1
             className={` ${
               props.horizontal == true
-                ? "text-sm md:text-xl line-clamp-2 overflow-hidden md:line-clamp-none md:overflow-auto"
-                : "text-[15px] sm:text-base "
+                ? "text-xl"
+                : "sm:text-[18px] text-[14px] md:text-2xl"
             } font-georgia text-#1D1D1D dark:text-white`}
           >
             {props.headline}
           </h1>
           <div className="flex flex-row items-center pt-2">
-            <Avatar className="w-4 h-4 sm:w-8 sm:h-8" />
+            <Avatar className="w-3 h-3 md:w-8 md:h-8" />
             <p
               style={{ color: textColor }}
-              className={`ml-2 font-georgia text-[10px] sm:text-xs ${
-                props.bigger == true ? "sm:text-xl text-[12px]" : ""
+              className={`ml-2 font-georgia ${
+                props.bigger == true
+                  ? "md:text-xl text-xs"
+                  : " md:text-lg text-xs"
+
               } `}
             >
               {"Nigel Dias"} | {props.genre}
