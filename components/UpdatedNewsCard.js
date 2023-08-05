@@ -30,25 +30,29 @@ export default function UpdatedNewsCard(props) {
     >
       <div
         className={`min-h-full ${
-          props.horizontal == true ? "grid grid-cols-2 py-6" : ""
-        } ${
-          props.hideDate == true
-            ? "grid grid-cols-2 sm:grid sm:grid-cols-1 py-6"
+          props.horizontal == true
+            ? "grid grid-cols-5 md:grid-cols-2 md:py-6"
             : ""
+        } ${
+          props.hideDate == true ? "grid grid-cols-2 md:grid-cols-1 py-2" : ""
         } hover:scale-105 transition duration-50 ease-linear`}
       >
-        <div className="relative">
+        <div className="relative col-span-2 md:col-auto">
           <div
             style={{
               outlineColor: props.horizontal ? "transparent" : textColor,
             }}
-            className={
+            className={` ${
+              props.horizontal ? "flex flex-col justify-center md:block" : ""
+            } ${
               props.thisweek == true
-                ? `outline min-w-0 outline-1 sm:outline-0 sm:w-full ${
-                    props.horizontal ? "" : "w-5/6 translate-x-4 translate-y-4"
+                ? `outline min-w-0 outline-1 md:outline-0 sm:w-full ${
+                    props.horizontal
+                      ? ""
+                      : "w-11/12 translate-x-2 translate-y-2"
                   }`
                 : "w-full h-full"
-            }
+            }`}
           >
             <img
               style={{
@@ -64,6 +68,10 @@ export default function UpdatedNewsCard(props) {
                 props.bigger == true ? "rgba(222,153,255,1)" : ""
               }${props.horizontal == true ? "rgba(159,225,240,1) " : ""}] ${
                 props.thisweek ? "-translate-x-2 -translate-y-2" : ""
+              } ${
+                props.horizontal == true
+                  ? "max-w-[7rem] max-h-[4rem] w-auto h-auto md:max-h-none md:max-w-none py-1rem"
+                  : ""
               }`}
               src={`${props.imageURL}`}
             ></img>
@@ -99,9 +107,9 @@ export default function UpdatedNewsCard(props) {
           )}
         </div>
         <div
-          className={` ${
+          className={`col-span-3 md:col-auto ${
             props.hideDate == true
-              ? "pl-8 pt-2 sm:pt-8 sm:pl-3"
+              ? "pl-4 pt-2 sm:py-1  md:pt-8 md:pl-3 lg:pl-8 "
               : props.horizontal == true
               ? "pl-8 pt-2"
               : "pt-8 pl-3"
@@ -124,10 +132,19 @@ export default function UpdatedNewsCard(props) {
                 props.bigger == true
                   ? "md:text-xl text-xs"
                   : " md:text-lg text-xs"
+
               } `}
             >
               {"Nigel Dias"} | {props.genre}
             </p>
+            {props.readTime && (
+              <p
+                style={{ color: textColor }}
+                className="font-georgia ml-auto text-[10px] md:hidden"
+              >
+                {props.readTime} min read
+              </p>
+            )}
           </div>
         </div>
       </div>

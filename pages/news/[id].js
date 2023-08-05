@@ -105,9 +105,9 @@ export default function Article() {
         ></div> */}
       </div>
 
-      <div className="sm:ml-5 sm:mt-6 md:ml-5 md:mt-6 lg:ml-24">
-        <div className="flex flex-row items-center">
-          <h2 className="sm:text-sm md:text-sm lg:text-base font-bold font-gilroy sm:w-36 md:w-36 lg:w-screen">
+      <div className="ml-10 sm:ml-5 sm:mt-6 md:ml-5 md:mt-6 lg:ml-24">
+        <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row items-center">
+          <h2 className="w-screen justify-start text-xs sm:text-sm md:text-sm lg:text-base font-bold font-gilroy sm:w-36 md:w-36 lg:w-screen">
             {data.article == undefined
               ? ""
               : parseISOString(data.article.createdAt)
@@ -116,14 +116,14 @@ export default function Article() {
                   .split(":")[0]
                   .slice(0, -3)}
           </h2>
-          <div className=""></div>
-          <div className="flex flex-row sm:w-screen text-londonYellow sm:justify-end sm:mr-5 sm:text-xs md:text-base lg:text-lg md:w-screen md:justify-end md:mr-5 lg:mr-32">
-            <div className=" flex flex-row h-min items-center">
-              <h1 className="mr-2 font-gilroy">
+          {/* <div className="ml-10 sm:ml-0 md:ml-0 lg:ml-0"></div> */}
+          <div className="flex flex-row w-screen justify-end mr-20 sm:w-screen text-londonYellow text-xs sm:justify-end sm:mr-5 sm:text-xs md:text-base lg:text-lg md:w-screen md:justify-end md:mr-5 lg:mr-32">
+            <div className="flex flex-row h-min items-center">
+              <h1 className="mr-1 sm:mr-2 md:mr-2 lg:mr-2 font-gilroy">
                 {data.writerName} |{" "}
                 {data.article == undefined ? "" : data.article.genre}
               </h1>
-              <Avatar src={`${data.profileURL}`}></Avatar>
+              <Avatar className="w-7 h-7 sm:w-10 sm:h-10 md:w-10 md:h-10 lg:w-10 lg:h-10" src={`${data.profileURL}`}></Avatar>
             </div>
           </div>
         </div>

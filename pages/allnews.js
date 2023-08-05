@@ -19,7 +19,7 @@ import Head from "next/head";
 const CustomLeftArrow = ({ onClick }) => (
   <div
     onClick={() => onClick()}
-    className="w-10 h-10 relative z-50 bg-pink react-multiple-carousel__arrow hidden sm:flex"
+    className="w-10 h-10 relative z-50 bg-pink react-multiple-carousel__arrow hidden md:flex"
   >
     <button
       style={{ transform: "translate(,-50%)" }}
@@ -41,7 +41,7 @@ const CustomLeftArrow = ({ onClick }) => (
 const CustomRightArrow = ({ onClick }) => (
   <div
     onClick={() => onClick()}
-    className="w-1 h-1 relative z-50 bg-pink react-multiple-carousel__arrow right-0 hidden sm:flex"
+    className="w-1 h-1 relative z-50 bg-pink react-multiple-carousel__arrow right-0 hidden md:flex"
   >
     <button
       style={{ transform: "translate(,-50%)" }}
@@ -122,21 +122,21 @@ export default function News() {
     return false;
   }
   const responsive = {
-    superLargeDesktop: {
-      // the naming can be any, depends on you.
-      breakpoint: { max: 4000, min: 3000 },
-      items: 8,
-    },
     desktop: {
-      breakpoint: { max: 3000, min: 1024 },
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 1024 },
       items: 8,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 5,
+      breakpoint: { max: 1024, min: 430 },
+      items: 8,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
+      breakpoint: { max: 430, min: 320 },
+      items: 3,
+    },
+    smallMobile: {
+      breakpoint: { max: 320, min: 0 },
       items: 3,
     },
   };
@@ -206,27 +206,31 @@ export default function News() {
   return (
     <div className={` min-h-screen ${dark ? "dark" : ""}`}>
       <Headers dark={dark} setDark={setDark} />
-      <div className="px-0 relative pt-8 bg-#FCF7FF dark:bg-greyBlack sm:px-12">
-        <div className="flex flex-row w-full justify-between items-center px-8 mb-8 sm:px-0">
+      <div className="px-0 relative pt-8 bg-#FCF7FF dark:bg-greyBlack md:px-12">
+        <div className="flex flex-row w-full justify-between items-start px-0">
           <UpdatedHeading>News</UpdatedHeading>
         </div>
         <Carousel
           customLeftArrow={<CustomLeftArrow />}
           customRightArrow={<CustomRightArrow />}
           responsive={responsive}
-          className="py-4 mx-8"
         >
           {genreList.map((v, i) => {
             return (
-              <div key={i} className="p-2">
-                <button class="px-2 m-2 h-8 flex w-full text-center whitespace-nowrap bg-white dark:bg-greyBlack  text-black dark:text-white rounded-md border border-black dark:border-white hover:dark:border-yellow hover:border-2 hover:border-londonYellow hover:shadow-xl font-georgia font-semibold">
-                  <p className="flex justify-center items-center w-full">{v}</p>
+              <div
+                key={i}
+                className="py-2 px-5 sm:p-0 flex justify-center items-center"
+              >
+                <button class="py-0.5 mx-1 sm:px-1 flex w-full text-center whitespace-nowrap bg-white dark:bg-greyBlack  text-black dark:text-white rounded-[4px] border border-black dark:border-white hover:dark:border-yellow hover:border-londonYellow hover:shadow-xl font-georgia font-semibold">
+                  <p className="flex justify-center items-center w-full text-[10px]">
+                    {v}
+                  </p>
                 </button>
               </div>
             );
           })}
         </Carousel>
-        <h2 className="font-han mt-8 text-3xl px-10 py-4 dark:text-white text-greyBlack">
+        <h2 className="font-han px-8 mt-6 text-[1.375rem] py-4 dark:text-white text-greyBlack">
           This week
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
@@ -266,7 +270,7 @@ export default function News() {
           ></div>
         </div>
 
-        <h2 className="font-han mt-8 text-3xl px-10 py-4 dark:text-white text-greyBlack">
+        <h2 className="font-han mt-4 text-[1.375rem] px-8 md:px-10 py-4 dark:text-white text-greyBlack">
           Previously
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
