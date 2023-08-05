@@ -50,6 +50,8 @@ module.exports = {
         londonYellow: "#B18516",
         softViolet: "#B94FEB",
         otherblue: "#428897",
+        lighterblue: "#4991A0",
+        lighterblack: "#323232",
         backgroundModal: "#FCF7FF",
       },
     },
