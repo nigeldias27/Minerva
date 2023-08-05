@@ -88,7 +88,8 @@ export default function Article() {
             transformOrigin: "0%",
             scaleX: scrollYProgress,
             borderTopRightRadius: "1rem",
-            borderBottomRightRadius: "1rem"
+            borderBottomRightRadius: "1rem",
+            display: isSliced ? "none" : "flex",
           }}
         ></motion.div>
         {/* <div style={{
@@ -130,7 +131,14 @@ export default function Article() {
 
       <div className="flex flex-col pr-5 pl-5 lg:mt-4 lg:flex-row">
         <div className="lg:basis-1/4 lg:translate-x-1/4">
-          <h1 className="translate-y-1/3 sm:text-2xl md:text-2xl lg:text-4xl text-white font-gilroy font-bold" style={{fontWeight: "700", WebkitTextStrokeWidth: "1px", WebkitTextStrokeColor: "black"}}>
+          <h1
+            className="translate-y-1/3 sm:text-2xl md:text-2xl lg:text-4xl text-white font-gilroy font-bold"
+            style={{
+              fontWeight: "700",
+              WebkitTextStrokeWidth: "1px",
+              WebkitTextStrokeColor: "black",
+            }}
+          >
             {data.article == undefined ? "" : data.article.title.toUpperCase()}
           </h1>
         </div>

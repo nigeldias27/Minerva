@@ -44,6 +44,7 @@ import UpdatedHeading from "@/animatedComponents/UpdatedHeading";
 import AnimatedTimelineItem from "./AnimatedTimelineItem";
 import { isMdAsciiPunct } from "markdown-it/lib/common/utils";
 import { IoMdClose } from "react-icons/io";
+import UpdatedAnimatedTimelineItem from "./UpdateAnimatedTimelineItem";
 
 const CustomLeftArrow = ({ onClick }) => (
   <div
@@ -97,7 +98,7 @@ export default function HomeComponent() {
   const router = useRouter();
   const [data, setData] = useState([]); //This refers to the 6 news articles featured in the home page
   const [open, setOpen] = useState(false); // Loading circular progress bar(Backdrop)
-  const isSmallScreen = useMediaQuery({ maxWidth: 480 });
+  const isSmallScreen = useMediaQuery({ maxWidth: 429 });
   const [dark, setDark] = useState(false);
   const [openDialogue, setOpenDialogue] = useState(false);
   const handleClickOpen = () => {
@@ -163,22 +164,25 @@ export default function HomeComponent() {
         >
           <div className="w-screen h-screen z-0 bg-[rgba(0,0,0,0.7)] absolute"></div>
 
-          <div className="grid grid-cols-2 h-full relative z-10 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 h-full relative z-10 w-full">
             <motion.div
-              className="h-full w-screen md:w-full  flex flex-col items-center justify-center"
+              className="h-full w-screen md:w-full  flex flex-col items-start md:items-center justify-center"
               initial={{ opacity: 0, x: -120 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.5 }}
             >
-              <div style={{ transform: "translate(0,-30%)" }} className="pl-12">
-                <h1 className="text-4xl font-georgia font-bold text-white md:text-7xl">
+              <div
+                style={{ transform: "translate(0,-30%)" }}
+                className="pl-5 pt-7 md:pl-12"
+              >
+                <h1 className="lg:text-6xl font-georgia font-bold text-white sm:text-3xl md:text-6xl text-3xl">
                   Introducing Minerva
                 </h1>
-                <h1 className="text-xl font-georgia font-light mt-8 mb-4 text-white md:text-3xl">
+                <h1 className="text-lg sm:text-lg font-georgia font-light mt-8 mb-4 text-white md:text-3xl lg:text-3xl">
                   Bangalore&apos;s first student-run college newspaper
                 </h1>
-                <p className="text-md font-georgia hidden sm:flex font-light md:text-xl pr-3 text-white">
+                <p className="text-md font-georgia hidden md:flex font-light md:text-xl pr-3 text-white">
                   We are a group of thinkers that challenge people through good
                   journalism.
                 </p>
@@ -203,9 +207,9 @@ export default function HomeComponent() {
             <BsArrowDown size={16} />
           </button>
         </div>
-        <div className="px-0 bg-white dark:bg-greyBlack pt-8 sm:px-12">
-          <div className="sm:flex sm:flex-row flex flex-col sm:mt-16 ">
-            <div className="basis-3/6">
+        <div className="px-0 bg-white dark:bg-greyBlack pt-8 sm:px-6 md:px-12">
+          <div className="md:flex md:flex-row flex flex-col sm:flex sm:flex-col md:mt-16 sm:-mx-2 mx-5 ">
+            <div className="basis-3/6 pr-2 ">
               <UpdatedHeading># Trending</UpdatedHeading>
               {data[0] == undefined ? (
                 <div></div>
@@ -236,19 +240,19 @@ export default function HomeComponent() {
                 </div>
               )}
             </div>
-            <div className="basis-2/4 pl-3 pt-16 flex flex-col">
+            <div className="basis-2/4 pl-3 pt-15 flex flex-col sm:flex sm:flex-col">
               <div className="flex justify-between items-center">
-                <h1 className="text-3xl text-#1D1D1D dark:text-white font-gilroy font-bold ml-8 ">
+                <h1 className="text-xl sm:text-2xl text-#1D1D1D dark:text-white font-gilroy font-bold -ml-5 md:ml-8 lg:pb-2">
                   Recent News
                 </h1>
                 <Link
                   href={"/allnews"}
-                  className=" text-otherblue dark:text-blue underline text-sm font-georgia pr-4 pt-2 hover:text-hoverbeigeText justify-center sm:hidden "
+                  className=" text-otherblue dark:text-blue underline text-sm font-georgia pr-4 pt-2 hover:text-hoverbeigeText justify-center hidden  sm:hidden "
                 >
                   View More
                 </Link>
               </div>
-              <div className="sm:hidden">
+              <div className="md:hidden">
                 {" "}
                 {/* Render carousel for small screens */}
                 <Carousel
@@ -258,7 +262,7 @@ export default function HomeComponent() {
                   customLeftArrow={<></>} // Hide the left arrow button
                   customRightArrow={<></>} // Hide the right arrow button
                   removeArrowOnDeviceType={["sm", "md"]}
-                  className="py-4 justify-center mr-3"
+                  className="py-3 sm:py-6 justify-center -ml-5"
                 >
                   {/* Render news cards as carousel items */}
                   {data.map((val, i) => (
@@ -281,7 +285,7 @@ export default function HomeComponent() {
               </div>
               <div
                 style={{ maxHeight: "110vh" }}
-                className=" hidden sm:block overflow-auto"
+                className=" hidden md:block overflow-auto"
               >
                 {data.slice(2, -1).map((val, i) => {
                   return (
@@ -314,7 +318,7 @@ export default function HomeComponent() {
             </div>
           </div>
 
-          <div className="hidden sm:flex w-full mt-8 justify-center">
+          <div className="hidden md:flex w-full mt-8 justify-center">
             <div className="relative">
               <button
                 class="bg-pink border border-black relative z-40 x-6 my-1  font-gilroy font-bolder rounded-md py-2 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
@@ -334,14 +338,14 @@ export default function HomeComponent() {
             </div>
           </div>
           <motion.div
-            className="bg-[#428797] dark:bg-yellowBackground p-8 my-24 w-full rounded-md"
+            className="bg-[#428797] dark:bg-yellowBackground p-8 mt-20 mb-10 w-full rounded-md"
             initial={{ opacity: 0, y: -60 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: 0.5 }}
           >
             <UpdatedHeading>Our Timeline</UpdatedHeading>
-            <div className="hidden sm:flex">
+            <div className="hidden md:flex">
               <Timeline id="timeline" className="px-1 " position="alternate">
                 <TimelineItem>
                   <TimelineOppositeContent
@@ -491,42 +495,34 @@ export default function HomeComponent() {
                 </TimelineItem>
               </Timeline>
             </div>
-            <div className="flex sm:hidden">
-              <Timeline
-                id="timeline"
-                className="px-1 "
-                sx={{
-                  [`& .${timelineOppositeContentClasses.root}`]: {
-                    flex: 0,
-                  },
-                }}
-              >
-                <AnimatedTimelineItem
-                  title={"Runaway Runway"}
-                  time={"14th Apr 2023, 12:00pm"}
-                  venue={"10th Floor, BE Block"}
-                  desc={`Runway from buying expensive material in the name of
+            <div className="flex flex-col w-full items-center md:hidden">
+              <UpdatedAnimatedTimelineItem
+                title={"Runaway Runway"}
+                time={"14th Apr 2023, 12:00pm"}
+                venue={"10th Floor, BE Block"}
+                desc={`Runway from buying expensive material in the name of
                         fashion run-towards sustainable and recyclable eco-chic
                         designs`}
-                  img={event3}
-                ></AnimatedTimelineItem>
-                <AnimatedTimelineItem
-                  title={"Rethink Retrospect Reflect"}
-                  time={"8th Feb 2023, 2:45PM"}
-                  venue={"Seminar Hall 3,BE Block"}
-                  desc={`Watch the screenplay, write a report on it and stand a
+                img={event3}
+              ></UpdatedAnimatedTimelineItem>
+              <div className="h-8 w-1 my-4 bg-yellow rounded-sm"></div>
+              <UpdatedAnimatedTimelineItem
+                title={"Rethink Retrospect Reflect"}
+                time={"8th Feb 2023, 2:45PM"}
+                venue={"Seminar Hall 3,BE Block"}
+                desc={`Watch the screenplay, write a report on it and stand a
                         chance to win Ant Man tickets!`}
-                  img={event1}
-                ></AnimatedTimelineItem>
-                <AnimatedTimelineItem
-                  title={"Minerva Orientation"}
-                  time={"12th Apr 2023, 2:45PM"}
-                  venue={"MRD Auditorium"}
-                  desc={`Come learn more about what our club has in store for all
+                img={event1}
+              ></UpdatedAnimatedTimelineItem>
+              <div className="h-8 w-1 my-4 bg-yellow rounded-sm"></div>
+              <UpdatedAnimatedTimelineItem
+                title={"Minerva Orientation"}
+                time={"12th Apr 2023, 2:45PM"}
+                venue={"MRD Auditorium"}
+                desc={`Come learn more about what our club has in store for all
                         of you this year`}
-                  img={event2}
-                ></AnimatedTimelineItem>
-              </Timeline>
+                img={event2}
+              ></UpdatedAnimatedTimelineItem>
             </div>
           </motion.div>
           <div id="featuringPES" className="flex">
@@ -538,27 +534,27 @@ export default function HomeComponent() {
             showDots={isSmallScreen ? true : false}
             customLeftArrow={isSmallScreen ? <></> : <CustomLeftArrow />} // Hide the left arrow button
             customRightArrow={isSmallScreen ? <></> : <CustomRightArrow />} // Hide the right arrow button
-            className="py-3"
+            className="pb-4 pt-3 "
           >
-            <div className="sm:flex sm:flex-row  flex-col mx-10 ">
-              <div className="basis-3/5 relative sm:hidden">
+            <div className="md:flex md:flex-row  flex-col mx-10 sm:mx-5 md:mx-10 ">
+              <div className="basis-3/5 relative md:hidden">
                 <img
                   src="https://cie.pes.edu/wp-content/uploads/2023/04/CIE-Timeline-1-1.jpg"
                   className="w-full mt-3 mb-19 relative z-10 -translate-x-1 aspect-video"
                 ></img>
-                <div className="absolute w-full  sm:mt-8 mt-1  sm:mb-24 mb-1 z-1  bg-blue top-2 sm:top-4 left-1 sm:left-4 aspect-video"></div>
-                <div className="absolute w-full sm:mt-8 mt-1 sm:mb-24 mb-1 z-0 bg-white dark:bg-black top-1 sm:top-3 left-0.5 sm:left-3 aspect-video"></div>
+                <div className="absolute w-full  md:mt-8 mt-1  md:mb-24 mb-1 z-1  bg-blue top-2 md:top-4 left-1 md:left-4 aspect-video"></div>
+                <div className="absolute w-full md:mt-8 mt-1 md:mb-24 mb-1 z-0 bg-white dark:bg-black top-1 md:top-3 left-0.5 md:left-3 aspect-video"></div>
               </div>
               <div className="basis-2/5 pt-7 pb-3 -translate-x-3">
                 <div className="pb-0.1 pt-0.5">
                   <h4
                     /* style={{ width:"50%" }}*/
-                    className="absolute sm:relative z-20 sm:w-50% w-100% sm:text-4xl text-16px sm:pt-3  sm:pb-1  sm:mr-5 ml-3   text-[#428897] dark:text-blue font-han font-bold"
+                    className="absolute sm:relative z-20 sm:w-50% w-100% md:text-4xl text-[16px] sm:pt-3  sm:pb-1  sm:mr-5 ml-3   text-[#428897] dark:text-blue font-han font-bold"
                   >
-                    The stepping stone to entrepreneurship
+                    {"The stepping stone to entrepreneurship".toUpperCase()}
                   </h4>
                 </div>
-                <p className="  mx-3 mt-20  text-14px sm:mt-5  sm:text-20px font-georgia text-#1D1D1D  dark:text-white">
+                <p className="  mx-3 mt-20  text-14px sm:mt-5  md:text-20px font-georgia text-#1D1D1D  dark:text-white">
                   Centre for Innovation and Entrepreneurship
                   <a
                     className="underline"
@@ -577,17 +573,14 @@ export default function HomeComponent() {
                   </sup>
                   It combines technology, innovation and entrepreneurship,
                   leading to innovation in STEM with an entrepreneurial focus.
-                  CIE is directed by Prof. Sathya Prasad and managed by the
-                  program manager of CIE, Mr. Madhukar Narasimha. Nearly 1784
-                  Students have completed courses offered by CIE and it has
-                  received approximately six million rupees as industry grants
-                  and awards. CIE is also a part of nine industry programs. The
-                  Centre for Innovation and Entrepreneurship provides an
-                  eye-opening opportunity for students to learn about the world
-                  of entrepreneurship and see their ideas fruition to life.
+                  CIE is directed by Prof.CIE is also a part of nine industry
+                  programs. The Centre for Innovation and Entrepreneurship
+                  provides an eye-opening opportunity for students to learn
+                  about the world of entrepreneurship and see their ideas
+                  fruition to life.
                 </p>
               </div>
-              <div className="basis-3/5 relative -translate-x-3 hidden sm:block">
+              <div className="basis-3/5 relative -translate-x-3 hidden md:block">
                 <img
                   src="https://cie.pes.edu/wp-content/uploads/2023/04/CIE-Timeline-1-1.jpg"
                   className="w-full mt-8 mb-24 relative z-10 aspect-video"
@@ -597,25 +590,25 @@ export default function HomeComponent() {
               </div>
             </div>
 
-            <div className="sm:flex sm:flex-row  flex-col mx-10">
-              <div className="basis-3/5 relative sm:hidden">
+            <div className="md:flex md:flex-row  flex-col mx-10 sm:mx-5 md:mx-10">
+              <div className="basis-3/5 relative md:hidden">
                 <img
                   src="data:image/png;base64,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"
                   className="w-full mt-3  mb-19 relative z-10 -translate-x-1 aspect-video"
                 ></img>
-                <div className="absolute w-full  sm:mt-8 mt-1  sm:mb-24 mb-1 z-0 bg-blue top-2 sm:top-4 left-1 sm:left-4 aspect-video"></div>
-                <div className="absolute w-full sm:mt-8 mt-1 sm:mb-24 mb-1 z-0 bg-white dark:bg-black top-1 sm:top-3 left-0.5 sm:left-3 aspect-video"></div>
+                <div className="absolute w-full  md:mt-8 mt-1  md:mb-24 mb-1 z-0 bg-blue top-2 md:top-4 left-1 md:left-4 aspect-video"></div>
+                <div className="absolute w-full md:mt-8 mt-1 md:mb-24 mb-1 z-0 bg-white dark:bg-black top-1 md:top-3 left-0.5 md:left-3 aspect-video"></div>
               </div>
-              <div className="basis-2/5 pt-7 pb-3 -translate-x-3 sm:translate-x-1">
-                <div className="pb-12 pt-0.5">
+              <div className="basis-2/5 pt-7 pb-5 -translate-x-3 md:translate-x-1">
+                <div className="sm:pb-10 pt-0.5 pb-10">
                   <h4
                     /* style={{ width:"50%" }}*/
-                    className="absolute sm:relative z-20 sm:w-50% w-100% sm:text-4xl text-16px sm:pt-3  sm:pb-1  sm:mr-5 ml-3  text-[#428897] dark:text-blue font-han font-bold"
+                    className="absolute md:relative z-20 md:w-50% w-100% md:text-4xl text-[16px] md:pt-3  md:pb-1  md:mr-5 ml-3   text-[#428897] dark:text-blue font-han font-bold"
                   >
-                    Rising Innovators of PESU
+                    {"Rising Innovators of PESU".toUpperCase()}
                   </h4>
                 </div>
-                <p className="  mx-3 mt-18  text-14px sm:-mt-5  sm:text-20px font-georgia text-#1D1D1D  dark:text-white">
+                <p className="  mx-3 mt-18 pt-10 pb-3 text-14px md:-mt-5  md:text-20px font-georgia text-#1D1D1D  dark:text-white">
                   PESU Venture Labs
                   <a
                     className="underline"
@@ -634,15 +627,7 @@ export default function HomeComponent() {
                   the existing VC ecosystem?&rsquo;
                   <sup>[1](https://pesuventurelabs.com/about)</sup>. PVL
                   provides resources, mentoring, and, funding and support to
-                  individuals looking for guidance. Its process flow goes in the
-                  following manner - come up with your own project idea or
-                  participate in their corporate backed bootcamps,turning the
-                  idea into a product, and finally selling the project,
-                  converting to start-up or just cashing in the prize money to
-                  suit your requirements.PVL also offers employment
-                  opportunities in various domains such as UI/UX Designer,
-                  Frontend and Backend Web Dev, Content Writer, PR, and many
-                  more.
+                  individuals looking for guidance.
                   <sup>
                     [2](https://www.pesuventurelabs.com/opportunities)
                   </sup>{" "}
@@ -651,7 +636,7 @@ export default function HomeComponent() {
                   their ideas from ground up.
                 </p>
               </div>
-              <div className="basis-3/5 relative translate-x-1 hidden sm:block">
+              <div className="basis-3/5 relative translate-x-1 hidden md:block">
                 <img
                   src="data:image/png;base64,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"
                   className="w-full mt-8 mb-24 relative z-10 aspect-video"
@@ -661,8 +646,9 @@ export default function HomeComponent() {
               </div>
             </div>
           </Carousel>
-
-          <Contact />
+          <div className="pt-16">
+            <Contact />
+          </div>
 
           <Footer />
           <Backdrop
@@ -699,15 +685,50 @@ export default function HomeComponent() {
                     <Dialog.Panel
                       className={`w-full max-w-4xl rounded-none ${
                         dark ? "bg-greyBlack" : "bg-backgroundModal"
-                      } transform overflow-hidden p-10 text-left align-middle shadow-xl transition-all`}
+                      } transform overflow-hidden px-5 py-6 md:px-10 md:py-10 text-left align-middle shadow-xl transition-all`}
                     >
-                      <div className="grid grid-cols-2">
-                        <UpdatedHeading>Join Our Newsletter</UpdatedHeading>
-                        <div className="flex flex-col pt-4 items-end relative">
+                      <div className="grid grid-cols-2 items-start">
+                        <div className="relative">
+                          <h1
+                            style={{
+                              textShadow:
+                                "1px 0 0 black,0 1px 0 black,-1px 0 0 black,0 -1px 0 black",
+                            }}
+                            className="relative sm:text-xl md:text-4xl text-sm font-han  z-30 outline-2 text-white"
+                          >
+                            {"Join our Newsletter".toUpperCase()}
+                          </h1>
+                          <h1
+                            style={{
+                              position: "absolute",
+                              zIndex: "5",
+                              color: "#EFFF00",
+                              textShadow:
+                                "1px 0 0 black,0 1px 0 black,-1px 0 0 black,0 -1px 0 black",
+                            }}
+                            className="sm:text-xl md:text-4xl text-sm font-han z-20 -top-[4px] -left-[4px] sm:-top-[6px] sm:-left-[6px]"
+                          >
+                            {"Join our Newsletter".toUpperCase()}
+                          </h1>
+                          <h1
+                            style={{
+                              color: "#DE99FF",
+                              position: "absolute",
+                              zIndex: "10",
+                              textStroke: "1px black",
+                              textShadow:
+                                "1px 0 0 black,0 1px 0 black,-1px 0 0 black,0 -1px 0 black",
+                            }}
+                            className="sm:text-xl md:text-4xl text-sm font-han z-10 -top-[2px] -left-[2px]  sm:-top-[3px] sm:-left-[3px]"
+                          >
+                            {"Join our Newsletter".toUpperCase()}
+                          </h1>
+                        </div>
+                        <div className="flex flex-col md:pt-4 items-end relative">
                           <div
                             style={{ color: dark ? "black" : "white" }}
                             onClick={handleClose}
-                            className={`absolute z-10 top-5 -right-1 border   border-otherblue p-1   ${
+                            className={`absolute z-10 top-1 md:top-5 -right-1 border   border-otherblue p-1   ${
                               dark ? "bg-greyBlack" : "bg-backgroundModal"
                             }`}
                           >
@@ -716,7 +737,7 @@ export default function HomeComponent() {
                                 background: dark ? "black" : "white",
                                 fill: dark ? "black" : "white",
                               }}
-                              className={`  ${
+                              className={`md:text-xl text-sm  ${
                                 dark ? "text-white" : "text-greyBlack"
                               }`}
                             />
@@ -729,24 +750,24 @@ export default function HomeComponent() {
                             }`}
                           >
                             <IoMdClose
-                              className={`${
+                              className={`md:text-xl text-sm ${
                                 dark ? "text-white" : "text-black"
                               }`}
                             />
                           </div>
                         </div>
                       </div>
-                      <div className="grid grid-cols-1 sm:grid-cols-2">
-                        <div className=" flex items-center h-64 sm:h-full justify-center sm:justify-start">
+                      <div className="grid grid-cols-1 md:grid-cols-2">
+                        <div className=" flex items-center h-40  md:h-auto justify-center ">
                           <Image
-                            className="scale-75"
+                            className="w-32 h-32 md:w-64 md:h-64"
                             src={dark ? event7 : event6}
                           ></Image>
                         </div>
                         <div className="flex flex-col">
-                          <div className="flex flex-col sm:pt-4 items-start sm:items-end relative">
+                          <div className="flex flex-col items-start md:items-end relative">
                             <h1
-                              className={`text-black sm:mt-8 font-questrial font-semibold text-md ${
+                              className={`text-black md:mt-8 font-questrial font-semibold text-[10px] md:text-lg ${
                                 dark ? "text-white" : "text-black"
                               }`}
                             >
@@ -756,7 +777,7 @@ export default function HomeComponent() {
                               to our newsletter
                             </h1>
                             <h1
-                              className={`text-black font-questrial font-semibold text-md dark:text-white  ${
+                              className={`text-black pb-4 font-questrial font-semibold text-[10px] md:text-lg dark:text-white  ${
                                 dark ? "text-white" : "text-black"
                               }`}
                             >
@@ -765,6 +786,7 @@ export default function HomeComponent() {
                                 exclusive content
                               </span>
                             </h1>
+
                             <TextField
                               InputProps={{
                                 style: {
@@ -772,57 +794,64 @@ export default function HomeComponent() {
                                   color: "black",
                                   background: "white",
                                   border: "black",
+                                  height: isSmallScreen ? "32px" : "auto",
+                                  fontSize: isSmallScreen ? "10px" : "18px",
                                 },
                               }}
                               color="secondary"
                               placeholder="Name"
-                              className="font-georgia text-md w-full mt-6 py-3 text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[8px_8px_0px_rgba(222,153,255,1)]"
+                              className="font-georgia w-full  text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[4px_4px_0px_rgba(222,153,255,1)] md:drop-shadow-[8px_8px_0px_rgba(222,153,255,1)]"
                             ></TextField>
+
                             <TextField
                               InputProps={{
                                 style: {
                                   borderRadius: "0",
                                   color: "black",
                                   background: "white",
+                                  height: isSmallScreen ? "32px" : "auto",
+                                  fontSize: isSmallScreen ? "10px" : "18px",
                                 },
                               }}
                               placeholder="Email"
-                              className="font-georgia w-full text-md mt-6 py-3 text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[8px_8px_0px_rgba(159,225,240,1)]"
+                              className="font-georgia w-full text-md md:text-md mt-6 py-3 text-black border border-black placeholder:text-gray-500  outline-none focus:ring-black focus:border-black focus:ring-1 drop-shadow-[4px_4px_0px_rgba(159,225,240,1)] md:drop-shadow-[8px_8px_0px_rgba(159,225,240,1)]"
                             ></TextField>
                           </div>
-                          <div className="mt-6 relative">
-                            <button className="bg-yellow text-md z-10 px-6 top-2 left-2 rounded-lg  py-2 border border-black font-questrial  font-semibold hover:bg-hoverbeigeText absolute">
-                              Subscribe
-                            </button>
-                            <button className="bg-blue z-30 text-md px-6 top-1 left-1 rounded-lg  py-2 border border-black font-questrial  font-semibold hover:bg-hoverbeigeText absolute">
-                              Subscribe
-                            </button>
-                            <button
-                              className="bg-pink px-6 text-md z-40 rounded-lg relative  py-2 border border-black font-questrial  font-semibold hover:bg-hoverbeigeText"
-                              onClick={async () => {
-                                try {
-                                  const response = await axios.post(
-                                    "/api/contactUs",
-                                    data
-                                  );
-                                  console.log(response);
-                                  if ((response.data = "Finished")) {
-                                    alert("Thank you for your response!");
+                          <div className="flex justify-center md:justify-start">
+                            <div className="mt-6 relative">
+                              <button className="bg-yellow text-xs md:text-lg z-10 px-3 md:px-6 top-2 left-2 rounded-lg  py-2 border border-black font-questrial  font-semibold hover:bg-hoverbeigeText absolute">
+                                Subscribe
+                              </button>
+                              <button className="bg-blue z-30 text-xs md:text-lg px-3 md:px-6 top-1 left-1 rounded-lg  py-2 border border-black font-questrial  font-semibold hover:bg-hoverbeigeText absolute">
+                                Subscribe
+                              </button>
+                              <button
+                                className="bg-pink px-3 md:px-6 text-xs md:text-lg z-40 rounded-lg relative  py-2 border border-black font-questrial  font-semibold hover:bg-hoverbeigeText"
+                                onClick={async () => {
+                                  try {
+                                    const response = await axios.post(
+                                      "/api/contactUs",
+                                      data
+                                    );
+                                    console.log(response);
+                                    if ((response.data = "Finished")) {
+                                      alert("Thank you for your response!");
+                                    }
+                                  } catch (e) {
+                                    alert("Failed to send.");
                                   }
-                                } catch (e) {
-                                  alert("Failed to send.");
-                                }
-                                setData({
-                                  Name: "",
-                                  Email: "",
-                                  Subject: "",
-                                  Message: "",
-                                });
-                              }}
-                            >
-                              Subscribe
-                            </button>
-                            <button></button>
+                                  setData({
+                                    Name: "",
+                                    Email: "",
+                                    Subject: "",
+                                    Message: "",
+                                  });
+                                }}
+                              >
+                                Subscribe
+                              </button>
+                              <button></button>
+                            </div>
                           </div>
                         </div>
                       </div>
