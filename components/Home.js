@@ -44,6 +44,7 @@ import UpdatedHeading from "@/animatedComponents/UpdatedHeading";
 import AnimatedTimelineItem from "./AnimatedTimelineItem";
 import { isMdAsciiPunct } from "markdown-it/lib/common/utils";
 import { IoMdClose } from "react-icons/io";
+import UpdatedAnimatedTimelineItem from "./UpdateAnimatedTimelineItem";
 
 const CustomLeftArrow = ({ onClick }) => (
   <div
@@ -163,9 +164,9 @@ export default function HomeComponent() {
         >
           <div className="w-screen h-screen z-0 bg-[rgba(0,0,0,0.7)] absolute"></div>
 
-          <div className="grid grid-cols-2 h-full relative z-10 w-full">
+          <div className="grid grid-cols-1 md:grid-cols-2 h-full relative z-10 w-full">
             <motion.div
-              className="h-full w-screen md:w-full  flex flex-col items-center justify-center"
+              className="h-full w-screen md:w-full  flex flex-col items-start md:items-center justify-center"
               initial={{ opacity: 0, x: -120 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -173,15 +174,15 @@ export default function HomeComponent() {
             >
               <div
                 style={{ transform: "translate(0,-30%)" }}
-                className="pl-9 pt-7 lg:pl-12"
+                className="pl-5 pt-7 md:pl-12"
               >
-                <h1 className="lg:text-8xl font-georgia font-bold text-white sm:text-3xl md:text-6xl text-3xl">
+                <h1 className="lg:text-6xl font-georgia font-bold text-white sm:text-3xl md:text-6xl text-3xl">
                   Introducing Minerva
                 </h1>
-                <h1 className="text-lg sm:text-lg font-georgia font-light mt-8 mb-4 text-white md:text-3xl lg:text-4xl">
+                <h1 className="text-lg sm:text-lg font-georgia font-light mt-8 mb-4 text-white md:text-3xl lg:text-3xl">
                   Bangalore&apos;s first student-run college newspaper
                 </h1>
-                <p className="text-md font-georgia hidden sm:flex font-light md:text-xl pr-3 text-white">
+                <p className="text-md font-georgia hidden md:flex font-light md:text-xl pr-3 text-white">
                   We are a group of thinkers that challenge people through good
                   journalism.
                 </p>
@@ -206,7 +207,7 @@ export default function HomeComponent() {
             <BsArrowDown size={16} />
           </button>
         </div>
-        <div className="px-0 bg-white dark:bg-greyBlack pt-8 sm:px-12">
+        <div className="px-0 bg-white dark:bg-greyBlack pt-8 sm:px-6 md:px-12">
           <div className="md:flex md:flex-row flex flex-col sm:flex sm:flex-col md:mt-16 sm:-mx-2 mx-5 ">
             <div className="basis-3/6 pr-2 ">
               <UpdatedHeading># Trending</UpdatedHeading>
@@ -344,7 +345,7 @@ export default function HomeComponent() {
             transition={{ duration: 0.5, delay: 0.5 }}
           >
             <UpdatedHeading>Our Timeline</UpdatedHeading>
-            <div className="hidden sm:flex">
+            <div className="hidden md:flex">
               <Timeline id="timeline" className="px-1 " position="alternate">
                 <TimelineItem>
                   <TimelineOppositeContent
@@ -494,45 +495,37 @@ export default function HomeComponent() {
                 </TimelineItem>
               </Timeline>
             </div>
-            <div className="flex sm:hidden">
-              <Timeline
-                id="timeline"
-                className="px-1 "
-                sx={{
-                  [`& .${timelineOppositeContentClasses.root}`]: {
-                    flex: 0,
-                  },
-                }}
-              >
-                <AnimatedTimelineItem
-                  title={"Runaway Runway"}
-                  time={"14th Apr 2023, 12:00pm"}
-                  venue={"10th Floor, BE Block"}
-                  desc={`Runway from buying expensive material in the name of
+            <div className="flex flex-col w-full items-center md:hidden">
+              <UpdatedAnimatedTimelineItem
+                title={"Runaway Runway"}
+                time={"14th Apr 2023, 12:00pm"}
+                venue={"10th Floor, BE Block"}
+                desc={`Runway from buying expensive material in the name of
                         fashion run-towards sustainable and recyclable eco-chic
                         designs`}
-                  img={event3}
-                ></AnimatedTimelineItem>
-                <AnimatedTimelineItem
-                  title={"Rethink Retrospect Reflect"}
-                  time={"8th Feb 2023, 2:45PM"}
-                  venue={"Seminar Hall 3,BE Block"}
-                  desc={`Watch the screenplay, write a report on it and stand a
+                img={event3}
+              ></UpdatedAnimatedTimelineItem>
+              <div className="h-8 w-1 my-4 bg-yellow rounded-sm"></div>
+              <UpdatedAnimatedTimelineItem
+                title={"Rethink Retrospect Reflect"}
+                time={"8th Feb 2023, 2:45PM"}
+                venue={"Seminar Hall 3,BE Block"}
+                desc={`Watch the screenplay, write a report on it and stand a
                         chance to win Ant Man tickets!`}
-                  img={event1}
-                ></AnimatedTimelineItem>
-                <AnimatedTimelineItem
-                  title={"Minerva Orientation"}
-                  time={"12th Apr 2023, 2:45PM"}
-                  venue={"MRD Auditorium"}
-                  desc={`Come learn more about what our club has in store for all
+                img={event1}
+              ></UpdatedAnimatedTimelineItem>
+              <div className="h-8 w-1 my-4 bg-yellow rounded-sm"></div>
+              <UpdatedAnimatedTimelineItem
+                title={"Minerva Orientation"}
+                time={"12th Apr 2023, 2:45PM"}
+                venue={"MRD Auditorium"}
+                desc={`Come learn more about what our club has in store for all
                         of you this year`}
-                  img={event2}
-                ></AnimatedTimelineItem>
-              </Timeline>
+                img={event2}
+              ></UpdatedAnimatedTimelineItem>
             </div>
           </motion.div>
-          <div id="featuringPES" className="flex mx-5">
+          <div id="featuringPES" className="flex">
             <UpdatedHeading>Featuring PESU</UpdatedHeading>
           </div>
           <Carousel
@@ -543,7 +536,7 @@ export default function HomeComponent() {
             customRightArrow={isSmallScreen ? <></> : <CustomRightArrow />} // Hide the right arrow button
             className="pb-4 pt-3 "
           >
-            <div className="md:flex md:flex-row  flex-col mx-10 ">
+            <div className="md:flex md:flex-row  flex-col mx-10 sm:mx-5 md:mx-10 ">
               <div className="basis-3/5 relative md:hidden">
                 <img
                   src="https://cie.pes.edu/wp-content/uploads/2023/04/CIE-Timeline-1-1.jpg"
@@ -556,9 +549,9 @@ export default function HomeComponent() {
                 <div className="pb-0.1 pt-0.5">
                   <h4
                     /* style={{ width:"50%" }}*/
-                    className="absolute sm:relative z-20 sm:w-50% w-100% md:text-4xl text-16px sm:pt-3  sm:pb-1  sm:mr-5 ml-3   text-[#428897] dark:text-blue font-han font-bold"
+                    className="absolute sm:relative z-20 sm:w-50% w-100% md:text-4xl text-[16px] sm:pt-3  sm:pb-1  sm:mr-5 ml-3   text-[#428897] dark:text-blue font-han font-bold"
                   >
-                    The stepping stone to entrepreneurship
+                    {"The stepping stone to entrepreneurship".toUpperCase()}
                   </h4>
                 </div>
                 <p className="  mx-3 mt-20  text-14px sm:mt-5  md:text-20px font-georgia text-#1D1D1D  dark:text-white">
@@ -597,7 +590,7 @@ export default function HomeComponent() {
               </div>
             </div>
 
-            <div className="md:flex md:flex-row  flex-col mx-10">
+            <div className="md:flex md:flex-row  flex-col mx-10 sm:mx-5 md:mx-10">
               <div className="basis-3/5 relative md:hidden">
                 <img
                   src="data:image/png;base64,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"
@@ -610,9 +603,9 @@ export default function HomeComponent() {
                 <div className="sm:pb-10 pt-0.5 pb-10">
                   <h4
                     /* style={{ width:"50%" }}*/
-                    className="absolute md:relative z-20 md:w-50% w-100% md:text-4xl text-16px md:pt-3  md:pb-1  md:mr-5 ml-3   text-[#428897] dark:text-blue font-han font-bold"
+                    className="absolute md:relative z-20 md:w-50% w-100% md:text-4xl text-[16px] md:pt-3  md:pb-1  md:mr-5 ml-3   text-[#428897] dark:text-blue font-han font-bold"
                   >
-                    Rising Innovators of PESU
+                    {"Rising Innovators of PESU".toUpperCase()}
                   </h4>
                 </div>
                 <p className="  mx-3 mt-18 pt-10 pb-3 text-14px md:-mt-5  md:text-20px font-georgia text-#1D1D1D  dark:text-white">
@@ -653,8 +646,9 @@ export default function HomeComponent() {
               </div>
             </div>
           </Carousel>
-
-          <Contact />
+          <div className="pt-16">
+            <Contact />
+          </div>
 
           <Footer />
           <Backdrop
@@ -801,7 +795,7 @@ export default function HomeComponent() {
                                   background: "white",
                                   border: "black",
                                   height: isSmallScreen ? "32px" : "auto",
-                                  fontSize: isSmallScreen ? "10px" : "auto",
+                                  fontSize: isSmallScreen ? "10px" : "18px",
                                 },
                               }}
                               color="secondary"
@@ -816,7 +810,7 @@ export default function HomeComponent() {
                                   color: "black",
                                   background: "white",
                                   height: isSmallScreen ? "32px" : "auto",
-                                  fontSize: isSmallScreen ? "10px" : "auto",
+                                  fontSize: isSmallScreen ? "10px" : "18px",
                                 },
                               }}
                               placeholder="Email"

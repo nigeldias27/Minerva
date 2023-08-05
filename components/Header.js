@@ -73,7 +73,7 @@ export default function Headers(props) {
                   </Link>
                 </ListItem>
                 <ListItem sx={{ justifyContent: "center" }}>
-                  <Link href={"/aboutUs"}>
+                  <Link href={"/ourteam"}>
                     <ListItemButton sx={{ color: "white" }}>
                       <ListItemText primary="Our Team" />
                     </ListItemButton>
@@ -168,9 +168,9 @@ export default function Headers(props) {
             </Link>
           </div>
         </div>
-        <Link href={"/"} className="flex flex-row items-center">
+        <Link href={"/"} className="flex flex-row items-center pr-1">
           <Image
-            className="w-[50.6px] h-[16.06px]  sm:w-[50.6px] sm:h-[16.06px] md:w-[103.3px] md:h-[32.76px] lg:w-[103.3px] lg:h-[32.76px]  mr-1 sm:mr-4"
+            className="w-[62.15px] h-[21px] sm:w-[62.15px] sm:h-[21px] md:w-[125.82px] md:h-[44px] lg:w-[125.82px] lg:h[44px]  mr-1 md:mr-4"
             src={peslogo}
             style={{
               filter:
