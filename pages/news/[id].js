@@ -12,6 +12,10 @@ import CircularProgress from "@mui/material/CircularProgress";
 import { BsArrowDown } from "react-icons/bs";
 import { motion, useScroll } from "framer-motion";
 import { blue } from "@mui/material/colors";
+import UpdatedNewsCard from "../../components/UpdatedNewsCard";
+import Carousel from "react-multi-carousel";
+import { useMediaQuery } from "react-responsive";
+import Link from "next/link";
 
 export default function Article() {
   const router = useRouter();
@@ -22,14 +26,40 @@ export default function Article() {
   const [isSliced, setIsSliced] = useState(true);
   const [open, setOpen] = useState(false);
   const { scrollYProgress } = useScroll();
+  const [articleGenre, setArticleGenre] = useState()
   // const [scrollY, setScrollY] = useState();
+  const isSmallScreen = useMediaQuery({ maxWidth: 429 });
+
+  const responsive = {
+    superLargeDesktop: {
+      // the naming can be any, depends on you.
+      breakpoint: { max: 4000, min: 3000 },
+      items: 1,
+    },
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 1,
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 481 },
+      items: 1,
+    },
+    mobile: {
+      breakpoint: { max: 481, min: 0 },
+      items: 1,
+    },
+  };
 
   var offsetScrollY;
   useEffect(() => {
     initState();
-    getRecentNews();
     // window.addEventListener('scroll', handleScroll);
   }, [isSliced]);
+
+  useEffect(()=>{
+    getRecentNews();
+  }, [articleGenre])
+
   function parseISOString(s) {
     var b = s.split(/\D+/);
     return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
@@ -39,7 +69,8 @@ export default function Article() {
     setOpen(true);
     const response = await axios.post("/api/getParticularArticle", { id: id });
     setOpen(false);
-    console.log(response.data);
+    setTimeout(()=>{setArticleGenre(response.data.article.genre);}, 1000);
+    console.log(response.data.article.genre);
     setData({ ...response.data });
 
     let sliced = response.data.article.data;
@@ -47,13 +78,18 @@ export default function Article() {
     console.log(sliced);
     setSlicedData(sliced);
 
+    // console.log("<><><><><><><><><><>")
+    // console.log(">"+articleGenre+"<")
+    // console.log("<><><><><><><><><><>")
+
     console.log(isSliced);
   }
 
   async function getRecentNews() {
+    console.log(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"+articleGenre)
     setOpen(true);
     const response = await axios.post("/api/articles", {
-      selectedGenres: [],
+      selectedGenres: [articleGenre],
       limit: 5,
     });
     setOpen(false);
@@ -189,6 +225,46 @@ export default function Article() {
       ) : (
         <div></div>
       )}
+
+      <div style={{height: "3rem", display: isSliced ? "none" : "flex"}}></div>
+
+      <div>
+        <h1 className="text-xl sm:text-2xl font-gilroy font-bold md:hidden lg:hidden pl-5">
+          Similar News
+        </h1>
+      </div>
+
+      <div className="md:hidden lg:hidden pr-5 pl-5 pb-5">
+        {" "}
+        {/* Render carousel for small screens */}
+        <Carousel
+          draggable={isSmallScreen ? true : false}
+          responsive={responsive}
+          showDots={isSmallScreen ? true : false}
+          customLeftArrow={<></>} // Hide the left arrow button
+          customRightArrow={<></>} // Hide the right arrow button
+          removeArrowOnDeviceType={["sm", "md"]}
+          className="pb-5"
+        >
+          {/* Render news cards as carousel items */}
+          {recentNews.map((val, i) => (
+            <UpdatedNewsCard
+              key={i}
+              i={i}
+              imageURL={`${val.imageURL}`}
+              headline={`${val.title}`}
+              genre={`${val.genre}`}
+              date={`${val.createdAt}`}
+              desc={`${val.description}`}
+              id={`${val._id}`}
+              newArticle={true}
+              darkMode={
+                localStorage.getItem("mode") == "dark" ? true : false
+              }
+            />
+          ))}
+        </Carousel>
+      </div>
 
       <div>
         <Footer />

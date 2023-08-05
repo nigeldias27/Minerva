@@ -20,7 +20,9 @@ async function articles(req, res) {
       // Get articles depending on the categories selected
       const selectedArticles = [];
       for (const key in req.body.selectedGenres) {
+        console.log("<><><><><><><><><><><>")
         console.log(key);
+        console.log("<><><><><><><><><><><>")
         const article = await Article.find({
           genre: req.body.selectedGenres[key],
         });
