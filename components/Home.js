@@ -93,7 +93,7 @@ const CustomRightArrow = ({ onClick }) => (
     </button>
   </div>
 );
-
+//Deploying!!
 export default function HomeComponent() {
   const router = useRouter();
   const [data, setData] = useState([]); //This refers to the 6 news articles featured in the home page
