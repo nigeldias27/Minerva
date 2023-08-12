@@ -22,9 +22,12 @@ export default function Contact() {
       className="w-full  bg-[#428797] dark:bg-yellowBackground"
     >
       <div className="pt-8 px-4 md:px-8 ">
-        <UpdatedHeading notcap={false}>
-          Got some Tea or Coffee for us?
-        </UpdatedHeading>
+        <div className="mr-0 sm:mr-8 md:mr-0">
+          {" "}
+          <UpdatedHeading notcap={false}>
+            Got some Tea or Coffee for us?
+          </UpdatedHeading>
+        </div>
 
         <div className=" px-3 md:px-8 mt-8">
           <input
