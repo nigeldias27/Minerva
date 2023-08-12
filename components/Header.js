@@ -171,6 +171,7 @@ export default function Headers(props) {
         <Link href={"/"} className="flex flex-row items-center pr-1">
           <Image
             className="w-[62.15px] h-[21px] sm:w-[62.15px] sm:h-[21px] md:w-[125.82px] md:h-[44px] lg:w-[125.82px] lg:h[44px]  mr-1 md:mr-4"
+            alt="PES logo"
             src={peslogo}
             style={{
               filter:
@@ -179,6 +180,7 @@ export default function Headers(props) {
           />
           <Image
             className="w-[62.15px] h-[21px] sm:w-[62.15px] sm:h-[21px] md:w-[125.82px] md:h-[44px] lg:w-[125.82px] lg:h[44px] logo-black "
+            alt="Minerva Logo"
             src={logo}
             style={{
               filter:

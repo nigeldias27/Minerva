@@ -7,6 +7,7 @@ import { team } from "@/models/team";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { BsArrowDown } from "react-icons/bs";
+import { NextSeo } from "next-seo";
 export default function OurTeam() {
   const [dark, setDark] = useState(false);
   useEffect(() => {
@@ -14,6 +15,18 @@ export default function OurTeam() {
   }, []);
   return (
     <div>
+      <NextSeo
+        title="Meet The Team - Minerva PESU"
+        description="Minerva PESU consists of 100+ members of diverse backgrounds and exceptional skill, all working towards one cause i.e. to promote and practise ethical journalism"
+        canonical="https://minervapesu.vercel.app"
+        openGraph={{
+          url: "https://minervapesu.vercel.app/ourteam",
+          title: "Meet The Team - Minerva PESU",
+          description:
+            "Minerva PESU consists of 100+ members of diverse backgrounds and exceptional skill, all working towards one cause i.e. to promote and practise ethical journalism",
+          siteName: "Minerva PESU",
+        }}
+      />
       <Headers dark={dark} setDark={setDark} />
       <div className="mx-8 mt-24">
         <UpdatedHeading>Our Team</UpdatedHeading>
