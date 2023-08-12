@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { BsArrowDown } from "react-icons/bs";
 import { NextSeo } from "next-seo";
+import Head from "next/head";
 export default function AboutUs() {
   const [dark, setDark] = useState(false);
   useEffect(() => {
@@ -27,6 +28,9 @@ export default function AboutUs() {
           siteName: "Minerva PESU",
         }}
       />
+      <Head>
+        <title>About Us</title>
+      </Head>
       <div className="bg-white dark:bg-greyBlack">
         <Headers dark={dark} setDark={setDark} />
         <div className="flex justify-center flex-col mx-8 pb-24 pt-16 md:py-18">
