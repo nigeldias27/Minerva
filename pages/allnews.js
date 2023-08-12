@@ -11,6 +11,7 @@ import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
 import ListItemIcon from "@mui/material/ListItemIcon";
 import Footer from "@/components/Footer";
+import { NextSeo } from "next-seo";
 import UpdatedNewsCard from "@/components/UpdatedNewsCard";
 import UpdatedHeading from "@/animatedComponents/UpdatedHeading";
 import Carousel from "react-multi-carousel";
@@ -205,6 +206,18 @@ export default function News() {
 
   return (
     <div className={` min-h-screen ${dark ? "dark" : ""}`}>
+      <NextSeo
+        title="News - Minerva PESU"
+        description="We are a group of thinkers that challenge people through good journalism. We strive to provide the required tools and knowledge to develop skills and Inspire change."
+        canonical="https://minervapesu.vercel.app"
+        openGraph={{
+          url: "https://minervapesu.vercel.app/ourteam",
+          title: "News - Minerva PESU",
+          description:
+            "We are a group of thinkers that challenge people through good journalism. We strive to provide the required tools and knowledge to develop skills and Inspire change.",
+          siteName: "Minerva PESU",
+        }}
+      />
       <Headers dark={dark} setDark={setDark} />
       <div className="px-0 relative pt-8 bg-#FCF7FF dark:bg-greyBlack md:px-12">
         <div className="flex flex-row w-full justify-between items-start px-0">

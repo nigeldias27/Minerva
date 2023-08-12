@@ -7,7 +7,7 @@ import { team } from "@/models/team";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { BsArrowDown } from "react-icons/bs";
-
+import { NextSeo } from "next-seo";
 export default function AboutUs() {
   const [dark, setDark] = useState(false);
   useEffect(() => {
@@ -15,6 +15,18 @@ export default function AboutUs() {
   }, []);
   return (
     <div className={dark ? "dark" : ""}>
+      <NextSeo
+        title="About Us - Minerva PESU"
+        description="We are a group of thinkers that challenge people through good journalism. We strive to provide the required tools and knowledge to develop skills and Inspire change."
+        canonical="https://minervapesu.vercel.app"
+        openGraph={{
+          url: "https://minervapesu.vercel.app/aboutUs",
+          title: "About Us - Minerva PESU",
+          description:
+            "We are a group of thinkers that challenge people through good journalism. We strive to provide the required tools and knowledge to develop skills and Inspire change.",
+          siteName: "Minerva PESU",
+        }}
+      />
       <div className="bg-white dark:bg-greyBlack">
         <Headers dark={dark} setDark={setDark} />
         <div className="flex justify-center flex-col mx-8 pb-24 pt-16 md:py-18">
