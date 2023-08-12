@@ -811,6 +811,7 @@ export default function HomeComponent() {
                                   background: "white",
                                   height: isSmallScreen ? "32px" : "auto",
                                   fontSize: isSmallScreen ? "10px" : "18px",
+                                  marginTop: "8px",
                                 },
                               }}
                               placeholder="Email"
