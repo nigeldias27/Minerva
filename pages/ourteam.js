@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
 import { BsArrowDown } from "react-icons/bs";
 import { NextSeo } from "next-seo";
+import Head from "next/head";
 export default function OurTeam() {
   const [dark, setDark] = useState(false);
   useEffect(() => {
@@ -27,6 +28,9 @@ export default function OurTeam() {
           siteName: "Minerva PESU",
         }}
       />
+      <Head>
+        <title>Our Team</title>
+      </Head>
       <Headers dark={dark} setDark={setDark} />
       <div className="mx-8 mt-24">
         <UpdatedHeading>Our Team</UpdatedHeading>
