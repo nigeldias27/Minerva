@@ -19,7 +19,7 @@ export default function AboutUs() {
       <NextSeo
         title="About Us - Minerva PESU"
         description="We are a group of thinkers that challenge people through good journalism. We strive to provide the required tools and knowledge to develop skills and Inspire change."
-        canonical="https://minervapesu.vercel.app"
+        canonical="https://minervapesu.vercel.app/aboutUs"
         openGraph={{
           url: "https://minervapesu.vercel.app/aboutUs",
           title: "About Us - Minerva PESU",

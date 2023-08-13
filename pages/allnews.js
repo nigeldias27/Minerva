@@ -209,15 +209,18 @@ export default function News() {
       <NextSeo
         title="News - Minerva PESU"
         description="We are a group of thinkers that challenge people through good journalism. We strive to provide the required tools and knowledge to develop skills and Inspire change."
-        canonical="https://minervapesu.vercel.app"
+        canonical="https://minervapesu.vercel.app/allnews"
         openGraph={{
-          url: "https://minervapesu.vercel.app/ourteam",
+          url: "https://minervapesu.vercel.app/allnews",
           title: "News - Minerva PESU",
           description:
             "We are a group of thinkers that challenge people through good journalism. We strive to provide the required tools and knowledge to develop skills and Inspire change.",
           siteName: "Minerva PESU",
         }}
       />
+      <Head>
+        <title>News</title>
+      </Head>
       <Headers dark={dark} setDark={setDark} />
       <div className="px-0 relative pt-8 bg-#FCF7FF dark:bg-greyBlack md:px-12">
         <div className="flex flex-row w-full justify-between items-start px-0">
