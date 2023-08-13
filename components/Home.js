@@ -775,6 +775,7 @@ export default function HomeComponent() {
                             alt="Minerva Newsletter Logo"
                             className="w-32 h-32 md:w-64 md:h-64"
                             src={dark ? event7 : event6}
+                            priority={true}
                           ></Image>
                         </div>
                         <div className="flex flex-col">
