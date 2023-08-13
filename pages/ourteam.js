@@ -43,7 +43,7 @@ export default function OurTeam() {
       <NextSeo
         title="Meet The Team - Minerva PESU"
         description="Minerva PESU consists of 100+ members of diverse backgrounds and exceptional skill, all working towards one cause i.e. to promote and practise ethical journalism"
-        canonical="https://minervapesu.vercel.app"
+        canonical="https://minervapesu.vercel.app/ourteam"
         openGraph={{
           url: "https://minervapesu.vercel.app/ourteam",
           title: "Meet The Team - Minerva PESU",
