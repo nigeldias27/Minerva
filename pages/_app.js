@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import { motion, AnimatePresence } from "framer-motion";
+import { Analytics } from "@vercel/analytics/react";
 import { Experimental_CssVarsProvider as CssVarsProvider } from "@mui/material/styles";
 import { experimental_extendTheme as extendTheme } from "@mui/material/styles";
 import localFont from "@next/font/local";
@@ -45,6 +46,7 @@ export default function App({ Component, pageProps, router }) {
           })}
         >
           <Component {...pageProps} />
+          <Analytics />
         </CssVarsProvider>
       </motion.div>
     </AnimatePresence>
