@@ -1,4 +1,4 @@
-  import { useRouter } from "next/router";
+import { useRouter } from "next/router";
 
 
 function parseISOString(s) {
@@ -7,17 +7,13 @@ function parseISOString(s) {
 }
 
 
-export default function NewsCard(props) {
+export default function DraftNewsCard(props) {
   const router = useRouter();
   return (
     <div
       className="p-8 "
       onClick={() => {
-        if (props.newArticle) {
-          router.push("/news/" + props.id, undefined, { scroll: false });
-        } else {
-          router.push("/create/" + props.id, undefined, { scroll: false });
-        }
+          router.push("/draft/" + props.id, undefined, { scroll: false });
       }}
     >
       <div

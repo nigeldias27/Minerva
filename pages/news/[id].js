@@ -35,6 +35,12 @@ export default function Article() {
     return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
   }
 
+
+  function parseISOString(s) {
+    var b = s.split(/\D+/);
+    return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
+  }
+
   async function initState() {
     setOpen(true);
     const response = await axios.post("/api/getParticularArticle", { id: id });
