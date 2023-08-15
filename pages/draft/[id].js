@@ -19,27 +19,25 @@ export default function CreateArticle() {
   const [draftInvalid, setDraftInvalid] = useState(""); //Error handling
   const [openLoad, setOpenLoad] = useState(false);
   const genreList = [
-    "World",
-    "India",
-    "Local",
+    "AI/ Machine Learning",
+    "Biotechnology",
     "Business",
-    "Finance",
-    "Sports",
-    "Entertainment",
-    "Lifestyle",
+    "Design",
+    "Fasion",
+    "History",
+    "Life Skills",
+    "Psych",
     "Science",
-    "Technology",
+    "Sorts",
   ];
-
   useEffect(() => {
     initState();
   }, []);
   async function initState() {
-    if (id != "content") {
       // If the user is an Editor, then get the id from router.query and get the particular pending article from pendingArticle collection
       setOpenLoad(true);
       const response = await axios.post(
-        "/api/getParticularPendingArticle",
+        "/api/getParticularDraftArticle",
         { id: id },
         {
           headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
@@ -48,7 +46,7 @@ export default function CreateArticle() {
       setOpenLoad(false);
       console.log(response.data);
       setData({ ...response.data });
-    }
+
   }
 
   const changed = (props) => (e) => {
@@ -62,7 +60,7 @@ export default function CreateArticle() {
   const undo = async () => {
     // Used to undo the pending article
     try {
-      const response = await axios.post("/api/removePendingArticle", {id: id}, {
+      const response = await axios.post("/api/removeDraftArticle", {id: id}, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setRemoveInvalid("false");
@@ -76,10 +74,10 @@ export default function CreateArticle() {
   const draft = async () => {
     // Used to undo the pending article
     try {
-      const response = await axios.post("/api/createDraftArticle", data, {
+      const response = await axios.post("/api/modifyDraftArticle", {data: data, id: id}, {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
-      router.push("/draft/" + response.data.id, undefined, { scroll: false });
+      router.push("/draft/" + id, undefined, { scroll: false });
       setDraftInvalid("false");
     } catch (e) {
       setDraftInvalid("true");
@@ -96,6 +94,8 @@ export default function CreateArticle() {
     } catch (e) {
       setInvalid("true");
     }
+
+    undo();
   };
 
   return (
@@ -204,20 +204,17 @@ export default function CreateArticle() {
             </div>
             <div className="flex w-full pr-8 justify-end">
               <div>
-                {id!="content"?(
-                  <button
-                  class="x-6 my-8 mx-5 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
+              <button
+                  class="x-6 my-8 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
                   type="submit"
                   onClick={() => {
                     undo();
                   }}
                 >
-                  <span className="text-xl">Remove</span>
+                  <span className="text-xl">Remove Draft</span>
                 </button>
-                ):(<div></div>)}
 
-                {id=="content"?(
-                  <button
+                <button
                   class="x-6 my-8 mx-5 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
                   type="submit"
                   onClick={() => {
@@ -226,10 +223,9 @@ export default function CreateArticle() {
                 >
                   <span className="text-xl">Save to Drafts</span>
                 </button>
-                ):(<div></div>)}
 
                 <button
-                  class="x-6 my-8 mx-5 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
+                  class="x-6 my-8 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
                   type="submit"
                   onClick={() => {
                     publish();
