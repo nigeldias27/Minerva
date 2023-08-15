@@ -19,17 +19,18 @@ export default function CreateArticle() {
   const [draftInvalid, setDraftInvalid] = useState(""); //Error handling
   const [openLoad, setOpenLoad] = useState(false);
   const genreList = [
-    "AI/ Machine Learning",
-    "Biotechnology",
+    "World",
+    "India",
+    "Local",
     "Business",
-    "Design",
-    "Fasion",
-    "History",
-    "Life Skills",
-    "Psych",
+    "Finance",
+    "Sports",
+    "Entertainment",
+    "Lifestyle",
     "Science",
-    "Sorts",
+    "Technology",
   ];
+
   useEffect(() => {
     initState();
   }, []);

@@ -5,26 +5,25 @@ import { useRouter } from "next/router";
 export default function PersonCard(props) {
   const router = useRouter();
   return (
-    <div className="p-8 " onClick={() => {}}>
+    <div className="p-4 md:p-8 " onClick={() => {}}>
       <div
-        className="bg-cardBackground flex flex-col items-center  rounded-md min-h-full shadow-orange-900/20 shadow-lg hover:shadow-orange-900/20 hover:shadow-xl hover:scale-105 transition duration-50 ease-linear"
+        title={props.Name}
+        className="bg-cardBackground aspect-square flex flex-col items-center justify-end min-h-full hover:scale-105 transition duration-50 ease-linear"
         style={{
-          backgroundImage:
-            "url('https://img.freepik.com/premium-photo/cardboard-sheet-paper-abstract-texture-background_7182-2191.jpg')",
+          backgroundImage: `url(${props.imageURL})`,
+          backgroundRepeat: "no-repeat",
+          backgroundSize: "cover",
+          backgroundClip: "border-box",
+
+          backgroundPositionY: "center",
           backgroundPosition: "center",
         }}
       >
-        <Avatar
-          src={`${props.imageURL}`}
-          className="my-8"
-          sx={{
-            width: { xs: 172, sm: 172, lg: 256, xl: 256 },
-            height: { xs: 172, sm: 172, lg: 256, xl: 256 },
-          }}
-        ></Avatar>
-        <h1 className="font-bold text-2xl font-merriweather mb-8">
-          {props.Name}
-        </h1>
+        <div className="bg-white opacity-75 dark:bg-greyBlack w-1/2 mb-4 md:mb-8">
+          <h1 className="text-[8px] sm:text-[10px] md:text-lg lg:text-2xl  flex flex-col items-center text-center p-1 sm:p-3 md:p-4 text-black dark:text-white font-georgia ">
+            {props.Name}
+          </h1>
+        </div>
       </div>
     </div>
   );

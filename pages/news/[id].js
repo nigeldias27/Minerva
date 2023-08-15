@@ -9,15 +9,31 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Backdrop from "@mui/material/Backdrop";
 import CircularProgress from "@mui/material/CircularProgress";
+import { BsArrowDown } from "react-icons/bs";
+import { motion, useScroll } from "framer-motion";
+import { blue } from "@mui/material/colors";
+
 export default function Article() {
   const router = useRouter();
   const { id } = router.query;
   const [data, setData] = useState({});
+  const [recentNews, setRecentNews] = useState([]);
+  const [slicedData, setSlicedData] = useState("");
+  const [isSliced, setIsSliced] = useState(true);
   const [open, setOpen] = useState(false);
+  const { scrollYProgress } = useScroll();
+  // const [scrollY, setScrollY] = useState();
 
+  var offsetScrollY;
   useEffect(() => {
     initState();
-  }, []);
+    getRecentNews();
+    // window.addEventListener('scroll', handleScroll);
+  }, [isSliced]);
+  function parseISOString(s) {
+    var b = s.split(/\D+/);
+    return new Date(Date.UTC(b[0], --b[1], b[2], b[3], b[4], b[5], b[6]));
+  }
 
 
   function parseISOString(s) {
@@ -31,36 +47,156 @@ export default function Article() {
     setOpen(false);
     console.log(response.data);
     setData({ ...response.data });
+
+    let sliced = response.data.article.data;
+    sliced = sliced.slice(0, 1000) + " ...";
+    console.log(sliced);
+    setSlicedData(sliced);
+
+    console.log(isSliced);
   }
+
+  async function getRecentNews() {
+    setOpen(true);
+    const response = await axios.post("/api/articles", {
+      selectedGenres: [],
+      limit: 5,
+    });
+    setOpen(false);
+    console.log(response.data);
+    setRecentNews([...response.data]);
+  }
+
+  const continueReading = () => {
+    setIsSliced(false);
+    console.log(isSliced);
+    console.log("==========");
+    console.log(data);
+  };
+
+  // const handleScroll = () => {
+  //   setScrollY(scrollYProgress.current*window.innerWidth);
+  // }
+
   return (
-    <div className=" min-h-screen">
-      <Headers />
-      <div className=" bg-opacity-5 bg-orange-900 w-screen py-4 flex justify-center">
-        <h1 className="font-semibold text-3xl">
-          {data.article == undefined ? "" : data.article.title}
-        </h1>
+    <div className="lg:min-h-screen">
+      <Headers dark={false} />
+      <div>
+        <motion.div
+          style={{
+            background: "#B18516",
+            zIndex: "10",
+            height: "0.75rem",
+            position: "fixed",
+            top: "0",
+            left: "0",
+            right: "0",
+            transformOrigin: "0%",
+            scaleX: scrollYProgress,
+            borderTopRightRadius: "1rem",
+            borderBottomRightRadius: "1rem",
+            display: isSliced ? "none" : "flex",
+          }}
+        ></motion.div>
+        {/* <div style={{
+          background: "#B18516",
+          zIndex: "11",
+          width: "0.75rem",
+          height: "0.75rem",
+          position: "fixed",
+          top: "0",
+          borderRadius: "50%",
+          left: scrollY
+        }}
+        ></div> */}
       </div>
-      <div className="px-8 sm:px-48 mt-8">
-        <h1>
-          {data.article == undefined ? "" : data.article.genre} |{" "}
-          {data.article == undefined ? "" : parseISOString(data.article.createdAt).toLocaleDateString()} |{" "}
-          {data.article == undefined ? "" : parseISOString(data.article.createdAt).toLocaleTimeString()}
-        </h1>
-        <div className="flex flex-row mt-2 mb-8 items-center">
-          <Avatar src={`${data.profileURL}`}></Avatar>
-          <h1 className="ml-2">{data.writerName}</h1>
+
+      <div className="ml-10 sm:ml-5 sm:mt-6 md:ml-5 md:mt-6 lg:ml-24">
+        <div className="flex flex-col sm:flex-row md:flex-row lg:flex-row items-center">
+          <h2 className="w-screen justify-start text-xs sm:text-sm md:text-sm lg:text-base font-bold font-gilroy sm:w-36 md:w-36 lg:w-screen">
+            {data.article == undefined
+              ? ""
+              : parseISOString(data.article.createdAt)
+                  .toUTCString()
+                  .split(",")[1]
+                  .split(":")[0]
+                  .slice(0, -3)}
+          </h2>
+          {/* <div className="ml-10 sm:ml-0 md:ml-0 lg:ml-0"></div> */}
+          <div className="flex flex-row w-screen justify-end mr-20 sm:w-screen text-londonYellow text-xs sm:justify-end sm:mr-5 sm:text-xs md:text-base lg:text-lg md:w-screen md:justify-end md:mr-5 lg:mr-32">
+            <div className="flex flex-row h-min items-center">
+              <h1 className="mr-1 sm:mr-2 md:mr-2 lg:mr-2 font-gilroy">
+                {data.writerName} |{" "}
+                {data.article == undefined ? "" : data.article.genre}
+              </h1>
+              <Avatar className="w-7 h-7 sm:w-10 sm:h-10 md:w-10 md:h-10 lg:w-10 lg:h-10" src={`${data.profileURL}`}></Avatar>
+            </div>
+          </div>
         </div>
-        <article className="prose max-w-full">
-          <div
-            dangerouslySetInnerHTML={{
-              __html: md({ html: true }).render(
-                data.article == undefined ? "" : data.article.data
-              ),
-            }}
-          />
-        </article>
       </div>
-      <div className="pt-8">
+
+      <div className="flex flex-col pr-5 pl-5 lg:mt-4 lg:flex-row">
+        <div className="lg:basis-1/4 lg:translate-x-1/4">
+          <h1
+            className="translate-y-1/3 sm:text-2xl md:text-2xl lg:text-4xl text-white font-gilroy font-bold"
+            style={{
+              fontWeight: "700",
+              WebkitTextStrokeWidth: "1px",
+              WebkitTextStrokeColor: "black",
+            }}
+          >
+            {data.article == undefined ? "" : data.article.title.toUpperCase()}
+          </h1>
+        </div>
+        <div className="lg:basis-1/2 lg:mt-16">
+          <img
+            width={"100%"}
+            src={`${data.article == undefined ? "" : data.article.imageURL}`}
+          ></img>
+          <article className="sm: prose sm: max-w-full sm: pt-12 ">
+            <div
+              className="font-georgia"
+              dangerouslySetInnerHTML={{
+                __html: md({ html: true, typographer: true }).render(
+                  data.article == undefined
+                    ? ""
+                    : isSliced
+                    ? slicedData
+                    : data.article.data
+                ),
+              }}
+            />
+          </article>
+        </div>
+      </div>
+      {isSliced ? (
+        <div className="-translate-y-24">
+          <div className="h-24 bg-white blur-2xl"></div>
+          <div className="h-24">
+            <div className="flex w-full mt-8 underline underline-offset-8 justify-center">
+              Continue Reading
+            </div>
+            <div className="flex flex-row relative mt-32 z-100 justify-center">
+              <button
+                onClick={continueReading}
+                className="z-50 absolute bottom-10 border p-4 rounded-full border-black bg-pink"
+              >
+                <BsArrowDown size={16} />
+              </button>
+              <button className="z-90 absolute bottom-12 border p-4 rounded-full border-black bg-yellow">
+                <BsArrowDown size={16} />
+              </button>
+              <button className="z-90 absolute bottom-11 border p-4 rounded-full border-black bg-blue">
+                <BsArrowDown size={16} />
+              </button>
+            </div>
+          </div>
+        </div>
+      ) : (
+        <div></div>
+      )}
+
+      <div>
         <Footer />
       </div>
       <Backdrop

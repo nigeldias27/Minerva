@@ -1,7 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@700&family=Special+Elite&family=Raleway&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Questrial&display=swap");
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
 * {
   box-sizing: border-box;
   padding: 0;
@@ -12,9 +13,28 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
-  background-color: rgba(124, 45, 18, 0.1);
 }
 html {
   --scroll-behavior: smooth !important;
   scroll-behavior: smooth !important;
+}
+
+.react-multi-carousel-dot {
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  padding-top: 0.25rem;
+  padding-bottom: 0.25rem;
+  transition: scale 250ms ease;
+
+  scale: 1;
+}
+
+.react-multi-carousel-list .react-multi-carousel-dot > button {
+  border-color: #000000;
+}
+
+.react-multi-carousel-dot--active {
+  scale: 1.33;
 }

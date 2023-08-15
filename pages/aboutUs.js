@@ -1,105 +1,152 @@
 import AnimatedHeading from "@/animatedComponents/Heading";
+import UpdatedHeading from "@/animatedComponents/UpdatedHeading";
 import Footer from "@/components/Footer";
 import Headers from "@/components/Header";
 import PersonCard from "@/components/PersonCard";
 import { team } from "@/models/team";
 import { motion } from "framer-motion";
-
+import { useEffect, useState } from "react";
+import { BsArrowDown } from "react-icons/bs";
+import { NextSeo } from "next-seo";
+import Head from "next/head";
 export default function AboutUs() {
+  const [dark, setDark] = useState(false);
+  useEffect(() => {
+    localStorage.getItem("mode") == "dark" ? setDark(true) : setDark(false);
+  }, []);
   return (
-    <div>
-      <Headers />
-      <motion.div
-        initial={{ boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.4)" }}
-        whileHover={{ boxShadow: "inset 0 0 0 2000px rgba(0, 0, 0, 0.6)" }}
-        className="flex justify-center flex-col py-24 md:py-18 "
-        style={{
-          width: "100%",
-          backgroundRepeat: "no-repeat",
-          backgroundSize: "cover",
-          backgroundClip: "border-box",
-          backgroundPositionY: "center",
-          backgroundColor: "rgba(0,0,0,0.5)",
-          backgroundImage:
-            "url('https://news.pes.edu/Uploads/20230220%20050323_5.png')",
+    <div className={dark ? "dark" : ""}>
+      <NextSeo
+        title="About Us - Minerva PESU"
+        description="We are a group of thinkers that challenge people through good journalism. We strive to provide the required tools and knowledge to develop skills and Inspire change."
+        canonical="https://minervapesu.vercel.app/aboutUs"
+        openGraph={{
+          url: "https://minervapesu.vercel.app/aboutUs",
+          title: "About Us - Minerva PESU",
+          description:
+            "We are a group of thinkers that challenge people through good journalism. We strive to provide the required tools and knowledge to develop skills and Inspire change.",
+          siteName: "Minerva PESU",
         }}
-      >
-        <h1 className="pb-12 text-3xl font-merriweather pl-8 sm:pl-8 text-white text-opacity-90">
-          About Us
-        </h1>
-        <h4 className="font-bold text-lg pb-8 mx-8 font-typewriter text-white text-opacity-40">
-          PES University weekly publication. Bangalore{"'"}s first student-run
-          college newspaper. We are a group of thinkers that challenge people
-          through good journalism. We strive to provide the required tools and
-          knowledge to develop skills and Inspire Change. Click below to know
-          more. ~ Minerva (thy Serva)
-        </h4>
-      </motion.div>
+      />
+      <Head>
+        <title>About Us</title>
+      </Head>
+      <div className="bg-white dark:bg-greyBlack">
+        <Headers dark={dark} setDark={setDark} />
+        <div className="flex justify-center flex-col mx-8 pb-24 pt-16 md:py-18">
+          <UpdatedHeading>About Us</UpdatedHeading>
 
-      <div className="py-12">
-        <AnimatedHeading>What We Do?</AnimatedHeading>
-        <p className=" font-typewriter">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-            <motion.div
-              initial={{ opacity: 0, y: -60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 1 }}
-              className="bg-gradient-to-r from-minervaAboutl to-minervaAboutr text-lg rounded-lg drop-shadow-xl m-8 p-6 text-white text-opacity-70"
-            >
-              1. Weekly Newspaper Highlighting major events across the world
-              <br></br> 2. Weekly Podcast series<br></br> 3. The {'"'}extra{'"'}{" "}
-              you deserve<br></br>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: -60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 1 }}
-              className="bg-gradient-to-r from-minervaAboutl to-minervaAboutr text-lg rounded-lg drop-shadow-xl m-8 p-6 text-white text-opacity-70"
-            >
-              1. Workshops on storytelling, mass communication, and networking
-              <br></br> 2. Collaboration with news houses and marketing agencies
-              <br></br> 3. Hands-on exposure through fun events<br></br>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: -60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 1 }}
-              className="bg-gradient-to-r from-minervaAboutl to-minervaAboutr text-lg rounded-lg drop-shadow-xl m-8 p-6 text-white text-opacity-70"
-            >
-              1. Online News Cards<br></br> 2. Special Investigative Piece every
-              fourth week<br></br> 3. Bi-weekly Arts section featuring in-house
-              creativity
-            </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-2 mx-0 md:mx-8 pt-8 font-georgia ">
+            <div>
+              <h3 className="text-#1D1D1D dark:text-white mr-8 font-bold text-lg md:text-4xl">
+                {"PES University weekly publication. Bangalore's first ".toUpperCase()}
+                <span className="text-londonYellow dark:text-yellow">
+                  STUDENT-RUN
+                </span>{" "}
+                {"college newspaper.".toUpperCase()}
+              </h3>
+            </div>
+            <div className=" flex flex-col justify-end pt-3 md:pt-0">
+              <p className=" text-gray-400 text-end text-sm md:text-xl">
+                We are a group of thinkers that challenge people through good
+                journalism. We strive to provide the required tools and
+                knowledge to develop skills and Inspire change.
+              </p>
+            </div>
           </div>
-        </p>
+        </div>
+        <div className="flex flex-row relative z-100 justify-center pt-6">
+          <button className="z-50 absolute bottom-0 border p-4 rounded-full border-black bg-pink">
+            <BsArrowDown size={16} />
+          </button>
+          <button className="z-90 absolute bottom-2 border p-4 rounded-full border-black bg-yellow">
+            <BsArrowDown size={16} />
+          </button>
+          <button className="z-90 absolute bottom-1 border p-4 rounded-full border-black bg-blue">
+            <BsArrowDown size={16} />
+          </button>
+        </div>
+        <div className="py-12 mx-8 hidden md:flex">
+          <div className="relative">
+            <div className="text-white dark:text-black grid grid-cols-2">
+              <div className=" bg-black dark:bg-white font-georgia text-lg p-20 m-4">
+                {" "}
+                Minerva focuses on educating students in the field of media and
+                mass communications via our various channels.
+              </div>
+              <div className=" bg-black dark:bg-white font-georgia text-lg p-20 m-4">
+                We have weekly blog issues where our team covers all major
+                events around our nation and the world.
+              </div>
+            </div>
+            <div className="text-white dark:text-black grid grid-cols-2">
+              <div className=" bg-black dark:bg-white font-georgia text-lg p-20 m-4">
+                {" "}
+                Minerva also provides secondary coverage of important events
+                happening in PESU as well as highlighting achievements.
+              </div>
+              <div className=" bg-black dark:bg-white font-georgia text-lg p-20 m-4">
+                Workshops and talks are held to bring in renowned personalities
+                in the field so students get real time exposure to the field.
+              </div>
+              <div
+                style={{ transform: "translate(-50%,-50%)" }}
+                className="absolute z-20 left-1/2 top-1/2 border border-black bg-blue py-8 px-12"
+              >
+                <p className="font-georgia text-black font-bold text-2xl">
+                  What Do We Do?
+                </p>
+              </div>
+              <div
+                style={{ transform: "translate(-47%,-42%)" }}
+                className="absolute z-10 left-1/2 top-1/2 border border-black bg-pink py-8 px-12"
+              >
+                <p className="font-georgia font-bold text-2xl">
+                  What Do We Do?
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="flex flex-col mx-8 mt-16 md:hidden">
+          <UpdatedHeading>What we Do</UpdatedHeading>
+          <div className="py-2">
+            <div className="w-full dark:bg-white bg-greyBlack">
+              <p className="font-georgia text-sm dark:text-black text-white p-4">
+                Minerva focuses on educating students in the field of media and
+                mass communications via our various channels.
+              </p>
+            </div>
+          </div>
+          <div className="py-2">
+            <div className="w-full dark:bg-white bg-greyBlack">
+              <p className="font-georgia text-sm dark:text-black text-white p-4">
+                We have weekly blog issues where our team covers all major
+                events around our nation and the world.
+              </p>
+            </div>
+          </div>
+          <div className="py-2">
+            <div className="w-full dark:bg-white bg-greyBlack">
+              <p className="font-georgia text-sm dark:text-black text-white p-4">
+                Minerva also provides secondary coverage of important events
+                happening in PESU as well as highlighting achievements.
+              </p>
+            </div>
+          </div>
+          <div className="py-2">
+            <div className="w-full dark:bg-white bg-greyBlack">
+              <p className="font-georgia text-sm dark:text-black text-white p-4">
+                Workshops and talks are held to bring in renowned personalities
+                in the field so students get real time exposure to the field.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="pt-16">
+          <Footer />
+        </div>
       </div>
-
-      <AnimatedHeading>Meet The Team</AnimatedHeading>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 mb-8">
-        {team.map((v, i) => {
-          return (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: -60 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 1 }}
-            >
-              <PersonCard
-                key={i}
-                imageURL={v.link}
-                Name={v.name}
-                Role="Web Developement"
-              ></PersonCard>
-            </motion.div>
-          );
-        })}
-      </div>
-
-      <Footer />
     </div>
   );
 }
