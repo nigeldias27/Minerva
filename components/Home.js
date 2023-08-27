@@ -125,6 +125,7 @@ export default function HomeComponent() {
     });
     setOpen(false);
     console.log(response.data);
+    console.log(response.data[0].writerName);
     setData([...response.data]);
   }
 
@@ -224,6 +225,7 @@ export default function HomeComponent() {
                     imageURL={`${data[0].imageURL}`}
                     headline={`${data[0].title}`}
                     genre={`${data[0].genre}`}
+                    writerName={`${data[0].writerName}`}
                     date={`${data[0].createdAt}`}
                     desc={`${data[0].description}`}
                     id={`${data[0]._id}`}
@@ -235,6 +237,7 @@ export default function HomeComponent() {
                     imageURL={`${data[1].imageURL}`}
                     headline={`${data[1].title}`}
                     genre={`${data[1].genre}`}
+                    writerName={`${data[1].writerName}`}
                     date={`${data[1].createdAt}`}
                     desc={`${data[1].description}`}
                     id={`${data[1]._id}`}
@@ -276,6 +279,7 @@ export default function HomeComponent() {
                       imageURL={`${val.imageURL}`}
                       headline={`${val.title}`}
                       genre={`${val.genre}`}
+                      writerName={`${val.writerName}`}
                       date={`${val.createdAt}`}
                       desc={`${val.description}`}
                       id={`${val._id}`}
@@ -306,6 +310,7 @@ export default function HomeComponent() {
                         imageURL={`${val.imageURL}`}
                         headline={`${val.title}`}
                         genre={`${val.genre}`}
+                        writerName={`${val.writerName}`}
                         date={`${val.createdAt}`}
                         desc={`${val.description}`}
                         id={`${val._id}`}

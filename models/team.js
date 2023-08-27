@@ -1,17 +1,6 @@
 // Data consisting of all member of the club for the About Us page
 export const team = [
   {
-    FIELD1: 0,
-    name: "Raunak Kodwani",
-    Domain: "Club head",
-    Email: "kodwaniraunak1@gmail.com",
-    "Profile picture":
-      "https://drive.google.com/open?id=1TymnQJRcaX4nYpNnKOWaAYpua72XGGso",
-    "LinkedIn Profile URL":
-      "https://www.linkedin.com/in/raunak-kodwani-839476222",
-    link: "https://storage.googleapis.com/justcoffee-ed767.appspot.com/ourteam/Raunak_Kodwani.png",
-  },
-  {
     FIELD1: 66,
     name: "Rohit Rajesh",
     Domain: "Club head",
@@ -32,6 +21,17 @@ export const team = [
     "LinkedIn Profile URL":
       "https://www.linkedin.com/in/pramath-haritz-aa69381b7",
     link: "https://storage.googleapis.com/justcoffee-ed767.appspot.com/ourteam/Pramath_Haritz.png",
+  },
+  {
+    FIELD1: 0,
+    name: "Raunak Kodwani",
+    Domain: "Club head",
+    Email: "kodwaniraunak1@gmail.com",
+    "Profile picture":
+      "https://drive.google.com/open?id=1TymnQJRcaX4nYpNnKOWaAYpua72XGGso",
+    "LinkedIn Profile URL":
+      "https://www.linkedin.com/in/raunak-kodwani-839476222",
+    link: "https://storage.googleapis.com/justcoffee-ed767.appspot.com/ourteam/Raunak_Kodwani.png",
   },
   {
     FIELD1: 45,
