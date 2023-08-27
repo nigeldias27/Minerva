@@ -55,39 +55,42 @@ export default function OurTeam() {
       <Head>
         <title>Our Team</title>
       </Head>
-      <Headers dark={dark} setDark={setDark} />
-      <div className="md:mx-8 mt-24">
-        <div className="mx-4 md:mx-8">
-          <UpdatedHeading>Our Team</UpdatedHeading>
-        </div>
-        <InfiniteScroll
-          dataLength={items.length}
-          next={fetchData}
-          hasMore={hasMore}
-          loader={<h4>Loading...</h4>}
-        >
-          <div className="grid grid-cols-2 mt-8 md:grid-cols-2 xl:grid-cols-3 mb-8">
-            {items.map((v, i) => {
-              return (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, y: -60 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ duration: 0.5, delay: 1 }}
-                >
-                  <PersonCard
-                    key={i}
-                    imageURL={v.link}
-                    Name={v.name}
-                    Role="Web Developement"
-                  ></PersonCard>
-                </motion.div>
-              );
-            })}
+      <div className="bg-white dark:bg-greyBlack">
+        <Headers dark={dark} setDark={setDark} />
+        <div className="md:mx-8 mt-24">
+          <div className="mx-4 md:mx-8">
+            <UpdatedHeading>Our Team</UpdatedHeading>
           </div>
-        </InfiniteScroll>
+          <InfiniteScroll
+            dataLength={items.length}
+            next={fetchData}
+            hasMore={hasMore}
+            loader={<h4>Loading...</h4>}
+          >
+            <div className="grid grid-cols-2 mt-8 md:grid-cols-2 xl:grid-cols-3 mb-8">
+              {items.map((v, i) => {
+                return (
+                  <motion.div
+                    key={i}
+                    initial={{ opacity: 0, y: -60 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 1 }}
+                  >
+                    <PersonCard
+                      key={i}
+                      imageURL={v.link}
+                      Name={v.name}
+                      Role="Web Developement"
+                    ></PersonCard>
+                  </motion.div>
+                );
+              })}
+            </div>
+          </InfiniteScroll>
+        </div>
       </div>
+
       <Footer />
     </div>
   );
