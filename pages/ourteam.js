@@ -10,7 +10,11 @@ import { useEffect, useState } from "react";
 import { BsArrowDown } from "react-icons/bs";
 import { NextSeo } from "next-seo";
 import Head from "next/head";
-export default function OurTeam() {
+export async function getStaticProps() {
+  const teams = team;
+  return { props: { teams } };
+}
+export default function OurTeam({ teams }) {
   const [items, setItems] = useState([]);
   const [hasMore, setHasMore] = useState(true);
   const [page, setPage] = useState(1);
@@ -20,10 +24,10 @@ export default function OurTeam() {
     // Update the URL or data fetching logic as per your application's requirements
 
     // Update the items state with the new data
-    setItems([...items, ...team.slice(page - 1, page - 1 + 10)]);
+    setItems([...items, ...teams.slice(page - 1, page - 1 + 10)]);
 
     // Determine if there's more data to fetch
-    if (team.slice(page - 1, page - 1 + 10).length === 0) {
+    if (teams.slice(page - 1, page - 1 + 10).length === 0) {
       setHasMore(false);
     }
 

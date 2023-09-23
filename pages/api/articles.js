@@ -13,7 +13,8 @@ async function articles(req, res) {
         //Get some of the articles
         var allarticles = await Article.find()
           .sort({ _id: -1 })
-          .limit(req.body.limit);
+          .limit(req.body.limit)
+          .lean();
       }
       res.json(allarticles);
     } else {

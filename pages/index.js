@@ -125,20 +125,9 @@ export default function HomeComponent({ data }) {
     localStorage.getItem("mode") == "dark" ? setDark(true) : setDark(false);
 
     setOpenDialogue(true);
-    //initState();
   }, []);
   function closeModal() {
     setOpenDialogue(false);
-  }
-  async function initState() {
-    setOpen(true);
-    const response = await axios.post("/api/articles", {
-      selectedGenres: [],
-      limit: 9,
-    });
-    setOpen(false);
-    console.log(response.data);
-    setData([...response.data]);
   }
 
   const responsive = {
@@ -179,6 +168,16 @@ export default function HomeComponent({ data }) {
         <title>Minerva</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
+        <meta
+          name="keywords"
+          content="minerva, journalism, journalist, pes, university, articles, news, events, club"
+        ></meta>
+        <meta
+          name="title"
+          content="Minerva - The Official Journalism Club of PES University"
+        ></meta>
+        <meta name="language" content="English"></meta>
+        <meta name="author" content="Minerva Web Dev Team"></meta>
       </Head>
       <Headers dark={dark} setDark={setDark} />
       <div className="flex flex-col">
