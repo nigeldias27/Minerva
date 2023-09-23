@@ -11,10 +11,10 @@ async function articles(req, res) {
         var allarticles = await Article.find().sort({ _id: -1 });
       } else {
         //Get some of the articles
-        var allarticles = await Article.find()
-          .sort({ _id: -1 })
-          .limit(req.body.limit)
-          .lean();
+        var allarticles = await Article.find({}, null, {
+          sort: { _id: -1 },
+          limit: req.body.limit,
+        }).lean();
       }
       res.json(allarticles);
     } else {
