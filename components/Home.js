@@ -94,9 +94,29 @@ const CustomRightArrow = ({ onClick }) => (
   </div>
 );
 //Deploying!!
-export default function HomeComponent() {
+export async function getServerSideProps({
+  params,
+  req,
+  res,
+  query,
+  preview,
+  previewData,
+  resolvedUrl,
+  locale,
+  locales,
+  defaultLocale,
+}) {
+  console.log(res);
+  const response = await axios.post("/api/articles", {
+    selectedGenres: [],
+    limit: 9,
+  });
+  data = response.data;
+  return { props: { data } };
+}
+export default function HomeComponent({ data }) {
   const router = useRouter();
-  const [data, setData] = useState([]); //This refers to the 6 news articles featured in the home page
+  //const [data, setData] = useState([]); //This refers to the 6 news articles featured in the home page
   const [open, setOpen] = useState(false); // Loading circular progress bar(Backdrop)
   const isSmallScreen = useMediaQuery({ maxWidth: 429 });
   const [dark, setDark] = useState(false);
@@ -112,7 +132,7 @@ export default function HomeComponent() {
     localStorage.getItem("mode") == "dark" ? setDark(true) : setDark(false);
 
     setOpenDialogue(true);
-    initState();
+    //initState();
   }, []);
   function closeModal() {
     setOpenDialogue(false);
@@ -215,34 +235,31 @@ export default function HomeComponent() {
           <div className="md:flex md:flex-row flex flex-col sm:flex sm:flex-col md:mt-16 sm:-mx-2 mx-5 ">
             <div className="basis-3/6 pr-2 ">
               <UpdatedHeading># Trending</UpdatedHeading>
-              {data[0] == undefined ? (
-                <div></div>
-              ) : (
-                <div>
-                  <UpdatedNewsCard
-                    i={2}
-                    imageURL={`${data[0].imageURL}`}
-                    headline={`${data[0].title}`}
-                    genre={`${data[0].genre}`}
-                    date={`${data[0].createdAt}`}
-                    desc={`${data[0].description}`}
-                    id={`${data[0]._id}`}
-                    newArticle={true}
-                    bigger={true}
-                  />
-                  <UpdatedNewsCard
-                    i={2}
-                    imageURL={`${data[1].imageURL}`}
-                    headline={`${data[1].title}`}
-                    genre={`${data[1].genre}`}
-                    date={`${data[1].createdAt}`}
-                    desc={`${data[1].description}`}
-                    id={`${data[1]._id}`}
-                    newArticle={true}
-                    bigger={true}
-                  />
-                </div>
-              )}
+
+              <div>
+                <UpdatedNewsCard
+                  i={2}
+                  imageURL={`${data[0].imageURL}`}
+                  headline={`${data[0].title}`}
+                  genre={`${data[0].genre}`}
+                  date={`${data[0].createdAt}`}
+                  desc={`${data[0].description}`}
+                  id={`${data[0]._id}`}
+                  newArticle={true}
+                  bigger={true}
+                />
+                <UpdatedNewsCard
+                  i={2}
+                  imageURL={`${data[1].imageURL}`}
+                  headline={`${data[1].title}`}
+                  genre={`${data[1].genre}`}
+                  date={`${data[1].createdAt}`}
+                  desc={`${data[1].description}`}
+                  id={`${data[1]._id}`}
+                  newArticle={true}
+                  bigger={true}
+                />
+              </div>
             </div>
             <div className="basis-2/4 pl-3 pt-15 flex flex-col sm:flex sm:flex-col">
               <div className="flex justify-between items-center">
