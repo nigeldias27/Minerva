@@ -116,7 +116,7 @@ export default function UpdatedNewsCard(props) {
               : "pt-8 pl-3"
           }`}
         >
-          <h1
+          <h3
             className={` ${
               props.horizontal == true
                 ? "text-xl"
@@ -124,7 +124,7 @@ export default function UpdatedNewsCard(props) {
             } font-georgia text-#1D1D1D dark:text-white`}
           >
             {props.headline}
-          </h1>
+          </h3>
           <div className="flex flex-row items-center pt-2">
             <Avatar className="w-3 h-3 md:w-8 md:h-8" />
             <p

@@ -39,6 +39,7 @@ export default function UpdatedAnimatedTimelineItem(props) {
         <Image
           className="aspect-square rounded-full border-white border-8"
           src={props.img}
+          alt={props.title + " Poster"}
         ></Image>
       </div>
       <div className="bg-lighterblue flex flex-col justify-center p-3 dark:bg-lighterblack col-span-2  rounded-sm">

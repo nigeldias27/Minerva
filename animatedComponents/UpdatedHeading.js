@@ -1,7 +1,7 @@
 export default function UpdatedHeading(props) {
   return (
     <div className="md:mx-8 my-4 relative">
-      <h1
+      <h2
         style={{
           textShadow:
             "1px 0 0 black,0 1px 0 black,-1px 0 0 black,0 -1px 0 black",
@@ -9,8 +9,8 @@ export default function UpdatedHeading(props) {
         className="relative md:text-4xl sm:text-[26px] text-2xl font-han  z-30 outline-2 text-white"
       >
         {props.notcap == false ? props.children : props.children.toUpperCase()}
-      </h1>
-      <h1
+      </h2>
+      <h2
         style={{
           position: "absolute",
           top: "-6px",
@@ -23,8 +23,8 @@ export default function UpdatedHeading(props) {
         className=" md:text-4xl sm:text-[26px] text-2xl font-han z-20 "
       >
         {props.notcap == false ? props.children : props.children.toUpperCase()}
-      </h1>
-      <h1
+      </h2>
+      <h2
         style={{
           color: "#DE99FF",
           position: "absolute",
@@ -38,7 +38,7 @@ export default function UpdatedHeading(props) {
         className=" md:text-4xl sm:text-[26px] text-2xl font-han z-10"
       >
         {props.notcap == false ? props.children : props.children.toUpperCase()}
-      </h1>
+      </h2>
     </div>
   );
 }

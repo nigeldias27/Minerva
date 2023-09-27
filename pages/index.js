@@ -208,9 +208,9 @@ export default function HomeComponent({ data }) {
                 <h1 className="lg:text-6xl font-georgia font-bold text-white sm:text-3xl md:text-6xl text-3xl">
                   Introducing Minerva
                 </h1>
-                <h1 className="text-lg sm:text-lg font-georgia font-light mt-8 mb-4 text-white md:text-3xl lg:text-3xl">
+                <p className="text-lg sm:text-lg font-georgia font-light mt-8 mb-4 text-white md:text-3xl lg:text-3xl">
                   Bangalore&apos;s first student-run college newspaper
-                </h1>
+                </p>
                 <p className="text-md font-georgia hidden md:flex font-light md:text-xl pr-3 text-white">
                   We are a group of thinkers that challenge people through good
                   journalism.
@@ -272,9 +272,9 @@ export default function HomeComponent({ data }) {
             </div>
             <div className="basis-2/4 pl-3 pt-15 flex flex-col sm:flex sm:flex-col">
               <div className="flex justify-between items-center">
-                <h1 className="text-xl sm:text-2xl text-#1D1D1D dark:text-white font-gilroy font-bold -ml-5 md:ml-8 lg:pb-2">
+                <h2 className="text-xl sm:text-2xl text-#1D1D1D dark:text-white font-gilroy font-bold -ml-5 md:ml-8 lg:pb-2">
                   Recent News
-                </h1>
+                </h2>
                 <Link
                   href={"/allnews"}
                   className=" text-otherblue dark:text-blue underline text-sm font-georgia pr-4 pt-2 hover:text-hoverbeigeText justify-center hidden  sm:hidden "
@@ -378,8 +378,8 @@ export default function HomeComponent({ data }) {
                     className="pt-8 pb-32 font-typewritter"
                     color="text.secondary"
                   >
-                    <h1 className="text-white">14th Apr 2023, 12:00pm</h1>
-                    <h1 className="text-white">10th Floor, BE Block</h1>
+                    <p className="text-white">14th Apr 2023, 12:00pm</p>
+                    <p className="text-white">10th Floor, BE Block</p>
                   </TimelineOppositeContent>
                   <TimelineSeparator>
                     <TimelineDot sx={{ width: "auto", padding: "0px" }}>
@@ -390,9 +390,9 @@ export default function HomeComponent({ data }) {
                     <TimelineConnector />
                   </TimelineSeparator>
                   <TimelineContent className="py-8">
-                    <h1 className="text-white font-semibold font-gilroy">
+                    <h4 className="text-white font-semibold font-gilroy">
                       Runaway Runway
-                    </h1>
+                    </h4>
                     <p className="font-georgia text-white">
                       Runway from buying expensive material in the name of
                       fashion run-towards sustainable and recyclable eco-chic
@@ -426,12 +426,12 @@ export default function HomeComponent({ data }) {
                     className="pt-8 pb-32 font-typewriter"
                     color="text.secondary"
                   >
-                    <h1 className="text-white font-georgia">
+                    <p className="text-white font-georgia">
                       8th Feb 2023, 2:45PM
-                    </h1>
-                    <h1 className="text-white font-georgia">
+                    </p>
+                    <p className="text-white font-georgia">
                       Seminar Hall 3,BE Block
-                    </h1>
+                    </p>
                   </TimelineOppositeContent>
                   <TimelineSeparator>
                     <TimelineDot sx={{ width: "auto", padding: "0px" }}>
@@ -445,13 +445,13 @@ export default function HomeComponent({ data }) {
                     <TimelineConnector />
                   </TimelineSeparator>
                   <TimelineContent className="py-8">
-                    <h1 className="text-md font-gilroy text-white font-semibold">
+                    <h4 className="text-md font-gilroy text-white font-semibold">
                       Rethink Retrospect Reflect
-                    </h1>
-                    <h6 className="font-georgia text-white">
+                    </h4>
+                    <p className="font-georgia text-white">
                       Watch the screenplay, write a report on it and stand a
                       chance to win Ant Man tickets!
-                    </h6>
+                    </p>
                     <div>
                       <div className="relative">
                         <button
@@ -479,10 +479,10 @@ export default function HomeComponent({ data }) {
                     className="pt-8 pb-32 font-typewriter"
                     color="text.secondary"
                   >
-                    <h1 className="text-white font-georgia">
+                    <p className="text-white font-georgia">
                       12th Apr 2023, 2:45PM
-                    </h1>
-                    <h1 className="text-white font-georgia">MRD Auditorium</h1>
+                    </p>
+                    <p className="text-white font-georgia">MRD Auditorium</p>
                   </TimelineOppositeContent>
                   <TimelineSeparator>
                     <TimelineDot sx={{ width: "auto", padding: "0px" }}>
@@ -496,9 +496,9 @@ export default function HomeComponent({ data }) {
                     <TimelineConnector />
                   </TimelineSeparator>
                   <TimelineContent className="py-8">
-                    <h1 className="text-md font-semibold font-gilroy text-white">
+                    <h4 className="text-md font-semibold font-gilroy text-white">
                       Minerva Orientation
-                    </h1>
+                    </h4>
                     <p className="font-georgia text-white">
                       Come learn more about what our club has in store for all
                       of you this year
@@ -579,12 +579,12 @@ export default function HomeComponent({ data }) {
               </div>
               <div className="basis-2/5 pt-7 pb-3 -translate-x-3">
                 <div className="pb-0.1 pt-0.5">
-                  <h4
+                  <h5
                     /* style={{ width:"50%" }}*/
                     className="absolute sm:relative z-20 sm:w-50% w-100% md:text-4xl text-[16px] sm:pt-3  sm:pb-1  sm:mr-5 ml-3   text-[#428897] dark:text-blue font-han font-bold"
                   >
                     {"The stepping stone to entrepreneurship".toUpperCase()}
-                  </h4>
+                  </h5>
                 </div>
                 <p className="  mx-3 mt-20  text-14px sm:mt-5  md:text-20px font-georgia text-#1D1D1D  dark:text-white">
                   Centre for Innovation and Entrepreneurship
@@ -634,12 +634,12 @@ export default function HomeComponent({ data }) {
               </div>
               <div className="basis-2/5 pt-7 pb-5 -translate-x-3 md:translate-x-1">
                 <div className="sm:pb-10 pt-0.5 pb-10">
-                  <h4
+                  <h5
                     /* style={{ width:"50%" }}*/
                     className="absolute md:relative z-20 md:w-50% w-100% md:text-4xl text-[16px] md:pt-3  md:pb-1  md:mr-5 ml-3   text-[#428897] dark:text-blue font-han font-bold"
                   >
                     {"Rising Innovators of PESU".toUpperCase()}
-                  </h4>
+                  </h5>
                 </div>
                 <p className="  mx-3 mt-18 pt-10 pb-3 text-14px md:-mt-5  md:text-20px font-georgia text-#1D1D1D  dark:text-white">
                   PESU Venture Labs
@@ -723,7 +723,7 @@ export default function HomeComponent({ data }) {
                     >
                       <div className="grid grid-cols-2 items-start">
                         <div className="relative">
-                          <h1
+                          <h2
                             style={{
                               textShadow:
                                 "1px 0 0 black,0 1px 0 black,-1px 0 0 black,0 -1px 0 black",
@@ -731,8 +731,8 @@ export default function HomeComponent({ data }) {
                             className="relative sm:text-xl md:text-4xl text-sm font-han  z-30 outline-2 text-white"
                           >
                             {"Join our Newsletter".toUpperCase()}
-                          </h1>
-                          <h1
+                          </h2>
+                          <h2
                             style={{
                               position: "absolute",
                               zIndex: "5",
@@ -743,8 +743,8 @@ export default function HomeComponent({ data }) {
                             className="sm:text-xl md:text-4xl text-sm font-han z-20 -top-[4px] -left-[4px] sm:-top-[6px] sm:-left-[6px]"
                           >
                             {"Join our Newsletter".toUpperCase()}
-                          </h1>
-                          <h1
+                          </h2>
+                          <h2
                             style={{
                               color: "#DE99FF",
                               position: "absolute",
@@ -756,7 +756,7 @@ export default function HomeComponent({ data }) {
                             className="sm:text-xl md:text-4xl text-sm font-han z-10 -top-[2px] -left-[2px]  sm:-top-[3px] sm:-left-[3px]"
                           >
                             {"Join our Newsletter".toUpperCase()}
-                          </h1>
+                          </h2>
                         </div>
                         <div className="flex flex-col md:pt-4 items-end relative">
                           <div
@@ -802,7 +802,7 @@ export default function HomeComponent({ data }) {
                         </div>
                         <div className="flex flex-col">
                           <div className="flex flex-col items-start md:items-end relative">
-                            <h1
+                            <p
                               className={`text-black md:mt-8 font-questrial font-semibold text-[10px] md:text-lg ${
                                 dark ? "text-white" : "text-black"
                               }`}
@@ -811,8 +811,8 @@ export default function HomeComponent({ data }) {
                                 Subscribe
                               </span>{" "}
                               to our newsletter
-                            </h1>
-                            <h1
+                            </p>
+                            <p
                               className={`text-black pb-4 font-questrial font-semibold text-[10px] md:text-lg dark:text-white  ${
                                 dark ? "text-white" : "text-black"
                               }`}
@@ -821,7 +821,7 @@ export default function HomeComponent({ data }) {
                               <span className="text-otherblue dark:text-blue">
                                 exclusive content
                               </span>
-                            </h1>
+                            </p>
 
                             <TextField
                               InputProps={{
