@@ -74,6 +74,7 @@ export default function UpdatedNewsCard(props) {
                   : ""
               }`}
               src={`${props.imageURL}`}
+              alt={props.headline + " Article"}
             ></img>
           </div>
           {props.bigger == true && !props.hideDate ? (
@@ -132,7 +133,6 @@ export default function UpdatedNewsCard(props) {
                 props.bigger == true
                   ? "md:text-xl text-xs"
                   : " md:text-lg text-xs"
-
               } `}
             >
               {"Nigel Dias"} | {props.genre}

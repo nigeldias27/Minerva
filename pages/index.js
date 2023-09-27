@@ -154,7 +154,7 @@ export default function HomeComponent({ data }) {
     <div className={dark ? "dark" : ""}>
       <NextSeo
         title="Minerva - The Official Journalism Club of PES University"
-        description="We are bangalore's first student-run college newspaper"
+        description="Minerva is Bangalore's first student-run college newspaper. We are a group of thinkers that challenge people through good journalism."
         canonical="https://minervapesu.vercel.app"
         openGraph={{
           url: "https://minervapesu.vercel.app",
@@ -165,7 +165,7 @@ export default function HomeComponent({ data }) {
       />
 
       <Head>
-        <title>Minerva</title>
+        <title>Minerva - The Official Journalism Club of PES University</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
         <meta
@@ -176,7 +176,7 @@ export default function HomeComponent({ data }) {
           name="title"
           content="Minerva - The Official Journalism Club of PES University"
         ></meta>
-        <meta name="language" content="English"></meta>
+        <meta name="language" content="en"></meta>
         <meta name="author" content="Minerva Web Dev Team"></meta>
       </Head>
       <Headers dark={dark} setDark={setDark} />
