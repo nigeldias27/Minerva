@@ -2,6 +2,7 @@ import connectDB from "@/lib/connect";
 import validateToken from "@/lib/validateToken";
 import pendingArticle from "../../models/pendingArticle.js";
 import Article from "../../models/Article.js";
+import trendingArticle from "../../models/trendingArticle.js";
 
 const createArticle = async (req, res) => {
   if (req.method == "POST") {
@@ -12,14 +13,20 @@ const createArticle = async (req, res) => {
     if (user.role == "Editor") {
       //Add the article in the body to the Article collection and remove it from the pendingArticle collection
       console.log(req.body);
+      var article = await trendingArticle.findOneAndDelete().sort({ _id: 1 });
+      const finaltrendingArticle = new trendingArticle({
+        ...req.body,
+        editor: user._id,
+      });
       const finalArticle = new Article({
         ...req.body,
         editor: user._id,
       });
-      const finalData = await finalArticle.save();
-      const finalPendingArticle = await pendingArticle.findByIdAndRemove(
-        req.body._id
-      );
+      const finalData = await Promise.all([
+        finalArticle.save(),
+        finaltrendingArticle.save(),
+        pendingArticle.findByIdAndRemove(req.body._id),
+      ]);
       res.send(finalData);
     } else {
       // Else it is a Content creator, so add the article to the pendingArticle collection

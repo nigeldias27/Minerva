@@ -97,12 +97,8 @@ const CustomRightArrow = ({ onClick }) => (
 );
 //Deploying!!
 export async function getServerSideProps() {
-  const response = await axios.post(
-    "http://minervapesu.vercel.app/api/articles",
-    {
-      selectedGenres: [],
-      limit: 9,
-    }
+  const response = await axios.get(
+    "http://minervapesu.vercel.app/api/trendingarticles"
   );
   const data = response.data;
   return { props: { data } };
@@ -167,7 +163,6 @@ export default function HomeComponent({ data }) {
       <Head>
         <title>Minerva - The Official Journalism Club of PES University</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
         <meta
           name="keywords"
           content="minerva, journalism, journalist, pes, university, articles, news, events, club"
