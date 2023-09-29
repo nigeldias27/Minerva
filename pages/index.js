@@ -31,7 +31,7 @@ import Image from "next/image";
 import event1 from "../public/assets/minerva_event_1.jpeg";
 import event2 from "../public/assets/orientation.jpeg";
 import event3 from "../public/assets/runway.jpeg";
-import background from "../public/assets/background.png";
+import background from "../public/assets/background.webp";
 import foreground from "../public/assets/foreground.png";
 import { Avatar, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/router";
