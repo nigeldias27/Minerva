@@ -16,8 +16,8 @@ import { BsArrowDown } from "react-icons/bs";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import Backdrop from "@mui/material/Backdrop";
 import { Dialog, Transition } from "@headlessui/react";
-import event6 from "../public/assets/newsletter.png";
-import event7 from "../public/assets/newsletter_dark.png";
+import event6 from "../public/assets/newsletter.webp";
+import event7 from "../public/assets/newsletter_dark.webp";
 import { GrClose } from "react-icons/gr";
 import CircularProgress from "@mui/material/CircularProgress";
 import Contact from "@/components/ContactUs";
@@ -28,11 +28,11 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 import Image from "next/image";
-import event1 from "../public/assets/minerva_event_1.jpeg";
-import event2 from "../public/assets/orientation.jpeg";
-import event3 from "../public/assets/runway.jpeg";
+import event1 from "../public/assets/minerva_event_1.webp";
+import event2 from "../public/assets/orientation.webp";
+import event3 from "../public/assets/runway.webp";
 import background from "../public/assets/background.webp";
-import foreground from "../public/assets/foreground.png";
+import foreground from "../public/assets/foreground.webp";
 import { Avatar, TextField, Typography } from "@mui/material";
 import { useRouter } from "next/router";
 import { useEffect, useState, useRef, Fragment } from "react";
@@ -97,10 +97,11 @@ const CustomRightArrow = ({ onClick }) => (
 );
 //Deploying!!
 export async function getServerSideProps() {
-  const response = await axios.get(
-    "http://minervapesu.vercel.app/api/trendingarticles"
+  const response = await fetch(
+    "http://minervapesu.vercel.app/api/trendingarticles",
+    { cache: "force-cache", next: { revalidate: 3600 } }
   );
-  const data = response.data;
+  const data = await response.json();
   return { props: { data } };
 }
 export default function HomeComponent({ data }) {
@@ -157,6 +158,12 @@ export default function HomeComponent({ data }) {
           title: "Minerva - The Official Journalism Club of PES University",
           description: "Bangalore's first student-run college newspaper",
           siteName: "Minerva PESU",
+          images: {
+            url: "https://instagram.fblr22-2.fna.fbcdn.net/v/t51.2885-19/325223888_155195430611563_546588007529315167_n.jpg?stp=dst-jpg_s150x150&_nc_ht=instagram.fblr22-2.fna.fbcdn.net&_nc_cat=107&_nc_ohc=ZO1nlFyW8aoAX9YugF2&edm=ACWDqb8BAAAA&ccb=7-5&oh=00_AfBezyb3Stb9bm06G-NbT8SRc7X7xmfuMCz8MVh9VPd-Xg&oe=6519D231&_nc_sid=ee9879",
+            width: 850,
+            height: 650,
+            alt: "Minerva Logo",
+          },
         }}
       />
 
@@ -342,7 +349,7 @@ export default function HomeComponent({ data }) {
           <div className="hidden md:flex w-full mt-8 justify-center">
             <div className="relative">
               <button
-                class="bg-pink border border-black relative z-40 x-6 my-1  font-gilroy font-bolder rounded-md py-2 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
+                className="bg-pink border border-black relative z-40 x-6 my-1  font-gilroy font-bolder rounded-md py-2 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
                 type="submit"
                 onClick={() => {
                   router.push("/allnews", undefined, { scroll: false });
@@ -397,7 +404,7 @@ export default function HomeComponent({ data }) {
                     <div>
                       <div className="relative">
                         <button
-                          class="bg-pink border border-black font-gilroy font-bolder relative z-40 x-6 my-1 font-merriweather rounded-md py-2 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
+                          className="bg-pink border border-black font-gilroy font-bolder relative z-40 x-6 my-1 font-merriweather rounded-md py-2 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
                           type="submit"
                           onClick={() => {
                             window.location.href =
@@ -450,7 +457,7 @@ export default function HomeComponent({ data }) {
                     <div>
                       <div className="relative">
                         <button
-                          class="bg-pink border border-black relative z-40 x-6 my-1 font-gilroy font-bolder rounded-md py-2 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
+                          className="bg-pink border border-black relative z-40 x-6 my-1 font-gilroy font-bolder rounded-md py-2 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
                           type="submit"
                           onClick={() => {
                             window.location.href =
@@ -501,7 +508,7 @@ export default function HomeComponent({ data }) {
                     <div>
                       <div className="relative">
                         <button
-                          class="bg-pink border border-black font-gilroy font-bolder relative z-40 x-6 my-1 font-merriweather rounded-md py-2 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
+                          className="bg-pink border border-black font-gilroy font-bolder relative z-40 x-6 my-1 font-merriweather rounded-md py-2 px-3 text-blackish hover:scale-105 transition duration-50 ease-linear"
                           type="submit"
                           onClick={() => {
                             window.location.href =

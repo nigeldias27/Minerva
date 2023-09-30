@@ -1,8 +1,6 @@
 // This component refers to the navbar of the website
-import logo from "../public/assets/logo.png";
-import peslogo from "../public/assets/pesulogo.png";
-import event4 from "../public/assets/minerva.png";
-import event5 from "../public/assets/pesu.png";
+import logo from "../public/assets/logo.webp";
+import peslogo from "../public/assets/pesulogo.webp";
 import Image from "next/image";
 import { CgMenuLeft } from "react-icons/cg";
 import Link from "next/link";
