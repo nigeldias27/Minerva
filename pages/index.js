@@ -99,7 +99,7 @@ const CustomRightArrow = ({ onClick }) => (
 export async function getServerSideProps() {
   const response = await fetch(
     "http://minervapesu.vercel.app/api/trendingarticles",
-    { cache: "force-cache", next: { revalidate: 3600 } }
+    { cache: "force-cache", next: { revalidate: 86400 } }
   );
   const data = await response.json();
   return { props: { data } };
