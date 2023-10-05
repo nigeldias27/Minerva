@@ -105,6 +105,7 @@ export async function getServerSideProps() {
   return { props: { data } };
 }
 export default function HomeComponent({ data }) {
+  console.log(data);
   const router = useRouter();
   //const [data, setData] = useState([]); //This refers to the 6 news articles featured in the home page
   const [open, setOpen] = useState(false); // Loading circular progress bar(Backdrop)
@@ -252,6 +253,7 @@ export default function HomeComponent({ data }) {
                   i={2}
                   imageURL={`${data[0].imageURL}`}
                   headline={`${data[0].title}`}
+                  writerName={`${data[0].writerName}`}
                   genre={`${data[0].genre}`}
                   date={`${data[0].createdAt}`}
                   desc={`${data[0].description}`}
@@ -263,6 +265,7 @@ export default function HomeComponent({ data }) {
                   i={2}
                   imageURL={`${data[1].imageURL}`}
                   headline={`${data[1].title}`}
+                  writerName={`${data[1].writerName}`}
                   genre={`${data[1].genre}`}
                   date={`${data[1].createdAt}`}
                   desc={`${data[1].description}`}
@@ -302,6 +305,7 @@ export default function HomeComponent({ data }) {
                       key={i}
                       i={i}
                       imageURL={`${val.imageURL}`}
+                      writerName={`${val.writerName}`}
                       headline={`${val.title}`}
                       genre={`${val.genre}`}
                       date={`${val.createdAt}`}
@@ -330,6 +334,7 @@ export default function HomeComponent({ data }) {
                         key={i}
                         i={i}
                         imageURL={`${val.imageURL}`}
+                        writerName={`${val.writerName}`}
                         headline={`${val.title}`}
                         genre={`${val.genre}`}
                         date={`${val.createdAt}`}

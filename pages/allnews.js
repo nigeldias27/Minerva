@@ -263,6 +263,7 @@ export default function News() {
                   key={i}
                   imageURL={`${val.imageURL}`}
                   headline={`${val.title}`}
+                  writerName={`${val.writerName}`}
                   genre={`${val.genre}`}
                   i={i}
                   date={`${val.createdAt}`}
@@ -303,6 +304,7 @@ export default function News() {
                   key={i}
                   imageURL={`${val.imageURL}`}
                   headline={`${val.title}`}
+                  writerName={`${val.writerName}`}
                   genre={`${val.genre}`}
                   i={i}
                   date={`${val.createdAt}`}

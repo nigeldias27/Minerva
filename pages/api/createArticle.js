@@ -3,7 +3,7 @@ import validateToken from "@/lib/validateToken";
 import pendingArticle from "../../models/pendingArticle.js";
 import Article from "../../models/Article.js";
 import trendingArticle from "../../models/trendingArticle.js";
-
+import User from "../../models/User.js";
 const createArticle = async (req, res) => {
   if (req.method == "POST") {
     const user = await validateToken(
@@ -14,13 +14,16 @@ const createArticle = async (req, res) => {
       //Add the article in the body to the Article collection and remove it from the pendingArticle collection
       console.log(req.body);
       var article = await trendingArticle.findOneAndDelete().sort({ _id: 1 });
+      var writeruser = await User.findById(req.body.writer);
       const finaltrendingArticle = new trendingArticle({
         ...req.body,
         editor: user._id,
+        writerName: writeruser.name,
       });
       const finalArticle = new Article({
         ...req.body,
         editor: user._id,
+        writerName: writeruser.name,
       });
       const finalData = await Promise.all([
         finalArticle.save(),

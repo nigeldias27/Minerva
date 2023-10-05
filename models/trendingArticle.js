@@ -21,12 +21,13 @@ const dataSchema = new mongoose.Schema(
       ref: "User",
       type: mongoose.Schema.Types.ObjectId,
     },
+    writerName: { type: String },
   },
   { timestamps: true }
 );
 const Test =
-  mongoose.models.trendingarticle ||
-  mongoose.model("trendingarticle", dataSchema);
+  mongoose.models.trendingarticle1 ||
+  mongoose.model("trendingarticle1", dataSchema);
 
 export default Test;
 //module.exports = mongoose.model('User', dataSchema)

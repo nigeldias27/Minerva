@@ -21,10 +21,11 @@ const dataSchema = new mongoose.Schema(
       ref: "User",
       type: mongoose.Schema.Types.ObjectId,
     },
+    writerName: { type: String },
   },
   { timestamps: true }
 );
-const Test = mongoose.models.Article || mongoose.model("Article", dataSchema);
+const Test = mongoose.models.Article1 || mongoose.model("Article1", dataSchema);
 
 export default Test;
 //module.exports = mongoose.model('User', dataSchema)

@@ -135,7 +135,7 @@ export default function UpdatedNewsCard(props) {
                   : " md:text-lg text-xs"
               } `}
             >
-              {"Nigel Dias"} | {props.genre}
+              {props.writerName} | {props.genre}
             </p>
             {props.readTime && (
               <p
