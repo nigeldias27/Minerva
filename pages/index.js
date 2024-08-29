@@ -232,14 +232,14 @@ export default function HomeComponent({ data }) {
             </div>
           </div>
         </div>
-        <div className="flex flex-row relative z-100 justify-center">
-          <button className="z-90 absolute bottom-12 border p-4 rounded-full border-black bg-yellow">
+        <div className=" animate-bounce flex flex-row relative z-100 justify-center">
+          <button className="animate-bounce z-90 absolute bottom-12 border p-4 rounded-full border-black bg-yellow">
             <BsArrowDown size={16} />
           </button>
-          <button className="z-80 absolute bottom-11 border p-4 rounded-full border-black bg-blue">
+          <button className="animate-bounce z-80 absolute bottom-11 border p-4 rounded-full border-black bg-blue">
             <BsArrowDown size={16} />
           </button>
-          <button className="z-90 absolute bottom-10 border p-4 rounded-full border-black bg-pink">
+          <button className="animate-bounce z-90 absolute bottom-10 border p-4 rounded-full border-black bg-pink">
             <BsArrowDown size={16} />
           </button>
         </div>
