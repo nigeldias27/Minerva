@@ -38,3 +38,14 @@ const addWriter = async (req, res) => {
 };
 export default connectDB(addWriter);
 */
+import connectDB from "@/lib/connect";
+import User from "../../models/User.js";
+const addUser = async (req, res) => {
+  if (req.method == "POST") {
+    const newUser = new User({ ...req.body });
+    const data = await newUser.save();
+    res.json(data);
+  }
+};
+
+export default connectDB(addUser);

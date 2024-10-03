@@ -8,9 +8,15 @@ const getParticularPendingArticle = async (req, res) => {
     const user = await validateToken(
       req.headers["authorization"].split(" ")[1]
     );
-    if (user.role == "Editor") {
+    if (
+      user.role == "Editor" ||
+      user.role == "Legal" ||
+      user.role == "Faculty"
+    ) {
       const article = await pendingArticle.findById(req.body.id);
       res.json(article);
+    } else {
+      res.json({});
     }
   }
 };

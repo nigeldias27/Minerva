@@ -17,10 +17,6 @@ const dataSchema = new mongoose.Schema(
       ref: "User",
       type: mongoose.Schema.Types.ObjectId,
     },
-    editor: {
-      ref: "User",
-      type: mongoose.Schema.Types.ObjectId,
-    },
     writerName: { type: String },
   },
   { timestamps: true }

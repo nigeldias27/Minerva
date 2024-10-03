@@ -230,6 +230,7 @@ export default function News() {
           customLeftArrow={<CustomLeftArrow />}
           customRightArrow={<CustomRightArrow />}
           responsive={responsive}
+          className="py-4"
         >
           {genreList.map((v, i) => {
             return (

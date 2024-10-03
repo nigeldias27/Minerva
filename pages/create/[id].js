@@ -18,6 +18,7 @@ export default function CreateArticle() {
   const [removeInvalid, setRemoveInvalid] = useState(""); //Error handling
   const [draftInvalid, setDraftInvalid] = useState(""); //Error handling
   const [openLoad, setOpenLoad] = useState(false);
+  const [facultyOpen, setFacultyOpen] = useState(false);
   const genreList = [
     "World",
     "India",
@@ -30,6 +31,7 @@ export default function CreateArticle() {
     "Science",
     "Technology",
   ];
+  const facultyList = ["Prof. Faculty"];
 
   useEffect(() => {
     initState();
@@ -62,16 +64,20 @@ export default function CreateArticle() {
   const undo = async () => {
     // Used to undo the pending article
     try {
-      const response = await axios.post("/api/removePendingArticle", {id: id}, {
-        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
-      });
+      const response = await axios.post(
+        "/api/removePendingArticle",
+        { id: id },
+        {
+          headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+        }
+      );
       setRemoveInvalid("false");
     } catch (e) {
       setRemoveInvalid("true");
     }
 
-    router.push("/pendingNews")
-  }
+    router.push("/pendingNews");
+  };
 
   const draft = async () => {
     // Used to undo the pending article
@@ -84,7 +90,7 @@ export default function CreateArticle() {
     } catch (e) {
       setDraftInvalid("true");
     }
-  }
+  };
 
   const publish = async () => {
     // Used to publish the article
@@ -93,6 +99,7 @@ export default function CreateArticle() {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
       setInvalid("false");
+      router.push("/pendingNews");
     } catch (e) {
       setInvalid("true");
     }
@@ -106,7 +113,7 @@ export default function CreateArticle() {
           <h1 className="text-3xl px-24 font-bold">Publish a new Article:</h1>
           <div className="rounded-xl bg-white w-full my-12 pt-8 drop-shadow-2xl">
             <div className="pt-4 grid grid-cols-1 sm:grid-cols-3">
-              <div class="text-left flex justify-center items-center">
+              <div class="text-left flex justify-center items-center relative">
                 <div>
                   <button
                     type="button"
@@ -135,7 +142,7 @@ export default function CreateArticle() {
                 </div>
 
                 <div
-                  class={`overflow-y-auto h-32 absolute left-0 ml-72 mt-20 z-10 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${
+                  class={`overflow-y-auto h-32 absolute -right-14  mt-20 z-10 w-56  rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${
                     open == false ? "hidden" : " "
                   }`}
                   role="menu"
@@ -166,13 +173,67 @@ export default function CreateArticle() {
                   </div>
                 </div>
               </div>
-              <div className="px-4">
-                <input
-                  placeholder="Title"
-                  onChange={changed("title")}
-                  value={`${data.title == undefined ? "" : data.title}`}
-                  className="w-full my-4 px-4 py-2 text-base border border-gray-300 rounded outline-none focus:ring-black focus:border-black focus:ring-1"
-                ></input>
+              <div class="text-left flex justify-center items-center relative">
+                <div>
+                  <button
+                    type="button"
+                    class="inline-flex ml-12 w-60 justify-center gap-x-1.5 rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+                    id="menu-button"
+                    aria-expanded="true"
+                    aria-haspopup="true"
+                    onClick={() => {
+                      facultyOpen == false
+                        ? setFacultyOpen(true)
+                        : setFacultyOpen(false);
+                    }}
+                  >
+                    {data["faculty"] != null ? data["faculty"] : "Faculty"}
+                    <svg
+                      class="-mr-1 h-5 w-5 text-gray-400"
+                      viewBox="0 0 20 20"
+                      fill="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+                        clip-rule="evenodd"
+                      />
+                    </svg>
+                  </button>
+                </div>
+
+                <div
+                  class={`overflow-y-auto h-32 absolute -right-14 ml-96 mt-20 z-10 w-56 origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none ${
+                    facultyOpen == false ? "hidden" : " "
+                  }`}
+                  role="menu"
+                  aria-orientation="vertical"
+                  aria-labelledby="menu-button"
+                  tabindex="-1"
+                >
+                  <div class="py-1" role="none">
+                    {facultyList.map((val, i) => {
+                      return (
+                        <a
+                          key={i}
+                          class="text-gray-700 block px-4 py-2 text-sm"
+                          role="menuitem"
+                          tabindex="-1"
+                          id="menu-item-0"
+                          onClick={(e) => {
+                            var d = {};
+                            d["faculty"] = e.target.firstChild.data;
+                            setData({ ...data, ...d });
+                            setFacultyOpen(false);
+                          }}
+                        >
+                          {val}
+                        </a>
+                      );
+                    })}
+                  </div>
+                </div>
               </div>
               <div className="px-4">
                 <input
@@ -182,6 +243,14 @@ export default function CreateArticle() {
                   className="w-full my-4 px-4 py-2 text-base border border-gray-300 rounded outline-none focus:ring-black focus:border-black focus:ring-1"
                 ></input>
               </div>
+            </div>
+            <div className="px-4">
+              <input
+                placeholder="Title"
+                onChange={changed("title")}
+                value={`${data.title == undefined ? "" : data.title}`}
+                className="w-full my-4 px-4 py-2 text-base border border-gray-300 rounded outline-none focus:ring-black focus:border-black focus:ring-1"
+              ></input>
             </div>
             <div className="px-4">
               <textarea
@@ -204,29 +273,33 @@ export default function CreateArticle() {
             </div>
             <div className="flex w-full pr-8 justify-end">
               <div>
-                {id!="content"?(
+                {id != "content" ? (
                   <button
-                  class="x-6 my-8 mx-5 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
-                  type="submit"
-                  onClick={() => {
-                    undo();
-                  }}
-                >
-                  <span className="text-xl">Remove</span>
-                </button>
-                ):(<div></div>)}
+                    class="x-6 my-8 mx-5 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
+                    type="submit"
+                    onClick={() => {
+                      undo();
+                    }}
+                  >
+                    <span className="text-xl">Remove</span>
+                  </button>
+                ) : (
+                  <div></div>
+                )}
 
-                {id=="content"?(
+                {id == "content" ? (
                   <button
-                  class="x-6 my-8 mx-5 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
-                  type="submit"
-                  onClick={() => {
-                    draft();
-                  }}
-                >
-                  <span className="text-xl">Save to Drafts</span>
-                </button>
-                ):(<div></div>)}
+                    class="x-6 my-8 mx-5 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
+                    type="submit"
+                    onClick={() => {
+                      draft();
+                    }}
+                  >
+                    <span className="text-xl">Save to Drafts</span>
+                  </button>
+                ) : (
+                  <div></div>
+                )}
 
                 <button
                   class="x-6 my-8 mx-5 drop-shadow-xl font-small rounded-md bg-gradient-to-r from-gray-800 to-blackButton py-3 px-8 text-beigeText"
@@ -253,7 +326,9 @@ export default function CreateArticle() {
             {draftInvalid != "" ? (
               <div className="flex justify-center">
                 {draftInvalid == "true" ? (
-                  <Alert severity="error">Error Drafting. Have you filled all the fields? Try Again</Alert>
+                  <Alert severity="error">
+                    Error Drafting. Have you filled all the fields? Try Again
+                  </Alert>
                 ) : (
                   <Alert severity="success">Drafted successfully</Alert>
                 )}
@@ -286,6 +361,14 @@ export default function CreateArticle() {
                 {data == undefined ? "" : data.title}
               </h1>
             </div>
+            <div className="px-24 pt-8 flex justify-center">
+              <img
+                width={"60%"}
+                height={"400px"}
+                src={`${data.imageURL == undefined ? "" : data.imageURL}`}
+              ></img>
+            </div>
+
             <div className="px-24 sm:px-48 py-8">
               <h1>
                 {data.genre == undefined ? "" : data.genre} |{" "}

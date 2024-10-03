@@ -11,7 +11,16 @@ const getPendingArticles = async (req, res) => {
       req.headers["authorization"].split(" ")[1]
     );
     if (user.role == "Editor") {
-      const articles = await pendingArticle.find();
+      const articles = await pendingArticle.find({ Role: "Content" });
+      res.json({ article: articles, role: user.role });
+    } else if (user.role == "Legal") {
+      const articles = await pendingArticle.find({ Role: "Editor" });
+      res.json({ article: articles, role: user.role });
+    } else if (user.role == "Faculty") {
+      const articles = await pendingArticle.find({
+        Role: "Legal",
+        faculty: user.name,
+      });
       res.json({ article: articles, role: user.role });
     } else {
       const contentArticles = await Article.find({ writer: user._id });

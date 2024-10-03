@@ -14,6 +14,7 @@ const dataSchema = new mongoose.Schema(
     imageURL: { required: true, type: String },
     description: { required: true, type: String },
     Role: { required: true, type: String },
+    faculty: { required: true, type: String },
     writer: {
       ref: "User",
       type: mongoose.Schema.Types.ObjectId,
