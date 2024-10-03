@@ -66,6 +66,7 @@ const CustomRightArrow = ({ onClick }) => (
 );
 export default function News() {
   const [previousChecker, setPrevious] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [dark, setDark] = useState(false);
   useEffect(() => {
     localStorage.getItem("mode") == "dark" ? setDark(true) : setDark(false);
@@ -238,7 +239,16 @@ export default function News() {
                 key={i}
                 className="py-2 px-5 sm:p-0 flex justify-center items-center"
               >
-                <button class="py-0.5 mx-1 sm:px-1 flex w-full text-center whitespace-nowrap bg-white dark:bg-greyBlack  text-black dark:text-white rounded-[4px] border border-black dark:border-white hover:dark:border-yellow hover:border-londonYellow hover:shadow-xl font-georgia font-semibold">
+                <button
+                  class="py-0.5 mx-1 sm:px-1 flex w-full text-center whitespace-nowrap bg-white dark:bg-greyBlack  text-black dark:text-white rounded-[4px] border border-black dark:border-white hover:dark:border-yellow hover:border-londonYellow hover:shadow-xl font-georgia font-semibold"
+                  onClick={() => {
+                    if (selectedCategory == v) {
+                      setSelectedCategory(null);
+                    } else {
+                      setSelectedCategory(v);
+                    }
+                  }}
+                >
                   <p className="flex justify-center items-center w-full text-[10px]">
                     {v}
                   </p>
@@ -293,35 +303,37 @@ export default function News() {
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
           {data.filter(isSameWeek2).map((val, i) => {
-            return (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: -60 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.5 }}
-              >
-                <UpdatedNewsCard
+            if (val.genre == selectedCategory || selectedCategory == null) {
+              return (
+                <motion.div
                   key={i}
-                  imageURL={`${val.imageURL}`}
-                  headline={`${val.title}`}
-                  writerName={`${val.writerName}`}
-                  genre={`${val.genre}`}
-                  i={i}
-                  date={`${val.createdAt}`}
-                  desc={`${val.description}`}
-                  id={`${val._id}`}
-                  newArticle={true}
-                  hideDate={true}
-                  thisweek={false}
-                  horizontal={true}
-                  hideShadow={true}
-                  darkMode={
-                    localStorage.getItem("mode") == "dark" ? true : false
-                  }
-                />
-              </motion.div>
-            );
+                  initial={{ opacity: 0, y: -60 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: 0.5 }}
+                >
+                  <UpdatedNewsCard
+                    key={i}
+                    imageURL={`${val.imageURL}`}
+                    headline={`${val.title}`}
+                    writerName={`${val.writerName}`}
+                    genre={`${val.genre}`}
+                    i={i}
+                    date={`${val.createdAt}`}
+                    desc={`${val.description}`}
+                    id={`${val._id}`}
+                    newArticle={true}
+                    hideDate={true}
+                    thisweek={false}
+                    horizontal={true}
+                    hideShadow={true}
+                    darkMode={
+                      localStorage.getItem("mode") == "dark" ? true : false
+                    }
+                  />
+                </motion.div>
+              );
+            }
           })}
         </div>
       </div>

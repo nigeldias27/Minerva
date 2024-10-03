@@ -6,6 +6,7 @@ import PersonCard from "@/components/PersonCard";
 import { team } from "@/models/team";
 import { BsInstagram, BsYoutube, BsLinkedin, BsTwitter } from "react-icons/bs";
 import Carousel from "react-multi-carousel";
+import "react-multi-carousel/lib/styles.css";
 import { useMediaQuery } from "react-responsive";
 import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
 import InfiniteScroll from "react-infinite-scroll-component";
@@ -13,8 +14,6 @@ import { motion } from "framer-motion";
 import { Fragment, useEffect, useState } from "react";
 import { BsArrowDown } from "react-icons/bs";
 import { Dialog, Transition } from "@headlessui/react";
-import event6 from "../public/assets/newsletter.webp";
-import event7 from "../public/assets/newsletter_dark.webp";
 import { GrClose } from "react-icons/gr";
 import { IoMdClose } from "react-icons/io";
 import { Avatar, TextField, Typography } from "@mui/material";
@@ -171,7 +170,7 @@ export default function OurTeam({ teams }) {
           <title>Our Team</title>
         </Head>
         <Headers dark={dark} setDark={setDark} />
-        <div className="md:mx-8 mt-24 ">
+        <div className="relative md:mx-8 mt-24 ">
           <div className="mx-4 md:mx-8">
             <UpdatedHeading>Our Team</UpdatedHeading>
           </div>
